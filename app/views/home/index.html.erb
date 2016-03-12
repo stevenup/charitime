@@ -1,0 +1,147 @@
+<div class="homepage" id="homepage">
+  <div class="banner-swiper" id="banner-swiper">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+  <ul class="nav-list s-s" id="nav-list">
+    <li class="nav-item m-t m-b">
+      <div class="nav-item-icon">
+
+      </div>
+      <div class="nav-item-name">
+        捐赠
+      </div>
+    </li>
+
+    <li class="nav-item m-t m-b">
+      <div class="nav-item-icon">
+
+      </div>
+      <div class="nav-item-name">
+        义卖
+      </div>
+    </li>
+
+    <li class="nav-item m-t m-b">
+      <div class="nav-item-icon">
+
+      </div>
+      <div class="nav-item-name">
+        拍卖
+      </div>
+    </li>
+
+    <li class="nav-item m-t m-b">
+      <div class="nav-item-icon">
+
+      </div>
+      <div class="nav-item-name">
+        项目
+      </div>
+    </li>
+  </ul>
+
+  <div class="rcmds s-s" id="rcmds">
+    <div class="rcmds-header p-t p-l p-r">
+      <p class="title">推荐</p>
+    </div>
+
+    <div class="rcmds-list s-s p-l p-r m-b m-t">
+      <div class="goods-item m-t">
+
+      </div>
+      <div class="goods-item m-t">
+
+      </div>
+
+      <div class="project-item m-t p-b">
+        <div class="project-pic">
+          <%= image_tag '1.png' %>
+        </div>
+
+        <div class="project-info p-t p-b">
+          <p class="title">这里输入标题</p>
+          <p class="description">这里输入描述这里输入描述这里输入描述这里输入描述这里输入描述</p>
+
+          <div class="progress">
+            <div class="progress-bar">
+              <div class="green-bar"></div>
+            </div>
+            <div class="progress-percent">
+              <p>40%</p>
+            </div>
+          </div>
+
+          <div class="support-info">
+            <div class="supporters p-r">
+              <p class="total">20</p>
+              <p>支持人数</p>
+            </div>
+            <div class="money p-r">
+              <p class="total">5000</p>
+              <p>累计款项</p>
+            </div>
+            <div class="target p-r">
+              <p class="total">12500</p>
+              <p>目标</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="project-item m-t p-b">
+        <div class="project-pic">
+          <%= image_tag '1.png' %>
+        </div>
+
+        <div class="project-info p-t p-b">
+          <p class="title">这里输入标题</p>
+          <p class="description">这里输入描述这里输入描述这里输入描述这里输入描述这里输入描述</p>
+
+          <div class="progress">
+            <div class="progress-bar">
+              <div class="green-bar"></div>
+            </div>
+            <div class="progress-percent">
+              <p>40%</p>
+            </div>
+          </div>
+
+          <div class="support-info">
+            <div class="supporters p-r">
+              <p class="total">20</p>
+              <p>支持人数</p>
+            </div>
+            <div class="money p-r">
+              <p class="total">5000</p>
+              <p>累计款项</p>
+            </div>
+            <div class="target p-r">
+              <p class="total">12500</p>
+              <p>目标</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper('.swiper-container', {
+    pagination: '.swiper-pagination',
+    paginationClickable: true
+  });
+</script>

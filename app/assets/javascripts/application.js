@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require lib-flexible/flexible.js
+//= require lib-flexible/flexible_css.js
+//= require swiper/dist/js/swiper
 //= require_tree .

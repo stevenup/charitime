@@ -1,0 +1,10 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "swiper": "latest",
+    "weui": "latest",
+    "flexible": "latest"
+  },
+  "resolutions": {
+  }
+}
