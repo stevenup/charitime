@@ -831,3 +831,27 @@ i.arrow {
     }
   }
 }
+
+.donate_page {
+  background: #ffffff;
+
+  .donate_page_head {
+    img {
+      width: 100%;
+    }
+  }
+
+  .donation-photos {
+
+    .camera {
+      //margin: p2e(32px) auto;
+      width: p2e(100px);
+      height: p2e(100px);
+      border: 1px red solid;
+    }
+  }
+
+  .donation-info {
+
+  }
+}

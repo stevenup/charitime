@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     get :my_gyb,            on: :collection
     get :project_detail,    on: :collection
     get :product_detail,    on: :collection
+    get :donate_page,       on: :collection
   end
 end

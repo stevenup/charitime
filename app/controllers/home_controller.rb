@@ -16,4 +16,7 @@ class HomeController < ApplicationController
 
   def product_detail
   end
+
+  def donate_page
+  end
 end
