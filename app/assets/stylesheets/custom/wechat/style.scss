@@ -864,6 +864,8 @@ button {
   .demo-title {
     @include font-dpr(18px);
     font-weight: bold;
+    padding-left: p2e(18px);
+    padding-right: p2e(18px);
   }
 
   .demo-content {
@@ -872,14 +874,14 @@ button {
     p {
       margin-top: p2e(18px);
       margin-bottom: p2e(18px);
+      padding-left: p2e(18px);
+      padding-right: p2e(18px);
     }
 
     .attached-img {
       margin-top: p2e(18px);
-
-      img {
-        width: 100%;
-      }
+      border: 1px red solid;
+      width: 100%;
     }
 
     .attached-goods {
@@ -904,6 +906,7 @@ button {
 
         .goods-title {
           padding-top: p2e(10px);
+          padding-right: p2e(18px);
           @include font-dpr(16px);
         }
 
