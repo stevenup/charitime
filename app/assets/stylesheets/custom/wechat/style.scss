@@ -8,10 +8,11 @@ html, body {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   @include font-dpr(14px);
   color: #000;
+  overflow: hidden;
 }
 
 .s-s {
-  margin: p2e(20px) 0;
+  margin: p2e(20px) 0 0 0;
   background: #ffffff;
 }
 
@@ -40,7 +41,127 @@ html, body {
 }
 
 /**********  homepage style  **********/
+
 .homepage {
+
+  /**********  start of common style  **********/
+
+  .header-section {
+    border-bottom: 1px solid #979797;
+
+    .title {
+      @include font-dpr(18px);
+      color: #9B9B9B;
+      display: inline-block;
+    }
+
+    a.all {
+      @include font-dpr(16px);
+      color: #32AFEF;
+      display: inline-block;
+      position: absolute;
+      right: p2e(32px);
+    }
+  }
+
+  .goods-item {
+    width: p2e(330px);
+    height: p2e(400px);
+    border: 1px lightgray solid;
+    display: inline-block;
+  }
+
+  .project-item {
+    position: relative;
+    border: 1px lightgray solid;
+    width: 100%;
+    //height: p2e(260px);
+
+    .project-pic {
+      position: relative;
+      left: 0;
+      width: 40%;
+      //height: p2e(260px);
+      //border: 1px lightgray solid;
+      display: block;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .project-info {
+      text-align: left;
+      width: 60%;
+      //height: p2e(260px);
+      //border: 1px solid red;
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      p.title {
+        @include font-dpr(14px);
+        color: #000;
+      }
+
+      p.description {
+        @include font-dpr(12px);
+        color: #9b9b9b;
+      }
+
+      .progress {
+        text-align: center;
+        width: 75%;
+
+        .progress-bar {
+          width: inherit;
+          height: p2e(16px);
+          border: 1px grey solid;
+          border-radius: p2e(10px);
+          display: inline-block;
+
+          .green-bar {
+            height: 100%;
+            width: 40%;
+            background: #32CD32;
+            border-radius: p2e(10px);
+          }
+        }
+
+        .progress-percent {
+          @include font-dpr(14px);
+          display: inline-block;
+          position: relative;
+          right: p2e(-30px);
+        }
+      }
+
+      .support-info {
+        text-align: center;
+
+        p.total {
+          @include font-dpr(14px);
+          color: #d88b1f;
+        }
+
+        .supporters {
+          display: inline-block;
+        }
+
+        .money {
+          display: inline-block;
+        }
+
+        .target {
+          display: inline-block;
+        }
+      }
+    }
+
+  }
+  /**********  end of common style  **********/
+
   .banner-swiper {
     .swiper-container {
       width: 100%;
@@ -102,113 +223,84 @@ html, body {
   }
 
   .rcmds {
-    .rcmds-header {
-      border-bottom: 1px solid #979797;
-
-      .title {
-        @include font-dpr(18px);
-        color: #9B9B9B;
-      }
-    }
-
     .rcmds-list {
       text-align: center;
 
-      .goods-item {
-        width: p2e(330px);
-        height: p2e(400px);
-        border: 1px lightgray solid;
-        display: inline-block;
-      }
+    }
+  }
 
-      .project-item {
-        position: relative;
-        border: 1px lightgray solid;
-        width: 100%;
-        //height: p2e(260px);
+  .hot {
+    .hot-items {
+      text-align: center;
+    }
+  }
 
-        .project-pic {
-          position: relative;
-          left: 0;
-          width: 40%;
-          //height: p2e(260px);
-          //border: 1px lightgray solid;
-          display: block;
+  .projects {
+  }
 
-          img {
-            width: 100%;
-          }
+  .charity-auction {
+    .auction-list {
+      .auction-item {
+        img {
+          width: 100%;
         }
 
-        .project-info {
-          text-align: left;
-          width: 60%;
-          //height: p2e(260px);
-          //border: 1px solid red;
-          display: inline-block;
-          position: absolute;
-          right: 0;
-          top: 0;
+        .auction-thumb {
+          border: 1px solid grey;
+          height: p2e(200px);
 
-          p.title {
-            @include font-dpr(14px);
-            color: #000;
-          }
-
-          p.description {
-            @include font-dpr(12px);
-            color:#9b9b9b;
-          }
-
-          .progress {
-            text-align: center;
-            width: 80%;
-            
-            .progress-bar {
-              width: inherit;
-              height: p2e(16px);
-              border: 1px grey solid;
-              border-radius: p2e(10px);
-              display: inline-block;
-
-              .green-bar {
-                height: 100%;
-                width: 40%;
-                background: #32CD32;
-              }
-            }
-            
-            .progress-percent {
-              @include font-dpr(14px);
-              display: inline-block;
-            }
-          }
-          
-          .support-info {
-            text-align: center;
-
-            p.total {
-              @include font-dpr(14px);
-              color: #d88b1f;
-            }
-            
-            .supporters {
-              display: inline-block;
-            }
-
-            .money {
-              display: inline-block;
-            }
-
-            .target {
-              display: inline-block;
-            }
-          }
         }
 
+        .auction-price {
+          .price {
+            @include font-dpr(18px);
+            display: inline-block;
+
+            span {
+              color: red;
+            }
+          }
+
+          .auction-going {
+            width: p2e(350px);
+            display: inline-block;
+            position: absolute;
+            right: p2e(32px);
+          }
+        }
       }
     }
   }
 
+  .charity-sale {
+    margin-bottom: p2e(56px);
+    .claim {
+      @include font-dpr(14px);
+      text-align: center;
+      color: red;
+    }
+
+    .charity-sale-list {
+      text-align: center;
+    }
+  }
+
+  .bottom-nav {
+    background: whitesmoke;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    border-top: 1px solid lightgray;
+    text-align: center;
+    @include font-dpr(16px);
+    color: orangered;
+
+    .home {
+      i {
+        padding-left: p2e(50px);
+        padding-right: p2e(50px);
+      }
+    }
+  }
 }
 

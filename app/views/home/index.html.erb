@@ -48,12 +48,12 @@
     </li>
   </ul>
 
-  <div class="rcmds s-s" id="rcmds">
-    <div class="rcmds-header p-t p-l p-r">
+  <div class="rcmds s-s p-b" id="rcmds">
+    <div class="header-section p-t p-l p-r">
       <p class="title">推荐</p>
     </div>
 
-    <div class="rcmds-list s-s p-l p-r m-b m-t">
+    <div class="rcmds-list s-s p-l p-r m-t">
       <div class="goods-item m-t">
 
       </div>
@@ -135,6 +135,202 @@
 
     </div>
   </div>
+
+  <div class="hot s-s" id="hot">
+    <div class="header-section p-t p-l p-r">
+      <p class="title">热卖商品</p>
+      <a href="#" class="all">查看全部 &nbsp;<i class="fa fa-angle-right fa-lg"></i></a>
+    </div>
+
+    <div class="hot-items m-t">
+      <div class="goods-item m-t">
+
+      </div>
+      <div class="goods-item m-t">
+
+      </div>
+      <div class="goods-item m-t">
+
+      </div>
+      <div class="goods-item m-t">
+
+      </div>
+    </div>
+  </div>
+
+  <div class="projects s-s" id="projects">
+    <div class="header-section p-t p-l p-r">
+      <p class="title">公益项目</p>
+      <a href="#" class="all">查看全部 &nbsp;<i class="fa fa-angle-right fa-lg"></i></a>
+    </div>
+
+    <div class="project-item m-t p-b">
+      <div class="project-pic">
+        <%= image_tag '1.png' %>
+      </div>
+
+      <div class="project-info p-t p-b">
+        <p class="title">这里输入标题</p>
+        <p class="description">这里输入描述这里输入描述这里输入描述这里输入描述这里输入描述</p>
+
+        <div class="progress">
+          <div class="progress-bar">
+            <div class="green-bar"></div>
+          </div>
+          <div class="progress-percent">
+            <p>40%</p>
+          </div>
+        </div>
+
+        <div class="support-info">
+          <div class="supporters p-r">
+            <p class="total">20</p>
+            <p>支持人数</p>
+          </div>
+          <div class="money p-r">
+            <p class="total">5000</p>
+            <p>累计款项</p>
+          </div>
+          <div class="target p-r">
+            <p class="total">12500</p>
+            <p>目标</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item m-t p-b">
+      <div class="project-pic">
+        <%= image_tag '1.png' %>
+      </div>
+
+      <div class="project-info p-t p-b">
+        <p class="title">这里输入标题</p>
+        <p class="description">这里输入描述这里输入描述这里输入描述这里输入描述这里输入描述</p>
+
+        <div class="progress">
+          <div class="progress-bar">
+            <div class="green-bar"></div>
+          </div>
+          <div class="progress-percent">
+            <p>40%</p>
+          </div>
+        </div>
+
+        <div class="support-info">
+          <div class="supporters p-r">
+            <p class="total">20</p>
+            <p>支持人数</p>
+          </div>
+          <div class="money p-r">
+            <p class="total">5000</p>
+            <p>累计款项</p>
+          </div>
+          <div class="target p-r">
+            <p class="total">12500</p>
+            <p>目标</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item m-t p-b">
+      <div class="project-pic">
+        <%= image_tag '1.png' %>
+      </div>
+
+      <div class="project-info p-t p-b">
+        <p class="title">这里输入标题</p>
+        <p class="description">这里输入描述这里输入描述这里输入描述这里输入描述这里输入描述</p>
+
+        <div class="progress">
+          <div class="progress-bar">
+            <div class="green-bar"></div>
+          </div>
+          <div class="progress-percent">
+            <p>40%</p>
+          </div>
+        </div>
+
+        <div class="support-info">
+          <div class="supporters p-r">
+            <p class="total">20</p>
+            <p>支持人数</p>
+          </div>
+          <div class="money p-r">
+            <p class="total">5000</p>
+            <p>累计款项</p>
+          </div>
+          <div class="target p-r">
+            <p class="total">12500</p>
+            <p>目标</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="charity-auction s-s" id="charity-auction">
+    <div class="header-section p-t p-l p-r">
+      <p class="title">爱心拍卖</p>
+      <a href="#" class="all">查看全部 &nbsp;<i class="fa fa-angle-right fa-lg"></i></a>
+    </div>
+
+    <div class="auction-list p-l p-r m-t m-b" id="auction-list">
+      <div class="auction-item m-b">
+        <div class="auction-thumb">
+
+        </div>
+        <div class="auction-price m-t">
+          <p class="price">起拍价：<span>100元</span></p>
+          <%= image_tag 'auction.png', class: 'auction-going' %>
+        </div>
+      </div>
+
+      <div class="auction-item m-b p-b">
+        <div class="auction-thumb">
+
+        </div>
+        <div class="auction-price m-t">
+          <p class="price">起拍价：<span>100元</span></p>
+          <%= image_tag 'auction.png', class: 'auction-going' %>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="charity-sale s-s m-b" id="charity-sale">
+    <div class="header-section p-t p-l p-r">
+      <p class="title">爱心义卖</p>
+      <a href="#" class="all">查看全部 &nbsp;<i class="fa fa-angle-right fa-lg"></i></a>
+    </div>
+
+    <div class="claim m-t">
+      <p>义卖所得将全部用于公益慈善</p>
+    </div>
+
+    <div class="charity-sale-list">
+      <div class="goods-item m-t">
+
+      </div>
+      <div class="goods-item m-t">
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-nav s-s" id="bottom-nav">
+    <div class="home m-t m-b">
+      <i class="fa fa-home">&nbsp;&nbsp;首页</i>
+      <i class="fa fa-user">&nbsp;&nbsp;我</i>
+      <i class="fa fa-shopping-bag">&nbsp;&nbsp;购物袋</i>
+    </div>
+  </div>
+
 </div>
 
 
@@ -142,6 +338,8 @@
 <script>
   var swiper = new Swiper('.swiper-container', {
     pagination: '.swiper-pagination',
-    paginationClickable: true
+    paginationClickable: true,
+    autoplay: 3000,
+    loop: true
   });
 </script>
