@@ -20,8 +20,16 @@ html, body {
   margin-top: p2e(16px);
 }
 
+.m-r {
+  margin-right: p2e(16px);
+}
+
 .m-b {
   margin-bottom: p2e(16px);
+}
+
+.m-l {
+  margin-left: p2e(16px);
 }
 
 .p-l {
@@ -305,7 +313,11 @@ html, body {
 }
 
 /**********  personal-center style  **********/
+
 .personal-center {
+
+  /**********  start of common style  **********/
+
   p.menu-name {
     @include font-dpr(16px);
     color: dimgray;
@@ -320,6 +332,8 @@ html, body {
     float: right;
     padding: p2e(2px) p2e(14px);
   }
+
+  /**********  end of common style  **********/
 
   .profile {
     background: url("Profile-bgp.png");
@@ -408,5 +422,81 @@ html, body {
     @include font-dpr(14px);
     position: relative;
     bottom: p2e(-16px);
+  }
+}
+
+/**********  donations-center style  **********/
+
+.donations-center {
+  .donation-head {
+    background: url("donation_bgp.png");
+    background-size: cover;
+    height: p2e(400px);
+  }
+
+  .donate-btn {
+    height: p2e(80px);
+    @include font-dpr(18px);
+    color: #ffffff;
+    background: #4CD964;
+    border-radius: p2e(10px);
+    text-align: center;
+    width: 95%;
+    display: table;
+    margin-top: p2e(48px);
+    margin-bottom: p2e(48px);
+
+    p {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+
+  .donation-remarks {
+    text-align: center;
+    color: dimgray;
+    @include font-dpr(14px);
+  }
+
+  .history-donations {
+    .donation {
+      position: relative;
+      //background: #ffffff;
+
+      .donation-pic {
+        width: 25%;
+        //border: 1px red solid;
+        border-radius: p2e(10px);
+        overflow: hidden;
+        display: inline-block;
+
+        img {
+          width: 100%;
+          display: inline-block;
+        }
+      }
+
+      .donation-description {
+        position: absolute;
+        //border: 1px red solid;
+        display: inline-block;
+        width: 65%;
+
+        p.title {
+          @include font-dpr(16px);
+          color: #000;
+        }
+
+        p.date {
+          @include font-dpr(14px);
+          color: #9b9b9b;
+        }
+
+        p.state {
+          @include font-dpr(14px);
+          color: #4CD964;
+        }
+      }
+    }
   }
 }

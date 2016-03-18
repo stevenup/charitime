@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :home, only: [:index] do
     get :personal_center, on: :collection
+    get :donations_center, on: :collection
   end
 
 
