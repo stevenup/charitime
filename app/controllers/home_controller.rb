@@ -4,4 +4,7 @@ class HomeController < ApplicationController
 
   def personal_center
   end
+
+  def donations_center
+  end
 end
