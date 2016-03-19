@@ -1,7 +1,6 @@
 @import "../../integrations/adjust_config";
 
 /**********  default global settings  **********/
-
 html, body {
   margin: 0;
   padding: 0;
@@ -50,7 +49,6 @@ html, body {
 }
 
 /**********  common style  **********/
-
 .profile {
   background: url("Profile-bgp.png");
   background-size: cover;
@@ -118,8 +116,7 @@ i.arrow {
   padding: p2e(2px) p2e(16px);
 }
 
-/**********  homepage style  **********/
-
+/**************  homepage style  **************/
 .homepage {
 
   /**********  start of common style  **********/
@@ -381,8 +378,7 @@ i.arrow {
   }
 }
 
-/**********  personal-center style  **********/
-
+/***********  personal-center style  ***********/
 .personal-center {
 
   .my-cart {
@@ -430,8 +426,7 @@ i.arrow {
   }
 }
 
-/**********  donations-center style  **********/
-
+/**********  donations-center style  ***********/
 .donations-center {
   .donation-head {
     background: url("donation_bgp.png");
@@ -573,6 +568,162 @@ i.arrow {
           }
         }
       }
+    }
+  }
+}
+
+/***********  product-detail style  ************/
+.product-detail {
+  width: 100%;
+  background-color: white;
+
+  .big-thumb {
+    width: 100%;
+    height: p2e(400);
+    border-bottom: 1px solid #979797;
+
+    img {
+      display: block;
+      width: 50%;
+      margin: 0 auto;
+    }
+  }
+
+  .main {
+    width: 100%;
+    height: p2e(350);
+    border-bottom: 1px solid #979797;
+
+    .main-left {
+      box-sizing: border-box;
+      float: left;
+      width: 50%;
+      height: 100%;
+      padding: p2e(20);
+      padding-left: p2e(40);
+
+      .price {
+        line-height: p2e(80);
+
+        .big-price {
+          @include font-dpr(30px);
+          color: red;
+        }
+
+        .coin {
+          @include font-dpr(20px);
+          margin-left: p2e(20);
+          color: #f5a623;
+        }
+      }
+
+      .info {
+        box-sizing: border-box;
+        width: 100%;
+
+        dl {
+          padding-bottom: p2e(5);
+          @include font-dpr(14px);
+
+          dt {
+            float: left;
+            color: #7D7C7C;
+          }
+
+          dd {
+            float: left;
+          }
+        }
+
+        p.stock {
+          line-height: p2e(40);
+          @include font-dpr(12px);
+          text-align: center;
+        }
+
+        .dl-clear:after {
+          content: "";
+          display: block;
+          height: 0;
+          clear: both;
+        }
+      }
+    }
+
+    .main-right {
+      box-sizing: border-box;
+      float: left;
+      width: 50%;
+      height: 100%;
+      padding: p2e(20);
+      padding-left: p2e(80);
+
+      ul.attrs {
+        padding-top: p2e(30);
+
+        li {
+          @include font-dpr(16px);
+          color: #7D7C7C;
+          padding-bottom: p2e(10);
+        }
+      }
+    }
+  }
+
+  .nav {
+    width: 100%;
+    height: p2e(80);
+    border-bottom: 1px solid #979797;
+
+    ul {
+      li {
+        display: inline-block;
+        width: 50%;
+        text-align: center;
+        @include font-dpr(18px);
+        line-height: p2e(80);
+
+        a {
+          color: #979797;
+          text-decoration: none;
+        }
+      }
+
+      span.split {
+        position: absolute;
+        width: 1px;
+        height: p2e(60);
+        left: 50%;
+        margin-top: p2e(10);
+        background-color: #979797;
+      }
+    }
+  }
+
+  .buttons {
+    position: fixed;
+    z-index: 999;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    border-top: 1px solid #979797;
+
+    button {
+      display: inline-block;
+      width: p2e(250);
+      height: p2e(80);
+      @include font-dpr(17px);
+      border-radius: 8px;
+    }
+
+    button.btn-buy {
+      color: white;
+      background-color: #E05163;
+    }
+    button.btn-cart {
+      background-color: white;
+      border: 1px solid #E05163;
     }
   }
 }
