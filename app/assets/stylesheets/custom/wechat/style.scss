@@ -1,6 +1,7 @@
 @import "../../integrations/adjust_config";
 
 /**********  default global settings  **********/
+
 html, body {
   margin: 0;
   padding: 0;
@@ -46,6 +47,75 @@ html, body {
 
 .p-b {
   padding-bottom: p2e(16px);
+}
+
+/**********  common style  **********/
+
+.profile {
+  background: url("Profile-bgp.png");
+  background-size: cover;
+  height: p2e(500px);
+  text-align: center;
+
+  .avatar {
+    position: relative;
+    top: p2e(50px);
+    margin: 0 auto;
+    width: p2e(200px);
+    height: p2e(200px);
+    border-radius: p2e(200px);
+    border: 4px white solid;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      display: inline-block;
+    }
+  }
+}
+
+.wx_name {
+  @include font-dpr(18px);
+  color: #ffffff;
+  position: relative;
+  top: p2e(80px);
+}
+
+.total-gyb {
+  position: relative;
+  top: p2e(120px);
+  @include font-dpr(20px);
+  color: #32CD32;
+
+  p {
+    display: inline-block;
+  }
+
+  p.tt {
+    @include font-dpr(14px);
+  }
+}
+
+.remarks {
+  @include font-dpr(14px);
+  color: #9b9b9b;
+  text-align: center;
+  margin-top: p2e(48px);
+}
+
+p.menu-name {
+  @include font-dpr(16px);
+  color: dimgray;
+  display: inline-block;
+}
+
+i.menu-icon {
+  padding: p2e(2px) p2e(16px);
+}
+
+i.arrow {
+  float: right;
+  padding: p2e(2px) p2e(16px);
 }
 
 /**********  homepage style  **********/
@@ -166,7 +236,6 @@ html, body {
         }
       }
     }
-
   }
   /**********  end of common style  **********/
 
@@ -316,75 +385,11 @@ html, body {
 
 .personal-center {
 
-  /**********  start of common style  **********/
-
-  p.menu-name {
-    @include font-dpr(16px);
-    color: dimgray;
-    display: inline-block;
-  }
-
-  i.menu-icon {
-    padding: p2e(2px) p2e(14px);
-  }
-
-  i.arrow {
-    float: right;
-    padding: p2e(2px) p2e(14px);
-  }
-
-  /**********  end of common style  **********/
-
-  .profile {
-    background: url("Profile-bgp.png");
-    background-size: cover;
-    height: p2e(500px);
-    text-align: center;
-
-    .avatar {
-      position: relative;
-      top: p2e(50px);
-      margin: 0 auto;
-      width: p2e(200px);
-      height: p2e(200px);
-      border-radius: p2e(200px);
-      border: 4px white solid;
-      overflow: hidden;
-
-      img {
-        width: 100%;
-        display: inline-block;
-      }
-    }
-  }
-
-  .wx_name {
-    @include font-dpr(18px);
-    color: #ffffff;
-    position: relative;
-    top: p2e(80px);
-  }
-
-  .gyb {
-    position: relative;
-    top: p2e(120px);
-    @include font-dpr(20px);
-    color: #32CD32;
-
-    p {
-      display: inline-block;
-    }
-
-    p.tt {
-      @include font-dpr(14px);
-    }
-  }
-
   .my-cart {
     padding: p2e(10px);
   }
 
-  .my-gyb {
+  .my-gyb-menu {
     padding: p2e(10px);
   }
 
@@ -452,12 +457,6 @@ html, body {
     }
   }
 
-  .donation-remarks {
-    text-align: center;
-    color: dimgray;
-    @include font-dpr(14px);
-  }
-
   .history-donations {
     .donation {
       position: relative;
@@ -495,6 +494,83 @@ html, body {
         p.state {
           @include font-dpr(14px);
           color: #4CD964;
+        }
+      }
+    }
+  }
+}
+
+.my-gyb {
+  .switch-tabs {
+    background: #ffffff;
+    text-align: center;
+    @include font-dpr(16px);
+
+    span {
+      border: 1px dodgerblue solid;
+      padding: p2e(10px) p2e(40px);
+    }
+
+    span.income{
+      background: #4CD964;
+      color: #ffffff;
+    }
+  }
+
+  .exchange {
+    text-align: center;
+    color: #9b9b9b;
+    @include font-dpr(16px);
+
+    .exchange-area {
+      text-align: center;
+
+      .exchange-box {
+        border: 1px #4CD964 solid;
+        color: #9b9b9b;
+        padding: p2e(10px) p2e(20px);
+        border-radius: p2e(4px);
+      }
+
+      .exchange-btn {
+        background: #4CD964;
+        color: #ffffff;
+        padding: p2e(10px) p2e(20px);
+        border: none;
+        border-radius: p2e(4px);
+      }
+    }
+  }
+
+  .gyb-got {
+    .gyb-item {
+      position: relative;
+
+      .gyb-item-head {
+        padding: p2e(10px);
+        border-bottom: 1px lightgray solid;
+      }
+
+      .gyb-item-pic {
+        display: inline-block;
+        width: 30%;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .gyb-item-detail {
+        display: inline-block;
+        width: 60%;
+        position: absolute;
+
+        p.gyb-plus {
+          span {
+            color: red;
+            @include font-dpr(16px);
+            font-weight: bold;
+          }
         }
       }
     }
