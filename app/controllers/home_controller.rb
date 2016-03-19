@@ -7,4 +7,7 @@ class HomeController < ApplicationController
 
   def donations_center
   end
+
+  def my_gyb
+  end
 end
