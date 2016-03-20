@@ -13,4 +13,7 @@ class HomeController < ApplicationController
 
   def project_detail
   end
+
+  def product_detail
+  end
 end

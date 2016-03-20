@@ -49,8 +49,7 @@ html, body {
   padding-bottom: p2e(16px);
 }
 
-/**********  common style  **********/
-
+/***************  common style  ****************/
 .profile {
   background: url("Profile-bgp.png");
   background-size: cover;
@@ -162,12 +161,10 @@ i.arrow {
   }
 }
 
-/**********  homepage style  **********/
-
+/**************  homepage style  ***************/
 .homepage {
 
   /**********  start of common style  **********/
-
   .header-section {
     border-bottom: 1px solid #979797;
 
@@ -383,195 +380,195 @@ i.arrow {
   }
 }
 
-/**********  personal-center style  **********/
-
 .personal-center {
 
-  .my-cart {
-    padding: p2e(10px);
-  }
-
-  .my-gyb-menu {
-    padding: p2e(10px);
-  }
-
-  .all-orders {
-    padding: p2e(10px);
-  }
-
-  .finished-orders {
-    background: #ffffff;
-    padding: p2e(10px);
-    border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
-  }
-
-  .unfinished-orders {
-    background: #ffffff;
-    padding: p2e(10px);
-  }
-
-  .supported-projects {
-    padding: p2e(10px);
-  }
-
-  .my-donations {
-    padding: p2e(10px);
-  }
-
-  .my-settings {
-    padding: p2e(10px);
-  }
-
-  .foot {
-    text-align: center;
-    color: #979797;
-    @include font-dpr(14px);
-    position: relative;
-    bottom: p2e(-16px);
-  }
-}
-
-/**********  donations-center style  **********/
-
-.donations-center {
-  .donation-head {
-    background: url("donation_bgp.png");
-    background-size: cover;
-    height: p2e(400px);
-  }
-
-  .donate-btn {
-    height: p2e(80px);
-    @include font-dpr(18px);
-    color: #ffffff;
-    background: #4CD964;
-    border-radius: p2e(10px);
-    text-align: center;
-    width: 95%;
-    display: table;
-    margin-top: p2e(48px);
-    margin-bottom: p2e(48px);
-
-    p {
-      display: table-cell;
-      vertical-align: middle;
-    }
-  }
-
-  .history-donations {
-    .donation {
-      position: relative;
-      //background: #ffffff;
-
-      .donation-pic {
-        width: 25%;
-        //border: 1px red solid;
-        border-radius: p2e(10px);
-        overflow: hidden;
-        display: inline-block;
-
-        img {
-          width: 100%;
-          display: inline-block;
-        }
-      }
-
-      .donation-description {
-        position: absolute;
-        //border: 1px red solid;
-        display: inline-block;
-        width: 65%;
-
-        p.title {
-          @include font-dpr(16px);
-          color: #000;
-        }
-
-        p.date {
-          @include font-dpr(14px);
-          color: #9b9b9b;
-        }
-
-        p.state {
-          @include font-dpr(14px);
-          color: #4CD964;
-        }
-      }
-    }
-  }
-}
-
-.my-gyb {
-  .switch-tabs {
-    background: #ffffff;
-    text-align: center;
-    @include font-dpr(16px);
-
-    span {
-      border: 1px dodgerblue solid;
-      padding: p2e(10px) p2e(40px);
+  /***********  personal-center style  ***********/
+  .personal-center {
+    .my-cart {
+      padding: p2e(10px);
     }
 
-    span.income{
-      background: #4CD964;
-      color: #ffffff;
+    .my-gyb-menu {
+      padding: p2e(10px);
     }
-  }
 
-  .exchange {
-    text-align: center;
-    color: #9b9b9b;
-    @include font-dpr(16px);
+    .all-orders {
+      padding: p2e(10px);
+    }
 
-    .exchange-area {
+    .finished-orders {
+      background: #ffffff;
+      padding: p2e(10px);
+      border-top: 1px solid lightgray;
+      border-bottom: 1px solid lightgray;
+    }
+
+    .unfinished-orders {
+      background: #ffffff;
+      padding: p2e(10px);
+    }
+
+    .supported-projects {
+      padding: p2e(10px);
+    }
+
+    .my-donations {
+      padding: p2e(10px);
+    }
+
+    .my-settings {
+      padding: p2e(10px);
+    }
+
+    .foot {
       text-align: center;
+      color: #979797;
+      @include font-dpr(14px);
+      position: relative;
+      bottom: p2e(-16px);
+    }
+  }
 
-      .exchange-box {
-        border: 1px #4CD964 solid;
-        color: #9b9b9b;
-        padding: p2e(10px) p2e(20px);
-        border-radius: p2e(4px);
+  /**********  donations-center style  ***********/
+  .donations-center {
+    .donation-head {
+      background: url("donation_bgp.png");
+      background-size: cover;
+      height: p2e(400px);
+    }
+
+    .donate-btn {
+      height: p2e(80px);
+      @include font-dpr(18px);
+      color: #ffffff;
+      background: #4CD964;
+      border-radius: p2e(10px);
+      text-align: center;
+      width: 95%;
+      display: table;
+      margin-top: p2e(48px);
+      margin-bottom: p2e(48px);
+
+      p {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+
+    .history-donations {
+      .donation {
+        position: relative;
+        //background: #ffffff;
+
+        .donation-pic {
+          width: 25%;
+          //border: 1px red solid;
+          border-radius: p2e(10px);
+          overflow: hidden;
+          display: inline-block;
+
+          img {
+            width: 100%;
+            display: inline-block;
+          }
+        }
+
+        .donation-description {
+          position: absolute;
+          //border: 1px red solid;
+          display: inline-block;
+          width: 65%;
+
+          p.title {
+            @include font-dpr(16px);
+            color: #000;
+          }
+
+          p.date {
+            @include font-dpr(14px);
+            color: #9b9b9b;
+          }
+
+          p.state {
+            @include font-dpr(14px);
+            color: #4CD964;
+          }
+        }
+      }
+    }
+  }
+
+  .my-gyb {
+    .switch-tabs {
+      background: #ffffff;
+      text-align: center;
+      @include font-dpr(16px);
+
+      span {
+        border: 1px dodgerblue solid;
+        padding: p2e(10px) p2e(40px);
       }
 
-      .exchange-btn {
+      span.income {
         background: #4CD964;
         color: #ffffff;
-        padding: p2e(10px) p2e(20px);
-        border: none;
-        border-radius: p2e(4px);
       }
     }
-  }
 
-  .gyb-got {
-    .gyb-item {
-      position: relative;
+    .exchange {
+      text-align: center;
+      color: #9b9b9b;
+      @include font-dpr(16px);
 
-      .gyb-item-head {
-        padding: p2e(10px);
-        border-bottom: 1px lightgray solid;
-      }
+      .exchange-area {
+        text-align: center;
 
-      .gyb-item-pic {
-        display: inline-block;
-        width: 30%;
+        .exchange-box {
+          border: 1px #4CD964 solid;
+          color: #9b9b9b;
+          padding: p2e(10px) p2e(20px);
+          border-radius: p2e(4px);
+        }
 
-        img {
-          width: 100%;
+        .exchange-btn {
+          background: #4CD964;
+          color: #ffffff;
+          padding: p2e(10px) p2e(20px);
+          border: none;
+          border-radius: p2e(4px);
         }
       }
+    }
 
-      .gyb-item-detail {
-        display: inline-block;
-        width: 60%;
-        position: absolute;
+    .gyb-got {
+      .gyb-item {
+        position: relative;
 
-        p.gyb-plus {
-          span {
-            color: red;
-            @include font-dpr(16px);
-            font-weight: bold;
+        .gyb-item-head {
+          padding: p2e(10px);
+          border-bottom: 1px lightgray solid;
+        }
+
+        .gyb-item-pic {
+          display: inline-block;
+          width: 30%;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .gyb-item-detail {
+          display: inline-block;
+          width: 60%;
+          position: absolute;
+
+          p.gyb-plus {
+            span {
+              color: red;
+              @include font-dpr(16px);
+              font-weight: bold;
+            }
           }
         }
       }
@@ -579,6 +576,7 @@ i.arrow {
   }
 }
 
+/***********  project-detail style  ************/
 .project_detail {
   background: #ffffff;
   height: 100%;
@@ -661,7 +659,6 @@ i.arrow {
       text-decoration: none;
     }
 
-
     .btn-default {
       background: #ffffff;
       width: 42%;
@@ -674,7 +671,163 @@ i.arrow {
       background: #c44659;
       color: #ffffff;
     }
+  }
+}
 
+/***********  product-detail style  ************/
+.product-detail {
+  width: 100%;
+  background-color: white;
+
+  .big-thumb {
+    width: 100%;
+    height: p2e(400);
+    border-bottom: 1px solid #979797;
+
+    img {
+      display: block;
+      width: 50%;
+      margin: 0 auto;
+    }
   }
 
+  .main {
+    width: 100%;
+    height: p2e(350);
+    border-bottom: 1px solid #979797;
+
+    .main-left {
+      box-sizing: border-box;
+      float: left;
+      width: 50%;
+      height: 100%;
+      padding: p2e(20);
+      padding-left: p2e(40);
+
+      .price {
+        line-height: p2e(80);
+
+        .big-price {
+          @include font-dpr(30px);
+          color: red;
+        }
+
+        .coin {
+          @include font-dpr(20px);
+          margin-left: p2e(20);
+          color: #f5a623;
+        }
+      }
+
+      .info {
+        box-sizing: border-box;
+        width: 100%;
+
+        dl {
+          padding-bottom: p2e(5);
+          @include font-dpr(14px);
+
+          dt {
+            float: left;
+            color: #7D7C7C;
+          }
+
+          dd {
+            float: left;
+          }
+        }
+
+        p.stock {
+          line-height: p2e(40);
+          @include font-dpr(12px);
+          text-align: center;
+        }
+
+        .dl-clear:after {
+          content: "";
+          display: block;
+          height: 0;
+          clear: both;
+
+        }
+      }
+    }
+
+    .main-right {
+      box-sizing: border-box;
+      float: left;
+      width: 50%;
+      height: 100%;
+      padding: p2e(20);
+      padding-left: p2e(80);
+
+      ul.attrs {
+        padding-top: p2e(30);
+
+        li {
+          @include font-dpr(16px);
+          color: #7D7C7C;
+          padding-bottom: p2e(10);
+        }
+      }
+    }
+  }
+
+  .nav {
+    width: 100%;
+    height: p2e(80);
+    border-bottom: 1px solid #979797;
+
+    ul {
+      li {
+        display: inline-block;
+        width: 50%;
+        text-align: center;
+        @include font-dpr(18px);
+        line-height: p2e(80);
+
+        a {
+          color: #979797;
+          text-decoration: none;
+        }
+      }
+
+      span.split {
+        position: absolute;
+        width: 1px;
+        height: p2e(60);
+        left: 50%;
+        margin-top: p2e(10);
+        background-color: #979797;
+      }
+    }
+  }
+
+  .buttons {
+    position: fixed;
+    z-index: 999;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    border-top: 1px solid #979797;
+
+    button {
+      display: inline-block;
+      width: p2e(250);
+      height: p2e(80);
+      @include font-dpr(17px);
+      border-radius: 8px;
+    }
+
+    button.btn-buy {
+      color: white;
+      background-color: #E05163;
+    }
+
+    button.btn-cart {
+      background-color: white;
+      border: 1px solid #E05163;
+    }
+  }
 }
