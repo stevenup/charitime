@@ -48,7 +48,7 @@ html, body {
   padding-bottom: p2e(16px);
 }
 
-/**********  common style  **********/
+/***************  common style  ****************/
 .profile {
   background: url("Profile-bgp.png");
   background-size: cover;
@@ -116,7 +116,7 @@ i.arrow {
   padding: p2e(2px) p2e(16px);
 }
 
-/**************  homepage style  **************/
+/**************  homepage style  ***************/
 .homepage {
 
   /**********  start of common style  **********/
@@ -380,7 +380,6 @@ i.arrow {
 
 /***********  personal-center style  ***********/
 .personal-center {
-
   .my-cart {
     padding: p2e(10px);
   }
