@@ -10,4 +10,7 @@ class HomeController < ApplicationController
 
   def my_gyb
   end
+
+  def project_detail
+  end
 end

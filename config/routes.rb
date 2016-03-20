@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get :personal_center, on: :collection
     get :donations_center, on: :collection
     get :my_gyb, on: :collection
+    get :project_detail, on: :collection
   end
 
 
