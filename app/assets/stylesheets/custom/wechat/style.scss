@@ -160,6 +160,27 @@ i.arrow {
   }
 }
 
+button {
+  display: inline-block;
+  width: p2e(250px);
+  height: p2e(80px);
+  @include font-dpr(18px);
+  border-radius: 8px;
+}
+
+.btn-default {
+  background: #ffffff;
+  width: 42%;
+  border-radius: p2e(4px);
+  border: 2px solid #c44659;
+  display: inline-block;
+}
+
+.btn-highlight {
+  background: #c44659;
+  color: #ffffff;
+}
+
 /**************  homepage style  **************/
 .homepage {
 
@@ -193,14 +214,11 @@ i.arrow {
     position: relative;
     border: 1px lightgray solid;
     width: 100%;
-    //height: p2e(260px);
 
     .project-pic {
       position: relative;
       left: 0;
       width: 40%;
-      //height: p2e(260px);
-      //border: 1px lightgray solid;
       display: block;
 
       img {
@@ -211,8 +229,6 @@ i.arrow {
     .project-info {
       text-align: left;
       width: 60%;
-      //height: p2e(260px);
-      //border: 1px solid red;
       display: inline-block;
       position: absolute;
       right: 0;
@@ -266,7 +282,6 @@ i.arrow {
 
   ul.nav-list {
     list-style: none;
-    //margin-top: p2e(28px);
     text-align: center;
 
     li.nav-item:nth-child(4) {
@@ -274,7 +289,6 @@ i.arrow {
     }
 
     li.nav-item {
-      //margin: p2e(24px) 0;
       width: 22%;
       border-right: 1px solid #979797;
       display: inline-block;
@@ -455,11 +469,9 @@ i.arrow {
   .history-donations {
     .donation {
       position: relative;
-      //background: #ffffff;
 
       .donation-pic {
         width: 25%;
-        //border: 1px red solid;
         border-radius: p2e(10px);
         overflow: hidden;
         display: inline-block;
@@ -649,25 +661,6 @@ i.arrow {
     bottom: p2e(18px);
     text-align: center;
     width: 100%;
-
-    a {
-      @include font-dpr(18px);
-      color: #c44659;
-      text-decoration: none;
-    }
-
-    .btn-default {
-      background: #ffffff;
-      width: 42%;
-      border-radius: p2e(4px);
-      border: 2px solid #c44659;
-      display: inline-block;
-    }
-
-    .btn-highlight {
-      background: #c44659;
-      color: #ffffff;
-    }
   }
 }
 
@@ -803,29 +796,11 @@ i.arrow {
   .buttons {
     position: fixed;
     z-index: 999;
-    bottom: 0;
+    bottom: p2e(18px);
     width: 100%;
     text-align: center;
     background-color: white;
     border-top: 1px solid #979797;
-
-    button {
-      display: inline-block;
-      width: p2e(250px);
-      height: p2e(80px);
-      @include font-dpr(17px);
-      border-radius: 8px;
-    }
-
-    button.btn-buy {
-      color: white;
-      background-color: #E05163;
-    }
-
-    button.btn-cart {
-      background-color: white;
-      border: 1px solid #E05163;
-    }
   }
 }
 
