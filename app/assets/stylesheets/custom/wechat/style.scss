@@ -1,7 +1,6 @@
 @import "../../integrations/adjust_config";
 
 /**********  default global settings  **********/
-
 html, body {
   margin: 0;
   padding: 0;
@@ -161,7 +160,7 @@ i.arrow {
   }
 }
 
-/**************  homepage style  ***************/
+/**************  homepage style  **************/
 .homepage {
 
   /**********  start of common style  **********/
@@ -380,195 +379,193 @@ i.arrow {
   }
 }
 
+/**********  personal-center style  ***********/
 .personal-center {
+  .my-cart {
+    padding: p2e(10px);
+  }
 
-  /***********  personal-center style  ***********/
-  .personal-center {
-    .my-cart {
-      padding: p2e(10px);
+  .my-gyb-menu {
+    padding: p2e(10px);
+  }
+
+  .all-orders {
+    padding: p2e(10px);
+  }
+
+  .finished-orders {
+    background: #ffffff;
+    padding: p2e(10px);
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .unfinished-orders {
+    background: #ffffff;
+    padding: p2e(10px);
+  }
+
+  .supported-projects {
+    padding: p2e(10px);
+  }
+
+  .my-donations {
+    padding: p2e(10px);
+  }
+
+  .my-settings {
+    padding: p2e(10px);
+  }
+
+  .foot {
+    text-align: center;
+    color: #979797;
+    @include font-dpr(14px);
+    position: relative;
+    bottom: p2e(-16px);
+  }
+}
+
+/**********  donations-center style  **********/
+.donations-center {
+  .donation-head {
+    background: url("donation_bgp.png");
+    background-size: cover;
+    height: p2e(400px);
+  }
+
+  .donate-btn {
+    height: p2e(80px);
+    @include font-dpr(18px);
+    color: #ffffff;
+    background: #4CD964;
+    border-radius: p2e(10px);
+    text-align: center;
+    width: 95%;
+    display: table;
+    margin-top: p2e(48px);
+    margin-bottom: p2e(48px);
+
+    p {
+      display: table-cell;
+      vertical-align: middle;
     }
+  }
 
-    .my-gyb-menu {
-      padding: p2e(10px);
-    }
-
-    .all-orders {
-      padding: p2e(10px);
-    }
-
-    .finished-orders {
-      background: #ffffff;
-      padding: p2e(10px);
-      border-top: 1px solid lightgray;
-      border-bottom: 1px solid lightgray;
-    }
-
-    .unfinished-orders {
-      background: #ffffff;
-      padding: p2e(10px);
-    }
-
-    .supported-projects {
-      padding: p2e(10px);
-    }
-
-    .my-donations {
-      padding: p2e(10px);
-    }
-
-    .my-settings {
-      padding: p2e(10px);
-    }
-
-    .foot {
-      text-align: center;
-      color: #979797;
-      @include font-dpr(14px);
+  .history-donations {
+    .donation {
       position: relative;
-      bottom: p2e(-16px);
+      //background: #ffffff;
+
+      .donation-pic {
+        width: 25%;
+        //border: 1px red solid;
+        border-radius: p2e(10px);
+        overflow: hidden;
+        display: inline-block;
+
+        img {
+          width: 100%;
+          display: inline-block;
+        }
+      }
+
+      .donation-description {
+        position: absolute;
+        //border: 1px red solid;
+        display: inline-block;
+        width: 65%;
+
+        p.title {
+          @include font-dpr(16px);
+          color: #000;
+        }
+
+        p.date {
+          @include font-dpr(14px);
+          color: #9b9b9b;
+        }
+
+        p.state {
+          @include font-dpr(14px);
+          color: #4CD964;
+        }
+      }
     }
   }
+}
 
-  /**********  donations-center style  ***********/
-  .donations-center {
-    .donation-head {
-      background: url("donation_bgp.png");
-      background-size: cover;
-      height: p2e(400px);
+/****************  my-gyb style  **************/
+.my-gyb {
+  .switch-tabs {
+    background: #ffffff;
+    text-align: center;
+    @include font-dpr(16px);
+
+    span {
+      border: 1px dodgerblue solid;
+      padding: p2e(10px) p2e(40px);
     }
 
-    .donate-btn {
-      height: p2e(80px);
-      @include font-dpr(18px);
-      color: #ffffff;
+    span.income {
       background: #4CD964;
-      border-radius: p2e(10px);
-      text-align: center;
-      width: 95%;
-      display: table;
-      margin-top: p2e(48px);
-      margin-bottom: p2e(48px);
-
-      p {
-        display: table-cell;
-        vertical-align: middle;
-      }
-    }
-
-    .history-donations {
-      .donation {
-        position: relative;
-        //background: #ffffff;
-
-        .donation-pic {
-          width: 25%;
-          //border: 1px red solid;
-          border-radius: p2e(10px);
-          overflow: hidden;
-          display: inline-block;
-
-          img {
-            width: 100%;
-            display: inline-block;
-          }
-        }
-
-        .donation-description {
-          position: absolute;
-          //border: 1px red solid;
-          display: inline-block;
-          width: 65%;
-
-          p.title {
-            @include font-dpr(16px);
-            color: #000;
-          }
-
-          p.date {
-            @include font-dpr(14px);
-            color: #9b9b9b;
-          }
-
-          p.state {
-            @include font-dpr(14px);
-            color: #4CD964;
-          }
-        }
-      }
+      color: #ffffff;
     }
   }
 
-  .my-gyb {
-    .switch-tabs {
-      background: #ffffff;
-      text-align: center;
-      @include font-dpr(16px);
+  .exchange {
+    text-align: center;
+    color: #9b9b9b;
+    @include font-dpr(16px);
 
-      span {
-        border: 1px dodgerblue solid;
-        padding: p2e(10px) p2e(40px);
+    .exchange-area {
+      text-align: center;
+
+      .exchange-box {
+        border: 1px #4CD964 solid;
+        color: #9b9b9b;
+        padding: p2e(10px) p2e(20px);
+        border-radius: p2e(4px);
       }
 
-      span.income {
+      .exchange-btn {
         background: #4CD964;
         color: #ffffff;
+        padding: p2e(10px) p2e(20px);
+        border: none;
+        border-radius: p2e(4px);
       }
     }
+  }
 
-    .exchange {
-      text-align: center;
-      color: #9b9b9b;
-      @include font-dpr(16px);
+  .gyb-got {
+    .gyb-item {
+      position: relative;
 
-      .exchange-area {
-        text-align: center;
+      .gyb-item-head {
+        padding: p2e(10px);
+        border-bottom: 1px lightgray solid;
+      }
 
-        .exchange-box {
-          border: 1px #4CD964 solid;
-          color: #9b9b9b;
-          padding: p2e(10px) p2e(20px);
-          border-radius: p2e(4px);
-        }
+      .gyb-item-pic {
+        display: inline-block;
+        width: 30%;
 
-        .exchange-btn {
-          background: #4CD964;
-          color: #ffffff;
-          padding: p2e(10px) p2e(20px);
-          border: none;
-          border-radius: p2e(4px);
+        img {
+          width: 100%;
         }
       }
-    }
 
-    .gyb-got {
-      .gyb-item {
-        position: relative;
+      .gyb-item-detail {
+        display: inline-block;
+        width: 60%;
+        position: absolute;
 
-        .gyb-item-head {
-          padding: p2e(10px);
-          border-bottom: 1px lightgray solid;
-        }
-
-        .gyb-item-pic {
-          display: inline-block;
-          width: 30%;
-
-          img {
-            width: 100%;
-          }
-        }
-
-        .gyb-item-detail {
-          display: inline-block;
-          width: 60%;
-          position: absolute;
-
-          p.gyb-plus {
-            span {
-              color: red;
-              @include font-dpr(16px);
-              font-weight: bold;
-            }
+        p.gyb-plus {
+          span {
+            color: red;
+            @include font-dpr(16px);
+            font-weight: bold;
           }
         }
       }
@@ -576,7 +573,7 @@ i.arrow {
   }
 }
 
-/***********  project-detail style  ************/
+/***********  project-detail style  ***********/
 .project_detail {
   background: #ffffff;
   height: 100%;
@@ -674,14 +671,14 @@ i.arrow {
   }
 }
 
-/***********  product-detail style  ************/
+/***********  product-detail style  ***********/
 .product-detail {
   width: 100%;
   background-color: white;
 
   .big-thumb {
     width: 100%;
-    height: p2e(400);
+    height: p2e(400px);
     border-bottom: 1px solid #979797;
 
     img {
@@ -693,7 +690,7 @@ i.arrow {
 
   .main {
     width: 100%;
-    height: p2e(350);
+    height: p2e(350px);
     border-bottom: 1px solid #979797;
 
     .main-left {
@@ -701,11 +698,11 @@ i.arrow {
       float: left;
       width: 50%;
       height: 100%;
-      padding: p2e(20);
-      padding-left: p2e(40);
+      padding: p2e(20px);
+      padding-left: p2e(40px);
 
       .price {
-        line-height: p2e(80);
+        line-height: p2e(80px);
 
         .big-price {
           @include font-dpr(30px);
@@ -738,7 +735,7 @@ i.arrow {
         }
 
         p.stock {
-          line-height: p2e(40);
+          line-height: p2e(40px);
           @include font-dpr(12px);
           text-align: center;
         }
@@ -758,16 +755,16 @@ i.arrow {
       float: left;
       width: 50%;
       height: 100%;
-      padding: p2e(20);
-      padding-left: p2e(80);
+      padding: p2e(20px);
+      padding-left: p2e(80px);
 
       ul.attrs {
-        padding-top: p2e(30);
+        padding-top: p2e(30px);
 
         li {
           @include font-dpr(16px);
           color: #7D7C7C;
-          padding-bottom: p2e(10);
+          padding-bottom: p2e(10px);
         }
       }
     }
@@ -775,7 +772,7 @@ i.arrow {
 
   .nav {
     width: 100%;
-    height: p2e(80);
+    height: p2e(80px);
     border-bottom: 1px solid #979797;
 
     ul {
@@ -784,7 +781,7 @@ i.arrow {
         width: 50%;
         text-align: center;
         @include font-dpr(18px);
-        line-height: p2e(80);
+        line-height: p2e(80px);
 
         a {
           color: #979797;
@@ -795,9 +792,9 @@ i.arrow {
       span.split {
         position: absolute;
         width: 1px;
-        height: p2e(60);
+        height: p2e(60px);
         left: 50%;
-        margin-top: p2e(10);
+        margin-top: p2e(10px);
         background-color: #979797;
       }
     }
@@ -806,7 +803,7 @@ i.arrow {
   .buttons {
     position: fixed;
     z-index: 999;
-    bottom: 0px;
+    bottom: 0;
     width: 100%;
     text-align: center;
     background-color: white;
@@ -814,8 +811,8 @@ i.arrow {
 
     button {
       display: inline-block;
-      width: p2e(250);
-      height: p2e(80);
+      width: p2e(250px);
+      height: p2e(80px);
       @include font-dpr(17px);
       border-radius: 8px;
     }
@@ -832,6 +829,7 @@ i.arrow {
   }
 }
 
+/************  donate_page style  *************/
 .donate_page {
   background: #ffffff;
 
