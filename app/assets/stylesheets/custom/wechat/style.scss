@@ -820,7 +820,6 @@ button {
     .form-group {
       color: #9b9b9b;
       padding: p2e(20px) p2e(30px);
-      border: 1px solid black;
 
       .form-control {
         height: p2e(60px);
@@ -852,7 +851,8 @@ button {
 
 // css for demo page
 .demo {
-  width: 100%;
+  //width: 100%;
+
   .demo-head {
     width: 100%;
 
@@ -862,11 +862,66 @@ button {
   }
 
   .demo-title {
-    font-size: 18px;
+    @include font-dpr(18px);
     font-weight: bold;
+  }
 
-    .demo-title h2 {
-      margin: 14px;
+  .demo-content {
+    @include font-dpr(13px);
+
+    p {
+      margin-top: p2e(18px);
+      margin-bottom: p2e(18px);
+    }
+
+    .attached-img {
+      margin-top: p2e(18px);
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .attached-goods {
+      position: relative;
+      border-top: 1px solid lightgray;
+      border-bottom: 1px solid lightgray;
+
+      .col-left {
+        padding: p2e(10px);
+        width: 30%;
+        display: inline-block;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .col-right {
+        position: absolute;
+        width: 65%;
+        display: inline-block;
+
+        .goods-title {
+          padding-top: p2e(10px);
+          @include font-dpr(16px);
+        }
+
+        .goods-price {
+          color: red;
+          font-weight: bold;
+          @include font-dpr(16px);
+          display: inline-block;
+        }
+
+        button.btn-buy {
+          height: p2e(56px);
+          @include font-dpr(14px);
+          display: inline-block;
+          margin-left: p2e(120px);
+        }
+
+      }
     }
   }
 }
