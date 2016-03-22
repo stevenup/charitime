@@ -8,6 +8,6 @@ Rails.application.routes.draw do
     get :project_detail,    on: :collection
     get :product_detail,    on: :collection
     get :donate_page,       on: :collection
-    get :demo,       on: :collection
+    get :demo,              on: :collection
   end
 end

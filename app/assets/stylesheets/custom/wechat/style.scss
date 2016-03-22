@@ -818,14 +818,16 @@ button {
     @include font-dpr(14px);
 
     .form-group {
-      color: #000000;
+      color: #9b9b9b;
       padding: p2e(20px) p2e(30px);
       border: 1px solid black;
 
       .form-control {
+        height: p2e(60px);
         width: 100%;
-        border: 1px solid red;
-        border-radius: p2e(4px);
+        margin-top: p2e(10px);
+        border: 1px solid #979797;
+        border-radius: p2e(5px);
       }
 
       .donation-photos {
