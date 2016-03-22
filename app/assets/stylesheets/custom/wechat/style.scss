@@ -814,17 +814,60 @@ button {
     }
   }
 
-  .donation-photos {
-
-    .camera {
-      //margin: p2e(32px) auto;
-      width: p2e(100px);
-      height: p2e(100px);
-      border: 1px red solid;
-    }
-  }
-
   .donation-info {
+    @include font-dpr(14px);
+
+    .form-group {
+      color: #000000;
+      padding: p2e(20px) p2e(30px);
+      border: 1px solid black;
+
+      .form-control {
+        width: 100%;
+        border: 1px solid red;
+        border-radius: p2e(4px);
+      }
+
+      .donation-photos {
+        display: table;
+        .camera {
+          width: p2e(100px);
+          height: p2e(100px);
+          border: 1px red solid;
+          text-align: center;
+          display: table-cell;
+          vertical-align: middle;
+          color: dimgray;
+        }
+      }
+    }
+
 
   }
 }
+
+
+
+// css for demo page
+.demo {
+  width: 100%;
+  .demo-head {
+    width: 100%;
+
+    .demo-headimg img {
+      width: 100%;
+    }
+  }
+
+  .demo-title {
+    font-size: 18px;
+    font-weight: bold;
+
+    .demo-title h2 {
+      margin: 14px;
+    }
+  }
+}
+
+
+
