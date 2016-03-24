@@ -20,6 +20,4 @@ class HomeController < ApplicationController
   def donate_page
   end
 
-  def demo
-  end
 end

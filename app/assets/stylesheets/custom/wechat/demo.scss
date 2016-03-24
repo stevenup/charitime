@@ -53,18 +53,28 @@ html, body {
   //width: 100%;
 
   .demo-head {
+    margin-bottom: p2e(48px);
     width: 100%;
 
     .demo-headimg img {
       width: 100%;
     }
-  }
 
-  .demo-title {
-    @include font-dpr(18px);
-    font-weight: bold;
-    padding-left: p2e(18px);
-    padding-right: p2e(18px);
+    .demo-title {
+      @include font-dpr(18px);
+      font-weight: bold;
+      padding-left: p2e(24px);
+      padding-right: p2e(24px);
+    }
+
+    .demo-desc {
+      p {
+        color: #979797;
+        @include font-dpr(12px);
+        padding-left: p2e(24px);
+        padding-right: p2e(24px);
+      }
+    }
   }
 
   .demo-content {
@@ -73,8 +83,8 @@ html, body {
     p {
       margin-top: p2e(21px);
       margin-bottom: p2e(21px);
-      padding-left: p2e(22px);
-      padding-right: p2e(22px);
+      padding-left: p2e(24px);
+      padding-right: p2e(24px);
       text-align: justify;
     }
 
