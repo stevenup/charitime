@@ -5,7 +5,7 @@ html, body {
   margin: 0;
   padding: 0;
   background: #ECECEC !important;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: "Hiragino Sans GB", "Microsoft YaHei","WenQuanYi Micro Hei", sans-serif;
   @include font-dpr(14px);
   color: #000;
   overflow: hidden;
@@ -160,13 +160,13 @@ i.arrow {
   }
 }
 
-button {
-  display: inline-block;
-  width: p2e(250px);
-  height: p2e(80px);
-  @include font-dpr(18px);
-  border-radius: 8px;
-}
+//button {
+//  display: inline-block;
+//  width: p2e(250px);
+//  height: p2e(80px);
+//  @include font-dpr(18px);
+//  border-radius: 8px;
+//}
 
 .btn-default {
   background: #ffffff;
@@ -846,88 +846,3 @@ button {
 
   }
 }
-
-
-
-// css for demo page
-.demo {
-  //width: 100%;
-
-  .demo-head {
-    width: 100%;
-
-    .demo-headimg img {
-      width: 100%;
-    }
-  }
-
-  .demo-title {
-    @include font-dpr(18px);
-    font-weight: bold;
-    padding-left: p2e(18px);
-    padding-right: p2e(18px);
-  }
-
-  .demo-content {
-    @include font-dpr(13px);
-
-    p {
-      margin-top: p2e(18px);
-      margin-bottom: p2e(18px);
-      padding-left: p2e(18px);
-      padding-right: p2e(18px);
-    }
-
-    .attached-img {
-      margin-top: p2e(18px);
-      border: 1px red solid;
-      width: 100%;
-    }
-
-    .attached-goods {
-      position: relative;
-      border-top: 1px solid lightgray;
-      border-bottom: 1px solid lightgray;
-
-      .col-left {
-        padding: p2e(10px);
-        width: 30%;
-        display: inline-block;
-
-        img {
-          width: 100%;
-        }
-      }
-
-      .col-right {
-        position: absolute;
-        width: 65%;
-        display: inline-block;
-
-        .goods-title {
-          padding-top: p2e(10px);
-          padding-right: p2e(18px);
-          @include font-dpr(16px);
-        }
-
-        .goods-price {
-          color: red;
-          font-weight: bold;
-          @include font-dpr(16px);
-          display: inline-block;
-        }
-
-        button.btn-buy {
-          height: p2e(56px);
-          @include font-dpr(14px);
-          display: inline-block;
-          margin-left: p2e(120px);
-        }
-
-      }
-    }
-  }
-}
-
-
-

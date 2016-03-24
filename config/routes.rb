@@ -10,4 +10,6 @@ Rails.application.routes.draw do
     get :donate_page,       on: :collection
     get :demo,              on: :collection
   end
+
+  get 'demo/index'
 end

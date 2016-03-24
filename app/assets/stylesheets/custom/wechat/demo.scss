@@ -1,0 +1,137 @@
+@import "../../integrations/adjust_config";
+
+/**********  default global settings  **********/
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #ECECEC !important;
+  font-family: "Hiragino Sans GB", "Microsoft YaHei","WenQuanYi Micro Hei", sans-serif;
+  @include font-dpr(14px);
+  color: #000;
+  overflow: hidden;
+}
+
+.s-s {
+  margin: p2e(20px) 0 0 0;
+  background: #ffffff;
+}
+
+.m-t {
+  margin-top: p2e(16px);
+}
+
+.m-r {
+  margin-right: p2e(16px);
+}
+
+.m-b {
+  margin-bottom: p2e(16px);
+}
+
+.m-l {
+  margin-left: p2e(16px);
+}
+
+.p-l {
+  padding-left: p2e(32px);
+}
+
+.p-r {
+  padding-right: p2e(32px);
+}
+
+.p-t {
+  padding-top: p2e(16px);
+}
+
+.p-b {
+  padding-bottom: p2e(16px);
+}
+
+// css for demo page
+.demo {
+  //width: 100%;
+
+  .demo-head {
+    width: 100%;
+
+    .demo-headimg img {
+      width: 100%;
+    }
+  }
+
+  .demo-title {
+    @include font-dpr(18px);
+    font-weight: bold;
+    padding-left: p2e(18px);
+    padding-right: p2e(18px);
+  }
+
+  .demo-content {
+    @include font-dpr(15px);
+
+    p {
+      margin-top: p2e(21px);
+      margin-bottom: p2e(21px);
+      padding-left: p2e(22px);
+      padding-right: p2e(22px);
+      text-align: justify;
+    }
+
+    .attached-img {
+      margin-top: p2e(18px);
+      width: 100%;
+    }
+
+    .attached-goods {
+      position: relative;
+      margin-top: p2e(32px);
+      margin-bottom: p2e(32px);
+      border-top: 1px solid lightgray;
+      border-bottom: 1px solid lightgray;
+
+      .col-left {
+        padding: p2e(10px);
+        width: 30%;
+        display: inline-block;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .col-right {
+        position: absolute;
+        width: 65%;
+        display: inline-block;
+
+        .goods-title {
+          padding-top: p2e(10px);
+          padding-right: p2e(18px);
+          @include font-dpr(16px);
+        }
+
+        .goods-price {
+          color: red;
+          font-weight: bold;
+          @include font-dpr(21px);
+          display: inline-block;
+        }
+
+        a {
+          text-decoration: none;
+          text-align: center;
+          line-height: p2e(72px);
+        }
+
+        .btn-buy {
+          height: p2e(72px);
+          @include font-dpr(14px);
+          display: inline-block;
+          margin-left: p2e(120px);
+        }
+
+      }
+    }
+  }
+}
