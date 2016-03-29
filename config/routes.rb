@@ -11,4 +11,9 @@ Rails.application.routes.draw do
   end
 
   get 'demo/index'
+
+  namespace :admin do
+    resources :home, only: [:index]
+
+  end
 end

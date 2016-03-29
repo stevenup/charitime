@@ -1,0 +1,1 @@
+//= require simplify_admin/simplify_admin
