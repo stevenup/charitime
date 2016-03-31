@@ -1,6 +1,7 @@
 source 'https://ruby.taobao.org'
 
 gem 'font-awesome-rails'
+gem 'ionicons-rails'
 gem 'bower-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

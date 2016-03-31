@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get 'demo/index'
 
   namespace :admin do
-    resources :home, only: [:index]
+    resources :home, only: [:index] do
+      get :lockscreen, on: :collection
+    end
 
   end
 end
