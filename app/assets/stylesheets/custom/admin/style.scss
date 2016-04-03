@@ -1,3 +1,16 @@
 html, body {
   font-family: Raleway,sans-serif;
 }
+
+
+.nav-content-head {
+  position: relative;
+
+  .breadcrumb {
+    display: inline-block;
+  }
+
+  .btn-new {
+    float: right;
+  }
+}

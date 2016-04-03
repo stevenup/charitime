@@ -12,18 +12,34 @@
 										<span class="text m-left-sm">Dashboard</span>
 									</span>
 									<span class="menu-content-hover block">
-										Home
+										Dash
 									</span>
           </a>
         </li>
-        <li class="bg-palette2">
-          <a href="landing/landing.html">
+        <li class="openable bg-palette2">
+          <a href="#">
 									<span class="menu-content block">
-										<span class="menu-icon"><i class="block fa fa-desktop fa-lg"></i></span>
-										<span class="text m-left-sm">Landing</span>
+										<span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+										<span class="text m-left-sm">商品管理</span>
+										<span class="submenu-icon"></span>
 									</span>
 									<span class="menu-content-hover block">
-										Landing
+										商品
+									</span>
+          </a>
+          <ul class="submenu bg-palette4">
+            <li><a href="/admin/home/all_goods"><span class="submenu-label">全部商品</span></a></li>
+            <li><a href="form_validation.html"><span class="submenu-label">商品推荐</span></a></li>
+          </ul>
+        </li>
+        <li class="bg-palette4">
+          <a href="/admin/home/all_projects">
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+										<span class="text m-left-sm">项目发布</span>
+									</span>
+									<span class="menu-content-hover block">
+										项目
 									</span>
           </a>
         </li>
@@ -31,18 +47,18 @@
           <a href="#">
 									<span class="menu-content block">
 										<span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
-										<span class="text m-left-sm">Form Elements</span>
+										<span class="text m-left-sm">订单管理</span>
 										<span class="submenu-icon"></span>
 									</span>
 									<span class="menu-content-hover block">
-										Form
+										商品
 									</span>
           </a>
           <ul class="submenu bg-palette4">
-            <li><a href="form_element.html"><span class="submenu-label">Form Element</span></a></li>
-            <li><a href="form_validation.html"><span class="submenu-label">Form Validation</span></a></li>
-            <li><a href="form_wizard.html"><span class="submenu-label">Form Wizard</span></a></li>
-            <li><a href="dropzone.html"><span class="submenu-label">Dropzone</span></a></li>
+            <li><a href="form_element.html"><span class="submenu-label">全部订单</span></a></li>
+            <li><a href="form_validation.html"><span class="submenu-label">待付款订单</span></a></li>
+            <li><a href="form_validation.html"><span class="submenu-label">待发货订单</span></a></li>
+            <li><a href="form_validation.html"><span class="submenu-label">已完成订单</span></a></li>
           </ul>
         </li>
         <li class="openable bg-palette4">
@@ -164,37 +180,6 @@
           </ul>
         </li>
       </ul>
-    </div>
-    <div class="sidebar-fix-bottom clearfix">
-      <div class="user-dropdown dropup pull-left">
-        <a href="#" class="dropdwon-toggle font-18" data-toggle="dropdown"><i class="ion-person-add"></i>
-        </a>
-        <ul class="dropdown-menu">
-          <li>
-            <a href="inbox.html">
-              Inbox
-              <span class="badge badge-danger bounceIn animation-delay2 pull-right">1</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              Notification
-              <span class="badge badge-purple bounceIn animation-delay3 pull-right">2</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="sidebarRight-toggle">
-              Message
-              <span class="badge badge-success bounceIn animation-delay4 pull-right">7</span>
-            </a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="#">Setting</a>
-          </li>
-        </ul>
-      </div>
-      <a href="/admin/home/lockscreen" class="pull-right font-18"><i class="ion-log-out"></i></a>
     </div>
   </div><!-- sidebar-inner -->
 </aside>

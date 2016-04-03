@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :home, only: [:index] do
       get :lockscreen, on: :collection
+      get :all_goods, on: :collection
+      get :all_projects, on: :collection
     end
 
   end
