@@ -1,2 +1,6 @@
+asset 'lodash'
+asset 'datatables',     main_files: ["./media/js/dataTables.bootstrap.js", "./media/css/dataTables.bootstrap.css"]
+asset 'jquery-timeago', main_files: ["./locales/jquery.timeago.zh-CN.js"]
+asset 'bootstrap-modal'
 asset 'swiper'
 asset 'weui'
