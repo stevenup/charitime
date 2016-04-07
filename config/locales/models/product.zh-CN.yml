@@ -1,0 +1,15 @@
+zh-CN:
+  activerecord:
+    models:
+      product: '商品'
+    attributes:
+      product:
+        product_id: '商品编号'
+        product_name: '商品名称'
+        product_price: '商品价格'
+        product_category: '商品类别'
+        product_label: '商品标签'
+        gyb_discount: '公益币折扣'
+        product_detail: '商品详情'
+        product_created_at: '创建时间'
+        action: '操作'

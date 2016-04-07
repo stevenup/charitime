@@ -1,0 +1,17 @@
+zh-CN:
+  activerecord:
+    models:
+      user: '用户'
+    attributes:
+      user:
+        openid:     'openid'
+        nickname:   '昵称'
+        mobile:     '手机号'
+        sex:        '性别'
+        country:    '国家'
+        province:   '省'
+        city:       '城市'
+        headimg:    '头像'
+        subscribe:  '关注'
+        action:     '操作'
+        created_at: '新建时间'
