@@ -11,6 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160404142431) do
+
+  create_table "products", force: :cascade do |t|
+    t.string "product_id",          limit: 255
+    t.string "project_id",          limit: 255
+    t.string "product_name",        limit: 255
+    t.string "product_price",       limit: 255
+    t.string "product_category_id", limit: 255
+    t.string "product_label_id",    limit: 255
+    t.string "gyb_discount",        limit: 255
+    t.string "product_detail",      limit: 255
+  end
 
 end
