@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'home#index'
+  get 'demo/index'
 
   resources :home, only: [:index] do
     get :personal_center,   on: :collection
@@ -10,14 +11,11 @@ Rails.application.routes.draw do
     get :donate_page,       on: :collection
   end
 
-  get 'demo/index'
-
   namespace :admin do
-    resources :home, only: [:index] do
-      get :lockscreen, on: :collection
-      get :all_goods, on: :collection
-      get :all_projects, on: :collection
-    end
-
+    resources :home, only: [:index]
+    resources :products
+    resources :projects
   end
+
+
 end
