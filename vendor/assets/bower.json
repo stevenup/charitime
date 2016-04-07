@@ -1,6 +1,10 @@
 {
   "name": "dsl-generated dependencies",
   "dependencies": {
+    "lodash": "latest",
+    "datatables": "latest",
+    "jquery-timeago": "latest",
+    "bootstrap-modal": "latest",
     "swiper": "latest",
     "weui": "latest"
   }
