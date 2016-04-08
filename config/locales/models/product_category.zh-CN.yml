@@ -1,0 +1,10 @@
+zh-CN:
+  activerecord:
+    models:
+      product_category: '商品类别'
+    attributes:
+      product_category:
+        product_category_id: '商品类别编号'
+        product_category_name: '商品类别名'
+        created_at: '创建时间'
+        action: '操作'

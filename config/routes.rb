@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :home, only: [:index]
     resources :products
+    resources :product_categories
     resources :projects
   end
 

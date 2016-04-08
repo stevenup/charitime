@@ -1,9 +1,0 @@
-zh-CN:
-  activerecord:
-    models:
-      category: '类别'
-    attributes:
-      category:
-        name: '类别名'
-        created_at: '创建时间'
-        action: '操作'
