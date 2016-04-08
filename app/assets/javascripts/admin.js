@@ -15,3 +15,5 @@
 //= require jquery-timeago/locales/jquery.timeago.zh-CN
 
 //= require integrations/datatables_turbolinks_patch
+
+//= require ckeditor/init
