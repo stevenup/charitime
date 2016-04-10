@@ -11,8 +11,6 @@
 //= require common/utils-datatables
 //= require common/ajax-injection
 //= require common/utils-common
-//= require jquery-timeago/jquery.timeago
-//= require jquery-timeago/locales/jquery.timeago.zh-CN
 
 //= require integrations/datatables_turbolinks_patch
 

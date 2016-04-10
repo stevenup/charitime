@@ -4,12 +4,15 @@ source 'https://gems.ruby-china.org'
 gem 'font-awesome-rails'
 gem 'ionicons-rails'
 gem 'bower-rails'
+gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'rails-i18n', '~> 4.0.0'
 
 gem 'ckeditor'
 gem 'carrierwave'
 gem 'mini_magick'
+
+gem 'kaminari', '~> 0.16.3'             # 基于scope和engine的分页gem，为model加上per, page等方法
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

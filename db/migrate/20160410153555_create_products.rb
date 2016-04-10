@@ -9,6 +9,8 @@ class CreateProducts < ActiveRecord::Migration
       t.string :product_label_id
       t.string :gyb_discount
       t.string :product_detail
+
+      t.timestamps null: false
     end
   end
 end

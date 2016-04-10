@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :home, only: [:index]
     resources :products
     resources :product_categories
+    resources :product_labels
     resources :projects
   end
 

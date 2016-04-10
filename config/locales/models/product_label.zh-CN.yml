@@ -1,0 +1,10 @@
+zh-CN:
+  activerecord:
+    models:
+      product_label: '商品标签'
+    attributes:
+      product_label:
+        product_label_id: '商品标签编号'
+        product_label_name: '商品标签名'
+        created_at: '创建时间'
+        action: '操作'
