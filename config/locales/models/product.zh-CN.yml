@@ -11,5 +11,5 @@ zh-CN:
         product_label: '商品标签'
         gyb_discount: '公益币折扣'
         product_detail: '商品详情'
-        product_created_at: '创建时间'
+        created_at: '创建时间'
         action: '操作'

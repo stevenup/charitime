@@ -17,9 +17,9 @@ module ApplicationHelper
 
   # Render the active class
   def render_active(ctg)
-    hash = { 
-      'product'  => ['admin/products'],
-      'category' => ['admin/product_labels', 'admin/product_categories']
+    hash = {
+      # 'products' => 'admin/products',
+      'products' => %w( admin/products admin/product_labels admin/product_categories )
     }
     return if hash[ctg].nil?
     'open' if hash[ctg].include? params[:controller]

@@ -16,7 +16,20 @@
             </span>
           </a>
         </li>
-        <li class="openable bg-palette2 <%= render_active 'product' %>">
+
+        <li class="bg-palette3">
+          <%= link_to admin_projects_path do %>
+            <span class="menu-content block">
+              <span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+              <span class="text m-left-sm">用户管理</span>
+            </span>
+            <span class="menu-content-hover block">
+              用户
+            </span>
+          <% end %>
+        </li>
+
+        <li class="openable bg-palette2 <%= render_active 'products' %>">
           <a href="#">
             <span class="menu-content block">
               <span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
@@ -27,6 +40,7 @@
               商品
             </span>
           </a>
+
           <ul class="submenu bg-palette4">
             <li>
               <%= link_to admin_products_path do %>
@@ -34,8 +48,19 @@
               <% end %>
             </li>
             <li><a href="form_validation.html"><span class="submenu-label">商品推荐</span></a></li>
+            <li>
+              <%= link_to admin_product_categories_path do %>
+                <span class="submenu-label">商品类别</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_product_labels_path do %>
+                <span class="submenu-label">商品标签</span>
+              <% end %>
+            </li>
           </ul>
         </li>
+
         <li class="bg-palette3">
           <%= link_to admin_projects_path do %>
             <span class="menu-content block">
@@ -47,7 +72,8 @@
             </span>
           <% end %>
         </li>
-        <li class="openable bg-palette4 <%= render_active 'category' %>">
+
+        <li class="openable bg-palette4">
           <a href="#">
             <span class="menu-content block">
               <span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
@@ -65,32 +91,6 @@
             <li><a href="form_validation.html"><span class="submenu-label">已完成订单</span></a></li>
           </ul>
         </li>
-
-        <li class="openable bg-palette2">
-          <a href="#">
-            <span class="menu-content block">
-              <span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
-              <span class="text m-left-sm">类别管理</span>
-              <span class="submenu-icon"></span>
-            </span>
-            <span class="menu-content-hover block">
-              类别
-            </span>
-          </a>
-          <ul class="submenu bg-palette4">
-            <li>
-              <%= link_to admin_product_categories_path do %>
-                <span class="submenu-label">商品类别</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to admin_product_labels_path do %>
-                <span class="submenu-label">商品标签</span>
-              <% end %>
-            </li>
-          </ul>
-        </li>
-
 
         <li class="openable bg-palette4">
           <a href="#">
@@ -123,6 +123,7 @@
             <li><a href="nestable_list.html"><span class="submenu-label">Nestable Lists</span></a></li>
           </ul>
         </li>
+
         <li class="bg-palette1">
           <a href="inbox.html">
             <span class="menu-content block">
@@ -215,3 +216,4 @@
   </div>
   <!-- sidebar-inner -->
 </aside>
+
