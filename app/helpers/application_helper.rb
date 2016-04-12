@@ -16,8 +16,13 @@ module ApplicationHelper
   end
 
   # Render the active class
-  def render_active(controller_name)
-    'open' if params[:controller] == controller_name
+  def render_active(ctg)
+    hash = { 
+      'product'  => ['admin/products'],
+      'category' => ['admin/product_labels', 'admin/product_categories']
+    }
+    return if hash[ctg].nil?
+    'open' if hash[ctg].include? params[:controller]
   end
 
   # 创建一个timeago插件兼容的时间戳显示tag
