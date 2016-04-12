@@ -16,13 +16,26 @@ module ApplicationHelper
   end
 
   # Render the active class
-  def render_active(ctg)
+  def render_active(ori_hash)
+    ul, li = ori_hash[:ul], ori_hash[:li]
     hash = {
-      # 'products' => 'admin/products',
-      'products' => %w( admin/products admin/product_labels admin/product_categories )
+      :ul => {
+        'products' => ['admin/products'],
+        'product_labels' => ['admin/products_labels']
+        # 'products' => ['admin/products_labels']
+      },
+      :li => {
+        'products' => ['index'],
+        'product_labels' => ['index']
+      }
     }
-    return if hash[ctg].nil?
-    'open' if hash[ctg].include? params[:controller]
+    return if hash[:ul][ul].nil? && hash[:li][li].nil?
+    if li.nil?
+      return 'open' if hash[:ul][ul].include? params[:controller]
+    elsif ul && li
+      return if ul != params[:controller].split('/')[1]
+      return 'active' if hash[:li][ul].include? li
+    end
   end
 
   # 创建一个timeago插件兼容的时间戳显示tag

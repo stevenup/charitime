@@ -29,7 +29,7 @@
           <% end %>
         </li>
 
-        <li class="openable bg-palette2 <%= render_active 'products' %>">
+        <li class="openable bg-palette2 <%= render_active ({ :ul => 'products' }) %>">
           <a href="#">
             <span class="menu-content block">
               <span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
@@ -42,18 +42,22 @@
           </a>
 
           <ul class="submenu bg-palette4">
-            <li>
+            <li class="<%= render_active ({ :ul => 'products', :li => 'index' }) %>">
               <%= link_to admin_products_path do %>
                 <span class="submenu-label">全部商品</span>
               <% end %>
             </li>
-            <li><a href="form_validation.html"><span class="submenu-label">商品推荐</span></a></li>
             <li>
+              <a href="form_validation.html">
+                <span class="submenu-label">商品推荐</span>
+              </a>
+            </li>
+            <li class="<%= render_active ({ :ul => 'product_categories', :li => 'categories' }) %>">
               <%= link_to admin_product_categories_path do %>
                 <span class="submenu-label">商品类别</span>
               <% end %>
             </li>
-            <li>
+            <li class="<%= render_active ({ :ul => 'product_labels', :li => 'index' }) %>">
               <%= link_to admin_product_labels_path do %>
                 <span class="submenu-label">商品标签</span>
               <% end %>
