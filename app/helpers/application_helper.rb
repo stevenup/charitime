@@ -17,7 +17,7 @@ module ApplicationHelper
 
   # Render the active class
   def render_active(controller_name)
-    'active' if params[:controller] == controller_name
+    'open' if params[:controller] == controller_name
   end
 
   # 创建一个timeago插件兼容的时间戳显示tag
