@@ -11,7 +11,9 @@ zh-CN:
         country:    '国家'
         province:   '省'
         city:       '城市'
-        headimg:    '头像'
-        subscribe:  '关注'
-        action:     '操作'
+        headimgurl: '头像'
+        subscribe:  '是否关注'
+        gyb:        '公益币'
         created_at: '新建时间'
+        action:     '操作'
+

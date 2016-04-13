@@ -15,11 +15,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :home, only: [:index]
+    resources :users
     resources :products
     resources :product_categories
     resources :product_labels
     resources :projects
   end
-
 
 end
