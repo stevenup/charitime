@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     resources :product_categories
     resources :product_labels
     resources :projects
+    resources :project_types
+    resources :support_types
   end
 
 end
