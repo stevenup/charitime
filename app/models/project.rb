@@ -4,5 +4,5 @@ class Project < ActiveRecord::Base
   has_many :supports
   has_many :users, through: :supports
 
-  has_and_belongs_to_many :products
+  has_and_belongs_to_many :products, join_table: "products_projects"
 end
