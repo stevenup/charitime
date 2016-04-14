@@ -4,6 +4,6 @@ zh-CN:
       project_tpye: '项目类型'
     attributes:
       project_type:
-        project_tpye_name: '项目类型名称'
+        project_type_name: '项目类型名称'
         created_at:        '创建时间'
         action:            '操作'

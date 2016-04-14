@@ -4,11 +4,10 @@ zh-CN:
       project: '项目'
     attributes:
       project:
-        project_id:      '用户编号'
-        project_name:    '昵称'
-        project_type_id: '手机号'
-        project_detail:  '性别'
-        openid:          '用户编号'
-        support_type_id: '支持类型编号'
+        project_id:      '项目编号'
+        project_name:    '项目名称'
+        project_type:    '项目类型'
+        project_detail:  '项目详情'
+        support_type:    '支持类型'
         created_at:      '创建时间'
         action:          '操作'

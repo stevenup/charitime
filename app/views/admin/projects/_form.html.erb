@@ -16,7 +16,7 @@
 
     <div class="form-group">
       <%= f.label :support_type, class: 'col-lg-1 control-label' %>
-      <div class="col-lg-4"><%= f.select :support_type, SupportType.all.collect { |ele| [ele.support_type_name, ele.id] }, { include_blank: '-- select one --' }, class: 'col-lg-4 form-control', required: true %></div>
+      <div class="col-lg-4"><%= f.select :support_type_id, SupportType.all.collect { |ele| [ele.support_type_name, ele.id] }, { include_blank: '-- select one --' }, class: 'col-lg-4 form-control', required: true %></div>
     </div>
 
     <div class="form-group">

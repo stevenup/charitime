@@ -4,6 +4,6 @@ zh-CN:
       support_tpye: '支持类型'
     attributes:
       support_type:
-        support_tpye_name: '支持类型名称'
+        support_type_name: '支持类型名称'
         created_at:        '创建时间'
-        action:            '操作
+        action:            '操作'
