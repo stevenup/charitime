@@ -8,6 +8,5 @@ zh-CN:
         project_name:    '项目名称'
         project_type:    '项目类型'
         project_detail:  '项目详情'
-        support_type:    '支持类型'
         created_at:      '创建时间'
         action:          '操作'

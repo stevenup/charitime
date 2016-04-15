@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413034008) do
+ActiveRecord::Schema.define(version: 20160415112133) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",    limit: 255, null: false
@@ -52,6 +52,36 @@ ActiveRecord::Schema.define(version: 20160413034008) do
     t.string   "product_detail",      limit: 255
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+  end
+
+  create_table "project_types", force: :cascade do |t|
+    t.string   "project_type_name", limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "project_id",      limit: 255
+    t.string   "project_name",    limit: 255
+    t.string   "project_type_id", limit: 255
+    t.string   "project_detail",  limit: 255
+    t.string   "openid",          limit: 255
+    t.string   "support_id",      limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "support_types", force: :cascade do |t|
+    t.string   "support_type_name", limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  create_table "supports", force: :cascade do |t|
+    t.string   "openid",          limit: 255
+    t.string   "support_type_id", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "users", force: :cascade do |t|
