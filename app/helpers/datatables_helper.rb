@@ -109,14 +109,40 @@ module DatatablesHelper
   #
   def render_edit_and_del_actions(edit_target, del_target, opts = {})
     row_actions [
-      { target: edit_target, link_text: '编辑', options: opts.delete(:edit) },
       {
-        target: del_target, link_text: '删除',
+        target: edit_target,
+        link_text: '编辑',
+        options: opts.delete(:edit)
+      },
+      {
+        target: del_target,
+        link_text: '删除',
         options: { :method => :delete }.merge(opts.delete(:delete))
       }
     ]
   end
   alias :edit_and_del :render_edit_and_del_actions
+
+  def render_recommend_action(recommend_target, opts = {})
+    recommend_actions [
+      {
+        target: recommend_target,
+        link_text: '加入推荐',
+        options: opts
+      }
+    ]
+
+  end
+
+  def render_recommend_row_actions(buttons)
+    actions = '<div>'
+    buttons.each do |b|
+      b[:options] ||= {}
+      actions << link_to(raw(b[:link_text]), '#', b[:options])
+    end
+    actions << '</li></ul></div>'
+  end
+  alias :recommend_actions :render_recommend_row_actions
 
   # Generate Img codes in jbuidler
   def render_img(url, options ={})

@@ -49,9 +49,9 @@
               <% end %>
             </li>
             <li>
-              <a href="#">
+              <%= link_to admin_products_recommended_index_path do %>
                 <span class="submenu-label">商品推荐</span>
-              </a>
+              <% end %>
             </li>
             <li class="<%= render_active ({ :ul => 'product_categories', :li => 'categories' }) %>">
               <%= link_to admin_product_categories_path do %>

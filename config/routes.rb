@@ -17,11 +17,13 @@ Rails.application.routes.draw do
     resources :home, only: [:index]
     resources :users
     resources :products
+    resources :products_recommended
     resources :product_categories
     resources :product_labels
     resources :projects
     resources :project_types
     resources :support_types
+    post "/products/set_recommended"
   end
 
 end

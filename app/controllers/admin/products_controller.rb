@@ -27,6 +27,15 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to admin_products_path if product.destroy
   end
 
+  def set_recommended
+    id = params[:id]
+    puts '***************************'
+    puts id
+    product = Product.find_by_product_id(id)
+    product.recommended = 1
+    product.save
+  end
+
   private
     def get_rows
       dt = decode_datatables_params
