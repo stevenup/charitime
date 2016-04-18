@@ -34,17 +34,25 @@
   <%= controller_js_include %>
 <% end %>
 
+<%= javascript_include_tag 'controllers/admin/app' %>
 
 <script>
-  $('a').on('click', function () {
-    $.ajax({
-          type: 'GET',
-          url: '/admin/products/set_recommended',
-          data: { id: this.id },
-          success: function (res) {
-            $info = res['data'];
+  $(document).ready(function () {
+    alert('ok1');
+
+    $('a').click(function (event) {
+      alert('ok2');
+      event.preventDefault();
+      $.ajax({
+            type: 'GET',
+            url: '/admin/products/set_recommended',
+            data: {id: this.id},
+            success: function (res) {
+              $info = res['data'];
+            }
           }
-        }
-    );
+      );
+    })
   })
+
 </script>

@@ -6,27 +6,6 @@ class Admin::ProductsRecommendedController < Admin::BaseController
     end
   end
 
-  def new
-    @product = Product.new
-  end
-
-  def edit
-    @product = Product.find params[:id]
-  end
-
-  def create
-    create_or_update product_params
-  end
-
-  def update
-    create_or_update params[:id], product_params
-  end
-
-  def destroy
-    product = Product.find params[:id]
-    redirect_to admin_products_path if product.destroy
-  end
-
   private
   def get_rows
     dt = decode_datatables_params
@@ -46,16 +25,6 @@ class Admin::ProductsRecommendedController < Admin::BaseController
                 .joins(search_obj[:joins])
                 .order(search_obj[:order])
                 .where(search_obj[:conditions])
-  end
-
-  def create_or_update(id = 0, data)
-    if id == 0
-      product = Product.new data
-      redirect_to admin_products_path if product.save
-    else
-      product = Product.find(id)
-      redirect_to admin_products_path if product.update_attributes data
-    end
   end
 
   def product_params
