@@ -33,26 +33,3 @@
 <% content_for :scripts do %>
   <%= controller_js_include %>
 <% end %>
-
-<%= javascript_include_tag 'controllers/admin/app' %>
-
-<script>
-  $(document).ready(function () {
-    alert('ok1');
-
-    $('a').click(function (event) {
-      alert('ok2');
-      event.preventDefault();
-      $.ajax({
-            type: 'GET',
-            url: '/admin/products/set_recommended',
-            data: {id: this.id},
-            success: function (res) {
-              $info = res['data'];
-            }
-          }
-      );
-    })
-  })
-
-</script>
