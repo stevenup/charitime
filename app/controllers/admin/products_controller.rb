@@ -29,11 +29,25 @@ class Admin::ProductsController < Admin::BaseController
 
   def set_recommended
     id = params[:id]
-    puts '***************************'
-    puts id
-    product = Product.find_by_product_id(id)
-    product.recommended = 1
+    product = Product.find_by_id(id)
+
+    if product && product.recommended != '1'
+      product.recommended = '1'
+      product.save
+      render json: { data: 'success' }
+    else
+      render json: { data: 'recommended has already been set' }
+    end
+
+  end
+
+  def reset_recommended
+    id = params[:id]
+    product = Product.find_by_id(id)
+    product.recommended = '0'
     product.save
+
+    render json: { data: 'success' }
   end
 
   private

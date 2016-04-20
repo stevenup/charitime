@@ -11,6 +11,7 @@ class Admin::ProductsRecommendedController < Admin::BaseController
     dt = decode_datatables_params
 
     where_array = []
+    where_array << "products.recommended = '1'"
 
     search_obj = {
         :include => [],

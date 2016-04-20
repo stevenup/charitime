@@ -3,13 +3,15 @@ using Utils.Datatables, (ctx) ->
     scrollX: false
   }
 
-$('body').delegate 'a', 'click', (e) ->
+$('body').delegate 'a.recommend-btn', 'click', (e) ->
   e.preventDefault()
-  alert('tttt')
   $.ajax({
     type: 'GET',
     url: '/admin/products/set_recommended',
-    data: {id: this.id},
+    data: {"id": this.id, "authenticity_token": "<%= form_authenticity_token %>" },
     success: (res) ->
       $info = res['data']
+      console.log $info
   })
+  document.getElementById(this.id).innerHTML = "已推荐"
+

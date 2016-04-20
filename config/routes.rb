@@ -4,19 +4,21 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'demo/index'
 
-  resources :home, only: [:index]
-
   namespace :admin do
-    resources :home, only: [:index]
+    get 'home' => 'home#index'
+    get 'products_recommended' => 'products_recommended#index'
+
     resources :users
-    resources :products
-    resources :products_recommended
+    resources :products do
+      get 'set_recommended', on: :collection
+      get 'reset_recommended', on: :collection
+    end
     resources :product_categories
     resources :product_labels
     resources :projects
     resources :project_types
     resources :support_types
-    post 'set_recommended', to: 'products#set_recommended'
+
   end
 
 end

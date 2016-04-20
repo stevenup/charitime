@@ -9,6 +9,6 @@ datatable_json_response(json) do
     json.product_detail         row.product_detail
     json.created_at             timeago(row.created_at)
     json.actions                edit_and_del edit_admin_product_path(row), admin_product_path(row, :format => :json), { edit: { data: { id: row.id }, class: 'btn btn-sm btn-info edit-btn' }, delete: { data: { id: row.id, confirm: '确认删除？' }, class: 'btn btn-sm btn-dark delete-btn m-l-sm' } }
-    json.recommended_action     render_recommend_action admin_product_path(row), {id: row.id, class: 'btn btn-sm btn-info edit-btn'}
+    json.recommended_action     recommend admin_product_path(row), {id: row.id, class: 'btn btn-sm btn-info recommend-btn'}
   end
 end

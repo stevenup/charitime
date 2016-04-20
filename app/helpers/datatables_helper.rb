@@ -123,17 +123,41 @@ module DatatablesHelper
   end
   alias :edit_and_del :render_edit_and_del_actions
 
-  def render_recommend_action(recommend_target, opts = {})
+  # Method used to wrap the recommend button for table rows, which is meant to add the target product to recommendations.
+  # == Parameters:
+  # target::
+  #    link target for recommend action
+  # opts::
+  #    options to be passed to the buttons.
+  # == Usage:
+  #    recommend admin_product_path(row), {id: row.id, class: 'btn btn-sm btn-info recommend-btn'}
+  #
+  def render_recommend_action(target, opts = {})
     recommend_actions [
       {
-        target: recommend_target,
+        target: target,
         link_text: '加入推荐',
         options: opts
       }
     ]
-
   end
+  alias :recommend :render_recommend_action
 
+  # Method used to wrap the recommend_cancel button for table rows, which is meant to remove the product from recommendations.
+  #
+  def render_recommend_cancel_action(target, opts = {})
+    recommend_actions [
+      {
+        target: target,
+        link_text: '取消推荐',
+        options: opts
+      }
+    ]
+  end
+  alias :recommend_cancel :render_recommend_cancel_action
+
+  # Generate HTML codes for recommend and recommend_cancel buttons
+  #
   def render_recommend_row_actions(buttons)
     actions = '<div>'
     buttons.each do |b|
