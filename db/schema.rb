@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415160456) do
+ActiveRecord::Schema.define(version: 20160421153051) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "password",   limit: 255
+    t.string   "auth",       limit: 255
+    t.string   "remarks",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",    limit: 255, null: false
@@ -28,6 +37,53 @@ ActiveRecord::Schema.define(version: 20160415160456) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
+  create_table "donation_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "donation_records", force: :cascade do |t|
+    t.string   "donation_record_id", limit: 255
+    t.string   "openid",             limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  create_table "donation_reviews", force: :cascade do |t|
+    t.string   "admin_id",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "donation_states", force: :cascade do |t|
+    t.string   "name",       limit: 255, default: "正在处理中"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.string   "donation_record_id",   limit: 255
+    t.string   "donation_id",          limit: 255
+    t.string   "donation_name",        limit: 255
+    t.string   "donation_category_id", limit: 255
+    t.string   "donation_description", limit: 255
+    t.integer  "gyb",                  limit: 4
+    t.string   "estimated_value",      limit: 255
+    t.string   "donation_state_id",    limit: 255
+    t.string   "donation_review_id",   limit: 255
+    t.string   "logistics_company",    limit: 255
+    t.string   "delivery_num",         limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  create_table "logistics_companies", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "product_categories", force: :cascade do |t|
     t.string   "product_category_name", limit: 255
