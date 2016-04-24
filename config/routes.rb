@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :projects
     resources :project_types
     resources :support_types
+    resources :donations
   end
 
 end

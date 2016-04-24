@@ -116,6 +116,27 @@
             <li><a href="form_validation.html"><span class="submenu-label">已完成订单</span></a></li>
           </ul>
         </li>
+
+        <li class="openable bg-palette2">
+          <a href="#">
+            <span class="menu-content block">
+              <span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+              <span class="text m-left-sm">捐赠管理</span>
+              <span class="submenu-icon"></span>
+            </span>
+            <span class="menu-content-hover block">
+              商品
+            </span>
+          </a>
+
+          <ul class="submenu bg-palette2">
+            <li class="<%= render_active ({:menu => 'donations' }) %>">
+              <%= link_to admin_donations_path do %>
+                <span class="submenu-label">全部捐赠</span>
+              <% end %>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
