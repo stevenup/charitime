@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426060520) do
+ActiveRecord::Schema.define(version: 20160427150420) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 20160426060520) do
     t.string   "image",      limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.string   "openid",        limit: 255
+    t.string   "product_id",    limit: 255
+    t.integer  "product_price", limit: 4
+    t.string   "count",         limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -90,6 +99,28 @@ ActiveRecord::Schema.define(version: 20160426060520) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.string   "order_detail_id", limit: 255
+    t.string   "order_id",        limit: 255
+    t.string   "product_id",      limit: 255
+    t.string   "product_price",   limit: 255
+    t.integer  "count",           limit: 4
+    t.string   "remark",          limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "openid",      limit: 255
+    t.string   "order_id",    limit: 255
+    t.string   "status",      limit: 255
+    t.string   "total_price", limit: 255
+    t.string   "delivery_id", limit: 255
+    t.string   "trans_id",    limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "product_categories", force: :cascade do |t|
