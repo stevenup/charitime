@@ -4,7 +4,6 @@ source 'https://gems.ruby-china.org'
 gem 'font-awesome-rails'
 gem 'ionicons-rails'
 gem 'bower-rails'
-gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'rails-i18n', '~> 4.0.0'
 

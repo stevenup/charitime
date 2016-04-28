@@ -1,7 +1,6 @@
 @import "../../integrations/adjust_config";
-@import "bootstrap";
+@import "page_settings";
 
-/**********  default global settings  **********/
 html, body {
   margin: 0;
   padding: 0;
@@ -10,43 +9,6 @@ html, body {
   @include font-dpr(14px);
   color: #000;
   overflow: hidden;
-}
-
-.s-s {
-  margin: p2e(20px) 0 0 0;
-  background: #ffffff;
-}
-
-.m-t {
-  margin-top: p2e(16px);
-}
-
-.m-r {
-  margin-right: p2e(16px);
-}
-
-.m-b {
-  margin-bottom: p2e(16px);
-}
-
-.m-l {
-  margin-left: p2e(16px);
-}
-
-.p-l {
-  padding-left: p2e(32px);
-}
-
-.p-r {
-  padding-right: p2e(32px);
-}
-
-.p-t {
-  padding-top: p2e(16px);
-}
-
-.p-b {
-  padding-bottom: p2e(16px);
 }
 
 /***************  common style  ****************/
