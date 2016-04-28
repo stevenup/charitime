@@ -1,0 +1,61 @@
+<div class="product-detail">
+  <div class="big-thumb">
+    <%= image_tag '1.png' %>
+  </div>
+
+  <div class="main">
+    <div class="main-left">
+      <div class="price">
+        <span class="big-price">￥<%= @product.product_price %>  </span>
+        <span class="coin">0公益币</span>
+      </div>
+
+      <div class="info">
+        <dl class="dl-clear">
+          <dt>销量：</dt>
+          <dd>20件</dd>
+        </dl>
+
+        <dl class="dl-clear">
+          <dt>好评：</dt>
+          <dd>100%</dd>
+        </dl>
+
+        <dl class="dl-clear">
+          <dt>数量：</dt>
+          <dd>100</dd>
+        </dl>
+        <p class="stock">（库存1000件）</p>
+
+      </div>
+
+      <div class="count"></div>
+    </div>
+
+    <div class="main-right">
+      <ul class="attrs">
+        <li>包邮</li>
+        <li>可使用公益币</li>
+        <li>可获得公益币</li>
+        <li>公益项目</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="nav">
+    <ul>
+      <li><%= link_to '商品详情', 'javascript:;', class: 'detail' %>
+        <span class="split"></span>
+      <li><%= link_to '评论', '#', class: 'comments' %>
+    </ul>
+  </div>
+
+  <div class="detail-body m-t m-b m-r m-l p-r p-l p-t p-b">
+    <%= @product.product_detail.to_s.html_safe %>
+  </div>
+
+  <div class="buttons">
+    <button class="btn btn-default btn-highlight m-l m-r p-t p-b">立即购买</button>
+    <button class="btn btn-default m-l m-r p-t p-b">加入购物车</button>
+  </div>
+</div>

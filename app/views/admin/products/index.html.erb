@@ -17,6 +17,7 @@
       <%= dt id: 'products_datatable', class: 'table table-striped b-t b-b', :'data-url' => admin_products_path(:format => :json) do %>
         <%= dt_col(Product.hn(:product_id), data: {data: 'product_id'}) %>
         <%= dt_col(Product.hn(:product_name), data: {data: 'product_name'}) %>
+        <%= dt_col(Product.hn(:thumb), data: {data: 'thumb'}) %>
         <%= dt_col(Product.hn(:product_price), data: {data: 'product_price'}) %>
         <%= dt_col(Product.hn(:product_category), data: {data: 'product_category_id'}) %>
         <%= dt_col(Product.hn(:product_label), data: {data: 'product_label_id'}) %>

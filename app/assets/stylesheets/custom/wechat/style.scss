@@ -1,11 +1,11 @@
 @import "../../integrations/adjust_config";
-@import "page_settings";
+@import "../../integrations/page_settings";
 
 html, body {
   margin: 0;
   padding: 0;
   background: #ECECEC !important;
-  font-family: "Hiragino Sans GB", "Microsoft YaHei","WenQuanYi Micro Hei", sans-serif;
+  font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   @include font-dpr(14px);
   color: #000;
   overflow: hidden;
@@ -661,13 +661,13 @@ i.arrow {
         line-height: p2e(80px);
 
         .big-price {
-          @include font-dpr(30px);
+          @include font-dpr(24px);
           color: red;
         }
 
         .coin {
-          @include font-dpr(20px);
-          margin-left: p2e(20);
+          @include font-dpr(14px);
+          margin-left: p2e(20px);
           color: #f5a623;
         }
       }
@@ -677,7 +677,7 @@ i.arrow {
         width: 100%;
 
         dl {
-          padding-bottom: p2e(5);
+          padding-bottom: p2e(5px);
           @include font-dpr(14px);
 
           dt {
@@ -756,6 +756,10 @@ i.arrow {
     }
   }
 
+  .detail-body {
+    @include font-dpr(14px);
+  }
+
   .buttons {
     position: fixed;
     z-index: 999;
@@ -805,7 +809,31 @@ i.arrow {
         }
       }
     }
-
-
   }
+}
+
+ul.products-list {
+  background: #FFFFFF;
+  text-align: center;
+  list-style: none;
+  display: table;
+
+  a {
+    display: inline-block;
+    vertical-align: middle;
+
+    li.goods-item {
+      margin-left: p2e(10px);
+      margin-right: p2e(10px);
+      width: p2e(330px);
+      height: p2e(400px);
+      border: 1px lightgray solid;
+      display: inline-block;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
 }

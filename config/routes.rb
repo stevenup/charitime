@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'products' => 'products#index'
+  get 'products/detail'
+
   mount Ckeditor::Engine => '/ckeditor'
 
   root 'home#index'
@@ -14,6 +17,13 @@ Rails.application.routes.draw do
   end
 
   resources :donations
+
+  resources :products do
+    member do
+      get :index
+      get :detail
+    end
+  end
 
   namespace :admin do
     get 'home' => 'home#index'
