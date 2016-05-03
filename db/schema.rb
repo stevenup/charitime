@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428094353) do
+ActiveRecord::Schema.define(version: 20160503153359) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -139,10 +139,8 @@ ActiveRecord::Schema.define(version: 20160428094353) do
     t.string   "product_id",          limit: 255
     t.string   "project_id",          limit: 255
     t.string   "product_name",        limit: 255
-    t.string   "product_price",       limit: 255
     t.string   "product_category_id", limit: 255
     t.string   "product_label_id",    limit: 255
-    t.string   "gyb_discount",        limit: 255
     t.string   "product_detail",      limit: 255
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
@@ -172,6 +170,21 @@ ActiveRecord::Schema.define(version: 20160428094353) do
     t.datetime "updated_at",                  null: false
     t.string   "recommended",     limit: 1
     t.string   "product_id",      limit: 255
+  end
+
+  create_table "shelf_items", force: :cascade do |t|
+    t.string   "product_id",          limit: 255
+    t.string   "project_id",          limit: 255
+    t.string   "product_name",        limit: 255
+    t.string   "product_category_id", limit: 255
+    t.string   "product_label_id",    limit: 255
+    t.string   "product_detail",      limit: 255
+    t.integer  "price",               limit: 4
+    t.integer  "gyb_discount",        limit: 4
+    t.integer  "stock",               limit: 4
+    t.integer  "sales",               limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "support_types", force: :cascade do |t|

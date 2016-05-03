@@ -29,6 +29,6 @@ class Admin::ProductsRecommendedController < Admin::BaseController
   end
 
   def product_params
-    params.require(:product).permit(:product_id, :project_id, :product_name, :product_price, :product_category_id, :product_label_id, :gyb_discount, :product_detail)
+    params.require(:product).permit(:product_id, :project_id, :product_name, :product_category_id, :product_label_id, :product_detail)
   end
 end
