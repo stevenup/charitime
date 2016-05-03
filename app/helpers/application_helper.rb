@@ -15,9 +15,11 @@ module ApplicationHelper
     stylesheet_link_tag "controllers/#{params[:controller]}/#{action_name || params[:action]}"
   end
 
-  # Render the active class
-  def render_active(controller_name)
-    'active' if params[:controller] == controller_name
+  # Render the active sidebar menu
+  #
+  def render_active(opts)
+    menu = opts.delete :menu
+    'active' if menu == params[:controller].split('/')[1]
   end
 
   # 创建一个timeago插件兼容的时间戳显示tag

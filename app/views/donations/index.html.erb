@@ -1,0 +1,33 @@
+<div class="donations-center" id="donations-center">
+  <div class="donation-head"></div>
+
+  <div class="donate-btn m-r m-l" id="donate-btn">
+    <%= link_to '我要捐赠', new_donation_path %>
+    <!--<p>我要捐赠</p>-->
+  </div>
+
+  <div class="remarks m-t m-b p-t p-b">
+    <p>你还没有捐赠过物品哦~</p>
+
+    <p>点击上方按钮前往捐赠吧~</p>
+  </div>
+
+  <div class="history-donations" id="history-donations">
+    <% @donations.each do |ele| %>
+      <div class="donation s-s p-t p-b p-l p-r">
+        <div class="donation-pic ">
+          <%= image_tag '1.png' %>
+        </div>
+
+        <div class="donation-description p-l">
+          <p class="title p-b"><%= ele.donation_name %></p>
+
+          <p class="date p-b"><%= ele.created_at.to_date %></p>
+
+          <p class="state p-b"><%= ele.donation_state.try(:name) %></p>
+        </div>
+
+      </div>
+      <% end %>
+  </div>
+</div>

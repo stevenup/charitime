@@ -1,4 +1,4 @@
-//= require simplify_admin/js/jquery-1.11.1.min
+//= require jquery/dist/jquery.js
 //= require bootstrap/dist/js/bootstrap.min
 //= require simplify_admin/js/jquery.slimscroll.min
 //= require simplify_admin/js/jquery.popupoverlay.min
@@ -12,5 +12,7 @@
 //= require simplify_admin/js/rapheal.min
 //= require simplify_admin/js/sparkline.min
 //= require simplify_admin/js/waypoints.min
+//= require jquery-timeago/jquery.timeago
+//= require jquery-timeago/locales/jquery.timeago.zh-CN
 //= require simplify_admin/js/simplify/simplify
 //= require simplify_admin/js/simplify/simplify_dashboard

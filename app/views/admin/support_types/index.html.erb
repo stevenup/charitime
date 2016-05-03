@@ -1,0 +1,27 @@
+<div class="nav-content-head">
+  <ul class="breadcrumb">
+    <li><span class="primary-font"><i class="icon-home"></i></span><a href="/admin/home"> Home</a></li>
+    <li>支持类型管理</li>
+    <li>支持类型</li>
+  </ul>
+
+  <%= link_to new_admin_support_type_path, class: 'btn-new btn btn-primary marginTB-xs' do %>
+    <i class="fa fa-plus m-right-xs"></i>New SupportType
+  <% end %>
+</div>
+
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="table-responsive">
+      <%= dt id: 'support_types_datatable', class: 'table table-striped b-t b-b', :'data-url' => admin_support_types_path(:format => :json)  do %>
+        <%= dt_col(SupportType.hn(:support_type_name), data: { data: 'support_type_name' }) %>
+        <%= dt_col(SupportType.hn(:created_at), data: { data: 'created_at' }) %>
+        <%= dt_col(SupportType.hn(:action), data: { data: 'actions' }) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :scripts do %>
+  <%= controller_js_include %>
+<% end %>

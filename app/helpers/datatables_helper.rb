@@ -109,14 +109,64 @@ module DatatablesHelper
   #
   def render_edit_and_del_actions(edit_target, del_target, opts = {})
     row_actions [
-      { target: edit_target, link_text: '编辑', options: opts.delete(:edit) },
       {
-        target: del_target, link_text: '删除',
+        target: edit_target,
+        link_text: '编辑',
+        options: opts.delete(:edit)
+      },
+      {
+        target: del_target,
+        link_text: '删除',
         options: { :method => :delete }.merge(opts.delete(:delete))
       }
     ]
   end
   alias :edit_and_del :render_edit_and_del_actions
+
+  # Method used to wrap the recommend button for table rows, which is meant to add the target product to recommendations.
+  # == Parameters:
+  # target::
+  #    link target for recommend action
+  # opts::
+  #    options to be passed to the buttons.
+  # == Usage:
+  #    recommend admin_product_path(row), {id: row.id, class: 'btn btn-sm btn-info recommend-btn'}
+  #
+  def render_recommend_action(target, opts = {})
+    recommend_actions [
+      {
+        target: target,
+        link_text: '加入推荐',
+        options: opts
+      }
+    ]
+  end
+  alias :recommend :render_recommend_action
+
+  # Method used to wrap the recommend_cancel button for table rows, which is meant to remove the product from recommendations.
+  #
+  def render_recommend_cancel_action(target, opts = {})
+    recommend_actions [
+      {
+        target: target,
+        link_text: '取消推荐',
+        options: opts
+      }
+    ]
+  end
+  alias :recommend_cancel :render_recommend_cancel_action
+
+  # Generate HTML codes for recommend and recommend_cancel buttons
+  #
+  def render_recommend_row_actions(buttons)
+    actions = '<div>'
+    buttons.each do |b|
+      b[:options] ||= {}
+      actions << link_to(raw(b[:link_text]), b[:target], b[:options])
+    end
+    actions << '</li></ul></div>'
+  end
+  alias :recommend_actions :render_recommend_row_actions
 
   # Generate Img codes in jbuidler
   def render_img(url, options ={})

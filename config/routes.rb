@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'products' => 'products#index'
+  get 'products/detail'
+
+  mount Ckeditor::Engine => '/ckeditor'
+
   root 'home#index'
   get 'demo/index'
 
@@ -11,11 +16,31 @@ Rails.application.routes.draw do
     get :donate_page,       on: :collection
   end
 
-  namespace :admin do
-    resources :home, only: [:index]
-    resources :products
-    resources :projects
+  resources :donations
+
+  resources :products do
+    member do
+      get :index
+      get :detail
+    end
   end
 
+  namespace :admin do
+    get 'home' => 'home#index'
+    get 'products_recommended' => 'products_recommended#index'
+
+    resources :users
+    resources :products do
+      get 'set_recommended', on: :collection
+      get 'reset_recommended', on: :collection
+    end
+    resources :product_categories
+    resources :product_labels
+    resources :projects
+    resources :project_types
+    resources :support_types
+    resources :donations
+    resources :banners
+  end
 
 end

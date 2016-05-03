@@ -1,9 +1,29 @@
 <div class="nav-content-head">
   <ul class="breadcrumb">
     <li><span class="primary-font"><i class="icon-home"></i></span><a href="/admin/home"> Home</a></li>
-    <li>项目发布</li>
+    <li>项目管理</li>
+    <li>全部项目</li>
   </ul>
-  <button class="btn-new btn btn-primary marginTB-xs">
-    <i class="fa fa-plus m-right-xs"></i>New Project
-  </button>
+  <%= link_to new_admin_project_path, class: 'btn-new btn btn-primary marginTB-xs' do %>
+      <i class="fa fa-plus m-right-xs"></i>New Projects
+  <% end %>
 </div>
+
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="table-responsive">
+      <%= dt id: 'projects_datatable', class: 'table table-striped b-t b-b', :'data-url' => admin_projects_path(:format => :json)  do %>
+          <%= dt_col(Project.hn(:project_id), data: { data: 'project_id' }) %>
+          <%= dt_col(Project.hn(:project_name), data: { data: 'project_name' }) %>
+          <%= dt_col(Project.hn(:project_type), data: { data: 'project_type_id' }) %>
+          <%= dt_col(Project.hn(:project_detail), data: { data: 'project_detail' }) %>
+          <%= dt_col(Project.hn(:created_at), data: { data: 'created_at' }) %>
+          <%= dt_col(Project.hn(:action), data: { data: 'actions' }) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :scripts do %>
+    <%= controller_js_include %>
+<% end %>

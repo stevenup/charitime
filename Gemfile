@@ -5,6 +5,14 @@ gem 'font-awesome-rails'
 gem 'ionicons-rails'
 gem 'bower-rails'
 
+gem 'rails-i18n', '~> 4.0.0'
+
+gem 'ckeditor'
+gem 'carrierwave'
+gem 'mini_magick'
+
+gem 'kaminari', '~> 0.16.3'             # 基于scope和engine的分页gem，为model加上per, page等方法
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use mysql as the database for Active Record

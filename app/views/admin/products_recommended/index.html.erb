@@ -1,0 +1,29 @@
+<div class="nav-content-head">
+  <ul class="breadcrumb">
+    <li><span class="primary-font"><i class="icon-home"></i></span><a href="/admin/home"> Home</a></li>
+    <li>商品推荐</li>
+    <li>全部商品</li>
+  </ul>
+
+</div>
+
+
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="table-responsive">
+      <%= dt id: 'products_recommended_datatable', class: 'table table-striped b-t b-b', :'data-url' => admin_products_recommended_path(:format => :json)  do %>
+        <%= dt_col(Product.hn(:product_id), data: { data: 'product_id' }) %>
+        <%= dt_col(Product.hn(:product_name), data: { data: 'product_name' }) %>
+        <%= dt_col(Product.hn(:product_category), data: { data: 'product_category_id' }) %>
+        <%= dt_col(Product.hn(:product_label), data: { data: 'product_label_id' }) %>
+        <%= dt_col(Product.hn(:product_detail), data: { data: 'product_detail' }) %>
+        <%= dt_col(Product.hn(:created_at), data: { data: 'created_at' }) %>
+        <%= dt_col(Product.hn(:recommend_cancel_action), data: { data: 'recommend_cancel_action' }) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :scripts do %>
+  <%= controller_js_include %>
+<% end %>

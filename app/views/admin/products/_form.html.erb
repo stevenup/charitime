@@ -1,0 +1,44 @@
+<%= form_for @product, url: url, html: {class: 'form-horizontal'} do |f| %>
+  <div class="form-group">
+    <%= f.label :product_name, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.text_field :product_name, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :thumb, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.file_field :thumb, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <!--<div class="form-group">-->
+    <!--<%#= f.label :product_price, class: 'col-lg-1 control-label' %>-->
+    <!--<div class="col-lg-4"><%#= f.text_field :product_price, class: 'col-lg-4 form-control', required: true %></div>-->
+  <!--</div>-->
+
+  <div class="form-group">
+    <%= f.label :product_category, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.select :product_category_id, ProductCategory.all.collect { |ele| [ele.product_category_name, ele.id] }, {include_blank: '-- select one --'}, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :product_label, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.select :product_label_id, ProductLabel.all.collect { |ele| [ele.product_label_name, ele.id] }, {include_blank: '-- select one --'}, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <!--<div class="form-group">-->
+    <!--<%#= f.label :gyb_discount, class: 'col-lg-1 control-label' %>-->
+    <!--<div class="col-lg-4"><%#= f.text_field :gyb_discount, class: 'col-lg-4 form-control', placeholder: '限20字内', required: true %></div>-->
+  <!--</div>-->
+
+  <div class="form-group">
+    <%= f.label :product_detail, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-11"><%= f.cktext_area :product_detail %></div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-1 col-lg-10">
+      <%= f.submit '保存', class: "btn btn-sm btn-primary" %>
+      &nbsp
+      <%= link_to '返回', '#', class: "btn btn-sm btn-info", onclick: "history.back()" %>
+    </div>
+  </div>
+<% end %>

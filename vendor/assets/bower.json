@@ -5,7 +5,6 @@
     "datatables": "latest",
     "jquery-timeago": "latest",
     "bootstrap-modal": "latest",
-    "swiper": "latest",
-    "weui": "latest"
+    "swiper": "latest"
   }
 }

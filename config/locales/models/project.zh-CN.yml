@@ -1,0 +1,12 @@
+zh-CN:
+  activerecord:
+    models:
+      project: '项目'
+    attributes:
+      project:
+        project_id:      '项目编号'
+        project_name:    '项目名称'
+        project_type:    '项目类型'
+        project_detail:  '项目详情'
+        created_at:      '创建时间'
+        action:          '操作'
