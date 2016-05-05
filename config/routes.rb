@@ -1,23 +1,16 @@
 Rails.application.routes.draw do
   resource :wechat, only: [:show, :create]
-  get 'products' => 'products#index'
-  get 'products/detail'
 
   mount Ckeditor::Engine => '/ckeditor'
 
   root 'home#index'
-  get 'demo/index'
 
   resources :home, only: [:index] do
     get :personal_center,   on: :collection
     get :donations_center,  on: :collection
     get :my_gyb,            on: :collection
-    get :project_detail,    on: :collection
-    get :product_detail,    on: :collection
     get :donate_page,       on: :collection
   end
-
-  resources :donations
 
   resources :products do
     member do
@@ -25,6 +18,14 @@ Rails.application.routes.draw do
       get :detail
     end
   end
+
+  resources :projects do
+    member do
+      get :index
+    end
+  end
+
+  resources :donations
 
   namespace :admin do
     get 'home' => 'home#index'

@@ -219,7 +219,7 @@ i.arrow {
   .banner-swiper {
     .swiper-container {
       width: 100%;
-      height: p2e(500px);
+      height: p2e(400px);
 
       .swiper-wrapper {
         .swiper-slide {
@@ -255,6 +255,11 @@ i.arrow {
       width: 22%;
       border-right: 1px solid #979797;
       display: inline-block;
+
+      a {
+        text-decoration: none;
+
+      }
 
       .nav-item-icon {
         margin: 0 auto;
@@ -344,10 +349,14 @@ i.arrow {
     bottom: 0;
     border-top: 1px solid lightgray;
     text-align: center;
-    @include font-dpr(16px);
-    color: orangered;
+    @include font-dpr(20px);
 
-    .home {
+    .bottom-nav-fixed {
+      a {
+        text-decoration: none;
+        color: orangered;
+      }
+
       i {
         padding-left: p2e(50px);
         padding-right: p2e(50px);
