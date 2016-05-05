@@ -5,6 +5,7 @@ source 'https://ruby.taobao.org'
 gem 'table_print'
 
 gem 'wechat'
+gem 'httpclient'
 gem 'settingslogic'
 
 # front-end

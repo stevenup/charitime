@@ -12,6 +12,5 @@ datatable_json_response(json) do
     json.created_at   timeago(row.created_at)
     json.address      row.address
     json.gyb          row.gyb
-    json.other        row.other
   end
 end

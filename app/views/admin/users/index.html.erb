@@ -10,24 +10,23 @@
 <div class="wrapper-md">
   <div class="panel panel-default">
     <div class="table-responsive">
-      <%= dt id: 'users_datatable', class: 'table table-striped b-t b-b', :'data-url' => admin_users_path(:format => :json)  do %>
-          <%= dt_col(User.hn(:openid), data: { data: 'openid' }) %>
-          <%= dt_col(User.hn(:headimgurl), data: { data: 'headimgurl' }) %>
-          <%= dt_col(User.hn(:nickname), data: { data: 'nickname' }) %>
-          <%= dt_col(User.hn(:mobile), data: { data: 'mobile' }) %>
-          <%= dt_col(User.hn(:sex), data: { data: 'sex' }) %>
-          <%= dt_col(User.hn(:country), data: { data: 'country' }) %>
-          <%= dt_col(User.hn(:province), data: { data: 'province' }) %>
-          <%= dt_col(User.hn(:city), data: { data: 'city' }) %>
-          <%= dt_col(User.hn(:subscribe), data: { data: 'subscribe' }) %>
-          <%= dt_col(User.hn(:gyb), data: { data: 'gyb' }) %>
-          <%= dt_col(User.hn(:created_at), data: { data: 'created_at' }) %>
-          <%= dt_col(User.hn(:action), data: { data: 'action' }) %>
+      <%= dt id: 'users_datatable', class: 'table table-striped b-t b-b', :'data-url' => admin_users_path(:format => :json) do %>
+        <%= dt_col(User.hn(:headimgurl), data: {data: 'headimgurl'}) %>
+        <%= dt_col(User.hn(:openid), data: {data: 'openid'}) %>
+        <%= dt_col(User.hn(:nickname), data: {data: 'nickname'}) %>
+        <%= dt_col(User.hn(:mobile), data: {data: 'mobile'}) %>
+        <%= dt_col(User.hn(:sex), data: {data: 'sex'}) %>
+        <%= dt_col(User.hn(:country), data: {data: 'country'}) %>
+        <%= dt_col(User.hn(:province), data: {data: 'province'}) %>
+        <%= dt_col(User.hn(:city), data: {data: 'city'}) %>
+        <%= dt_col(User.hn(:subscribe), data: {data: 'subscribe'}) %>
+        <%= dt_col(User.hn(:gyb), data: {data: 'gyb'}) %>
+        <%= dt_col(User.hn(:created_at), data: {data: 'created_at'}) %>
       <% end %>
     </div>
   </div>
 </div>
 
 <% content_for :scripts do %>
-    <%= controller_js_include %>
+  <%= controller_js_include %>
 <% end %>

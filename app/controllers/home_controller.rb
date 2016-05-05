@@ -1,4 +1,6 @@
-class HomeController < ApplicationController
+class HomeController < BaseController
+  before_action :auth_user, only: [:index]
+
   def index
   end
 

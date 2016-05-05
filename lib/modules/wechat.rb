@@ -50,7 +50,7 @@ module Modules::Wechat
     Rails.logger.info '************ finish get_user_info_sns_userinfo ************'
     JSON.parse(_info.body)
   end
- 
+
   def get_js_ticket
     _path = Settings.wechat.jsapi_ticket
     return refresh_js_ticket unless File.exist?(_path)
