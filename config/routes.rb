@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resources :shelf_items do
       collection do
         get :list
+        get :on_shelf
       end
     end
     resources :product_categories

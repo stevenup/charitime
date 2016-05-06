@@ -2,52 +2,53 @@ class Admin::ShelfItemsController < Admin::BaseController
   def index
     respond_to do |format|
       format.html
-      format.json { get_rows }
+      format.json { get_rows params[:flag] }
     end
   end
 
   def list
   end
 
+  def on_shelf
+    flag = params[:flag]
+    shelf_item = ShelfItem.new
+    shelf_item.is_on_shelf = flag
+    shelf_item.save
+  end
+
   private
-  def get_rows
+  def get_rows flag
     dt = decode_datatables_params
 
-    where_array = []
+    if flag == '1'
+      where_array = []
+      where_array << "products.recommended = '1'"
 
-    search_obj = {
-        :include => [],
-        :joins => [],
-        :order => dt[:sort_statement],
-        :conditions => [where_array.join(' AND ')]
-    }
+      search_obj = {
+          :include => [],
+          :joins => [],
+          :order => dt[:sort_statement],
+          :conditions => [where_array.join(' AND ')]
+      }
 
-    @total_rows = Product.count(search_obj)
-    @rows = Product.page(dt[:page]).per(dt[:per_page])
-                .includes(search_obj[:include])
-                .joins(search_obj[:joins])
-                .order(search_obj[:order])
-                .where(search_obj[:conditions])
+      @total_rows = Product.count(search_obj)
+      @rows = Product.page(dt[:page]).per(dt[:per_page])
+                  .includes(search_obj[:include])
+                  .joins(search_obj[:joins])
+                  .order(search_obj[:order])
+                  .where(search_obj[:conditions])
+    end
+
   end
 
   def create_or_update(id = 0, data)
     if id == 0
       product = Product.new data
-      product_id = generate_unique_id
-      unless Product.find_by_product_id(product_id)
-        product.product_id = product_id
-      else
-        product.product_id = generate_unique_id
-      end
       redirect_to admin_products_path if product.save
     else
       product = Product.find(id)
       redirect_to admin_products_path if product.update_attributes data
     end
-  end
-
-  def generate_unique_id
-    'C1' + SecureRandom.random_number(999999).to_s
   end
 
   def product_params
