@@ -29,6 +29,7 @@ module DatatablesHelper
       raw html
     end
   end
+
   alias :dt :datatable_tag
 
   # Similiar to @datatable_tag method but this will pass section as the block parameter,
@@ -45,6 +46,7 @@ module DatatablesHelper
       raw html
     end
   end
+
   alias :dts :datatable_tag_section
 
   # Generate th html tag for building up ajax datatable html tag
@@ -78,6 +80,7 @@ module DatatablesHelper
       content_tag(:th, name, options.merge(data))
     end
   end
+
   alias :dt_col :datatable_col_tag
 
   # Shortcut method for datatable_col_tag for those columns with needs for only data attributes
@@ -93,6 +96,7 @@ module DatatablesHelper
   def datatable_col_tag_dataonly(col_title, data_options)
     datatable_col_tag(data: data_options) { col_title }
   end
+
   alias :d_col :datatable_col_tag_dataonly
 
   # A short function to wrap actions group for table rows with two buttons, one editting and one for deleting.
@@ -109,18 +113,19 @@ module DatatablesHelper
   #
   def render_edit_and_del_actions(edit_target, del_target, opts = {})
     row_actions [
-      {
-        target: edit_target,
-        link_text: '编辑',
-        options: opts.delete(:edit)
-      },
-      {
-        target: del_target,
-        link_text: '删除',
-        options: { :method => :delete }.merge(opts.delete(:delete))
-      }
-    ]
+                    {
+                        target: edit_target,
+                        link_text: '编辑',
+                        options: opts.delete(:edit)
+                    },
+                    {
+                        target: del_target,
+                        link_text: '删除',
+                        options: {:method => :delete}.merge(opts.delete(:delete))
+                    }
+                ]
   end
+
   alias :edit_and_del :render_edit_and_del_actions
 
   # Method used to wrap the recommend button for table rows, which is meant to add the target product to recommendations.
@@ -134,26 +139,28 @@ module DatatablesHelper
   #
   def render_recommend_action(target, opts = {})
     recommend_actions [
-      {
-        target: target,
-        link_text: '加入推荐',
-        options: opts
-      }
-    ]
+                          {
+                              target: target,
+                              link_text: '加入推荐',
+                              options: opts
+                          }
+                      ]
   end
+
   alias :recommend :render_recommend_action
 
   # Method used to wrap the recommend_cancel button for table rows, which is meant to remove the product from recommendations.
   #
   def render_recommend_cancel_action(target, opts = {})
     recommend_actions [
-      {
-        target: target,
-        link_text: '取消推荐',
-        options: opts
-      }
-    ]
+                          {
+                              target: target,
+                              link_text: '取消推荐',
+                              options: opts
+                          }
+                      ]
   end
+
   alias :recommend_cancel :render_recommend_cancel_action
 
   # Generate HTML codes for recommend and recommend_cancel buttons
@@ -166,7 +173,27 @@ module DatatablesHelper
     end
     actions << '</li></ul></div>'
   end
+
   alias :recommend_actions :render_recommend_row_actions
+
+  def render_on_shelf_action(target, opts = {})
+    on_shelf_action [
+                        target: target,
+                        link_text: '上架',
+                        options: opts
+                    ]
+  end
+  alias :on_shelf :render_on_shelf_action
+
+  def render_on_shelf_row_action(buttons)
+    actions = '<div>'
+    buttons.each do |b|
+      b[:options] ||= {}
+      actions << link_to(raw(b[:link_text]), b[:target], b[:options])
+    end
+    actions << '</li></ul></div>'
+  end
+  alias on_shelf_action :render_on_shelf_row_action
 
   # Generate Img codes in jbuidler
   def render_img(url, options ={})
@@ -205,6 +232,7 @@ module DatatablesHelper
     end
     actions << '</li></ul></div>'
   end
+
   alias :row_actions :render_table_row_actions
 
   # Helper to be used in jbuilder for rendering datatable json response

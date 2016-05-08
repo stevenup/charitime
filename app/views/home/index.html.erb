@@ -58,12 +58,16 @@
     </div>
 
     <div class="rcmds-list s-s p-l p-r m-t">
-      <div class="goods-item m-t">
+      <% @recommended_products.each do |p| %>
+        <%= link_to detail_product_path p.id do %>
+          <div class="goods-item m-t">
+            <%= image_tag p.thumb %>
+          </div>
+        <% end %>
+      <% end %>
+      <!--<div class="goods-item m-t">-->
 
-      </div>
-      <div class="goods-item m-t">
-
-      </div>
+      <!--</div>-->
 
       <div class="project-item m-t p-b">
         <div class="project-pic">
@@ -355,7 +359,7 @@
       <%= link_to personal_center_home_index_path do %>
         <i class="fa fa-user">&nbsp;&nbsp;我</i>
       <% end %>
-      <%= link_to  do %>
+      <%= link_to do %>
         <i class="fa fa-shopping-bag">&nbsp;&nbsp;购物袋</i>
       <% end %>
     </div>

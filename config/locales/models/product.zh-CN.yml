@@ -16,3 +16,4 @@ zh-CN:
         action: '操作'
         recommend_action: '是否推荐'
         recommend_cancel_action: '取消推荐'
+        on_shelf: '上架'

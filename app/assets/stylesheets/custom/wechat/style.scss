@@ -281,8 +281,13 @@ i.arrow {
 
   .rcmds {
     .rcmds-list {
-      text-align: center;
+      text-align: left;
+      display: table;
 
+      a {
+        display: inline-block;
+        vertical-align: middle;
+      }
     }
   }
 
@@ -349,7 +354,7 @@ i.arrow {
     bottom: 0;
     border-top: 1px solid lightgray;
     text-align: center;
-    @include font-dpr(20px);
+    @include font-dpr(16px);
 
     .bottom-nav-fixed {
       a {

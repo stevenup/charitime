@@ -6,17 +6,14 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :home, only: [:index] do
-    get :personal_center,   on: :collection
-    get :donations_center,  on: :collection
-    get :my_gyb,            on: :collection
-    get :donate_page,       on: :collection
+    get :personal_center, on: :collection
+    get :donations_center, on: :collection
+    get :my_gyb, on: :collection
+    get :donate_page, on: :collection
   end
 
   resources :products do
-    member do
-      get :index
-      get :detail
-    end
+    get :detail, on: :member
   end
 
   resources :projects do
@@ -35,6 +32,11 @@ Rails.application.routes.draw do
     resources :products do
       get 'set_recommended', on: :collection
       get 'reset_recommended', on: :collection
+    end
+    resources :shelf_items do
+      collection do
+        get :list
+      end
     end
     resources :product_categories
     resources :product_labels
