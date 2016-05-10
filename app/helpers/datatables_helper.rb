@@ -195,6 +195,25 @@ module DatatablesHelper
   end
   alias on_shelf_action :render_on_shelf_row_action
 
+  def render_off_shelf_action(target, opts = {})
+    off_shelf_action [
+                        target: target,
+                        link_text: '下架',
+                        options: opts
+                    ]
+  end
+  alias :off_shelf :render_off_shelf_action
+
+  def render_off_shelf_row_action(buttons)
+    actions = '<div>'
+    buttons.each do |b|
+      b[:options] ||= {}
+      actions << link_to(raw(b[:link_text]), b[:target], b[:options])
+    end
+    actions << '</li></ul></div>'
+  end
+  alias off_shelf_action :render_off_shelf_row_action
+
   # Generate Img codes in jbuidler
   def render_img(url, options ={})
     image_tag url, options

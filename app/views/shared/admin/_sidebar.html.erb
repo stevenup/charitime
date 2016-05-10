@@ -78,6 +78,32 @@
           </ul>
         </li>
 
+        <li class="openable bg-palette2">
+          <a href="#">
+            <span class="menu-content block">
+              <span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+              <span class="text m-left-sm">上架管理</span>
+              <span class="submenu-icon"></span>
+            </span>
+            <span class="menu-content-hover block">
+              上架
+            </span>
+          </a>
+
+          <ul class="submenu bg-palette2">
+            <li class="<%= render_active ({:menu => 'off_shelf_list' }) %>">
+              <%= link_to off_shelf_list_admin_shelf_items_path do %>
+                <span class="submenu-label">待上架商品</span>
+              <% end %>
+            </li>
+            <li class="<%= render_active ({:menu => 'on_shelf_list' }) %>">
+              <%= link_to on_shelf_list_admin_shelf_items_path do %>
+                <span class="submenu-label">已上架商品</span>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+
         <li class="openable bg-palette3">
           <a href="#">
             <span class="menu-content block">
