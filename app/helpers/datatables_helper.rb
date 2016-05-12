@@ -179,7 +179,7 @@ module DatatablesHelper
   def render_on_shelf_action(target, opts = {})
     on_shelf_action [
                         target: target,
-                        link_text: '上架',
+                        link_text: '编辑上架',
                         options: opts
                     ]
   end

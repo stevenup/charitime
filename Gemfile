@@ -15,6 +15,7 @@ gem 'bower-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
 gem 'coffee-rails', '~> 4.1.0'
+gem "js-routes"
 
 # back-end
 gem 'mysql2', '>= 0.3.13', '< 0.5'

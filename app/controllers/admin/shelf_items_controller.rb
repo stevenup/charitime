@@ -13,6 +13,11 @@ class Admin::ShelfItemsController < Admin::BaseController
     end
   end
 
+  def edit
+    @shelf_item = ShelfItem.find_by :id => params[:id]
+    render 'form', :layout =>  'bootstrap_modal'
+  end
+
   def put_on_shelf
     flag = params[:flag]
     id = params[:id]
