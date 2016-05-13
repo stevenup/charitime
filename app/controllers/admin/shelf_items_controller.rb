@@ -14,7 +14,7 @@ class Admin::ShelfItemsController < Admin::BaseController
   end
 
   def edit
-    @shelf_item = ShelfItem.find_by :id => params[:id]
+    @shelf_item = ShelfItem.last
     render 'form', :layout =>  'bootstrap_modal'
   end
 
