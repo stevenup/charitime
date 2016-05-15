@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510083940) do
+ActiveRecord::Schema.define(version: 20160513140504) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -142,11 +142,11 @@ ActiveRecord::Schema.define(version: 20160510083940) do
     t.string   "product_category_id", limit: 255
     t.string   "product_label_id",    limit: 255
     t.string   "product_detail",      limit: 255
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.string   "recommended",         limit: 1
     t.string   "thumb",               limit: 255
-    t.string   "is_on_shelf",         limit: 1
+    t.string   "is_on_shelf",         limit: 255, default: "0"
   end
 
   create_table "products_projects", id: false, force: :cascade do |t|
