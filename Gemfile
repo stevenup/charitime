@@ -15,11 +15,13 @@ gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
 gem 'coffee-rails', '~> 4.1.0'
 gem "js-routes"
+gem 'turbolinks'
 
 # back-end
 gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'rails', '4.2.5'
 gem 'jbuilder', '~> 2.0'
+gem 'rabl'
 
 # rich-text editor
 gem 'ckeditor'
@@ -31,8 +33,6 @@ gem 'kaminari', '~> 0.16.3'             # 基于scope和engine的分页gem，为
 gem 'rails-i18n', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
-
-gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password

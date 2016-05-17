@@ -34,4 +34,44 @@ class Admin::BaseController < ApplicationController
         search_text: search_text
     }
   end
+
+  # 用JSON做一个表示操作成功的Response
+  #
+  # == Parameters:
+  # options:: 选项
+  #
+  # == Options:
+  # 在缺省情况下，调用这个函数给一个空的hash也可以，我会自动给回200为response code，错误信息和对象都为空，但是如果需要的，也可以传入一个带哈希作为选项，主要支持：
+  # msg:: 需要显示的信息，缺省为空字符串
+  # template:: 需要使用的JSON模板，缺省为common/api
+  #
+  def json_success_response(options = {})
+    template = options.delete(:template) || 'common/api'
+    msg = options.delete(:msg) || ''
+    @code = 200
+    @message = msg
+    @errors = nil
+    render template, layout: 'json_with_meta'
+  end
+
+  # 用JSON做一个表示操作失败的Response
+  #
+  # == Parameters:
+  # msg:: 需要显示的错误信息
+  # errors:: 错误对象
+  def json_failed_response(msg, errors = nil, template = nil)
+    @code = 500
+    @message = msg
+    @errors = errors
+    template ||= 'common/api'
+    render template, layout: 'json_with_meta', status: 400
+  end
+
+  def response_after_save_json(result, obj)
+    if result
+      json_success_response
+    else
+      json_failed_response(view_context.tv('message_save_failed_with_msg', :msg => obj.errors.full_messages), obj.errors)
+    end
+  end
 end

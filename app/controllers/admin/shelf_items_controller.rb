@@ -15,41 +15,44 @@ class Admin::ShelfItemsController < Admin::BaseController
   
   def new
     @shelf_item = ShelfItem.new
-    @product = Product.find_by :id => params[:id]       # product info will be displayed in the modal
-    render 'form', :layout =>  'bootstrap_modal', locals: { url: admin_shelf_items_path }
-  end
-
-  def create
-    # product = Product.find_by :id => params[:id]
-    # merged_params = product.attributes.merge shelf_item_params
-    create_or_update 0, shelf_item_params
-  end
-
-  def update
-    product = Product.find_by :id => params[:id]
-    merged_params = product.attributes.merge shelf_item_params
-    create_or_update params[:id], merged_params
-  end
-
-  def edit
-    @shelf_item = ShelfItem.new
-    @product = Product.find_by :id => params[:id]       # product info will be displayed in the modal
+    @product = Product.find_by :id => params[:id]       # product info will be displayed in the form modal
     render 'form', :layout =>  'bootstrap_modal'
   end
 
-  def put_on_shelf
-    flag = '1'
+  def create
     id = params[:id]
-    product = Product.find_by :id => id
-    @shelf_item = ShelfItem.new
-
-    shelf_item.is_on_shelf = flag
-    product.is_on_shelf = flag
-    product.save
-    @shelf_item.save
-
-    render json: {data: 'success'}
+    if ShelfItem.find_by :id => id
+      create_or_update id, shelf_item_params
+    else
+      create_or_update 0, shelf_item_params
+    end
   end
+
+  # def update
+  #   product = Product.find_by :id => params[:id]
+  #   merged_data = product.attributes.merge shelf_item_params
+  #   create_or_update params[:id], merged_data
+  # end
+
+  # def edit
+  #   @shelf_item = ShelfItem.new
+  #   @product = Product.find_by :id => params[:id]       # product info will be displayed in the modal
+  #   render 'form', :layout =>  'bootstrap_modal'
+  # end
+  #
+  # def put_on_shelf
+  #   flag = '1'
+  #   id = params[:id]
+  #   product = Product.find_by :id => id
+  #   @shelf_item = ShelfItem.new
+  #
+  #   shelf_item.is_on_shelf = flag
+  #   product.is_on_shelf = flag
+  #   product.save
+  #   @shelf_item.save
+  #
+  #   render json: {data: 'success'}
+  # end
 
   def pull_off_shelf
     flag = params[:flag]
@@ -109,14 +112,22 @@ class Admin::ShelfItemsController < Admin::BaseController
   def create_or_update(id, form_data, template = 'form')
     if id == 0
       product = Product.find_by :id => params[:id]
-      merged_params = product.attributes.merge form_data
-      @shelf_item = ShelfItem.new merged_params
-      result = @shelf_item.save
+      merged_data = product.attributes.merge form_data
+      @shelf_item = ShelfItem.new merged_data
+      @shelf_item.is_on_shelf = '1'
+      product.is_on_shelf = '1'
+      product.save
+      @shelf_item.save
     else
-      @shelf_item = ShelfItem.find(id)
-      result = @shelf_item.update_attributes(form_data)
+      product = Product.find_by :id => params[:id]
+      @shelf_item = ShelfItem.find_by :id => params[:id]
+      @shelf_item.is_on_shelf = '1'
+      product.is_on_shelf = '1'
+      product.save
+      @shelf_item.update_attributes form_data
     end
-    response_after_save_json result, @shelf_item
+    # response_after_save_json result, @shelf_item
+    redirect_to off_shelf_list_admin_shelf_items_path
   end
 
   def shelf_item_params

@@ -4,6 +4,7 @@
 //= require common/namespace
 //= require common/utils-common
 //= require common/ajax-injection
+//= require common/notifications-injection
 
 //= require simplify_admin/simplify_admin
 //= require datatables/media/js/jquery.dataTables

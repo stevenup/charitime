@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :home, only: [:index] do
-    get :personal_center, on: :collection
+    get :personal_center,  on: :collection
     get :donations_center, on: :collection
-    get :my_gyb, on: :collection
-    get :donate_page, on: :collection
+    get :my_gyb,           on: :collection
+    get :donate_page,      on: :collection
   end
 
   resources :products do
@@ -25,17 +25,18 @@ Rails.application.routes.draw do
   resources :donations
 
   namespace :admin do
-    get 'home' => 'home#index'
+    get 'home'                 => 'home#index'
     get 'products_recommended' => 'products_recommended#index'
+    # get 'products/:id.json' => 'products#destroy'
 
     resources :users
     resources :products do
-      get 'set_recommended', on: :collection
-      get 'reset_recommended', on: :collection
+      # get 'set_recommended',   on: :collection
+      # get 'reset_recommended', on: :collection
     end
     resources :shelf_items do
       collection do
-        get :put_on_shelf    # ajax get request
+        # get :put_on_shelf    # ajax get request
         get :pull_off_shelf    # ajax get request
         get :on_shelf_list
         get :off_shelf_list
