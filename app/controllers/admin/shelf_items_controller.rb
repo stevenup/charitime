@@ -115,6 +115,7 @@ class Admin::ShelfItemsController < Admin::BaseController
       merged_data = product.attributes.merge form_data
       @shelf_item = ShelfItem.new merged_data
       @shelf_item.is_on_shelf = '1'
+      @shelf_item.thumb = product.thumb
       product.is_on_shelf = '1'
       product.save
       @shelf_item.save
@@ -122,6 +123,7 @@ class Admin::ShelfItemsController < Admin::BaseController
       product = Product.find_by :id => params[:id]
       @shelf_item = ShelfItem.find_by :id => params[:id]
       @shelf_item.is_on_shelf = '1'
+      @shelf_item.thumb = product.thumb
       product.is_on_shelf = '1'
       product.save
       @shelf_item.update_attributes form_data

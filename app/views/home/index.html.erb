@@ -59,7 +59,7 @@
 
     <div class="rcmds-list s-s p-l p-r m-t">
       <% @recommended_products.each do |p| %>
-        <%= link_to detail_product_path p.id do %>
+        <%= link_to detail_shelf_item_path p.id do %>
           <div class="goods-item m-t">
             <%= image_tag p.thumb %>
           </div>
