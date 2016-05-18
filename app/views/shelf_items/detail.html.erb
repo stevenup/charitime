@@ -1,4 +1,4 @@
-<div class="product-detail">
+<div class="shelf-item-detail">
   <div class="big-thumb">
     <%= image_tag '1.png' %>
   </div>
@@ -6,7 +6,7 @@
   <div class="main">
     <div class="main-left">
       <div class="price">
-        <span class="big-price">￥<%#= @product.product_price %>  </span>
+        <span class="big-price">￥<%#= @shelf_item.shelf_item_price %>  </span>
         <span class="coin">0公益币</span>
       </div>
 
@@ -51,7 +51,7 @@
   </div>
 
   <div class="detail-body m-t m-b m-r m-l p-r p-l p-t p-b">
-    <%= @product.product_detail.to_s.html_safe %>
+    <%= @shelf_item.product_detail.to_s.html_safe %>
   </div>
 
   <div class="buttons">

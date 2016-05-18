@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get :donate_page,      on: :collection
   end
 
-  resources :products do
+  resources :shelf_items do
     get :detail, on: :member
   end
 
@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   end
 
   resources :donations
+
+  resources :orders
 
   namespace :admin do
     get 'home'                 => 'home#index'
