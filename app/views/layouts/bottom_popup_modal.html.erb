@@ -1,0 +1,22 @@
+<div id="popup-container" class="modal fade" tabindex="-1" data-width=1000>
+  <div class="popup-inner">
+    <div class="modal-body">
+      <div class="popup_content">
+        <%= yield %>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" data-dismiss="modal" class="btn btn-link">关闭</button>
+      <button type="button" class="btn btn-info" id="save-item-btn">保存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    setTimeout(function() {
+      $('#pop-container').modal('show');
+    }, 1000); // milliseconds
+  });
+</script>
+
