@@ -22,6 +22,7 @@ gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'rails', '4.2.5'
 gem 'jbuilder', '~> 2.0'
 gem 'rabl'
+gem 'faraday'
 
 # rich-text editor
 gem 'ckeditor'
