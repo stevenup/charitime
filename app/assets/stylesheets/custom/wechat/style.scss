@@ -850,3 +850,94 @@ ul.products-list {
     }
   }
 }
+
+
+.confirm-box {
+  //position: fixed;
+  //bottom: 0;
+  //left: 0;
+  background: #FFFFFF;
+
+  .close {
+    text-align: right;
+
+    span {
+      padding: p2e(14px);
+      @include font-dpr(18px);
+      margin: p2e(18px);
+    }
+  }
+
+  .item-number {
+    padding: p2e(18px);
+    @include font-dpr(18px);
+    display: table;
+
+
+    p {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .minus {
+      text-align: center;
+      height: p2e(48px);
+      width: p2e(48px);
+      border: 1px solid grey;
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .number {
+      text-align: center;
+      height: p2e(48px);
+      width: p2e(120px);
+      border: 1px solid grey;
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .plus {
+      text-align: center;
+      height: p2e(48px);
+      width: p2e(48px);
+      border: 1px solid grey;
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+
+  .delivery-addr {
+    padding: p2e(18px);
+    @include font-dpr(18px);
+    display: table;
+  }
+
+
+}
+
+.my-address {
+  background: #979797;
+  @include font-dpr(14px);
+
+  p {
+    padding: p2e(10px);
+  }
+
+  .address-item {
+    background-color: #FFFFFF;
+    border: 1px solid lightgray;
+
+    .name {
+      display: inline-block;
+    }
+
+    .tel {
+      display: inline-block;
+    }
+
+    .address {
+      display: block;
+    }
+  }
+}

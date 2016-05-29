@@ -23,4 +23,8 @@ class HomeController < BaseController
   def donate_page
   end
 
+  def my_address
+
+  end
+
 end

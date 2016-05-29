@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resource :wechat, only: [:show, :create]
 
   mount Ckeditor::Engine => '/ckeditor'
+  mount ChinaCity::Engine => '/china_city'
 
   root 'home#index'
 
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
     get :donations_center, on: :collection
     get :my_gyb,           on: :collection
     get :donate_page,      on: :collection
+    get :my_address,       on: :collection
   end
 
   resources :shelf_items do
