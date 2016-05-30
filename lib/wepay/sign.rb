@@ -9,7 +9,7 @@ module Wepay
       end.compact.join('&')
       str_sign_tmp += "&key=#{ Settings.wepay.key }"
 
-      Digest::MD5.hexdigest(str_sign_tmp.upcase)
+      Digest::MD5.hexdigest(str_sign_tmp).upcase
     end
   end
 end

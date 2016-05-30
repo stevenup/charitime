@@ -53,4 +53,5 @@ Rails.application.routes.draw do
     resources :banners
   end
 
+  get '/jsapi/', to: 'wepay#recv'
 end

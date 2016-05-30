@@ -2,7 +2,7 @@ module Wepay
   module Service
     PAY_URL = 'https://api.mch.weixin.qq.com'
 
-    UNIFIEDORDER_REQUIRED_PARAMS = %i( body out_trade_no total_free spbill_create_ip notify_url trade_type )
+    UNIFIEDORDER_REQUIRED_PARAMS = %i( body out_trade_no total_fee spbill_create_ip notify_url trade_type )
     def self.invoke_unifiedorder(params, options = {})
       url = "#{ PAY_URL }/pay/unifiedorder"
       params = {
@@ -24,7 +24,7 @@ module Wepay
 
       def generate_params params
         sign = Wepay::Sign.generate params
-        "<xml>#{ params.map { |k, v| "<#{ k }>#{ v }</#{ k }>" }.join }<sign>#{ sign }</sign></xml>"
+        sign = "<xml>#{ params.map { |k, v| "<#{ k }>#{ v }</#{ k }>" }.join }<sign>#{ sign }</sign></xml>"
       end
 
       def send_request(url, params, options = {})
