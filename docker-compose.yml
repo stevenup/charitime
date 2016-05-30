@@ -1,13 +1,13 @@
 files:
   image: mysql
-  container_name: charitime-files
+  container_name: charitime-test-files
   volumes:
     - /var/lib/mysql:/root/dbfiles
   command: tail -f /dev/null
 
 db:
   image: mysql
-  container_name: charitime-db
+  container_name: charitime-test-db
   restart: always
   links:
     - files
@@ -20,7 +20,7 @@ db:
 
 app:
   build: ./
-  container_name: charitime-app
+  container_name: charitime-test-app
   restart: always
   volumes_from:
     - files
