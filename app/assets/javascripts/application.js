@@ -4,3 +4,4 @@
 //= require lib-flexible/flexible_css.js
 //= require swiper/dist/js/swiper.js
 //= require 'china_city/jquery.china_city'
+//= require jquery.spinner/dist/js/jquery.spinner

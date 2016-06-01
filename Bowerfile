@@ -3,3 +3,4 @@ asset 'datatables',     main_files: ["./media/js/dataTables.bootstrap.js", "./me
 asset 'jquery-timeago', main_files: ["./locales/jquery.timeago.zh-CN.js"]
 asset 'bootstrap-modal'
 asset 'swiper'
+asset 'jquery.spinner'

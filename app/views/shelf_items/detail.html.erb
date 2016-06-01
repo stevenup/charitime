@@ -1,3 +1,5 @@
+<div id="overlay"></div>
+
 <div class="shelf-item-detail">
   <div class="big-thumb">
     <%= image_tag '1.png' %>
@@ -55,31 +57,49 @@
   </div>
 
   <div class="buttons">
-    <button class="btn btn-default btn-highlight m-l m-r p-t p-b">立即购买</button>
+    <button id="click-to-buy" class="btn btn-default btn-highlight m-l m-r p-t p-b">立即购买</button>
     <button class="btn btn-default m-l m-r p-t p-b">加入购物车</button>
   </div>
+
 </div>
 
 <div class="confirm-box p-l p-r" id="confirm-box">
-  <!--<div class="close">-->
-    <!--<span>x</span>-->
-  <!--</div>-->
-
   <div class="item-properties">
 
   </div>
 
   <div class="delivery-addr">
-  <p>Name</p>
-  <p>Telephone</p>
-  <p>address</p>
-</div>
+    <p class="inline-block">九个太阳</p>
 
-  <div class="item-number">
+    <p class="inline-block">15066666666</p>
+
+    <p>中国上海徐汇现代大厦502B室探索公益</p>
+  </div>
+
+  <div class="item-number" data-trigger="spinner">
     <p>购买数量：</p>
-    <p id="minus" class="minus">-</p>
-    <span id="number" class="number">1</span>
-    <p id="plus" class="plus">+</p>
+    <a href="javascript:;" data-spin="down" class="minus">-</a>
+    <input type="text" value="1" data-rule="quantity" data-max="10" class="number">
+    <a href="javascript:;" data-spin="up" class="plus">+</a>
+  </div>
+
+  <div class="buttons">
+    <button id="confirm" class="btn btn-default btn-highlight m-l m-r p-t p-b">确定提交</button>
   </div>
 
 </div>
+
+<script>
+  $(document).ready(function () {
+    $('#click-to-buy').on('click', function () {
+      $('#overlay').fadeIn('fast', function () {
+        $('#confirm-box').animate({height: 'toggle'}, 'fast')
+      })
+    });
+    $('#overlay').on('click', function () {
+      $('#confirm-box').animate({height: 'toggle'}, 'fast', function () {
+        $('#overlay').fadeOut('fast')
+      })
+    })
+  })
+</script>
