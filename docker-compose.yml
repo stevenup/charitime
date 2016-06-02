@@ -27,8 +27,5 @@ app:
   links:
     - db
   environment:
-    APP_DB_HOST: db
-    APP_DB_PORT: "3306"
-    APP_DB_PASSWORD: "tmac"
     SECRET_KEY_BASE: 7c312e4732367b94b9838a1261d3ae1a864e9b034264afeee7eeeffbb9123a1ac9791c337be81e7734015e27d98cf6fe5a843f459cb81295f9af39a42038f08e
     VIRTUAL_HOST: charitime.nonprofit.cn
