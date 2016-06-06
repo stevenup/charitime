@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
 
   resources :donations
-
+  resources :addresses
   resources :orders
 
   namespace :admin do

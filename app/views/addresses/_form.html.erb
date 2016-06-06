@@ -1,0 +1,41 @@
+<div id="add-address-form" class="add-address-form">
+  <%= form_for '', url: '', html: { class: 'form-horizontal' } do |f| %>
+    <div class="form-group">
+      <%= f.label :姓名, class: 'col-lg-1 control-label' %>
+      <div class="col-lg-4"><%= f.text_field :name, class: 'col-lg-4 form-control', required: true %></div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :手机号, class: 'col-lg-1 control-label' %>
+      <div class="col-lg-4"><%= f.text_field :telephone, class: 'col-lg-4 form-control', required: true %></div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :地址, class: 'col-lg-1 control-label' %>
+      <div class="city-group">
+        <select class="city-select">
+          <option value="">--省份--</option>
+          <%= options_for_select(ChinaCity.list) %>
+        </select>
+
+        <select class="city-select">
+          <option value="">--城市--</option>
+        </select>
+
+        <select class="city-select">
+          <option value="">--区县--</option>
+        </select>
+      </div>
+      <div class="col-lg-4"><%= f.text_field :address, class: 'col-lg-4 form-control', required: true %></div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-lg-offset-1 col-lg-10">
+        <%= f.submit '保存', class: "btn btn-sm btn-primary" %>
+        &nbsp
+        <%= link_to '返回', '#', class: "btn btn-sm btn-info", onclick: "history.back()" %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
