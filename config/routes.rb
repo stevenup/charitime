@@ -53,5 +53,8 @@ Rails.application.routes.draw do
     resources :banners
   end
 
-  get '/jsapi/', to: 'wepay#recv'
+  scope 'wepay' do
+    get '/unified_order', to: 'wepay#unified_order'
+    get '/jsapi/', to: 'wepay#recv'
+  end
 end
