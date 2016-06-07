@@ -6,3 +6,4 @@
 //= require bootstrap-modal/js/bootstrap-modalmanager
 //= require bootstrap-modal/js/bootstrap-modal
 //= require integrations/bootstrap-modal-bs3-fix
+//= require custom/wechat/product
