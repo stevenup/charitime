@@ -22,11 +22,12 @@ class AddressesController < ApplicationController
   private
   def create_or_update(id = 0, data)
     if id == 0
+      province =  ChinaCity.get '110117'
       address = Address.new data
-      redirect_to addresss_path if address.save
+      redirect_to addresses_path if address.save
     else
       address = Address.find(id)
-      redirect_to addresss_path if address.update_attributes data
+      redirect_to addresses_path if address.update_attributes data
     end
   end
 
