@@ -8,7 +8,7 @@ buyBtnMonitor = () ->
     $.ajax ({
       method: 'GET'
       url: '/wepay/unified_order',
-      data: { data: id },
+      data: { id: id },
       dataType: 'json',
       success: () ->
         alert('unified_order success')
