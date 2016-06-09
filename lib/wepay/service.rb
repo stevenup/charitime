@@ -29,22 +29,16 @@ module Wepay
 
       def send_request(url, params, options = {})
         res = conn.post url, params, options
-        Wepay::Result.new(Hash.from_xml(res.body).delete('xml'))
+        Hash.from_xml(res.body).delete('xml')
       end
 
       def conn
         Faraday.new(:url => PAY_URL) do |faraday|
           faraday.request  :multipart
           faraday.response :logger, ::Logger.new(STDOUT), bodies: true unless Rails.env.production?
-          faraday.adapter  Faraday.default_adapter
+          faraday.adapter Faraday.default_adapter
         end
       end
-    end
-  end
-
-  class Result < ::Hash
-    def success?
-      self['return_code'] == 'SUCCESS' && self['result_code'] == 'SUCCESS'
     end
   end
 end

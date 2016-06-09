@@ -54,7 +54,9 @@ Rails.application.routes.draw do
   end
 
   scope 'wepay' do
-    get '/unified_order', to: 'wepay#unified_order'
-    get '/jsapi/', to: 'wepay#recv'
+    get '/jsapi/',          to: 'wepay#recv'
+    get '/unified_order',   to: 'wepay#unified_order'
+    get '/init_wx_js_info', to: 'wepay#init_wx_js_info'
+    get '/init_jspay_info', to: 'wepay#init_jspay_info'
   end
 end

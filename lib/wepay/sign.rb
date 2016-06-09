@@ -8,7 +8,6 @@ module Wepay
         "#{ k }=#{ v }" if !v.nil? && v != ''
       end.compact.join('&')
       str_sign_tmp += "&key=#{ Settings.wepay.key }"
-
       Digest::MD5.hexdigest(str_sign_tmp).upcase
     end
   end
