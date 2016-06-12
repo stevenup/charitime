@@ -63,17 +63,12 @@
 
 </div>
 
-<div class="confirm-box p-l p-r" id="confirm-box">
-  <div class="item-properties">
-
-  </div>
-
+<div class="confirm-box" id="confirm-box">
   <div class="delivery-addr">
-    <p class="inline-block">九个太阳</p>
-
-    <p class="inline-block">15066666666</p>
-
-    <p>中国上海徐汇现代大厦502B室探索公益</p>
+    <p class="inline-block"><%= @address.name.to_s %></p>
+    <p class="inline-block"><%= @address.phone_number.to_s %></p>
+    <p><%= @address.province.to_s + @address.city.to_s + @address.district.to_s %></p>
+    <p><%= @address.detail_info.to_s %></p>
   </div>
 
   <div class="item-number" data-trigger="spinner">
@@ -100,6 +95,9 @@
       $('#confirm-box').animate({height: 'toggle'}, 'fast', function () {
         $('#overlay').fadeOut('fast')
       })
-    })
+    });
+    $('#confirm').on('click', function () {
+
+    });
   })
 </script>

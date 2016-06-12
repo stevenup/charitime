@@ -1,4 +1,4 @@
-class AddressesController < ApplicationController
+class AddressesController < BaseController
   def index
     @addresses = Address.all
   end
@@ -22,11 +22,18 @@ class AddressesController < ApplicationController
   private
   def create_or_update(id = 0, data)
     if id == 0
-      province =  ChinaCity.get '110117'
-      address = Address.new data
+      data[:province] = ChinaCity.get data[:province]
+      data[:city]     = ChinaCity.get data[:city]
+      data[:district] = ChinaCity.get data[:district]
+      userid          = current_user.id
+      address         = Address.new data
+      address.userid  = userid
       redirect_to addresses_path if address.save
     else
       address = Address.find(id)
+      data[:province] = ChinaCity.get data[:province]
+      data[:city]     = ChinaCity.get data[:city]
+      data[:district] = ChinaCity.get data[:district]
       redirect_to addresses_path if address.update_attributes data
     end
   end

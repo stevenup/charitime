@@ -1,20 +1,13 @@
 <div id="my-address" class="my-address">
-  <div class="address-item p-l p-r p-t p-b">
-    <p class="name">Name</p>
+  <% @addresses.each do |addr| %>
+    <div class="address-item p-l p-r p-t p-b">
+      <p class="name"><%= addr.name %></p>
 
-    <p class="tel">Telephone</p>
+      <p class="tel"><%= addr.phone_number %></p>
 
-    <p class="address">address</p>
-  </div>
-
-  <div class="address-item p-l p-r p-t p-b">
-    <p class="name">Name</p>
-
-    <p class="tel">Telephone</p>
-
-    <p class="address">address</p>
-  </div>
-
+      <p class="address"><%= addr.province.to_s + addr.city.to_s + addr.district.to_s + addr.detail_info.to_s %></p>
+    </div>
+  <% end %>
 </div>
 
 <%= link_to new_address_path do %>
