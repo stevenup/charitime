@@ -1,4 +1,5 @@
-source 'http://gems.ruby-china.org'
+# source 'http://gems.ruby-china.org'
+source 'http://ruby.taobao.org'
 
 # rails console
 gem 'table_print'
@@ -16,6 +17,7 @@ gem 'jquery-rails'
 gem 'coffee-rails', '~> 4.1.0'
 gem "js-routes"
 gem 'turbolinks'
+gem 'china_city'
 
 # back-end
 gem 'mysql2', '>= 0.3.13', '< 0.5'
