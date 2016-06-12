@@ -2,24 +2,24 @@ $ ->
   buyBtnMonitor()
 
 buyBtnMonitor = () ->
-  $('#buy-btn').on 'click', (e) ->
-    e.preventDefault()
-    id = $(this).data('id')
-    prepay_id = ''
-    $.ajax
-      method: 'GET'
-      url: '/wepay/unified_order',
-      data: { id: id },
-      dataType: 'json',
-    .done (res) ->
-      if res.result == 'success'
-        prepay_id = res.data
-      else
-        alert(res.data)
-    .fail ->
-      alert('出错啦！！')
-    .done ->
-      chooseWXPay(prepay_id)
+  # $('#buy-btn').on 'click', (e) ->
+  #   e.preventDefault()
+  #   id = $(this).data('id')
+  #   prepay_id = ''
+  #   $.ajax
+  #     method: 'GET'
+  #     url: '/wepay/unified_order',
+  #     data: { id: id },
+  #     dataType: 'json',
+  #   .done (res) ->
+  #     if res.result == 'success'
+  #       prepay_id = res.data
+  #     else
+  #       alert(res.data)
+  #   .fail ->
+  #     alert('出错啦！！')
+  #   .done ->
+  #     chooseWXPay(prepay_id)
 
 chooseWXPay = (prepay_id) ->
   $.ajax

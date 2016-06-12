@@ -5,6 +5,6 @@ class ShelfItemsController < BaseController
 
   def show
     @shelf_item = ShelfItem.find_by(:id => params[:id])
-    @address    = Address.find_by userid: current_user.id, default: '1'   # the default value is used to mark the default address
+    @address    = Address.find_by({ userid: current_user.id, default: '1' })  # the default value is used to mark the default address
   end
 end
