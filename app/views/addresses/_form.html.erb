@@ -2,12 +2,12 @@
   <%= form_for @address, url: url, html: {class: 'form-horizontal'} do |f| %>
     <div class="form-group">
       <%= f.label :姓名, class: 'col-lg-1 control-label' %>
-      <div class="col-lg-4"><%= f.text_field :name, class: 'col-lg-4 form-control', required: true %></div>
+      <div class="col-lg-4"><%= f.text_field :receiver_name, class: 'col-lg-4 form-control', required: true %></div>
     </div>
 
     <div class="form-group">
       <%= f.label :手机号, class: 'col-lg-1 control-label' %>
-      <div class="col-lg-4"><%= f.text_field :phone_number, class: 'col-lg-4 form-control', required: true %></div>
+      <div class="col-lg-4"><%= f.text_field :mobile, class: 'col-lg-4 form-control', required: true %></div>
     </div>
 
     <div class="form-group">
@@ -19,7 +19,7 @@
         <%= f.select :district, {}, {}, {:class => 'city-select'} %>
 
       </div>
-      <div class="col-lg-4"><%= f.text_field :detail_info, class: 'col-lg-4 form-control', required: true %></div>
+      <div class="col-lg-4"><%= f.text_field :detail_address, class: 'col-lg-4 form-control', required: true %></div>
     </div>
 
     <div class="form-group">

@@ -5,7 +5,6 @@ class CreateOrders < ActiveRecord::Migration
       t.string :order_id, primary_key: true
       t.string :status
       t.string :total_price
-      t.string :delivery_id
       t.string :trans_id
 
       t.timestamps null: false

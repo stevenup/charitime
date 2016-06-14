@@ -39,6 +39,6 @@ class AddressesController < BaseController
   end
 
   def address_params
-    params.require(:address).permit(:openid, :name, :province, :city, :district, :detail_info, :phone_number)
+    params.require(:address).permit(:openid, :receiver_name, :province, :city, :district, :detail_address, :mobile)
   end
 end

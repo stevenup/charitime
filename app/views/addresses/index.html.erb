@@ -1,11 +1,11 @@
 <div id="my-address" class="my-address">
   <% @addresses.each do |addr| %>
     <div class="address-item p-l p-r p-t p-b">
-      <p class="name"><%= addr.name %></p>
+      <p class="name"><%= addr.receiver_name %></p>
 
-      <p class="tel"><%= addr.phone_number %></p>
+      <p class="tel"><%= addr.mobile %></p>
 
-      <p class="address"><%= addr.province.to_s + addr.city.to_s + addr.district.to_s + addr.detail_info.to_s %></p>
+      <p class="address"><%= addr.province.to_s + addr.city.to_s + addr.district.to_s + addr.detail_address.to_s %></p>
     </div>
   <% end %>
 </div>

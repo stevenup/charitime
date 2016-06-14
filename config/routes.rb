@@ -26,7 +26,9 @@ Rails.application.routes.draw do
 
   resources :donations
   resources :addresses
-  resources :orders
+  resources :orders do
+    get :create_order, on: :collection
+  end
 
   namespace :admin do
     get 'home'                 => 'home#index'

@@ -11,19 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611145633) do
+ActiveRecord::Schema.define(version: 20160614153205) do
 
   create_table "addresses", force: :cascade do |t|
-    t.string   "userid",       limit: 255
-    t.string   "name",         limit: 255
-    t.string   "province",     limit: 255
-    t.string   "city",         limit: 255
-    t.string   "district",     limit: 255
-    t.string   "detail_info",  limit: 255
-    t.string   "phone_number", limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.string   "default",      limit: 1
+    t.string   "userid",         limit: 255
+    t.string   "receiver_name",  limit: 255
+    t.string   "province",       limit: 255
+    t.string   "city",           limit: 255
+    t.string   "district",       limit: 255
+    t.string   "detail_address", limit: 255
+    t.string   "mobile",         limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "default",        limit: 1
   end
 
   create_table "admins", force: :cascade do |t|
@@ -115,22 +115,32 @@ ActiveRecord::Schema.define(version: 20160611145633) do
   end
 
   create_table "order_details", force: :cascade do |t|
-    t.string   "order_detail_id", limit: 255
-    t.string   "order_id",        limit: 255
-    t.string   "product_id",      limit: 255
-    t.string   "product_price",   limit: 255
-    t.integer  "count",           limit: 4
-    t.string   "remark",          limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "order_detail_id",  limit: 255
+    t.string   "order_id",         limit: 255
+    t.string   "product_id",       limit: 255
+    t.integer  "price",            limit: 4
+    t.integer  "count",            limit: 4
+    t.string   "remark",           limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "receiver_name",    limit: 255
+    t.string   "province",         limit: 255
+    t.string   "city",             limit: 255
+    t.string   "district",         limit: 255
+    t.string   "detail_address",   limit: 255
+    t.string   "mobile",           limit: 255
+    t.integer  "express_price",    limit: 4
+    t.string   "product_name",     limit: 255
+    t.string   "delivery_id",      limit: 255
+    t.string   "delivery_company", limit: 255
+    t.integer  "gyb_discount",     limit: 4
   end
 
   create_table "orders", force: :cascade do |t|
     t.string   "openid",      limit: 255
     t.string   "order_id",    limit: 255
     t.string   "status",      limit: 255
-    t.string   "total_price", limit: 255
-    t.string   "delivery_id", limit: 255
+    t.integer  "total_price", limit: 4
     t.string   "trans_id",    limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
