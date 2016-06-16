@@ -1,10 +1,9 @@
 <ul class="products-list p-t p-b">
   <% @shelf_items.each do |p| %>
-    <%= link_to detail_shelf_item_path p.id do %>
+    <%= link_to shelf_item_path p.id do %>
       <li class='goods-item m-t'>
         <%= image_tag p.thumb %>
       </li>
     <% end %>
   <% end %>
-
 </ul>

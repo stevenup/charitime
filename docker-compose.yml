@@ -1,0 +1,32 @@
+files:
+  image: mysql
+  container_name: charitime-files
+  volumes:
+    - /var/lib/mysql:/root/dbfiles
+  command: tail -f /dev/null
+
+db:
+  image: mysql
+  container_name: charitime-test-db
+  restart: always
+  links:
+    - files
+  volumes_from:
+    - files
+  ports:
+    - "13308:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: tmac
+
+app:
+  build: ./
+  container_name: charitime-app
+  restart: always
+  volumes_from:
+    - files
+  links:
+    - db
+  environment:
+    APP_DB_HOST: db
+    SECRET_KEY_BASE: 7c312e4732367b94b9838a1261d3ae1a864e9b034264afeee7eeeffbb9123a1ac9791c337be81e7734015e27d98cf6fe5a843f459cb81295f9af39a42038f08e
+    VIRTUAL_HOST: charitime.nonprofit.cn

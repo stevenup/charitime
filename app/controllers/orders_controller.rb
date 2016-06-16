@@ -2,10 +2,10 @@ class OrdersController < ApplicationController
   def index
   end
 
-  def create_order
-    count = params[:count]
-    aid   = params[:aid]
-    siid  = params[:siid]
+  def create_order(count, aid, siid)
+    # count = params[:count]
+    # aid   = params[:aid]
+    # siid  = params[:siid]
 
     shelf_item  = ShelfItem.find_by_id siid
     address     = Address.find_by_id aid

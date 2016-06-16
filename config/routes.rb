@@ -14,9 +14,7 @@ Rails.application.routes.draw do
     get :my_address,       on: :collection
   end
 
-  resources :shelf_items do
-    get :detail, on: :member
-  end
+  resources :shelf_items
 
   resources :projects do
     member do
@@ -26,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :donations
   resources :addresses
+
   resources :orders do
     get :create_order, on: :collection
   end
@@ -57,4 +56,10 @@ Rails.application.routes.draw do
     resources :banners
   end
 
+  scope 'wepay' do
+    get '/jsapi/',          to: 'wepay#recv'
+    get '/unified_order',   to: 'wepay#unified_order'
+    get '/init_wx_js_info', to: 'wepay#init_wx_js_info'
+    get '/init_jspay_info', to: 'wepay#init_jspay_info'
+  end
 end

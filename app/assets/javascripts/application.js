@@ -3,5 +3,10 @@
 //= require lib-flexible/flexible.js
 //= require lib-flexible/flexible_css.js
 //= require swiper/dist/js/swiper.js
+//= require bootstrap-modal/js/bootstrap-modalmanager
+//= require bootstrap-modal/js/bootstrap-modal
 //= require china_city/jquery.china_city
 //= require jquery.spinner/dist/js/jquery.spinner
+//= require integrations/bootstrap-modal-bs3-fix
+//= require custom/wechat/wx_config
+//= require custom/wechat/product

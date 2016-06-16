@@ -5,5 +5,4 @@ class User < ActiveRecord::Base
   has_many :donation_records
   has_many :orders
   has_many :addresses
-
 end
