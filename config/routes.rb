@@ -41,7 +41,6 @@ Rails.application.routes.draw do
     end
     resources :shelf_items do
       collection do
-        # get :put_on_shelf    # ajax get request
         get :pull_off_shelf    # ajax get request
         get :on_shelf_list
         get :off_shelf_list

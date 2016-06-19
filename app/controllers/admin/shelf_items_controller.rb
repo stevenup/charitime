@@ -12,10 +12,13 @@ class Admin::ShelfItemsController < Admin::BaseController
       format.json { get_rows_from_shelf }
     end
   end
-  
-  def new
+
+  def edit
     @shelf_item = ShelfItem.new
-    @product = Product.find_by :id => params[:id]       # product info will be displayed in the form modal
+    puts '>>>>>>>>'
+    id =  params[:id]
+    puts id
+    @product = Product.find_by :id => id       # product info will be displayed in the form modal
     render 'form', :layout =>  'bootstrap_modal'
   end
 
@@ -32,26 +35,6 @@ class Admin::ShelfItemsController < Admin::BaseController
   #   product = Product.find_by :id => params[:id]
   #   merged_data = product.attributes.merge shelf_item_params
   #   create_or_update params[:id], merged_data
-  # end
-
-  # def edit
-  #   @shelf_item = ShelfItem.new
-  #   @product = Product.find_by :id => params[:id]       # product info will be displayed in the modal
-  #   render 'form', :layout =>  'bootstrap_modal'
-  # end
-  #
-  # def put_on_shelf
-  #   flag = '1'
-  #   id = params[:id]
-  #   product = Product.find_by :id => id
-  #   @shelf_item = ShelfItem.new
-  #
-  #   shelf_item.is_on_shelf = flag
-  #   product.is_on_shelf = flag
-  #   product.save
-  #   @shelf_item.save
-  #
-  #   render json: {data: 'success'}
   # end
 
   def pull_off_shelf
