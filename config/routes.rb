@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   resources :orders do
     get :create_order, on: :collection
+    get :pay,          on: :collection
   end
 
   namespace :admin do

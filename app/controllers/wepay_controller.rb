@@ -18,8 +18,8 @@ class WepayController < ApplicationController
   end
 
   def unified_order
-    count = params[:count]
-    aid   = params[:aid]
+    # count = params[:count]
+    # aid   = params[:aid]
     siid  = params[:siid]
 
     shelf_item = ShelfItem.find_by_id(siid)
