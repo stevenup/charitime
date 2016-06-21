@@ -973,5 +973,66 @@ ul.products-list {
     }
   }
 
+  .brief-info {
+    background: #FFFFFF;
+
+    .product-thumb {
+      display: inline-block;
+      width: p2e(200px);
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .product-name {
+      @include font-dpr(18px);
+      display: inline-block;
+      position: absolute;
+
+      p {
+        line-height: p2e(48px);
+      }
+    }
+
+    .product-price {
+      display: inline-block;
+
+      p {
+        @include font-dpr(14px);
+      }
+    }
+
+    .product-count {
+      display: inline-block;
+
+      p {
+        @include font-dpr(14px);
+        color: dimgrey;
+      }
+    }
+
+    .total-price {
+      display: inline-block;
+
+      p {
+        @include font-dpr(16px);
+      }
+
+      .red {
+        color: red;
+      }
+    }
+  }
+
+  .buttons {
+    position: fixed;
+    z-index: 999;
+    bottom: p2e(18px);
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    border-top: 1px solid #979797;
+  }
 
 }
