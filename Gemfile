@@ -26,6 +26,7 @@ gem 'rails', '4.2.5'
 gem 'jbuilder', '~> 2.0'
 gem 'rabl'
 gem 'faraday'
+gem 'table_print'
 
 # rich-text editor
 gem 'ckeditor'

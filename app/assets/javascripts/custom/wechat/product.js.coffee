@@ -1,22 +1,22 @@
 $ ->
-  confirmBtnMonitor()
-
-confirmBtnMonitor = () ->
-   $('#confirm-btn').on 'click', (e) ->
-     e.preventDefault()
-     id        = $(this).data('id')
-     prepay_id = ''
-
-     count     = $('#count').val();
-     aid       = $('#aid').val();
-     siid      = $('#siid').val();
-
-     $.ajax
-       type: 'GET',
-       url: '/orders/create_order',
-       data: { count: count, aid: aid, siid: siid },
-     .success (res) ->
-       $info = res['data'];
+#   confirmBtnMonitor()
+# 
+# confirmBtnMonitor = () ->
+#    $('#confirm-btn').on 'click', (e) ->
+#      e.preventDefault()
+#      id        = $(this).data('id')
+#      prepay_id = ''
+# 
+#      count     = $('#count').val();
+#      aid       = $('#aid').val();
+#      siid      = $('#siid').val();
+# 
+#      $.ajax
+#        type: 'GET',
+#        url: '/orders/create_order',
+#        data: { count: count, aid: aid, siid: siid },
+#      .success (res) ->
+#        $info = res['data'];
 
 #     $.ajax
 #       method: 'GET'

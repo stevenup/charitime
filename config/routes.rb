@@ -26,20 +26,15 @@ Rails.application.routes.draw do
   resources :addresses
 
   resources :orders do
-    get :create_order, on: :collection
-    get :pay,          on: :collection
+    get :pay, on: :collection
   end
 
   namespace :admin do
     get 'home'                 => 'home#index'
     get 'products_recommended' => 'products_recommended#index'
-    # get 'products/:id.json' => 'products#destroy'
 
     resources :users
-    resources :products do
-      # get 'set_recommended',   on: :collection
-      # get 'reset_recommended', on: :collection
-    end
+    resources :products
     resources :shelf_items do
       collection do
         get :pull_off_shelf    # ajax get request

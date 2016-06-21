@@ -123,15 +123,8 @@ i.arrow {
   }
 }
 
-//button {
-//  display: inline-block;
-//  width: p2e(250px);
-//  height: p2e(80px);
-//  @include font-dpr(18px);
-//  border-radius: 8px;
-//}
-
 .btn-default {
+  @include font-dpr(14px);
   background: #ffffff;
   width: 42%;
   border-radius: p2e(4px);
