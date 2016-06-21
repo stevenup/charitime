@@ -10,7 +10,7 @@ $ ->
 
 config_wechat = (appid, timestamp, noncestr, signature) ->
   wx.config ({
-    debug: true,
+    # debug: true,
     appId: appid,
     timestamp: timestamp,
     nonceStr: noncestr,

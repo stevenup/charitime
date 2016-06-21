@@ -63,27 +63,28 @@
 </div>
 
 <div class="confirm-box" id="confirm-box">
-  <div class="delivery-addr">
-    <p class="inline-block"><%= @address.receiver_name.to_s %></p>
-    <p class="inline-block"><%= @address.mobile.to_s %></p>
-    <p><%= @address.province.to_s + @address.city.to_s + @address.district.to_s %></p>
-    <p><%= @address.detail_address.to_s %></p>
-  </div>
+  <%= form_tag '/orders', method: :post do %>
+    <div class="delivery-addr">
+      <p class="inline-block"><%= @address.receiver_name.to_s %></p>
+      <p class="inline-block"><%= @address.mobile.to_s %></p>
+      <p><%= @address.province.to_s + @address.city.to_s + @address.district.to_s %></p>
+      <p><%= @address.detail_address.to_s %></p>
+    </div>
 
-  <div class="item-number" data-trigger="spinner" id="spinner">
-    <p>购买数量：</p>
-    <a href="javascript:;" data-spin="down" class="minus">-</a>
-    <input type="text" value="1" data-rule="quantity" data-max="10" class="count" id="count" >
-    <%#= f.text_field :value => '1', :"data-rule" => 'quantity', :"data-max" => '10', :class => 'number', :id => 'number'  %>
-    <a href="javascript:;" data-spin="up" class="plus">+</a>
-  </div>
+    <div class="item-number" data-trigger="spinner" id="spinner">
+      <p>购买数量：</p>
+      <a href="javascript:;" data-spin="down" class="minus">-</a>
+      <%= text_field_tag :count, '1', class: 'count', data: { rule: 'quantity', max: '10' } %>
+      <a href="javascript:;" data-spin="up" class="plus">+</a>
+    </div>
 
-  <%= hidden_field_tag 'aid', @address.id %>
-  <%= hidden_field_tag 'siid', @shelf_item.id %>
+    <%= hidden_field_tag 'aid', @address.id %>
+    <%= hidden_field_tag 'siid', @shelf_item.id %>
 
-  <div class="buttons">
-    <button id="confirm-btn" class="btn btn-default btn-highlight m-l m-r p-t p-b" data-id=<%= @shelf_item.id %>>确定提交</button>
-  </div>
+    <div class="buttons">
+      <%= submit_tag '确定提交', id: 'confirm-btn', class: 'btn btn-default btn-highlight m-l m-r p-t p-b', data: { id: @shelf_item.id } %>
+    </div>
+  <% end %>
 </div>
 
 <script>
@@ -98,18 +99,5 @@
         $('#overlay').fadeOut('fast')
       })
     });
-//    $('#confirm-btn').on('click', function () {
-//      var count = $('#count').val();
-//      var aid = $('#aid').val();
-//      var siid = $('#siid').val();
-//      $.ajax({
-//        type: 'GET',
-//        url: '/orders/create_order',
-//        data: {count: count, aid: aid, siid: siid},
-//        success: function (res) {
-//          $info = res['data'];
-//        }
-//      });
-//    })
   })
 </script>
