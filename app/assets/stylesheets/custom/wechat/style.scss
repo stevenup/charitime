@@ -928,8 +928,6 @@ ul.products-list {
       margin-right: p2e(14px);
     }
   }
-
-
 }
 
 .my-address {
@@ -956,4 +954,24 @@ ul.products-list {
       display: block;
     }
   }
+}
+
+.order-pay {
+  .inline-block {
+    display: inline-block;
+    margin-right: p2e(14px);
+  }
+
+  .delivery-addr {
+    background: #FFFFFF;
+    padding: p2e(18px);
+    @include font-dpr(18px);
+    border-bottom: 1px solid lightgray;
+
+    p {
+      margin: p2e(14px) auto;
+    }
+  }
+
+
 }
