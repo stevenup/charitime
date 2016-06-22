@@ -25,9 +25,9 @@ class AddressesController < BaseController
       data[:province] = ChinaCity.get data[:province]
       data[:city]     = ChinaCity.get data[:city]
       data[:district] = ChinaCity.get data[:district]
-      userid          = current_user.id
+      user_id         = current_user.id
       address         = Address.new data
-      address.userid  = userid
+      address.user_id  = user_id
       redirect_to addresses_path if address.save
     else
       address = Address.find(id)
