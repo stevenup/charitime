@@ -56,7 +56,9 @@
 
   <div class="my-settings s-s" id="my-settings">
     <i class="menu-icon fa fa-gears fa-lg"></i>
-    <p class="menu-name">个人设置</p>
+    <%= link_to addresses_path do %>
+      <p class="menu-name">个人设置</p>
+    <% end %>
     <i class="arrow fa fa-angle-right fa-2x"></i>
   </div>
 
