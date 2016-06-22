@@ -969,6 +969,10 @@ ul.products-list {
   .brief-info {
     background: #FFFFFF;
 
+    .red {
+      color: red;
+    }
+
     .product-thumb {
       display: inline-block;
       width: p2e(200px);
@@ -996,6 +1000,14 @@ ul.products-list {
       }
     }
 
+    .gyb-discount {
+      display: inline-block;
+
+      p {
+        @include font-dpr(14px);
+      }
+    }
+
     .product-count {
       display: inline-block;
 
@@ -1011,21 +1023,12 @@ ul.products-list {
       p {
         @include font-dpr(16px);
       }
-
-      .red {
-        color: red;
-      }
     }
   }
 
-  .buttons {
-    position: fixed;
-    z-index: 999;
-    bottom: p2e(18px);
+  .btn-wide {
+    margin: 0 auto;
     width: 100%;
-    text-align: center;
-    background-color: white;
-    border-top: 1px solid #979797;
   }
 
 }

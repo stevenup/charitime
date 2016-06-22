@@ -18,16 +18,14 @@ class WepayController < ApplicationController
   end
 
   def unified_order
-    # count = params[:count]
-    # aid   = params[:aid]
-    siid  = params[:siid]
+    id  = params[:id]
 
-    shelf_item = ShelfItem.find_by_id(siid)
+    order_detail = OrderDetail.find_by :order_id => id
 
     params = {
-      body:         shelf_item.product_name,
-      out_trade_no: shelf_item.product_id,
-      total_fee:    shelf_item.price,
+      body:         order_detail.product_name,
+      out_trade_no: order_detail.order_id,
+      total_fee:    order_detail.price,
       openid:       current_user.openid,
       trade_type:   'JSAPI',
       notify_url:   'http://charitime.nonprofit.cn',

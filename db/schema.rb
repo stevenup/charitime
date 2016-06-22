@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614153205) do
+ActiveRecord::Schema.define(version: 20160622072243) do
 
   create_table "addresses", force: :cascade do |t|
-    t.string   "userid",         limit: 255
+    t.string   "user_id",        limit: 255
     t.string   "receiver_name",  limit: 255
     t.string   "province",       limit: 255
     t.string   "city",           limit: 255
@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 20160614153205) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string   "openid",      limit: 255
+    t.string   "user_id",     limit: 255
     t.string   "order_id",    limit: 255
     t.string   "status",      limit: 255
     t.integer  "total_price", limit: 4

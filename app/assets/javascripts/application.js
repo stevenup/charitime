@@ -9,4 +9,4 @@
 //= require jquery.spinner/dist/js/jquery.spinner
 //= require integrations/bootstrap-modal-bs3-fix
 //= require custom/wechat/wx_config
-//= require custom/wechat/product
+//= require custom/wechat/wx_pay.js.coffee

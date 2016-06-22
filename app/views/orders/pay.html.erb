@@ -1,16 +1,9 @@
 <div id="order-pay" class="order-pay">
-  <!--<div class="delivery-addr">-->
-    <!--<p class="inline-block"><%#= @address.receiver_name.to_s %></p>-->
-    <!--<p class="inline-block"><%#= @address.mobile.to_s %></p>-->
-    <!--<p><%#= @address.province.to_s + @address.city.to_s + @address.district.to_s %></p>-->
-    <!--<p><%#= @address.detail_address.to_s %></p>-->
-  <!--</div>-->
-
   <div class="delivery-addr">
-    <p class="inline-block">唐旭</p>
-    <p class="inline-block">15021924866</p>
-    <p>上海市市辖区徐汇区</p>
-    <p>襄阳南路现代大厦502B</p>
+    <p class="inline-block"><%= @order_detail.receiver_name.to_s %></p>
+    <p class="inline-block"><%= @order_detail.mobile.to_s %></p>
+    <p><%= @order_detail.province.to_s + @order_detail.city.to_s + @order_detail.district.to_s %></p>
+    <p><%= @order_detail.detail_address.to_s %></p>
   </div>
 
   <div class="brief-info m-t m-b">
@@ -18,25 +11,29 @@
       <%= image_tag '1.png' %>
     </div>
     <div class="product-name m-r m-l m-t m-b">
-      <p>发给呵呵感觉从赶回家是地方各环节</p>
+      <p><%= @order_detail.product_name.to_s %></p>
     </div>
 
-    <div class="product-price p-b p-l p-r">
-      <p class="inline-block">￥188</p>
+    <div class="product-price red p-b p-l">
+      <p class="inline-block">￥<%= @order_detail.price.to_s %></p>
     </div>
 
-    <div class="product-count p-b p-r">
-      <p class="inline-block">x1</p>
+    <div class="gyb-discount p-b">
+      <p class="inline-block">-&nbsp;<%= @order_detail.gyb_discount.to_s %></p>
     </div>
 
-    <div class="total-price">
+    <div class="product-count p-b">
+      <p class="inline-block">x<%= @order_detail.count.to_s %></p>
+    </div>
+
+    <div class="total-price p-l">
       <p class="inline-block">合计:</p>
-      <p class="inline-block red">￥188</p>
+      <p class="inline-block red">￥<%= @order_detail.order.total_price %></p>
     </div>
   </div>
 
-  <!--<div class="buttons">-->
-    <button id="confirm-btn" class="btn btn-default btn-highlight m-l m-r p-t p-b">确定提交</button>
-  <!--</div>-->
+  <div class="buttons">
+    <button id="pay-btn" class="btn btn-default btn-highlight btn-wide m-l m-r p-t p-b" data-id ="<%= @order_detail.order_id %>">立即支付</button>
+  </div>
 
 </div>
