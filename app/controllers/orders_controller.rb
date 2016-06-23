@@ -4,8 +4,7 @@ class OrdersController < BaseController
 
   def pay
     order_id = params[:order_id]
-    @order_detail = OrderDetail.find_by order_id
-
+    @order_detail = OrderDetail.find_by_order_id order_id
   end
 
   def create
@@ -35,12 +34,12 @@ class OrdersController < BaseController
     redirect_to :action => 'pay', :order_id => order_id
   end
 
-  def change_order_status
-    id = params[:id]
-    order = Order.find_by :order_id => id
-    order.status = '1'
-    order.save
-
-    render json: {data: 'success'}
-  end
+  # def change_order_status
+  #   id = params[:id]
+  #   order = Order.find_by :order_id => id
+  #   order.status = '1'
+  #   order.save
+  #
+  #   render json: {data: 'success'}
+  # end
 end
