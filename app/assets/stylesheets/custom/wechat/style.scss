@@ -950,15 +950,21 @@ ul.products-list {
 }
 
 .order-pay {
+  line-height: p2e(48px);
+
   .inline-block {
     display: inline-block;
     margin-right: p2e(14px);
   }
 
+  .red {
+    color: red;
+  }
+
   .delivery-addr {
     background: #FFFFFF;
     padding: p2e(18px);
-    @include font-dpr(18px);
+    @include font-dpr(14px);
     border-bottom: 1px solid lightgray;
 
     p {
@@ -968,10 +974,6 @@ ul.products-list {
 
   .brief-info {
     background: #FFFFFF;
-
-    .red {
-      color: red;
-    }
 
     .product-thumb {
       display: inline-block;
@@ -983,7 +985,7 @@ ul.products-list {
     }
 
     .product-name {
-      @include font-dpr(18px);
+      @include font-dpr(16px);
       display: inline-block;
       position: absolute;
 
@@ -1000,34 +1002,45 @@ ul.products-list {
       }
     }
 
-    .gyb-discount {
-      display: inline-block;
-
-      p {
-        @include font-dpr(14px);
-      }
-    }
-
     .product-count {
       display: inline-block;
 
       p {
         @include font-dpr(14px);
-        color: dimgrey;
       }
     }
+  }
 
-    .total-price {
-      display: inline-block;
+  .right-align {
+    float: right;
+  }
 
-      p {
-        @include font-dpr(16px);
-      }
+  .delivery {
+    background: #FFFFFF;
+    @include font-dpr(14px);
+    border-bottom: 1px solid lightgray;
+  }
+
+  .gyb-discount {
+    background: #FFFFFF;
+    border-bottom: 1px solid lightgray;
+
+    p {
+      @include font-dpr(14px);
+    }
+  }
+
+  .total-price {
+    background: #FFFFFF;
+
+    p {
+      @include font-dpr(16px);
     }
   }
 
   .btn-wide {
     margin: 0 auto;
+    line-height: p2e(48px);
     width: 100%;
   }
 

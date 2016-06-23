@@ -4,7 +4,7 @@ class WechatsController < ApplicationController
   # default text responder when no other match
   on :text do |request, content|
     # request.reply.text "echo: #{content}" # Just echo
-    request.reply.text "该服务号正在开发测试中，不日上线，敬请期待。如给您带来不便，非常抱歉！" # Just echo
+    request.reply.text '该服务号正在开发测试中，不日上线，敬请期待。如给您带来不便，非常抱歉！' # Just echo
   end
 
   # When receive 'help', will trigger this responder
@@ -23,7 +23,7 @@ class WechatsController < ApplicationController
 
   on :event, with: 'subscribe' do |request|
     # request.reply.text "#{request[:FromUserName]} subscribe now"
-    request.reply.text "该服务号正在开发测试中，不日上线，敬请期待。如给您带来不便，非常抱歉！"
+    request.reply.text '该服务号正在开发测试中，不日上线，敬请期待。如给您带来不便，非常抱歉！'
   end
 
   # When unsubscribe user scan qrcode qrscene_xxxxxx to subscribe in public account

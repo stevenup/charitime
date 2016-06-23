@@ -43,5 +43,4 @@ class OrdersController < BaseController
 
     render json: {data: 'success'}
   end
-
 end
