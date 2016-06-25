@@ -56,5 +56,6 @@ Rails.application.routes.draw do
     get '/unified_order',   to: 'wepay#unified_order'
     get '/init_wx_js_info', to: 'wepay#init_wx_js_info'
     get '/init_jspay_info', to: 'wepay#init_jspay_info'
+    post '/notify',         to: 'wepay#notify'
   end
 end

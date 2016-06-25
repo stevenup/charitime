@@ -19,7 +19,6 @@ class WepayController < ApplicationController
 
   def unified_order
     id  = params[:id]
-
     order_detail = OrderDetail.find_by :order_id => id
 
     params = {
@@ -28,14 +27,9 @@ class WepayController < ApplicationController
       total_fee:    order_detail.order.total_price,
       openid:       current_user.openid,
       trade_type:   'JSAPI',
-      notify_url:   'http://charitime.nonprofit.cn',
+      notify_url:   'http://charitime.nonprofit.cn/wepay/notify',
       spbill_create_ip: '127.0.0.1'
     }
-
-    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-    puts 'total fee:'
-    puts params[:total_fee]
-    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 
     res = Wepay::Service.invoke_unifiedorder params
     if res['return_code'] == 'SUCCESS'
@@ -58,10 +52,25 @@ class WepayController < ApplicationController
         :signType   => 'MD5'
       }
       paysign = Wepay::Sign.generate params
-      render json: { data: params.merge({:paySign => paysign}) }
+      render json: { data: params.merge({ :paySign => paysign }) }
     end
   end
 
-  def recv
+  def notify
+    Rails.logger.info '******************** in notify *****************'
+    result = Hash.from_xml(request.body.read)["xml"]
+    Rails.logger.info 'WXPay response is: '
+    Rails.logger.info result
+    if Wepay::Sign.verify? result
+      Rails.logger.info '**** verify success, change order_status ****'
+      out_trade_no = result['out_trade_no']
+      order = Order.find_by(order_id: out_trade_no)
+      order.update_attribute :order_status, 1
+      render :xml => { return_code: "SUCCESS" }.to_xml(root: 'xml', dasherize: false)
+    else
+      Rails.logger.info '**** verify failed, change order_status ****'
+      render :xml => { return_code: "FAIL", return_msg: "签名失败" }.to_xml(root: 'xml', dasherize: false)
+    end
+    Rails.logger.info '***************** leave notify *****************'
   end
 end

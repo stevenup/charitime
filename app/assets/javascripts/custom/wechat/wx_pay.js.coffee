@@ -37,11 +37,17 @@ chooseWXPay = (prepay_id) ->
       signType: 'MD5',
       paySign: data.paySign
       success: (res) ->
-        alert('支付成功！')
-#        $.ajax
-#          type: 'GET',
-#          url: '/orders/change_order_status',
-#          data: {id: $(this).data('id')},
-#          success: (res) ->
-#            alert('支付成功！')
+        if res.errMsg == "chooseWXPay:ok"
+          alert('支付成功！')
+          $.ajax
+            type: 'GET',
+            url: '/orders/change_order_status',
+            data: {id: $(this).data('id')},
+            success: (res) ->
+              if res.status == 'success'
+                alert('修改订单状态成功！')
+        else
+          alert(res.errMsg)
+      cancel: () ->
+        alert('支付取消')
     })

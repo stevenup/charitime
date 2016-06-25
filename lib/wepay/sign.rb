@@ -10,5 +10,11 @@ module Wepay
       str_sign_tmp += "&key=#{ Settings.wepay.key }"
       Digest::MD5.hexdigest(str_sign_tmp).upcase
     end
+
+    def self.verify? params
+      params = params.dup
+      sign = params.delete('sign') || params.delete(:sign)
+      generate(params) == sign
+    end
   end
 end

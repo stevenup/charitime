@@ -34,12 +34,10 @@ class OrdersController < BaseController
     redirect_to :action => 'pay', :order_id => order_id
   end
 
-  # def change_order_status
-  #   id = params[:id]
-  #   order = Order.find_by :order_id => id
-  #   order.status = '1'
-  #   order.save
-  #
-  #   render json: {data: 'success'}
-  # end
+  def change_order_status
+    id = params[:id]
+    order = Order.find_by :order_id => id
+    order.update_attribute :order_status, 1
+    render json: { status: 'success' }
+  end
 end
