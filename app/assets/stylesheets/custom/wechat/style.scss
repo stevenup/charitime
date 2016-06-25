@@ -9,6 +9,10 @@ html, body {
   @include font-dpr(14px);
   color: #000;
   overflow: hidden;
+
+  a {
+    color: #000000;
+  }
 }
 
 /***************  common style  ****************/
@@ -67,16 +71,38 @@ html, body {
 p.menu-name {
   @include font-dpr(16px);
   color: dimgray;
-  display: inline-block;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 i.menu-icon {
+  display: table-cell;
+  vertical-align: middle;
   padding: p2e(2px) p2e(16px);
 }
 
 i.arrow {
-  float: right;
+  display: table-cell;
+  vertical-align: middle;
   padding: p2e(2px) p2e(16px);
+}
+
+.t-left {
+  float: left;
+  margin: p2e(10px) auto;
+}
+
+.t-right {
+  float: right;
+  margin: p2e(10px) auto;
+}
+
+.red {
+  color: red;
+}
+
+.clear {
+  clear: both;
 }
 
 .progress {
@@ -365,40 +391,54 @@ i.arrow {
 
 /**********  personal-center style  ***********/
 .personal-center {
-  .my-cart {
-    padding: p2e(10px);
-  }
+  .menu {
+    line-height: p2e(56px);
 
-  .my-gyb-menu {
-    padding: p2e(10px);
-  }
+    //.t-left {
+    //  float: left;
+    //  margin: p2e(10px) auto;
+    //}
+    //
+    //.t-right {
+    //  float: right;
+    //  margin: p2e(10px) auto;
+    //}
 
-  .all-orders {
-    padding: p2e(10px);
-  }
+    .my-cart {
+      padding: p2e(10px);
+    }
 
-  .finished-orders {
-    background: #ffffff;
-    padding: p2e(10px);
-    border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
-  }
+    .my-gyb-menu {
+      padding: p2e(10px);
+    }
 
-  .unfinished-orders {
-    background: #ffffff;
-    padding: p2e(10px);
-  }
+    .all-orders {
+      padding: p2e(10px);
+    }
 
-  .supported-projects {
-    padding: p2e(10px);
-  }
+    .finished-orders {
+      background: #ffffff;
+      padding: p2e(10px);
+      border-top: 1px solid lightgray;
+      border-bottom: 1px solid lightgray;
+    }
 
-  .my-donations {
-    padding: p2e(10px);
-  }
+    .unfinished-orders {
+      background: #ffffff;
+      padding: p2e(10px);
+    }
 
-  .my-settings {
-    padding: p2e(10px);
+    .supported-projects {
+      padding: p2e(10px);
+    }
+
+    .my-donations {
+      padding: p2e(10px);
+    }
+
+    .my-settings {
+      padding: p2e(10px);
+    }
   }
 
   .foot {
@@ -406,7 +446,7 @@ i.arrow {
     color: #979797;
     @include font-dpr(14px);
     position: relative;
-    bottom: p2e(-16px);
+    margin: p2e(56px) auto;
   }
 }
 
@@ -957,10 +997,6 @@ ul.products-list {
     margin-right: p2e(14px);
   }
 
-  .red {
-    color: red;
-  }
-
   .delivery-addr {
     background: #FFFFFF;
     padding: p2e(18px);
@@ -977,7 +1013,7 @@ ul.products-list {
 
     .product-thumb {
       display: inline-block;
-      width: p2e(200px);
+      width: p2e(150px);
 
       img {
         width: 100%;
@@ -1043,5 +1079,76 @@ ul.products-list {
     line-height: p2e(48px);
     width: 100%;
   }
+}
 
+.order-list {
+  .order-item {
+    background: #FFFFFF;
+    @include font-dpr(14px);
+    line-height: p2e(56px);
+
+    .item-head {
+      border-bottom: 1px solid lightgray;
+
+      .delivery-status {
+        display: table;
+        margin: p2e(10px) auto;
+
+        p {
+          display: table-cell;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .item-body {
+      .brief-info {
+        background: #FFFFFF;
+
+        .product-thumb {
+          display: inline-block;
+          width: p2e(150px);
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .product-name {
+          @include font-dpr(16px);
+          display: inline-block;
+          position: absolute;
+
+          p {
+            line-height: p2e(48px);
+          }
+        }
+
+        .product-price {
+          display: inline-block;
+
+          p {
+            @include font-dpr(14px);
+          }
+        }
+
+        .product-count {
+          display: inline-block;
+
+          p {
+            @include font-dpr(14px);
+          }
+        }
+
+        .order-price {
+          display: inline-block;
+
+          p {
+            @include font-dpr(14px);
+          }
+        }
+      }
+    }
+
+  }
 }

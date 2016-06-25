@@ -25,17 +25,12 @@ class WepayController < ApplicationController
     params = {
       body:         order_detail.product_name,
       out_trade_no: order_detail.order_id,
-      total_fee:    order_detail.order.total_price,
+      total_fee:    order_detail.order.total_price * 100,
       openid:       current_user.openid,
       trade_type:   'JSAPI',
       notify_url:   'http://charitime.nonprofit.cn',
       spbill_create_ip: '127.0.0.1'
     }
-
-    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-    puts 'total fee:'
-    puts params[:total_fee]
-    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 
     res = Wepay::Service.invoke_unifiedorder params
     if res['return_code'] == 'SUCCESS'
