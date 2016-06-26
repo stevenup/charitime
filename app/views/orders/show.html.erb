@@ -1,0 +1,73 @@
+<div class="order-detail" id="order-detail">
+  <div class="order-detail-head p-l p-r">
+    <p class="t-left">订单号: 12345634567</p>
+
+    <div class="order-status t-right">
+      <p>已完成</p>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+  <div class="delivery-addr m-b p-l p-r">
+    <p class="inline-block">阿斯顿发给和<%#= @order_detail.receiver_name.to_s %></p>
+    <p class="inline-block">2345645689<%#= @order_detail.mobile.to_s %></p>
+    <p>是大法官会尽快了个会尽快了个会尽快<%#= @order_detail.province.to_s + '  ' +  @order_detail.city.to_s + '  ' + @order_detail.district.to_s + '  ' + @order_detail.detail_address.to_s %></p>
+  </div>
+
+  <div class="product-info p-t p-b">
+    <div class="product-thumb p-l p-r">
+      <%= image_tag '1.png' %>
+    </div>
+
+    <div class="product-name m-r m-l m-t">
+      <!--<p><%#= @order_detail.product_name.to_s %></p>-->
+      <p>测试商品3测试商品3测试商品3测试商品3</p>
+    </div>
+
+    <div class="product-count m-r m-l m-t">
+      <!--<p class="inline-block">x<%#= @order_detail.count.to_s %></p>-->
+      <p class="inline-block">x1</p>
+    </div>
+  </div>
+
+  <div class="pay-info m-t p-l p-r">
+    <div class="border-bottom">
+      <p class="inline-block t-left">支付方式</p>
+      <p class="inline-block t-right">微信支付</p>
+      <div class="clear"></div>
+    </div>
+    <div>
+      <p class="inline-block t-left">总额</p>
+      <p class="inline-block t-right red">￥188</p>
+      <div class="clear"></div>
+    </div>
+    <div>
+      <p class="inline-block t-left">公益优惠</p>
+      <p class="inline-block t-right red">-￥18</p>
+      <div class="clear"></div>
+    </div>
+    <div class="border-bottom">
+      <p class="inline-block t-left">运费</p>
+      <p class="inline-block t-right red">-￥0</p>
+      <div class="clear"></div>
+    </div>
+    <div class="border-bottom">
+      <p class="inline-block t-left">实付款</p>
+      <p class="inline-block t-right red">￥170</p>
+      <div class="clear"></div>
+    </div>
+    <div>
+      <p class="inline-block t-right">2016.06.24 00:00:00</p>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div class="buttons p-l p-r m-t">
+    <button class="btn btn-default m-l m-r p-t p-b t-left">退货退款</button>
+    <button class="btn btn-default btn-highlight m-l m-r p-t p-b t-right">查看物流</button>
+    <div class="clear">
+    </div>
+  </div>
+
+</div>

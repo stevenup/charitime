@@ -2,6 +2,10 @@ class OrdersController < BaseController
   def index
   end
 
+  def show
+
+  end
+
   def pay
     order_id = params[:order_id]
     @order_detail = OrderDetail.find_by_order_id order_id

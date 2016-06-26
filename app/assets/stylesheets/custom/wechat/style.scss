@@ -152,7 +152,7 @@ i.arrow {
 .btn-default {
   @include font-dpr(14px);
   background: #ffffff;
-  width: 42%;
+  width: 45%;
   border-radius: p2e(4px);
   border: 2px solid #c44659;
   display: inline-block;
@@ -393,16 +393,6 @@ i.arrow {
 .personal-center {
   .menu {
     line-height: p2e(56px);
-
-    //.t-left {
-    //  float: left;
-    //  margin: p2e(10px) auto;
-    //}
-    //
-    //.t-right {
-    //  float: right;
-    //  margin: p2e(10px) auto;
-    //}
 
     .my-cart {
       padding: p2e(10px);
@@ -989,6 +979,7 @@ ul.products-list {
   }
 }
 
+/**********  orders/pay style  ***********/
 .order-pay {
   line-height: p2e(48px);
 
@@ -1081,6 +1072,7 @@ ul.products-list {
   }
 }
 
+/**********  orders/index style  ***********/
 .order-list {
   .order-item {
     background: #FFFFFF;
@@ -1149,6 +1141,83 @@ ul.products-list {
         }
       }
     }
+  }
+}
 
+/**********  orders/show style  ***********/
+.order-detail {
+  @include font-dpr(14px);
+  line-height: p2e(56px);
+
+  .order-detail-head {
+    background: #FFFFFF;
+    border-bottom: 1px solid lightgray;
+
+    .order-status {
+      display: table;
+      margin: p2e(10px) auto;
+
+      p {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .delivery-addr {
+    background: #FFFFFF;
+    @include font-dpr(14px);
+    display: table;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+
+    p {
+      margin: p2e(14px) auto;
+    }
+
+    .inline-block {
+      display: inline-block;
+      margin-right: p2e(14px);
+    }
+  }
+
+  .product-info {
+    background: #FFFFFF;
+
+    .product-thumb {
+      display: inline-block;
+      width: p2e(150px);
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .product-name {
+      @include font-dpr(16px);
+      display: inline-block;
+      position: absolute;
+
+      p {
+        line-height: p2e(48px);
+      }
+    }
+
+    .product-count {
+      display: inline-block;
+
+      p {
+        @include font-dpr(14px);
+      }
+    }
+  }
+
+  .pay-info {
+    @include font-dpr(14px);
+    background: #FFFFFF;
+
+    .border-bottom {
+      border-bottom: 1px solid lightgray;
+    }
   }
 }
