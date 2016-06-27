@@ -171,13 +171,13 @@ i.arrow {
     border-bottom: 1px solid #979797;
 
     .title {
-      @include font-dpr(18px);
+      @include font-dpr(14px);
       color: #9B9B9B;
       display: inline-block;
     }
 
     a.all {
-      @include font-dpr(16px);
+      @include font-dpr(14px);
       color: #32AFEF;
       display: inline-block;
       position: absolute;
@@ -186,21 +186,21 @@ i.arrow {
   }
 
   .goods-item {
-    width: p2e(330px);
+    width: p2e(340px);
     height: p2e(400px);
-    border: 1px lightgray solid;
+    border: p2e(1px) lightgray solid;
     display: inline-block;
   }
 
   .project-item {
     position: relative;
-    border: 1px lightgray solid;
+    //border: p2e(1px) solid lightgray;
     width: 100%;
 
     .project-pic {
       position: relative;
       left: 0;
-      width: 40%;
+      width: 100%;
       display: block;
 
       img {
@@ -292,7 +292,7 @@ i.arrow {
 
       .nav-item-name {
         color: #9B9B9B;
-        @include font-dpr(16px);
+        @include font-dpr(14px);
         margin-top: p2e(14px);
       }
     }
@@ -300,8 +300,13 @@ i.arrow {
 
   .rcmds {
     .rcmds-list {
-      text-align: left;
+      text-align: center;
       display: table;
+
+      img {
+        width: 100%;
+
+      }
 
       a {
         display: inline-block;
@@ -333,8 +338,11 @@ i.arrow {
         }
 
         .auction-price {
+          display: table;
+          vertical-align: middle;
+
           .price {
-            @include font-dpr(18px);
+            @include font-dpr(14px);
             display: inline-block;
 
             span {
@@ -343,7 +351,7 @@ i.arrow {
           }
 
           .auction-going {
-            width: p2e(350px);
+            width: p2e(300px);
             display: inline-block;
             position: absolute;
             right: p2e(32px);
@@ -354,7 +362,9 @@ i.arrow {
   }
 
   .charity-sale {
-    margin-bottom: p2e(56px);
+    margin-bottom: p2e(100px);
+    padding-bottom: p2e(24px);
+
     .claim {
       @include font-dpr(14px);
       text-align: center;
@@ -556,7 +566,7 @@ i.arrow {
 
       .gyb-item-head {
         padding: p2e(10px);
-        border-bottom: 1px lightgray solid;
+        border-bottom: p2e(1px) solid lightgray;
       }
 
       .gyb-item-pic {
@@ -851,20 +861,20 @@ i.arrow {
 
 ul.products-list {
   background: #FFFFFF;
-  text-align: center;
   list-style: none;
   display: table;
+  width: 100%;
+  text-align: center;
 
   a {
     display: inline-block;
     vertical-align: middle;
+    //text-align: center;
 
     li.goods-item {
-      margin-left: p2e(10px);
-      margin-right: p2e(10px);
-      width: p2e(330px);
+      width: p2e(340px);
       height: p2e(400px);
-      border: 1px lightgray solid;
+      border: p2e(1px) solid lightgray;
       display: inline-block;
 
       img {

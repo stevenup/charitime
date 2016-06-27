@@ -34,7 +34,10 @@ Rails.application.routes.draw do
     get 'products_recommended' => 'products_recommended#index'
 
     resources :users
-    resources :products
+    resources :products do
+      get 'set_recommended', on: :collection
+      get 'reset_recommended', on: :collection
+    end
     resources :shelf_items do
       collection do
         get :pull_off_shelf    # ajax get request
