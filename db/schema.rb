@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160625025711) do
+ActiveRecord::Schema.define(version: 20160627155833) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "user_id",        limit: 255
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20160625025711) do
     t.string   "order_detail_id",  limit: 255
     t.string   "order_id",         limit: 255
     t.string   "product_id",       limit: 255
-    t.integer  "price",            limit: 4
+    t.float    "price",            limit: 24
     t.integer  "count",            limit: 4
     t.string   "remark",           limit: 255
     t.datetime "created_at",                   null: false
@@ -133,14 +133,14 @@ ActiveRecord::Schema.define(version: 20160625025711) do
     t.string   "product_name",     limit: 255
     t.string   "delivery_id",      limit: 255
     t.string   "delivery_company", limit: 255
-    t.integer  "gyb_discount",     limit: 4
+    t.float    "gyb_discount",     limit: 24
   end
 
   create_table "orders", force: :cascade do |t|
     t.string   "user_id",          limit: 255
     t.string   "order_id",         limit: 255
     t.integer  "order_status",     limit: 4,               null: false
-    t.integer  "total_price",      limit: 4
+    t.float    "total_price",      limit: 24
     t.string   "trans_id",         limit: 255
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
@@ -204,8 +204,8 @@ ActiveRecord::Schema.define(version: 20160625025711) do
     t.string   "product_category_id", limit: 255
     t.string   "product_label_id",    limit: 255
     t.string   "product_detail",      limit: 255
-    t.integer  "price",               limit: 4
-    t.integer  "gyb_discount",        limit: 4
+    t.float    "price",               limit: 24
+    t.float    "gyb_discount",        limit: 24
     t.integer  "stock",               limit: 4
     t.integer  "sales",               limit: 4
     t.datetime "created_at",                      null: false
