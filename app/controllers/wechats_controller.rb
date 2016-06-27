@@ -1,4 +1,5 @@
 class WechatsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   wechat_responder
 
   # default text responder when no other match

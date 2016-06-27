@@ -32,7 +32,7 @@ class OrdersController < BaseController
     order[:user_id]  = current_user.id
     total_price         = order_detail_params[:count] * (shelf_item.price - shelf_item.gyb_discount)
     order[:total_price] = total_price
-    order[:status]      = '0'    # 0 stands for 待付款， 1 已付款待发货，2 已发货待签收，3 已完成
+    order[:order_status]      = '0'    # 0 stands for 待付款， 1 已付款待发货，2 已发货待签收，3 已完成
     # transid
     order.save
     redirect_to :action => 'pay', :order_id => order_id
