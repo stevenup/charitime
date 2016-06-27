@@ -1,4 +1,5 @@
 class WepayController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   include SessionHelper
 
   def init_wx_js_info
@@ -24,7 +25,7 @@ class WepayController < ApplicationController
     params = {
       body:         order_detail.product_name,
       out_trade_no: order_detail.order_id,
-      total_fee:    order_detail.order.total_price * 100,
+      total_fee:    (order_detail.order.total_price * 100).to_int,
       openid:       current_user.openid,
       trade_type:   'JSAPI',
       notify_url:   'http://charitime.nonprofit.cn/wepay/notify',
@@ -33,8 +34,10 @@ class WepayController < ApplicationController
 
     res = Wepay::Service.invoke_unifiedorder params
     if res['return_code'] == 'SUCCESS'
-      render json: { result: 'fail', data: res['err_code_des'] } if res['result_code'] == 'FAIL'
       render json: { result: 'success', data: res['prepay_id'] } if res['result_code'] == 'SUCCESS'
+      render json: { result: 'fail', data: res['err_code_des'] } if res['result_code'] == 'FAIL'
+    else
+      render json: { result: 'fail', data: res['return_msg'] }
     end
   end
 
@@ -63,9 +66,11 @@ class WepayController < ApplicationController
     Rails.logger.info result
     if Wepay::Sign.verify? result
       Rails.logger.info '**** verify success, change order_status ****'
-      out_trade_no = result['out_trade_no']
+      out_trade_no   = result['out_trade_no']
+      transaction_id = result['transaction_id']
+
       order = Order.find_by(order_id: out_trade_no)
-      order.update_attribute :order_status, 1
+      order.update_attributes({ order_status: 1, transaction_id: transaction_id })
       render :xml => { return_code: "SUCCESS" }.to_xml(root: 'xml', dasherize: false)
     else
       Rails.logger.info '**** verify failed, change order_status ****'

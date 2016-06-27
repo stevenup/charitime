@@ -26,7 +26,7 @@ chooseWXPay = (prepay_id) ->
   $.ajax
     url: '/wepay/init_jspay_info',
     type: 'GET',
-    data: {prepay_id: 'prepay_id=' + prepay_id},
+    data: { prepay_id: 'prepay_id=' + prepay_id },
     dataType: 'json'
   .done (res) ->
     data = res.data

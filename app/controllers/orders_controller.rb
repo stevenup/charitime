@@ -3,7 +3,6 @@ class OrdersController < BaseController
   end
 
   def show
-
   end
 
   def pay

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627155833) do
+ActiveRecord::Schema.define(version: 20160627171846) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "user_id",        limit: 255
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20160627155833) do
     t.string   "order_id",         limit: 255
     t.integer  "order_status",     limit: 4,               null: false
     t.float    "total_price",      limit: 24
-    t.string   "trans_id",         limit: 255
+    t.string   "transaction_id",   limit: 255
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.integer  "logistics_status", limit: 4,   default: 0, null: false
