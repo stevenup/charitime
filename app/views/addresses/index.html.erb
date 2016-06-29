@@ -1,15 +1,25 @@
 <div id="my-address" class="my-address">
-  <% @addresses.each do |addr| %>
-    <div class="address-item p-l p-r p-t p-b">
-      <p class="name"><%= addr.receiver_name %></p>
+  <% if @addresses.nil? %>
 
-      <p class="tel"><%= addr.mobile %></p>
+    <%= link_to new_address_path do %>
+      <button class="btn btn-default btn-highlight btn-wide p-t p-b m-t">添加地址</button>
+    <% end %>
 
-      <p class="address"><%= addr.province.to_s + addr.city.to_s + addr.district.to_s + addr.detail_address.to_s %></p>
-    </div>
-  <% end %>
+  <% else %>
+
+    <% @addresses.each do |addr| %>
+      <div class="address-item p-l p-r p-t p-b">
+        <p class="name"><%= addr.receiver_name %></p>
+
+        <p class="tel"><%= addr.mobile %></p>
+
+        <p class="address"><%= addr.province.to_s + addr.city.to_s + addr.district.to_s + addr.detail_address.to_s %></p>
+      </div>
+    <% end %>
+
+    <%= link_to new_address_path do %>
+      <button class="btn btn-default btn-highlight btn-wide p-t p-b m-t">添加地址</button>
+    <% end %>
+
+  <% end %><!-- if end -->
 </div>
-
-<%= link_to new_address_path do %>
-  <button class="btn btn-default btn-highlight m-l m-r p-t p-b">添加地址</button>
-<% end %>

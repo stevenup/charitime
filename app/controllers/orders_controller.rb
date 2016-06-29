@@ -1,8 +1,15 @@
 class OrdersController < BaseController
   def index
+    status = params[:status]
+    @orders = Order.where("user_id = ? and (order_status = ? or logistics_status != ?)", '1', '0', '2').order(created_at: :desc) if status == '0'
+    @orders = Order.where("order_status = ? or logistics_status = ?", '1', '2').order(created_at: :desc) if status == '1'
+    @orders = Order.where("user_id = ?", '1').order(created_at: :desc) if status == '2'
   end
 
   def show
+    order_id = params[:id]
+    puts order_id
+    @order_detail = OrderDetail.find_by_order_id order_id
   end
 
   def pay
@@ -28,7 +35,8 @@ class OrdersController < BaseController
     order_detail.save
     order = Order.new
     order[:order_id] = order_id
-    order[:user_id]  = current_user.id
+    # order[:user_id]  = current_user.id
+    order[:user_id]  = '1'
     total_price         = order_detail_params[:count] * (shelf_item.price - shelf_item.gyb_discount)
     order[:total_price] = total_price
     order[:order_status]      = '0'    # 0 stands for 待付款， 1 已付款待发货，2 已发货待签收，3 已完成
