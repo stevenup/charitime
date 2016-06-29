@@ -18,7 +18,26 @@ class WepayController < ApplicationController
     render json: { data: info }
   end
 
+  def init_jspay_info
+    prepay_id = params[:prepay_id]
+    if prepay_id
+      appid     = Settings.wechat.appid
+      timestamp = Time.now.to_i
+      noncestr  = SecureRandom.hex(10)
+      params    = {
+        :appId      => appid,
+        :timeStamp  => timestamp,
+        :nonceStr   => noncestr,
+        :package    => prepay_id,
+        :signType   => 'MD5'
+      }
+      paysign = Wepay::Sign.generate params
+      render json: { data: params.merge({ :paySign => paysign }) }
+    end
+  end
+
   def unified_order
+    Rails.logger.info '****************** in unified order *******************'
     id  = params[:id]
     order_detail = OrderDetail.find_by :order_id => id
 
@@ -39,28 +58,17 @@ class WepayController < ApplicationController
     else
       render json: { result: 'fail', data: res['return_msg'] }
     end
+    Rails.logger.info '**************** leave unified order *****************'
   end
 
-  def init_jspay_info
-    prepay_id = params[:prepay_id]
-    if prepay_id
-      appid     = Settings.wechat.appid
-      timestamp = Time.now.to_i
-      noncestr  = SecureRandom.hex(10)
-      params    = {
-        :appId      => appid,
-        :timeStamp  => timestamp,
-        :nonceStr   => noncestr,
-        :package    => prepay_id,
-        :signType   => 'MD5'
-      }
-      paysign = Wepay::Sign.generate params
-      render json: { data: params.merge({ :paySign => paysign }) }
-    end
+  def refund
+    Rails.logger.info '****************** in refund *******************'
+    result = Hash.from_xml(request.body.read)["xml"]
+    Rails.logger.info '***************** leave refund *****************'
   end
 
   def notify
-    Rails.logger.info '******************** in notify *****************'
+    Rails.logger.info '****************** in notify *******************'
     result = Hash.from_xml(request.body.read)["xml"]
     Rails.logger.info 'WXPay response is: '
     Rails.logger.info result

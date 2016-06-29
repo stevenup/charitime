@@ -21,17 +21,19 @@ class OrdersController < BaseController
                                       "product_detail", "stock", "sales", "is_on_shelf", "recommended",
                                       "thumb", "created_at", "updated_at", "user_id", "default")
     # generate a unique order_id to relate Order with OrderDetail model
-    order_id = 1000000000 + SecureRandom.random_number(999999999)
-    order_detail_params[:count] = count.to_i
-    order_detail_params[:order_id] = order_id
+    order_id      = 1000000000 + SecureRandom.random_number(999999999)
+    out_refund_no = 1000000000 + SecureRandom.random_number(999999999)
+    order_detail_params[:count]         = count.to_i
+    order_detail_params[:order_id]      = order_id
+    order_detail_params[:out_refund_no] = out_refund_no
     order_detail = OrderDetail.new order_detail_params
     order_detail.save
     order = Order.new
-    order[:order_id] = order_id
-    order[:user_id]  = current_user.id
-    total_price         = order_detail_params[:count] * (shelf_item.price - shelf_item.gyb_discount)
-    order[:total_price] = total_price
-    order[:order_status]      = '0'    # 0 stands for 待付款， 1 已付款待发货，2 已发货待签收，3 已完成
+    order[:order_id]     = order_id
+    order[:user_id]      = current_user.id
+    total_price          = order_detail_params[:count] * (shelf_item.price - shelf_item.gyb_discount)
+    order[:total_price]  = total_price
+    order[:order_status] = '0'    # 0 stands for 待付款， 1 已付款待发货，2 已发货待签收，3 已完成
     # transid
     order.save
     redirect_to :action => 'pay', :order_id => order_id

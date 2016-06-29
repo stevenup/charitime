@@ -1,3 +1,5 @@
+require 'openssl'
+
 module Wepay
   module Service
     PAY_URL = 'https://api.mch.weixin.qq.com'
@@ -14,7 +16,41 @@ module Wepay
       send_request(url, generate_params(params), options)
     end
 
+    REFUND_REQUIRED_PARAMS = %i( out_trade_no out_refund_no total_fee refund_fee op_user_id )
+    def self.invoke_refund(params, options = {})
+      Wepay::Service.get_apiclient_by_pkcs12
+      url = "#{ PAY_URL }/secapi/pay/refund"
+      params = {
+        :appid     => Settings.wepay.appid,
+        :mch_id    => Settings.wepay.mch_id,
+        :nonce_str => SecureRandom.uuid.tr('-', '')
+      }.merge(params)
+      params[:op_user_id] ||= params[:mch_id]
+      check_required_params(params, REFUND_REQUIRED_PARAMS)
+      options = {
+        ssl_client_cert: Wepay::Service.apiclient_cert,
+        ssl_client_key:  Wepay::Service.apiclient_key,
+        verify_ssl:      OpenSSL::SSL::VERIFY_NONE
+      }
+      send_request(url, generate_params(params), options)
+    end
+
     class << self
+      attr_accessor :apiclient_key, :apiclient_cert
+      def get_apiclient_by_pkcs12
+        pkcs12 = OpenSSL::PKCS12.new(File.read(Setting.wepay.pkcs12))
+        @apiclient_cert = pkcs12.certificate
+        @apiclient_key  = pkcs12.key
+      end
+
+      def apiclient_cert=(cert)
+        @apiclient_cert = OpenSSL::X509::Certificate.new(cert)
+      end
+
+      def apiclient_key=(key)
+        @apiclient_key = OpenSSL::PKey::RSA.new(key)
+      end
+
       private
       def check_required_params(params, required_params)
         required_params.each do |name|
