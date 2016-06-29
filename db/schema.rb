@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 20160629162821) do
     t.string   "delivery_id",      limit: 255
     t.string   "delivery_company", limit: 255
     t.float    "gyb_discount",     limit: 24
+    t.string   "out_refund_no",    limit: 255
   end
 
   create_table "orders", force: :cascade do |t|
@@ -146,7 +147,6 @@ ActiveRecord::Schema.define(version: 20160629162821) do
     t.datetime "updated_at",                               null: false
     t.integer  "logistics_status", limit: 4,   default: 0, null: false
     t.string   "out_trade_no",     limit: 255
-    t.string   "out_refund_no",    limit: 255
   end
 
   create_table "product_categories", force: :cascade do |t|

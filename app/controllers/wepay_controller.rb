@@ -39,8 +39,7 @@ class WepayController < ApplicationController
   def unified_order
     Rails.logger.info '****************** in unified order *******************'
     id  = params[:id]
-    order_detail = OrderDetail.find_by :order_id => id
-
+    order_detail = OrderDetail.find_by(:order_id => id)
     params = {
       body:         order_detail.product_name,
       out_trade_no: order_detail.order_id,
@@ -63,7 +62,23 @@ class WepayController < ApplicationController
 
   def refund
     Rails.logger.info '****************** in refund *******************'
-    result = Hash.from_xml(request.body.read)["xml"]
+    id = params[:id]
+    order_detail = OrderDetail.find_by(:order_id => id)
+    params = {
+      out_trade_no:  order_detail.order_id,
+      out_refund_no: order_detail.out_refund_no,
+      total_fee:     (order_detail.order.total_price * 100).to_int,
+      refund_fee:    (order_detail.order.total_price * 100).to_int,
+      op_user_id:    Setting.wepay.merchant_id
+    }
+
+    res = Wepay::Service.invoke_refund params
+    if res['return_code'] == 'SUCCESS'
+      render json: { result: 'success' } if res['result_code'] == 'SUCCESS'
+      render json: { result: 'fail', data: res['err_code_des'] } if res['result_code'] == 'FAIL'
+    else
+      render json: { result: 'fail', data: res['return_msg'] }
+    end
     Rails.logger.info '***************** leave refund *****************'
   end
 
