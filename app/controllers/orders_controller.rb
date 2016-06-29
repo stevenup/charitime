@@ -1,8 +1,15 @@
 class OrdersController < BaseController
   def index
+    status = params[:status]
+    @orders = Order.where("user_id = ? and (order_status = ? or logistics_status != ?)", '1', '0', '2').order(created_at: :desc) if status == '0'
+    @orders = Order.where("order_status = ? or logistics_status = ?", '1', '2').order(created_at: :desc) if status == '1'
+    @orders = Order.where("user_id = ?", '1').order(created_at: :desc) if status == '2'
   end
 
   def show
+    order_id = params[:id]
+    puts order_id
+    @order_detail = OrderDetail.find_by_order_id order_id
   end
 
   def pay

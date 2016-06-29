@@ -13,13 +13,20 @@ html, body {
   a {
     color: #000000;
   }
+
+  // disable iOS default button style
+  input[type="submit"],
+  input[type="reset"],
+  input[type="button"],
+  button { -webkit-appearance: none; }
 }
 
 /***************  common style  ****************/
 .profile {
-  background: url("Profile-bgp.png");
+  //background: url("Profile-bgp.png");
+  background: #d65353;
   background-size: cover;
-  height: p2e(500px);
+  height: p2e(480px);
   text-align: center;
 
   .avatar {
@@ -163,12 +170,22 @@ i.arrow {
   color: #ffffff;
 }
 
+.btn-wide {
+  margin: 0 auto;
+  line-height: p2e(48px);
+  width: 100%;
+}
+
+.btn-middle {
+  margin: 0 auto;
+}
+
 /**************  homepage style  **************/
 .homepage {
 
   /**********  start of common style  **********/
   .header-section {
-    border-bottom: 1px solid #979797;
+    border-bottom: p2e(1px) solid #979797;
 
     .title {
       @include font-dpr(14px);
@@ -187,9 +204,34 @@ i.arrow {
 
   .goods-item {
     width: p2e(340px);
-    height: p2e(400px);
+    height: p2e(470px);
     border: p2e(1px) lightgray solid;
     display: inline-block;
+
+    .item-property {
+      .item-name {
+        margin: p2e(10px);
+        text-align: left;
+        @include font-dpr(14px);
+      }
+
+      .item-bottom {
+        .item-price {
+          margin: p2e(8px);
+          font-weight: 600;
+        }
+
+        .item-hearts {
+          margin: p2e(8px);
+
+          i {
+            margin-left: p2e(8px);
+            margin-right: p2e(8px);
+          }
+        }
+      }
+    }
+
   }
 
   .project-item {
@@ -272,7 +314,7 @@ i.arrow {
 
     li.nav-item {
       width: 22%;
-      border-right: 1px solid #979797;
+      border-right: p2e(1px) solid #979797;
       display: inline-block;
 
       a {
@@ -332,7 +374,7 @@ i.arrow {
         }
 
         .auction-thumb {
-          border: 1px solid grey;
+          border: p2e(1px) solid grey;
           height: p2e(200px);
 
         }
@@ -362,7 +404,7 @@ i.arrow {
   }
 
   .charity-sale {
-    margin-bottom: p2e(100px);
+    margin-bottom: p2e(80px);
     padding-bottom: p2e(24px);
 
     .claim {
@@ -381,7 +423,7 @@ i.arrow {
     width: 100%;
     position: fixed;
     bottom: 0;
-    border-top: 1px solid lightgray;
+    border-top: p2e(1px) solid lightgray;
     text-align: center;
     @include font-dpr(16px);
 
@@ -419,8 +461,8 @@ i.arrow {
     .finished-orders {
       background: #ffffff;
       padding: p2e(10px);
-      border-top: 1px solid lightgray;
-      border-bottom: 1px solid lightgray;
+      border-top: p2e(1px) solid lightgray;
+      border-bottom: p2e(1px) solid lightgray;
     }
 
     .unfinished-orders {
@@ -621,7 +663,7 @@ i.arrow {
   }
 
   .project-detail-area {
-    border: 1px solid lightgray;
+    border: p2e(1px) solid lightgray;
     border-radius: p2e(4px);
     height: p2e(300px);
     box-shadow: 2px 3px 8px lightgray;
@@ -629,7 +671,7 @@ i.arrow {
 
     .cate-title-wrapper {
       width: 100%;
-      border-bottom: 1px solid lightgray;
+      border-bottom: p2e(1px) solid lightgray;
       @include font-dpr(16px);
       display: table;
       vertical-align: middle;
@@ -682,7 +724,7 @@ i.arrow {
   .big-thumb {
     width: 100%;
     height: p2e(400px);
-    border-bottom: 1px solid #979797;
+    border-bottom: p2e(1px) solid #979797;
 
     img {
       display: block;
@@ -693,22 +735,26 @@ i.arrow {
 
   .main {
     width: 100%;
-    height: p2e(350px);
-    border-bottom: 1px solid #979797;
+    //height: p2e(350px);
+    //border-bottom: p2e(1px) solid #979797;
 
     .main-left {
       box-sizing: border-box;
       float: left;
-      width: 50%;
+      width: 100%;
       height: 100%;
       padding: p2e(20px);
       padding-left: p2e(40px);
+
+      .product-name {
+        @include font-dpr(16px);
+      }
 
       .price {
         line-height: p2e(80px);
 
         .big-price {
-          @include font-dpr(24px);
+          @include font-dpr(16px);
           color: red;
         }
 
@@ -776,7 +822,7 @@ i.arrow {
   .nav {
     width: 100%;
     height: p2e(80px);
-    border-bottom: 1px solid #979797;
+    border-bottom: p2e(1px) solid #979797;
 
     ul {
       li {
@@ -805,16 +851,17 @@ i.arrow {
 
   .detail-body {
     @include font-dpr(14px);
+    line-height: p2e(56px);
   }
 
   .buttons {
     position: fixed;
     z-index: 999;
-    bottom: p2e(18px);
+    bottom: p2e(14px);
     width: 100%;
     text-align: center;
     background-color: white;
-    border-top: 1px solid #979797;
+    border-top: p2e(1px) solid #979797;
   }
 }
 
@@ -839,7 +886,7 @@ i.arrow {
         height: p2e(60px);
         width: 100%;
         margin-top: p2e(10px);
-        border: 1px solid #979797;
+        border: p2e(1px) solid #979797;
         border-radius: p2e(5px);
       }
 
@@ -905,7 +952,8 @@ ul.products-list {
 
   .item-number {
     padding: p2e(18px);
-    @include font-dpr(18px);
+    margin-bottom: p2e(36px);
+    @include font-dpr(14px);
     display: table;
 
     a {
@@ -918,11 +966,11 @@ ul.products-list {
       vertical-align: middle;
     }
 
-    a.minus {
+    a.t-minus {
       text-align: center;
       height: p2e(48px);
       width: p2e(48px);
-      border: 1px solid grey;
+      border: p2e(1px) solid grey;
       display: table-cell;
       vertical-align: middle;
     }
@@ -931,26 +979,27 @@ ul.products-list {
       text-align: center;
       height: p2e(48px);
       width: p2e(120px);
-      border: 1px solid grey;
+      border: p2e(1px) solid grey;
       display: table-cell;
       vertical-align: middle;
     }
 
-    a.plus {
+    a.t-plus {
       text-align: center;
       height: p2e(48px);
       width: p2e(48px);
-      border: 1px solid grey;
+      border: p2e(1px) solid grey;
       display: table-cell;
       vertical-align: middle;
     }
   }
 
   .delivery-addr {
-    padding: p2e(18px);
-    @include font-dpr(18px);
+    padding: p2e(14px);
+    @include font-dpr(14px);
     display: table;
-    border-bottom: 1px solid lightgray;
+    width: 100%;
+    border-bottom: p2e(1px) solid lightgray;
 
     p {
       margin: p2e(14px) auto;
@@ -964,7 +1013,7 @@ ul.products-list {
 }
 
 .my-address {
-  background: #979797;
+  //background: #979797;
   @include font-dpr(14px);
 
   p {
@@ -973,7 +1022,7 @@ ul.products-list {
 
   .address-item {
     background-color: #FFFFFF;
-    border: 1px solid lightgray;
+    border: p2e(1px) solid lightgray;
 
     .name {
       display: inline-block;
@@ -1002,7 +1051,7 @@ ul.products-list {
     background: #FFFFFF;
     padding: p2e(18px);
     @include font-dpr(14px);
-    border-bottom: 1px solid lightgray;
+    border-bottom: p2e(1px) solid lightgray;
 
     p {
       margin: p2e(14px) auto;
@@ -1055,12 +1104,12 @@ ul.products-list {
   .delivery {
     background: #FFFFFF;
     @include font-dpr(14px);
-    border-bottom: 1px solid lightgray;
+    border-bottom: p2e(1px) solid lightgray;
   }
 
   .gyb-discount {
     background: #FFFFFF;
-    border-bottom: 1px solid lightgray;
+    border-bottom: p2e(1px) solid lightgray;
 
     p {
       @include font-dpr(14px);
@@ -1074,12 +1123,6 @@ ul.products-list {
       @include font-dpr(16px);
     }
   }
-
-  .btn-wide {
-    margin: 0 auto;
-    line-height: p2e(48px);
-    width: 100%;
-  }
 }
 
 /**********  orders/index style  ***********/
@@ -1090,7 +1133,7 @@ ul.products-list {
     line-height: p2e(56px);
 
     .item-head {
-      border-bottom: 1px solid lightgray;
+      border-bottom: p2e(1px) solid lightgray;
 
       .delivery-status {
         display: table;
@@ -1161,7 +1204,7 @@ ul.products-list {
 
   .order-detail-head {
     background: #FFFFFF;
-    border-bottom: 1px solid lightgray;
+    border-bottom: p2e(1px) solid lightgray;
 
     .order-status {
       display: table;
@@ -1179,7 +1222,7 @@ ul.products-list {
     @include font-dpr(14px);
     display: table;
     width: 100%;
-    border-bottom: 1px solid lightgray;
+    border-bottom: p2e(1px) solid lightgray;
 
     p {
       margin: p2e(14px) auto;
@@ -1227,7 +1270,7 @@ ul.products-list {
     background: #FFFFFF;
 
     .border-bottom {
-      border-bottom: 1px solid lightgray;
+      border-bottom: p2e(1px) solid lightgray;
     }
   }
 }

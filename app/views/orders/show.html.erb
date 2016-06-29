@@ -1,33 +1,31 @@
 <div class="order-detail" id="order-detail">
   <div class="order-detail-head p-l p-r">
-    <p class="t-left">订单号: 12345634567</p>
+    <p class="t-left">订单号: <%= @order_detail.order.order_id.to_s %></p>
 
     <div class="order-status t-right">
-      <p>已完成</p>
+      <p><%= @order_detail.order.order_status.to_s %></p>
       <div class="clear"></div>
     </div>
     <div class="clear"></div>
   </div>
 
   <div class="delivery-addr m-b p-l p-r">
-    <p class="inline-block">阿斯顿发给和<%#= @order_detail.receiver_name.to_s %></p>
-    <p class="inline-block">2345645689<%#= @order_detail.mobile.to_s %></p>
-    <p>是大法官会尽快了个会尽快了个会尽快<%#= @order_detail.province.to_s + '  ' +  @order_detail.city.to_s + '  ' + @order_detail.district.to_s + '  ' + @order_detail.detail_address.to_s %></p>
+    <p class="inline-block"><%= @order_detail.receiver_name.to_s %></p>
+    <p class="inline-block"><%= @order_detail.mobile %></p>
+    <p><%= @order_detail.province.to_s + '  ' +  @order_detail.city.to_s + '  ' + @order_detail.district.to_s + '  ' + @order_detail.detail_address.to_s %></p>
   </div>
 
   <div class="product-info p-t p-b">
     <div class="product-thumb p-l p-r">
-      <%= image_tag '1.png' %>
+      <%= image_tag 'p1.jpg' %>
     </div>
 
     <div class="product-name m-r m-l m-t">
-      <!--<p><%#= @order_detail.product_name.to_s %></p>-->
-      <p>测试商品3测试商品3测试商品3测试商品3</p>
+      <p><%= @order_detail.product_name.to_s %></p>
     </div>
 
     <div class="product-count m-r m-l m-t">
-      <!--<p class="inline-block">x<%#= @order_detail.count.to_s %></p>-->
-      <p class="inline-block">x1</p>
+      <p class="inline-block">x<%= @order_detail.count.to_s %></p>
     </div>
   </div>
 
@@ -38,27 +36,27 @@
       <div class="clear"></div>
     </div>
     <div>
-      <p class="inline-block t-left">总额</p>
-      <p class="inline-block t-right red">￥188</p>
+      <p class="inline-block t-left">单价</p>
+      <p class="inline-block t-right red">￥<%= @order_detail.price.to_s %></p>
       <div class="clear"></div>
     </div>
     <div>
       <p class="inline-block t-left">公益优惠</p>
-      <p class="inline-block t-right red">-￥18</p>
+      <p class="inline-block t-right red">￥<%= @order_detail.gyb_discount.to_s %></p>
       <div class="clear"></div>
     </div>
     <div class="border-bottom">
       <p class="inline-block t-left">运费</p>
-      <p class="inline-block t-right red">-￥0</p>
+      <p class="inline-block t-right red">￥0</p>
       <div class="clear"></div>
     </div>
     <div class="border-bottom">
       <p class="inline-block t-left">实付款</p>
-      <p class="inline-block t-right red">￥170</p>
+      <p class="inline-block t-right red">￥<%= @order_detail.order.total_price %></p>
       <div class="clear"></div>
     </div>
     <div>
-      <p class="inline-block t-right">2016.06.24 00:00:00</p>
+      <p class="inline-block t-right"><%= @order_detail.created_at.strftime("%Y.%m.%d %H:%M:%S") %></p>
       <div class="clear"></div>
     </div>
   </div>
