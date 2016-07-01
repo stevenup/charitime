@@ -67,9 +67,9 @@ class WepayController < ApplicationController
     params = {
       total_fee:     (order_detail.order.total_price * 100).to_int,
       refund_fee:    (order_detail.order.total_price * 100).to_int,
-      op_user_id:    Setting.wepay.merchant_id
+      op_user_id:    Setting.wepay.mch_id,
       out_trade_no:  order_detail.order_id,
-      out_refund_no: order_detail.out_refund_no,
+      out_refund_no: order_detail.out_refund_no
     }
 
     res = Wepay::Service.invoke_refund params
