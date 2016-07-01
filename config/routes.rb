@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     resources :support_types
     resources :donations
     resources :banners
+    resources :orders
   end
 
   scope 'wepay' do
