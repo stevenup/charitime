@@ -21,11 +21,11 @@ module Wepay
       Wepay::Service.get_apiclient_by_pkcs12
       url = "#{ PAY_URL }/secapi/pay/refund"
       params = {
-        :appid     => Settings.wepay.appid,
-        :mch_id    => Settings.wepay.mch_id,
-        :nonce_str => SecureRandom.uuid.tr('-', '')
+        :appid      => Settings.wepay.appid,
+        :mch_id     => Settings.wepay.mch_id,
+        :nonce_str  => SecureRandom.uuid.tr('-', '')
+        :op_user_id => Settings.wepay.mch_id
       }.merge(params)
-      params[:op_user_id] ||= params[:mch_id]
       check_required_params(params, REFUND_REQUIRED_PARAMS)
       options = {
         ssl_client_cert: Wepay::Service.apiclient_cert,
