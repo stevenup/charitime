@@ -268,7 +268,7 @@ module DatatablesHelper
     actions = '<div>'
     buttons.each do |b|
       b[:options] ||= {}
-      actions << link_to(raw(b[:link_text]), b[:target], b[:options])
+      actions << button_to(raw(b[:link_text]), b[:target], b[:options])
     end
     actions << '</li></ul></div>'
   end
