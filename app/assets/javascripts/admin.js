@@ -1,5 +1,4 @@
 //= require jquery
-//= require jquery_ujs
 //= require lodash/lodash
 //= require common/namespace
 //= require common/utils-common
@@ -16,3 +15,4 @@
 //= require integrations/bootstrap-modal-bs3-fix
 //= require ckeditor/init
 //= require js-routes
+//= require jquery_ujs
