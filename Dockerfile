@@ -59,6 +59,7 @@ RUN bundle install --deployment --without test development doc
 
 # === 5 ===
 COPY . /home/app
+COPY apiclient_cert.p12 /tmp
 RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
 RUN chown -R app:app /home/app
 
