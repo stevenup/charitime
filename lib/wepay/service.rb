@@ -13,7 +13,9 @@ module Wepay
         :nonce_str => SecureRandom.uuid.tr('-', '')
       }.merge(params)
       check_required_params(params, UNIFIEDORDER_REQUIRED_PARAMS)
-      send_request(url, generate_params(params), options)
+      conn = Faraday.new url
+      res = conn.post url, params
+      Hash.from_xml(res.body).delete('xml')
     end
 
     REFUND_REQUIRED_PARAMS = %i( out_trade_no out_refund_no total_fee refund_fee op_user_id )
@@ -28,17 +30,19 @@ module Wepay
       }.merge(params)
       check_required_params(params, REFUND_REQUIRED_PARAMS)
       options = {
-        ssl_client_cert: Wepay::Service.apiclient_cert,
-        ssl_client_key:  Wepay::Service.apiclient_key,
-        verify_ssl:      OpenSSL::SSL::VERIFY_NONE
+        client_cert: Wepay::Service.apiclient_cert,
+        client_key:  Wepay::Service.apiclient_key,
+        verify:      OpenSSL::SSL::VERIFY_NONE
       }
-      send_request(url, generate_params(params), options)
+      conn = Faraday.new url, :ssl => options
+      res = conn.post url, generate_params(params)
+      Hash.from_xml(res.body).delete('xml')
     end
 
     class << self
       attr_accessor :apiclient_key, :apiclient_cert
       def get_apiclient_by_pkcs12
-        pkcs12 = OpenSSL::PKCS12.new(File.read(Settings.wepay.pkcs12, 'rb'))
+        pkcs12 = OpenSSL::PKCS12.new(File.read(Settings.wepay.pkcs12), Settings.wepay.mch_id)
         @apiclient_cert = pkcs12.certificate
         @apiclient_key  = pkcs12.key
       end
@@ -61,11 +65,6 @@ module Wepay
       def generate_params params
         sign = Wepay::Sign.generate params
         sign = "<xml>#{ params.map { |k, v| "<#{ k }>#{ v }</#{ k }>" }.join }<sign>#{ sign }</sign></xml>"
-      end
-
-      def send_request(url, params, options = {})
-        res = conn.post url, params, options
-        Hash.from_xml(res.body).delete('xml')
       end
 
       def conn
