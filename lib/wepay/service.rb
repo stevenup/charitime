@@ -23,7 +23,7 @@ module Wepay
       params = {
         :appid      => Settings.wepay.appid,
         :mch_id     => Settings.wepay.mch_id,
-        :nonce_str  => SecureRandom.uuid.tr('-', '')
+        :nonce_str  => SecureRandom.uuid.tr('-', ''),
         :op_user_id => Settings.wepay.mch_id
       }.merge(params)
       check_required_params(params, REFUND_REQUIRED_PARAMS)
@@ -38,7 +38,7 @@ module Wepay
     class << self
       attr_accessor :apiclient_key, :apiclient_cert
       def get_apiclient_by_pkcs12
-        pkcs12 = OpenSSL::PKCS12.new(File.read(Setting.wepay.pkcs12))
+        pkcs12 = OpenSSL::PKCS12.new(File.read(Settings.wepay.pkcs12, 'rb'))
         @apiclient_cert = pkcs12.certificate
         @apiclient_key  = pkcs12.key
       end
