@@ -8,7 +8,6 @@ class OrdersController < BaseController
 
   def show
     order_id = params[:id]
-    puts order_id
     @order_detail = OrderDetail.find_by_order_id order_id
   end
 

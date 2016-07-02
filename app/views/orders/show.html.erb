@@ -17,7 +17,7 @@
 
   <div class="product-info p-t p-b">
     <div class="product-thumb p-l p-r">
-      <%= image_tag 'p1.jpg' %>
+      <%= image_tag Product.find_by_product_id(@order_detail.product_id).try(:thumb) %>
     </div>
 
     <div class="product-name m-r m-l m-t">
@@ -61,11 +61,19 @@
     </div>
   </div>
 
-  <div class="buttons p-l p-r m-t">
-    <button class="btn btn-default m-l m-r p-t p-b t-left">退货退款</button>
-    <button class="btn btn-default btn-highlight m-l m-r p-t p-b t-right">查看物流</button>
-    <div class="clear">
+  <% if @order_detail.order.order_status.to_s == 'UNPAID' %>
+    <div class="buttons p-l p-r m-t">
+      <button class="btn btn-default m-l m-r p-t p-b t-left">取消订单</button>
+      <button class="btn btn-default btn-highlight m-l m-r p-t p-b t-right">立即付款</button>
+      <div class="clear">
+      </div>
     </div>
-  </div>
-
+  <% elsif @order_detail.order.order_status.to_s == 'SUCCESS' %>
+    <div class="buttons p-l p-r m-t">
+      <button class="btn btn-default m-l m-r p-t p-b t-left">退货退款</button>
+      <button class="btn btn-default btn-highlight m-l m-r p-t p-b t-right">查看物流</button>
+      <div class="clear">
+      </div>
+    </div>
+  <% end %>
 </div>

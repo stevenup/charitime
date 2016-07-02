@@ -176,6 +176,27 @@ module DatatablesHelper
 
   alias :recommend_actions :render_recommend_row_actions
 
+  def render_delivery_action(target, opts = {})
+    delivery_action [
+                        {
+                            target: target,
+                            link_text: '发货',
+                            options: opts
+                        }
+                    ]
+  end
+  alias :delivery :render_delivery_action
+
+  def render_delivery_row_action(buttons)
+    action = '<div>'
+    buttons.each do |b|
+      b[:options] ||= {}
+      action << link_to(raw(b[:link_text]), b[:target], b[:options])
+    end
+    action << '</li></ul></div>'
+  end
+  alias :delivery_action :render_delivery_row_action
+
   def render_on_shelf_action(target, opts = {})
     on_shelf_action [
                         target: target,

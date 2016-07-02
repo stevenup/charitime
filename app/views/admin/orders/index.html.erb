@@ -16,6 +16,7 @@
         <%= dt_col(Order.hn(:order_status), data: {data: 'order_status'}) %>
         <%= dt_col(Order.hn(:total_price), data: {data: 'total_price'}) %>
         <%= dt_col(Order.hn(:created_at), data: {data: 'created_at'}) %>
+        <%= dt_col(Product.hn(:action), data: {data: 'actions'}) %>
       <% end %>
     </div>
   </div>

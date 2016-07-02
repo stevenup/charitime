@@ -6,6 +6,15 @@ class Admin::OrdersController < Admin::BaseController
     end
   end
 
+  def edit
+    @order_detail = OrderDetail.find_by_order_id params[:id]
+  end
+
+  def update
+    order_detail = OrderDetail.find_by_order_id(params[:id])
+    redirect_to admin_orders_path if order_detail.update_attributes order_detail_params
+  end
+
   private
   def get_rows
     dt = decode_datatables_params
@@ -25,5 +34,9 @@ class Admin::OrdersController < Admin::BaseController
                 .joins(search_obj[:joins])
                 .order(search_obj[:order])
                 .where(search_obj[:conditions])
+  end
+
+  def order_detail_params
+    params.require(:order_detail).permit(:delivery_company, :delivery_id)
   end
 end
