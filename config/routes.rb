@@ -31,18 +31,18 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'home'                 => 'home#index'
-    get 'products_recommended' => 'products_recommended#index'
 
     resources :users
-    resources :products do
-      get 'set_recommended', on: :collection
-      get 'reset_recommended', on: :collection
-    end
+    resources :products
+
     resources :shelf_items do
+      get :pull_off_shelf,     on: :member
+      get :set_recommended,    on: :member
+      get :reset_recommended,  on: :member
       collection do
-        get :pull_off_shelf    # ajax get request
         get :on_shelf_list
         get :off_shelf_list
+        get :recommended_list
       end
     end
     resources :product_categories

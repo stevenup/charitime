@@ -2,7 +2,7 @@ class HomeController < BaseController
   before_action :auth_user, only: [:index]
 
   def index
-    @recommended_products = Product.where "recommended = '1'"
+    @recommended_products = ShelfItem.where "recommended = '1'"
   end
 
   def personal_center

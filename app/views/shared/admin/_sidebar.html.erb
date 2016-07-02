@@ -60,11 +60,6 @@
                 <span class="submenu-label">全部商品</span>
               <% end %>
             </li>
-            <li class="<%= render_active ({:menu => 'products_recommended' }) %>">
-              <%= link_to admin_products_recommended_path do %>
-                <span class="submenu-label">商品推荐</span>
-              <% end %>
-            </li>
             <li class="<%= render_active ({:menu => 'product_categories' }) %>">
               <%= link_to admin_product_categories_path do %>
                 <span class="submenu-label">商品类别</span>
@@ -99,6 +94,11 @@
             <li class="<%= render_active ({:menu => 'on_shelf_list' }) %>">
               <%= link_to on_shelf_list_admin_shelf_items_path do %>
                 <span class="submenu-label">已上架商品</span>
+              <% end %>
+            </li>
+            <li class="<%= render_active ({:menu => 'recommended_list' }) %>">
+              <%= link_to recommended_list_admin_shelf_items_path do %>
+                <span class="submenu-label">推荐的商品</span>
               <% end %>
             </li>
           </ul>
