@@ -3,9 +3,9 @@ class OrdersController < BaseController
     if status = params[:status]
       @orders = Order.where("user_id = ? and (order_status = ? or logistics_status != ?)", '1', '0', '2').order(created_at: :desc) if status == '0'
       @orders = Order.where("order_status = ? or logistics_status = ?", '1', '2').order(created_at: :desc) if status == '1'
-      @orders = Order.where("user_id = ?", '1').order(created_at: :desc) if status == '2'
+      @orders = Order.where("user_id = ?", current_user.id).order(created_at: :desc) if status == '2'
     else
-      @orders = Order.all.order(created_at: :desc)
+      @orders = Order.where("user_id = ?", current_user.id).order(created_at: :desc)
     end
   end
 
@@ -39,8 +39,7 @@ class OrdersController < BaseController
     order_detail.save
     order = Order.new
     order[:order_id]     = order_id
-    # order[:user_id]      = current_user.id
-    order[:user_id]      = '1'
+    order[:user_id]      = current_user.id
     total_price          = order_detail_params[:count] * (shelf_item.price - shelf_item.gyb_discount)
     order[:total_price]  = total_price
     order[:order_status] = '0'
