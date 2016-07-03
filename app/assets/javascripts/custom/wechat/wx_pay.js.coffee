@@ -1,5 +1,24 @@
 $ ->
   payBtnMonitor()
+  refundBtnMonitor()
+
+refundBtnMonitor = () ->
+  $('#refund-btn').on 'click', (e) ->
+    e.preventDefault()
+    id = $(this).data('id')
+    $.ajax
+      method: 'GET',
+      url: '/wepay/refund_order',
+      data: { id: id },
+      dataType: 'json',
+    .done (res) ->
+      if res.result == 'success'
+        alert('申请退款成功！')
+        $('#refund-btn').display('none')
+      else
+        alert(res.data)
+    .fail ->
+      alert('出错啦！')
 
 payBtnMonitor = () ->
   $('#pay-btn').on 'click', (e) ->
@@ -10,7 +29,7 @@ payBtnMonitor = () ->
     $.ajax
       method: 'GET'
       url: '/wepay/unified_order',
-      data: {id: id},
+      data: { id: id },
       dataType: 'json',
     .done (res) ->
       if res.result == 'success'

@@ -1,42 +1,44 @@
 <ul class="order-list" id="order-list">
-  <% @orders.each do |ele| %>
-    <li class="order-item p-l p-r">
-      <div class="item-head">
-        <p class="t-left"><%= ele.created_at.strftime("%Y.%m.%d %H:%M:%S") %></p>
+  <% if !@orders.nil? %>
+    <% @orders.each do |ele| %>
+      <li class="order-item p-l p-r">
+        <div class="item-head">
+          <p class="t-left"><%= ele.created_at.strftime("%Y.%m.%d %H:%M:%S") %></p>
 
-        <div class="delivery-status t-right">
-          <p><%= ele.order_status.to_s %></p>
-          <i class="arrow fa fa-angle-right fa-2x"></i>
+          <div class="delivery-status t-right">
+            <p><%= ele.order_status.to_s %></p>
+            <i class="arrow fa fa-angle-right fa-2x"></i>
+            <div class="clear"></div>
+          </div>
           <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-      </div>
 
-      <%= link_to order_path(ele.order_id)  do %>
-        <div class="item-body">
-          <div class="brief-info m-b">
-            <div class="product-thumb p-l p-r">
-              <%= image_tag 'p1.jpg' %>
-            </div>
+        <%= link_to order_path(ele.order_id)  do %>
+          <div class="item-body">
+            <div class="brief-info m-b">
+              <div class="product-thumb p-l p-r">
+                <%= image_tag 'p1.jpg' %>
+              </div>
 
-            <div class="product-name m-r m-l m-t m-b">
-              <p><%= OrderDetail.find_by_order_id(ele.order_id).try(:product_name).to_s %></p>
-            </div>
+              <div class="product-name m-r m-l m-t m-b">
+                <p><%= OrderDetail.find_by_order_id(ele.order_id).try(:product_name).to_s %></p>
+              </div>
 
-            <div class="product-price m-t p-b p-r">
-              <p class="inline-block">￥<%= OrderDetail.find_by_order_id(ele.order_id).try(:price).to_s %></p>
-            </div>
+              <div class="product-price m-t p-b p-r">
+                <p class="inline-block">￥<%= OrderDetail.find_by_order_id(ele.order_id).try(:price).to_s %></p>
+              </div>
 
-            <div class="product-count m-t p-b p-r">
-              <p class="inline-block">x<%= OrderDetail.find_by_order_id(ele.order_id).try(:count).to_s %></p>
-            </div>
+              <div class="product-count m-t p-b p-r">
+                <p class="inline-block">x<%= OrderDetail.find_by_order_id(ele.order_id).try(:count).to_s %></p>
+              </div>
 
-            <div class="order-price m-t p-b p-r">
-              <p class="inline-block red">实付:￥<%= ele.total_price.to_s %></p>
+              <div class="order-price m-t p-b p-r">
+                <p class="inline-block red">实付:￥<%= ele.total_price.to_s %></p>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
-    </li>
+        <% end %>
+      </li>
+    <% end %>
   <% end %>
 </ul>
