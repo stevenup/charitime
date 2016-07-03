@@ -65,6 +65,7 @@ chooseWXPay = (prepay_id) ->
             success: (res) ->
               if res.status == 'success'
                 alert('修改订单状态成功！')
+#                window.location = Routes.order_path(id: id)   ### hope there is a redirect to the orders/show view
         else
           alert(res.errMsg)
       cancel: () ->

@@ -26,7 +26,8 @@ Rails.application.routes.draw do
   resources :addresses
 
   resources :orders do
-    get :pay, on: :collection
+    get :pay,          on: :member
+    get :cancel_order, on: :member
   end
 
   namespace :admin do
