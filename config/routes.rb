@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :orders do
     get :pay,          on: :member
     get :cancel_order, on: :member
+    get :apply_refund, on: :member
   end
 
   namespace :admin do
@@ -53,7 +54,11 @@ Rails.application.routes.draw do
     resources :support_types
     resources :donations
     resources :banners
-    resources :orders
+    resources :orders do
+      collection do
+        get :refund_orders
+      end
+    end
   end
 
   scope 'wepay' do

@@ -69,7 +69,7 @@
     </div>
   <% elsif @order_detail.order.order_status.to_s == 'SUCCESS' %>
     <div class="buttons p-l p-r m-t">
-      <button id="refund-btn" class="btn btn-default m-l m-r p-t p-b t-left" data-id=<%= "#{ @order_detail.order.order_id }" %>>退货退款</button>
+      <%= button_to '退货退款', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default m-l m-r p-t p-b t-left', :'data-confirm' => '确定申请退货退款吗？' %>
       <button class="btn btn-default btn-highlight m-l m-r p-t p-b t-right">查看物流</button>
       <div class="clear"></div>
     </div>

@@ -5,6 +5,7 @@ datatable_json_response(json) do
     json.order_status  row.order_status
     json.total_price   row.total_price
     json.created_at    timeago(row.created_at)
-    json.actions       row_action '发货', edit_admin_order_path(row), { edit: { data: { id: row.id }, class: 'btn btn-sm btn-info edit-btn' }, class: 'btn btn-sm btn-dark delete-btn m-l-sm' }
+    json.actions       row_action '处理', refund_order_path(:id => row.order_id),{id: row.id, class: 'btn btn-sm btn-info btn-dark', data: { confirm: '确定同意退款吗？'} }
+
   end
 end

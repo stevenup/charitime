@@ -1,24 +1,42 @@
 $ ->
   payBtnMonitor()
-  refundBtnMonitor()
+  refundApplyBtnMonitor()
+#  refundConfirmBtnMonitor()
 
-refundBtnMonitor = () ->
-  $('#refund-btn').on 'click', (e) ->
+refundApplyBtnMonitor = () ->
+  $('#refund-apply-btn').on 'click', (e) ->
     e.preventDefault()
     id = $(this).data('id')
     $.ajax
       method: 'GET',
-      url: '/wepay/refund_order',
+      url: '/orders/apply_refund',
       data: { id: id },
       dataType: 'json',
     .done (res) ->
       if res.result == 'success'
-        alert('申请退款成功！')
-        $('#refund-btn').display('none')
+        alert('申请退款发送成功！')
+        $('#refund-apply-btn').display('none')
       else
         alert(res.data)
-    .fail ->
-      alert('出错啦！')
+
+#refundConfirmBtnMonitor = () ->
+#  $('#refund-condirm-btn').on 'click', (e) ->
+#    e.preventDefault()
+#    id = $(this).data('id')
+#    $.ajax
+#      method: 'GET',
+#      url: '/wepay/refund_order',
+#      data: { id: id },
+#      dataType: 'json',
+#    .done (res) ->
+#      if res.result == 'success'
+#        alert('申请退款成功！')
+#        $('#refund-btn').display('none')
+#      else
+#        alert(res.data)
+#    .fail ->
+#      alert('出错啦！')
+
 
 payBtnMonitor = () ->
   $('#pay-btn').on 'click', (e) ->

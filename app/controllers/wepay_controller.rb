@@ -75,7 +75,7 @@ class WepayController < ApplicationController
     res = Wepay::Service.invoke_refund params
     if res['return_code'] == 'SUCCESS'
       if res['result_code'] == 'SUCCESS'
-        order_detail.order.update_attribute(:order_status, -3)
+        order_detail.order.update_attribute(:order_status, -2)
         render json: { result: 'success' }
       else res['result_code'] == 'FAIL'
         render json: { result: 'fail', data: res['err_code_des'] }
