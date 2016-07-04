@@ -5,7 +5,7 @@ namespace :wechat do
             {
                 "type" => "view",
                 "name" => "Charitime",
-                "url" => "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{ Settings.wechat.appid }&redirect_uri=#{ Settings.wechat.redirect_uri }&response_type=code&scope=snsapi_base&state=123456#wechat_redirect"
+                "url" => "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{ Settings.wechat.appid }&redirect_uri=#{ Settings.wechat.redirect_uri }&response_type=code&scope=snsapi_base&state=12345#wechat_redirect"
             }
         ]
     }.to_json.gsub!(/\\u([0-9a-z]{4})/) {|s| [$1.to_i(16)].pack("U")}

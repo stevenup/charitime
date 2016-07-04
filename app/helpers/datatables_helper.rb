@@ -137,35 +137,19 @@ module DatatablesHelper
   # == Usage:
   #    recommend admin_product_path(row), {id: row.id, class: 'btn btn-sm btn-info recommend-btn'}
   #
-  def render_recommend_action(target, opts = {})
-    recommend_actions [
-                          {
-                              target: target,
-                              link_text: '加入推荐',
-                              options: opts
-                          }
-                      ]
+
+  def render_row_action( action_name, target, opts = {} )
+    render_row [
+                   {
+                       target: target,
+                       link_text: action_name,
+                       options: opts
+                   }
+               ]
   end
+  alias :row_action :render_row_action
 
-  alias :recommend :render_recommend_action
-
-  # Method used to wrap the recommend_cancel button for table rows, which is meant to remove the product from recommendations.
-  #
-  def render_recommend_cancel_action(target, opts = {})
-    recommend_actions [
-                          {
-                              target: target,
-                              link_text: '取消推荐',
-                              options: opts
-                          }
-                      ]
-  end
-
-  alias :recommend_cancel :render_recommend_cancel_action
-
-  # Generate HTML codes for recommend and recommend_cancel buttons
-  #
-  def render_recommend_row_actions(buttons)
+  def render_row(buttons)
     actions = '<div>'
     buttons.each do |b|
       b[:options] ||= {}
@@ -174,45 +158,6 @@ module DatatablesHelper
     actions << '</li></ul></div>'
   end
 
-  alias :recommend_actions :render_recommend_row_actions
-
-  def render_on_shelf_action(target, opts = {})
-    on_shelf_action [
-                        target: target,
-                        link_text: '编辑上架',
-                        options: opts
-                    ]
-  end
-  alias :on_shelf :render_on_shelf_action
-
-  def render_on_shelf_row_action(buttons)
-    actions = '<div>'
-    buttons.each do |b|
-      b[:options] ||= {}
-      actions << link_to(raw(b[:link_text]), b[:target], b[:options])
-    end
-    actions << '</li></ul></div>'
-  end
-  alias on_shelf_action :render_on_shelf_row_action
-
-  def render_off_shelf_action(target, opts = {})
-    off_shelf_action [
-                        target: target,
-                        link_text: '下架',
-                        options: opts
-                    ]
-  end
-  alias :off_shelf :render_off_shelf_action
-
-  def render_off_shelf_row_action(buttons)
-    actions = '<div>'
-    buttons.each do |b|
-      b[:options] ||= {}
-      actions << link_to(raw(b[:link_text]), b[:target], b[:options])
-    end
-    actions << '</li></ul></div>'
-  end
-  alias off_shelf_action :render_off_shelf_row_action
 
   # Generate Img codes in jbuidler
   def render_img(url, options ={})

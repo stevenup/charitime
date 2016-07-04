@@ -1,3 +1,5 @@
+# source 'http://rubygems.org'
+# source 'http://ruby.taobao.org'
 source 'http://gems.ruby-china.org'
 
 # rails console
@@ -16,12 +18,15 @@ gem 'jquery-rails'
 gem 'coffee-rails', '~> 4.1.0'
 gem "js-routes"
 gem 'turbolinks'
+gem 'china_city'
 
 # back-end
 gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'rails', '4.2.5'
 gem 'jbuilder', '~> 2.0'
 gem 'rabl'
+gem 'faraday'
+gem 'table_print'
 
 # rich-text editor
 gem 'ckeditor'
@@ -34,6 +39,9 @@ gem 'rails-i18n', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+gem 'pry'
+gem 'pry-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -54,8 +62,6 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'quiet_assets'                # Quiet assets access log in development server
   gem 'thin'                        # use thin as local development server
-  gem 'pry'
-  gem 'pry-rails'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

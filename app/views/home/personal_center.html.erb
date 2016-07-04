@@ -8,59 +8,130 @@
     </div>
     <div class="total-gyb">
       <p>100</p>
+
       <p class="tt">公益币</p>
     </div>
   </div>
 
-  <div class="my-cart s-s" id="my-cart">
-    <i class="menu-icon fa fa-shopping-cart fa-lg"></i>
-    <p class="menu-name">我的购物车</p>
-    <i class="arrow fa fa-angle-right fa-2x"></i>
+  <div class="menu">
+    <%= link_to do %>
+      <div class="my-cart s-s" id="my-cart">
+        <div class="t-left">
+          <i class="menu-icon fa fa-shopping-cart fa-lg"></i>
+
+          <p class="menu-name">我的购物车</p>
+        </div>
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
+    <%= link_to do %>
+      <div class="my-gyb-menu s-s" id="my-gyb-menu">
+        <div class="t-left">
+          <i class="menu-icon fa fa-money fa-lg"></i>
+
+          <p class="menu-name">我的公益币</p>
+        </div>
+
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
+    <%= link_to orders_path do %>
+      <div class="all-orders s-s" id="all-orders">
+        <div class="t-left">
+          <i class="menu-icon fa fa-bars fa-lg"></i>
+
+          <p class="menu-name">所有订单</p>
+        </div>
+
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
+    <%= link_to orders_path(:status => '0') do %>
+      <div class="finished-orders" id="finished-orders">
+        <div class="t-left">
+          <i class="menu-icon fa fa-bars fa-lg"></i>
+
+          <p class="menu-name">未完成订单</p>
+        </div>
+
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
+    <%= link_to orders_path(:status => '1') do %>
+      <div class="unfinished-orders" id="unfinished-orders">
+        <div class="t-left">
+          <i class="menu-icon fa fa-bars fa-lg"></i>
+
+          <p class="menu-name">已完成订单</p>
+        </div>
+
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
+    <%= link_to do %>
+      <div class="supported-projects s-s" id="supported-projects">
+        <div class="t-left">
+          <i class="menu-icon fa fa-heartbeat fa-lg"></i>
+
+          <p class="menu-name">我支持的项目</p>
+        </div>
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
+    <%= link_to do %>
+      <div class="my-donations s-s" id="my-donations">
+        <div class="t-left">
+          <i class="menu-icon fa fa-plus-circle fa-lg"></i>
+
+          <p class="menu-name">我的捐赠</p>
+        </div>
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
+    <%= link_to addresses_path do %>
+      <div class="my-settings s-s" id="my-settings">
+        <div class="t-left">
+          <i class="menu-icon fa fa-gears fa-lg"></i>
+
+          <p class="menu-name">我的地址</p>
+        </div>
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
   </div>
 
-  <div class="my-gyb-menu s-s" id="my-gyb-menu">
-    <i class="menu-icon fa fa-money fa-lg"></i>
-    <p class="menu-name">我的公益币</p>
-    <i class="arrow fa fa-angle-right fa-2x"></i>
-  </div>
-
-  <div class="all-orders s-s" id="all-orders">
-    <i class="menu-icon fa fa-bars fa-lg"></i>
-    <p class="menu-name">所有订单</p>
-    <i class="arrow fa fa-angle-right fa-2x"></i>
-  </div>
-
-  <div class="finished-orders" id="finished-orders">
-    <i class="menu-icon fa fa-bars fa-lg"></i>
-    <p class="menu-name">未完成订单</p>
-    <i class="arrow fa fa-angle-right fa-2x"></i>
-  </div>
-
-  <div class="unfinished-orders" id="unfinished-orders">
-    <i class="menu-icon fa fa-bars fa-lg"></i>
-    <p class="menu-name">已完成订单</p>
-    <i class="arrow fa fa-angle-right fa-2x"></i>
-  </div>
-
-  <div class="supported-projects s-s" id="supported-projects">
-    <i class="menu-icon fa fa-heartbeat fa-lg"></i>
-    <p class="menu-name">我支持的项目</p>
-    <i class="arrow fa fa-angle-right fa-2x"></i>
-  </div>
-
-  <div class="my-donations s-s" id="my-donations">
-    <i class="menu-icon fa fa-plus-circle fa-lg"></i>
-    <p class="menu-name">我的捐赠</p>
-    <i class="arrow fa fa-angle-right fa-2x"></i>
-  </div>
-
-  <div class="my-settings s-s" id="my-settings">
-    <i class="menu-icon fa fa-gears fa-lg"></i>
-    <p class="menu-name">个人设置</p>
-    <i class="arrow fa fa-angle-right fa-2x"></i>
-  </div>
-
-  <div class="foot m-t p-t p-b">
+  <div class="foot m-t m-b p-t p-b">
     <p>&copy; 2016 上海索益</p>
   </div>
 

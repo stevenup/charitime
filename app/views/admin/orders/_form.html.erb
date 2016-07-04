@@ -1,0 +1,82 @@
+<%= form_for @order_detail, url: url, html: { class: 'form-horizontal' } do |f| %>
+  <div class="form-group">
+    <%= f.label :用户ID, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.label @order_detail.order.user_id, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :订单号, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.label @order_detail.order_id, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :订单状态, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.label @order_detail.order.order_status, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :实付款, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4">
+      <div class="form-control col-lg-4"><%= @order_detail.order.total_price.to_s %></div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :商品, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= image_tag Product.find_by_product_id(@order_detail.product_id).try(:thumb), class: 'col-lg-4', required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :单价, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4">
+      <div class="form-control col-lg-4"><%= @order_detail.price.to_s %></div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :数量, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4">
+      <div class="form-control col-lg-4"><%= @order_detail.count.to_s %></div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :优惠, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4">
+      <div class="form-control col-lg-4"><%= @order_detail.gyb_discount.to_s %></div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :收货人, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.label @order_detail.receiver_name, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :手机, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.label @order_detail.mobile, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :地址, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.label @order_detail.province.to_s + @order_detail.city.to_s + @order_detail.district.to_s + @order_detail.detail_address.to_s, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :物流公司, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.text_field :delivery_company, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :单号, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.text_field :delivery_id, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-1 col-lg-10">
+      <%= f.submit '提交', class: "btn btn-sm btn-primary" %>
+      &nbsp
+      <%= link_to '返回', '#', class: "btn btn-sm btn-info", onclick: "history.back()" %>
+    </div>
+  </div>
+<% end %>

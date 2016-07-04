@@ -1,0 +1,27 @@
+<div class="nav-content-head">
+  <ul class="breadcrumb">
+    <li><span class="primary-font"><i class="icon-home"></i></span><a href="/admin/home"> Home</a></li>
+    <li>订单管理</li>
+    <li>全部订单</li>
+  </ul>
+
+</div>
+
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="table-responsive">
+      <%= dt id: 'orders_datatable', class: 'table table-striped b-t b-b', :'data-url' => admin_orders_path(:format => :json) do %>
+        <%= dt_col(Order.hn(:user_id), data: {data: 'user_id'}) %>
+        <%= dt_col(Order.hn(:order_id), data: {data: 'order_id'}) %>
+        <%= dt_col(Order.hn(:order_status), data: {data: 'order_status'}) %>
+        <%= dt_col(Order.hn(:total_price), data: {data: 'total_price'}) %>
+        <%= dt_col(Order.hn(:created_at), data: {data: 'created_at'}) %>
+        <%= dt_col(Product.hn(:action), data: {data: 'actions'}) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :scripts do %>
+  <%= controller_js_include %>
+<% end %>

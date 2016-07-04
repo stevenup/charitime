@@ -30,9 +30,9 @@
       <div class="pull-right m-right-sm">
         <div class="user-block hidden-xs">
           <a href="#" id="userToggle" data-toggle="dropdown">
-            <%= image_tag 'profile1.jpg', class: 'img-circle inline-block user-profile-pic' %>
+            <%= image_tag 'avatar.jpg', class: 'img-circle inline-block user-profile-pic' %>
             <div class="user-detail inline-block">
-              Jane Doe
+              Steven Tang
               <i class="fa fa-angle-down"></i>
             </div>
           </a>
@@ -68,9 +68,10 @@
               <li><a>You have 4 new unread messages</a></li>
               <li>
                 <a class="clearfix" href="#">
-                  <%= image_tag 'profile2.jpg', alt: "User Avatar" %>
+                  <%#= image_tag 'profile2.jpg', alt: "User Avatar" %>
+                  <%= image_tag nil, alt: "User Avatar" %>
                   <div class="detail">
-                    <strong>John Doe</strong>
+                    <strong>Steven Tang</strong>
 
                     <p class="no-margin">
                       Lorem ipsum dolor sit amet...
@@ -81,7 +82,7 @@
               </li>
               <li>
                 <a class="clearfix" href="#">
-                  <%= image_tag 'profile3.jpg', alt: "user avatar" %>
+                  <%= image_tag nil, alt: "user avatar" %>
                   <div class="detail">
                     <strong>Jane Doe</strong>
 
@@ -94,7 +95,7 @@
               </li>
               <li>
                 <a class="clearfix" href="#">
-                  <%= image_tag 'profile4.jpg', alt: "user avatar" %>
+                  <%= image_tag nil, alt: "user avatar" %>
                   <div class="detail m-left-sm">
                     <strong>Bill Doe</strong>
 
@@ -107,7 +108,7 @@
               </li>
               <li>
                 <a class="clearfix" href="#">
-                  <%= image_tag 'profile5.jpg', alt: "user avatar" %>
+                  <%= image_tag nil, alt: "user avatar" %>
                   <div class="detail">
                     <strong>Baby Doe</strong>
 
