@@ -148,8 +148,8 @@
             </span>
           </a>
           <ul class="submenu bg-palette4">
-            <li class="<%= render_active ({:menu => 'index' }) %>">
-              <%= link_to admin_orders_path do %>
+            <li class="<%= render_active ({:menu => 'undelivered_orders' }) %>">
+              <%= link_to undelivered_orders_admin_orders_path do %>
                 <span class="submenu-label">待发货订单</span>
               <% end %>
             </li>

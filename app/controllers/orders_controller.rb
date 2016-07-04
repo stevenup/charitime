@@ -52,7 +52,7 @@ class OrdersController < BaseController
     order_detail.save
     order = Order.new
     order[:order_id]     = order_id
-    order[:user_id]      = current_user.id
+    order[:user_id]      = '1'
     total_price          = order_detail_params[:count] * (shelf_item.price - shelf_item.gyb_discount)
     order[:total_price]  = total_price
     order[:order_status] = '0'

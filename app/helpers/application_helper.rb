@@ -19,8 +19,7 @@ module ApplicationHelper
   #
   def render_active(opts)
     menu = opts.delete :menu
-    return 'active' if menu == params[:controller].split('/')[1]
-    return 'active' if menu == params[:action]
+    return 'active' if menu == params[:controller].split('/')[1] || menu == params[:action]
   end
 
   # 创建一个timeago插件兼容的时间戳显示tag

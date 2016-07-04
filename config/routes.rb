@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     resources :orders do
       collection do
         get :refund_orders
+        get :undelivered_orders
       end
     end
   end
