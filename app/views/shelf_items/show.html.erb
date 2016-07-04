@@ -76,7 +76,6 @@
       <%= link_to addresses_path do %>
         <button id="address-btn" class="btn btn-default btn-highlight m-l m-r p-t p-b">添加地址</button>
       <% end %>
-
       <div class="item-number" data-trigger="spinner" id="spinner">
         <p>购买数量：</p>
         <a href="javascript:;" data-spin="down" class="t-minus">-</a>
@@ -84,9 +83,7 @@
         <a href="javascript:;" data-spin="up" class="t-plus">+</a>
       </div>
     </div>
-
 <% else %>
-
   <div class="confirm-box" id="confirm-box">
     <%= form_tag '/orders', method: :post do %>
       <div class="delivery-addr">
@@ -94,23 +91,19 @@
         <p class="inline-block"><%= @address.mobile.to_s %></p>
         <p><%= @address.province.to_s + ' ' + @address.city.to_s + ' ' + @address.district.to_s + ' ' + @address.detail_address.to_s %></p>
       </div>
-
       <div class="item-number" data-trigger="spinner" id="spinner">
         <p>购买数量：</p>
         <a href="javascript:;" data-spin="down" class="t-minus">-</a>
         <%= text_field_tag :count, '1', class: 'count', data: {rule: 'quantity', max: '10'} %>
         <a href="javascript:;" data-spin="up" class="t-plus">+</a>
       </div>
-
       <%= hidden_field_tag 'aid', @address.id %>
       <%= hidden_field_tag 'siid', @shelf_item.id %>
-
       <div class="buttons">
         <%= submit_tag '确定提交', id: 'confirm-btn', class: 'btn btn-default btn-highlight btn-middle m-l m-r p-t p-b' %>
       </div>
     </div>
   <% end %>
-
 <% end %>
 
 <script>

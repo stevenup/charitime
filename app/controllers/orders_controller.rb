@@ -13,17 +13,22 @@ class OrdersController < BaseController
     @order_detail = OrderDetail.find_by_order_id order_id
   end
 
+  def show
+    order_id = params[:id]
+    @order_detail = OrderDetail.find_by_order_id order_id
+  end
+
   def apply_refund
     order_id = params[:id]
     order = Order.find_by_order_id order_id
-    order.update_attribute :order_status, -3
+    order.update_attribute(:order_status, -3)
     redirect_to order_pay_url, :order_status, -3
   end
 
   def cancel_order
     id = params[:id]
     order = Order.find_by_order_id id
-    order.update_attribute :order_status, 2
+    order.update_attribute(:order_status, 2)
     redirect_to order_pay_url, :id => id
   end
 
@@ -58,7 +63,7 @@ class OrdersController < BaseController
   def change_order_status
     id = params[:id]
     order = Order.find_by :order_id => id
-    order.update_attribute :order_status, 1
+    order.update_attribute(:order_status, 1)
     render json: { status: 'success' }
   end
 end
