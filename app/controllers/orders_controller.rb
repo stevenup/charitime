@@ -8,11 +8,6 @@ class OrdersController < BaseController
     end
   end
 
-  def show
-    order_id = params[:id]
-    @order_detail = OrderDetail.find_by_order_id order_id
-  end
-
   def pay
     order_id = params[:id]
     @order_detail = OrderDetail.find_by_order_id order_id
@@ -22,14 +17,14 @@ class OrdersController < BaseController
     order_id = params[:id]
     order = Order.find_by_order_id order_id
     order.update_attribute :order_status, -3
-    redirect_to :action => 'show', :id => order_id
+    redirect_to order_pay_url, :order_status, -3
   end
 
   def cancel_order
     id = params[:id]
     order = Order.find_by_order_id id
     order.update_attribute :order_status, 2
-    redirect_to :action => 'show', :id => id
+    redirect_to order_pay_url, :id => id
   end
 
   def create

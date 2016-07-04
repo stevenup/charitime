@@ -25,11 +25,11 @@ Rails.application.routes.draw do
   resources :donations
   resources :addresses
 
-  resources :orders do
-    get :pay,          on: :member
+  resources :orders, except: [:show] do
     get :cancel_order, on: :member
     get :apply_refund, on: :member
   end
+  get '/orders/pay/:id', to: 'orders#pay', as: 'order_pay'
 
   namespace :admin do
     get 'home'                 => 'home#index'
