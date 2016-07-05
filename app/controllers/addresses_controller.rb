@@ -27,7 +27,7 @@ class AddressesController < BaseController
       data[:district] = ChinaCity.get data[:district]
       address         = Address.new data
       address.user_id = current_user.id
-      address.default = '1' if Address.count == 0
+      address.default = '1' if Address.where(user_id: current_user.id).count == 0
       redirect_to addresses_path if address.save
     else
       address = Address.find(id)
