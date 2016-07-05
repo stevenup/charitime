@@ -1,10 +1,10 @@
 class OrdersController < BaseController
   def index
     if status = params[:status]
-      @orders = Order.where("user_id = ? and (order_status = ? or logistics_status != ?)", '1', '0', '2').order(created_at: :desc) if status == '0'
+      @orders = Order.where("user_id = ? and (order_status = ? or logistics_status != ?)", current_user.id, '0', '2').order(created_at: :desc) if status == '0'
       @orders = Order.where("order_status = ? or logistics_status = ?", '1', '2').order(created_at: :desc) if status == '1'
     else
-      @orders = Order.where("user_id = ?", '1').order(created_at: :desc)
+      @orders = Order.where("user_id = ?", current_user.id).order(created_at: :desc)
     end
   end
 
@@ -22,14 +22,14 @@ class OrdersController < BaseController
     order_id = params[:id]
     order = Order.find_by_order_id order_id
     order.update_attribute(:order_status, -3)
-    redirect_to order_pay_url, :order_status, -3
+    redirect_to orders_path :id => order_id
   end
 
   def cancel_order
     id = params[:id]
     order = Order.find_by_order_id id
     order.update_attribute(:order_status, 2)
-    redirect_to order_pay_url, :id => id
+    redirect_to :action => 'show', :id => id
   end
 
   def create
@@ -52,7 +52,7 @@ class OrdersController < BaseController
     order_detail.save
     order = Order.new
     order[:order_id]     = order_id
-    order[:user_id]      = '1'
+    order[:user_id]      = current_user.id
     total_price          = order_detail_params[:count] * (shelf_item.price - shelf_item.gyb_discount)
     order[:total_price]  = total_price
     order[:order_status] = '0'
