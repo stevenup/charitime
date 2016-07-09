@@ -1,6 +1,6 @@
 # source 'http://rubygems.org'
 # source 'http://ruby.taobao.org'
-source 'http://gems.ruby-china.org'
+source 'https://gems.ruby-china.org'
 
 # rails console
 gem 'table_print'
