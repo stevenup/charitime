@@ -1,6 +1,6 @@
 # source 'http://rubygems.org'
 # source 'http://ruby.taobao.org'
-source 'http://gems.ruby-china.org'
+source 'https://gems.ruby-china.org'
 
 # rails console
 gem 'table_print'
@@ -46,15 +46,19 @@ gem 'pry-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+group :development do
   gem 'byebug'
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  # Add this if you're using rvm
+  # gem 'capistrano-rvm'
 end
 
 group :development do
