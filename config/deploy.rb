@@ -48,6 +48,24 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 # set :keep_releases, 5
 
 namespace :deploy do
+  desc "Start the Unicorn process when it isn't already running."
+  task :start do
+    on roles(:app) do
+      within release_path do
+        execute :bundle, 'exec', "unicorn", "-Dc", 'config/unicorn.rb', "-E production"
+      end
+    end
+  end
+
+  desc "Initiate a rolling restart by telling Unicorn to start the new application code and kill the old process when done."
+  task :restart do
+    run "kill -USR2 $(cat #{app_path}/pids/unicorn.pid)"
+  end
+
+  desc "Stop the application by killing the Unicorn process"
+  task :stop do
+    run "kill $(cat #{app_path}/tmp/pids/unicorn.pid)"
+  end
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
@@ -57,5 +75,4 @@ namespace :deploy do
       # end
     end
   end
-
 end
