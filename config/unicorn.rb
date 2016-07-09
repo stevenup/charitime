@@ -1,6 +1,6 @@
 app_path = File.expand_path(File.dirname(__FILE__) + '/..')
 worker_processes (ENV['RAILS_ENV'] == 'production' ? 2 : 1)
-listen app_path + '/tmp/sockets/unicorn.sock', backlog: 64
+listen app_path + '/tmp/sockets/charitime.sock', backlog: 64
 listen(3000, backlog: 64) if ENV['RAILS_ENV'] == 'development'
 
 # After the timeout is exhausted, the unicorn worker will be killed and a new
