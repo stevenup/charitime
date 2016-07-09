@@ -57,22 +57,19 @@ namespace :deploy do
     end
   end
 
-  desc "Initiate a rolling restart by telling Unicorn to start the new application code and kill the old process when done."
-  task :restart do
-    run "kill -USR2 $(cat #{app_path}/pids/unicorn.pid)"
-  end
-
-  desc "Stop the application by killing the Unicorn process"
   task :stop do
-    run "kill $(cat #{app_path}/tmp/pids/unicorn.pid)"
+    on roles(:app) do
+      within release_path do
+        pid_file = File.join(File.expand_path(File.dirname(__FILE__) + '/..'), 'tmp/pids/unicorn.pid')
+        execute "if [[ -e #{pid_file} ]]; then kill -9 $(cat #{pid_file}); fi"
+      end
+    end
   end
 
   after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
+    invoke "deploy:stop"
+    invoke "deploy:start"
   end
+
+  after :finishing, 'deploy:restart'
 end
