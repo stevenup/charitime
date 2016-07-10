@@ -60,7 +60,7 @@ namespace :deploy do
   task :stop do
     on roles(:app) do
       within release_path do
-        pid_file = File.join(File.expand_path(File.dirname(__FILE__) + '/..'), 'tmp/pids/unicorn.pid')
+        pid_file = File.join(release_path, "tmp/pids/unicorn.pid")
         execute "if [[ -e #{pid_file} ]]; then kill -9 $(cat #{pid_file}); fi"
       end
     end
