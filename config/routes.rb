@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   resources :donations
   resources :addresses
 
-  resources :orders, except: [:show] do
+  resources :orders do
     get :cancel_order, on: :member
     get :apply_refund, on: :member
   end

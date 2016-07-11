@@ -1,7 +1,6 @@
 class AddressesController < BaseController
   def index
-    # @addresses = Address.where :user_id => current_user.id
-    @addresses = Address.where :user_id => '1'
+    @addresses = Address.where :user_id => current_user.id
   end
 
   def new
@@ -33,10 +32,9 @@ class AddressesController < BaseController
       data[:city]     = ChinaCity.get city
       data[:district] = ChinaCity.get district
       user_id         = current_user.id
-      # user_id         = '1'
       address         = Address.new data
-      address.user_id = user_id
-      address.default = '1' if Address.count == 0
+      address.user_id = current_user.id
+      address.default = '1' if Address.where(user_id: current_user.id).count == 0
       redirect_to addresses_path if address.save
     else
       address = Address.find(id)
