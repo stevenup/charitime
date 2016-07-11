@@ -22,21 +22,27 @@ class AddressesController < BaseController
 
   private
   def create_or_update(id = 0, data)
+    # The params province, city and district, are not submitted together with the hash from the form.
+    # So they need to be received alone.
+    province = params[:province]
+    city = params[:city]
+    district = params[:district]
+
     if id == 0
-      data[:province] = ChinaCity.get data[:province]
-      data[:city]     = ChinaCity.get data[:city]
-      data[:district] = ChinaCity.get data[:district]
-      # user_id         = current_user.id
-      user_id         = '1'
+      data[:province] = ChinaCity.get province
+      data[:city]     = ChinaCity.get city
+      data[:district] = ChinaCity.get district
+      user_id         = current_user.id
+      # user_id         = '1'
       address         = Address.new data
       address.user_id = user_id
       address.default = '1' if Address.count == 0
       redirect_to addresses_path if address.save
     else
       address = Address.find(id)
-      data[:province] = ChinaCity.get data[:province]
-      data[:city]     = ChinaCity.get data[:city]
-      data[:district] = ChinaCity.get data[:district]
+      data[:province] = ChinaCity.get province
+      data[:city]     = ChinaCity.get city
+      data[:district] = ChinaCity.get district
       redirect_to addresses_path if address.update_attributes data
     end
   end

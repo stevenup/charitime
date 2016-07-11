@@ -13,12 +13,18 @@
     <div class="form-group">
       <%= f.label :地址, class: 'col-lg-1 control-label' %>
       <div class="city-group">
-
-        <%= f.select :province, options_for_select(ChinaCity.list), {}, {:class => 'city-select'} %>
-        <%= f.select :city, {}, {}, {:class => 'city-select'} %>
-        <%= f.select :district, {}, {}, {:class => 'city-select'} %>
-
+        <select name="province" class="city-select">
+          <option>--选择省份--</option>
+          <%= options_for_select(ChinaCity.list) %>
+        </select>
+        <select name="city" class="city-select">
+          <option>--选择城市--</option>
+        </select>
+        <select name="district" class="city-select">
+          <option>--选择区域--</option>
+        </select>
       </div>
+
       <div class="col-lg-4"><%= f.text_field :detail_address, class: 'col-lg-4 form-control', required: true %></div>
     </div>
 
