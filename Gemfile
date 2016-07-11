@@ -1,4 +1,3 @@
-# source 'http://rubygems.org'
 # source 'http://ruby.taobao.org'
 source 'https://gems.ruby-china.org'
 
