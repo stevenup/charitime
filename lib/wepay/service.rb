@@ -14,7 +14,7 @@ module Wepay
       }.merge(params)
       check_required_params(params, UNIFIEDORDER_REQUIRED_PARAMS)
       conn = Faraday.new url
-      res = conn.post url, params
+      res = conn.post url, generate_params(params)
       Hash.from_xml(res.body).delete('xml')
     end
 
