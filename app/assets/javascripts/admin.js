@@ -2,9 +2,7 @@
 //= require jquery_ujs
 //= require lodash/lodash
 //= require common/namespace
-//= require common/utils-common
-//= require common/ajax-injection
-//= require common/notifications-injection
+//= require js-routes
 
 //= require simplify_admin/simplify_admin
 //= require datatables/media/js/jquery.dataTables
@@ -15,4 +13,7 @@
 //= require bootstrap-modal/js/bootstrap-modal
 //= require integrations/bootstrap-modal-bs3-fix
 //= require ckeditor/init
-//= require js-routes
+
+//= require common/ajax-injection
+//= require common/notifications-injection
+//= require common/utils-common
