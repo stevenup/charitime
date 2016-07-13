@@ -1,0 +1,14 @@
+@import "adjust_config";
+// css3 for resetting form default style
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+select,
+button {
+  -webkit-appearance: none;
+}
+
+input[type=text] {
+  padding: p2e(10px) auto;
+  line-height: p2e(64px);
+}

@@ -1,39 +1,41 @@
 <div id="add-address-form" class="add-address-form">
-  <%= form_for @address, url: url, html: {class: 'form-horizontal'} do |f| %>
-    <div class="form-group">
-      <%= f.label :姓名, class: 'col-lg-1 control-label' %>
-      <div class="col-lg-4"><%= f.text_field :receiver_name, class: 'col-lg-4 form-control', required: true %></div>
+  <%= form_for @address, url: url do |f| %>
+    <div class="form-item">
+      <%= f.label :姓名, class: 'label-text' %>
+      <div class="field-column"><%= f.text_field :receiver_name, class: 'field-control', required: true %></div>
     </div>
 
-    <div class="form-group">
-      <%= f.label :手机号, class: 'col-lg-1 control-label' %>
-      <div class="col-lg-4"><%= f.text_field :mobile, class: 'col-lg-4 form-control', required: true %></div>
+    <div class="form-item">
+      <%= f.label :手机, class: 'label-text' %>
+      <div class="field-column"><%= f.text_field :mobile, class: 'field-control', required: true %></div>
     </div>
 
-    <div class="form-group">
-      <%= f.label :地址, class: 'col-lg-1 control-label' %>
+    <div class="form-item">
+      <div class="label-text">地址</div>
+    </div>
+
+    <div class="form-item">
       <div class="city-group">
         <select name="province" class="city-select">
-          <option>--选择省份--</option>
+          <option>--省份--</option>
           <%= options_for_select(ChinaCity.list) %>
         </select>
         <select name="city" class="city-select">
-          <option>--选择城市--</option>
+          <option>--城市--</option>
         </select>
         <select name="district" class="city-select">
-          <option>--选择区域--</option>
+          <option>--区域--</option>
         </select>
       </div>
-
-      <div class="col-lg-4"><%= f.text_field :detail_address, class: 'col-lg-4 form-control', required: true %></div>
     </div>
 
-    <div class="form-group">
-      <div class="col-lg-offset-1 col-lg-10">
-        <%= f.submit '保存', class: "btn btn-sm btn-primary" %>
-        &nbsp
-        <%= link_to '返回', '#', class: "btn btn-sm btn-info", onclick: "history.back()" %>
-      </div>
+    <div class="form-item">
+      <div class="field-column"><%= f.text_field :detail_address, class: 'field-control', size: 30, placeholder: '请输入详细地址', required: true %></div>
+    </div>
+
+    <div class="buttons">
+      <%= f.submit '保存', class: "btn btn-default btn-highlight" %>
+      <%= link_to '返回', '#', class: "btn btn-default", onclick: "history.back()" %>
     </div>
   <% end %>
 

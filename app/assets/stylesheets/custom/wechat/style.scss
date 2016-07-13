@@ -1,5 +1,6 @@
 @import "../../integrations/adjust_config";
 @import "../../integrations/page_settings";
+@import "../../integrations/reset";
 
 html, body {
   margin: 0;
@@ -13,12 +14,6 @@ html, body {
   a {
     color: #000000;
   }
-
-  // disable iOS default button style
-  input[type="submit"],
-  input[type="reset"],
-  input[type="button"],
-  button { -webkit-appearance: none; }
 }
 
 /***************  common style  ****************/
@@ -1274,5 +1269,45 @@ ul.products-list {
     .border-bottom {
       border-bottom: p2e(1px) solid lightgray;
     }
+  }
+}
+
+.add-address-form {
+  background: #ffffff;
+  @include font-dpr(16px);
+  padding-top: p2e(14px);
+  padding-bottom: p2e(14px);
+
+  .form-item {
+    display: table;
+    margin-top: p2e(14px);
+    margin-left: p2e(14px);
+    line-height: p2e(56px);
+
+    .label-text {
+      display: table-cell;
+      padding: p2e(10px);
+    }
+
+    .field-column {
+      display: table-cell;
+      line-height: p2e(56px);
+    }
+
+    .city-group {
+      display: block;
+    }
+  }
+
+  .buttons {
+    text-align: center;
+    @include font-dpr(14px);
+    margin: p2e(28px);
+
+    .btn-default {
+      line-height: p2e(56px);
+    }
+
+
   }
 }
