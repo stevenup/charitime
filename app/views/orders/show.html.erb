@@ -17,7 +17,7 @@
 
   <div class="product-info p-t p-b">
     <div class="product-thumb p-l p-r">
-      <%= image_tag Product.find_by_product_id(@order_detail.product_id).try(:thumb) %>
+      <%= image_tag @order_detail.thumb.to_s %>
     </div>
 
     <div class="product-name m-r m-l m-t">
@@ -67,11 +67,23 @@
       <%= button_to '立即付款', order_pay_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-highlight m-l m-r p-t p-b t-right' %>
       <div class="clear"></div>
     </div>
-  <% elsif @order_detail.order.order_status.to_s == 'SUCCESS' %>
+  <% elsif @order_detail.order.order_status.to_s == 'SUCCESS' and @order_detail.order.logistics_status == 'UNDELIVERED' %>
     <div class="buttons p-l p-r m-t">
-      <%= button_to '退货退款', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default m-l m-r p-t p-b t-left', :'data-confirm' => '确定申请退货退款吗？' %>
+      <%= button_to '申请退款', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default m-l m-r p-t p-b t-left', :'data-confirm' => '确定申请退货退款吗？' %>
+      <!--<button class="btn btn-default btn-highlight m-l m-r p-t p-b t-right">查看物流</button>-->
+      <div class="clear"></div>
+    </div>
+  <% elsif @order_detail.order.order_status.to_s == 'SUCCESS' and @order_detail.order.logistics_status == 'DELIVERED' %>
+    <div class="buttons p-l p-r m-t">
+      <%= button_to '申请退货', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default m-l m-r p-t p-b t-left', :'data-confirm' => '确定申请退货退款吗？' %>
       <button class="btn btn-default btn-highlight m-l m-r p-t p-b t-right">查看物流</button>
       <div class="clear"></div>
     </div>
   <% end %>
 </div>
+
+<div class="tuihuo" id="tuihuo">
+
+</div>
+
+<% content_for :title, set_title('订单详情')  %>

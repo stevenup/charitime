@@ -17,19 +17,19 @@
           <div class="item-body">
             <div class="brief-info m-b">
               <div class="product-thumb p-l p-r">
-                <%= image_tag 'p1.jpg' %>
+                <%= image_tag ele.order_details.first.thumb.to_s %>
               </div>
 
               <div class="product-name m-r m-l m-t m-b">
-                <p><%= OrderDetail.find_by_order_id(ele.order_id).try(:product_name).to_s %></p>
+                <p><%= ele.order_details.first.product_name.to_s %></p>
               </div>
 
               <div class="product-price m-t p-b p-r">
-                <p class="inline-block">￥<%= OrderDetail.find_by_order_id(ele.order_id).try(:price).to_s %></p>
+                <p class="inline-block">￥<%= ele.order_details.first.price.to_s %></p>
               </div>
 
               <div class="product-count m-t p-b p-r">
-                <p class="inline-block">x<%= OrderDetail.find_by_order_id(ele.order_id).try(:count).to_s %></p>
+                <p class="inline-block">x<%= ele.order_details.first.count.to_s %></p>
               </div>
 
               <div class="order-price m-t p-b p-r">
@@ -42,3 +42,5 @@
     <% end %>
   <% end %>
 </ul>
+
+<% content_for :title, set_title('我的订单')  %>
