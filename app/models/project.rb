@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  mount_uploader :banner, ProjectBannerUploader
   belongs_to :project_type
 
   has_many :supports

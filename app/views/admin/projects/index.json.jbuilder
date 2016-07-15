@@ -2,6 +2,7 @@ datatable_json_response(json) do
   json.array! @rows do |row|
     json.project_id             row.project_id
     json.project_name           row.project_name
+    json.banner                 row.banner
     json.project_type_id        ProjectType.find_by(:id => row.project_type_id).try(:project_type_name)
     json.project_detail         row.project_detail
     json.created_at             timeago(row.created_at)

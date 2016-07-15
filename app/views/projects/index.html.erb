@@ -1,43 +1,24 @@
-<div class="demo" id="demo">
-  <div class="demo-head">
-    <div class="demo-headimg">
-      <%= image_tag 'donation_bgp.png' %>
-    </div>
-
-    <div class="demo-title m-t">
-      <p>这里输入标题</p>
-    </div>
-
-    <div class="demo-desc" id="demo-desc">
-      <p>这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述</p>
-    </div>
-
+<div class="projects s-s p-b" id="projects">
+  <div class="header-section p-t p-l p-r">
+    <p class="title m-b">公益项目</p>
   </div>
 
-  <div class="demo-head">
-    <div class="demo-headimg">
-      <%= image_tag 'hebe.jpg' %>
+  <div class="project-item m-t">
+    <div class="project-pic">
+      <%= image_tag 'project1.png' %>
     </div>
+  </div>
 
-    <div class="demo-title m-t">
-      <p>这里输入标题</p>
+  <div class="project-item m-t">
+    <div class="project-pic">
+      <%= image_tag 'project2.png' %>
     </div>
+  </div>
 
-    <div class="demo-desc" id="demo-desc">
-      <p>这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述</p>
+  <div class="project-item m-t">
+    <div class="project-pic">
+      <%= image_tag 'project3.png' %>
     </div>
-
   </div>
 
 </div>
-
-<script>
-  $('.demo-head').one('click', function() {
-    $('.demo-head').remove();
-    $(this).appendTo('#demo');
-    $('#demo-desc').remove();
-    content = "<%= j render(:partial => 'shared/demo/demo_content') %>";
-    $(content).hide().appendTo('#demo').fadeIn(1000);
-  });
-
-</script>
