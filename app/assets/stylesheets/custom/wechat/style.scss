@@ -226,50 +226,8 @@ i.arrow {
         }
       }
     }
-
   }
 
-  .project-item {
-    position: relative;
-    //border: p2e(1px) solid lightgray;
-    width: 100%;
-
-    .project-pic {
-      position: relative;
-      left: 0;
-      width: 100%;
-      display: block;
-
-      img {
-        width: 100%;
-      }
-    }
-
-    .project-info {
-      text-align: left;
-      width: 60%;
-      display: inline-block;
-      position: absolute;
-      right: 0;
-      top: 0;
-
-      p.title {
-        @include font-dpr(14px);
-        color: #000;
-      }
-
-      p.description {
-        @include font-dpr(12px);
-        color: #9b9b9b;
-      }
-
-      .support-info {
-        .target {
-          display: inline-block;
-        }
-      }
-    }
-  }
   /**********  end of common style  **********/
 
   .banner-swiper {
@@ -358,9 +316,6 @@ i.arrow {
     }
   }
 
-  .projects {
-  }
-
   .charity-auction {
     .auction-list {
       .auction-item {
@@ -431,6 +386,54 @@ i.arrow {
       i {
         padding-left: p2e(50px);
         padding-right: p2e(50px);
+      }
+    }
+  }
+}
+
+/*********** project list style *******/
+.projects {
+  background: #ffffff;
+
+  .project-list {
+    .project-item {
+      position: relative;
+      width: 100%;
+
+      .project-pic {
+        position: relative;
+        left: 0;
+        width: 100%;
+        display: block;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .project-info {
+        text-align: left;
+        width: 60%;
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        p.title {
+          @include font-dpr(14px);
+          color: #000;
+        }
+
+        p.description {
+          @include font-dpr(12px);
+          color: #9b9b9b;
+        }
+
+        .support-info {
+          .target {
+            display: inline-block;
+          }
+        }
       }
     }
   }

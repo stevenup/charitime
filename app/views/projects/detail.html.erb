@@ -1,9 +1,9 @@
 <div class="project_detail" id="project_detail">
   <div class="project-detail-head">
-    <%= image_tag 'project_pic.png' %>
+    <%= image_tag @project.main_pic.to_s %>
   </div>
 
-  <div class="project-title m-t m-b m-l p-l">这里是标题</div>
+  <div class="project-title m-t m-b m-l p-l"><%= @project.project_name.to_s %></div>
 
   <div class="progress">
     <div class="progress-bar">
@@ -35,6 +35,9 @@
         <div class="p-bar"></div>
         <span class="p-title p-l">项目详情</span>
       </div>
+    </div>
+    <div class="detail-body p-t p-b p-l p-r">
+      <%= @project.project_detail.html_safe.to_s %>
     </div>
   </div>
 

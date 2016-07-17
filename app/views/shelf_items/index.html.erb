@@ -1,7 +1,7 @@
-<ul class="products-list p-t p-b">
+<ul class="products-list">
   <% @shelf_items.each do |p| %>
     <%= link_to shelf_item_path p.id do %>
-      <li class='goods-item m-t'>
+      <li class='goods-item'>
         <%= image_tag p.thumb %>
       </li>
     <% end %>

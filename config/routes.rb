@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     member do
-      get :index
+      get :detail
     end
   end
 
