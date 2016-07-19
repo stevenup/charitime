@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160717150805) do
+ActiveRecord::Schema.define(version: 20160719140645) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "user_id",        limit: 255
@@ -188,18 +188,16 @@ ActiveRecord::Schema.define(version: 20160717150805) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string   "project_id",      limit: 255
-    t.string   "project_name",    limit: 255
-    t.string   "project_type_id", limit: 255
-    t.string   "project_detail",  limit: 255
-    t.string   "openid",          limit: 255
-    t.string   "support_id",      limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "recommended",     limit: 1
-    t.string   "product_id",      limit: 255
-    t.string   "banner",          limit: 255
-    t.string   "main_pic",        limit: 255
+    t.string   "project_id",     limit: 255
+    t.string   "project_name",   limit: 255
+    t.string   "category",       limit: 255
+    t.string   "project_detail", limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "recommended",    limit: 1
+    t.string   "shelf_item_id",  limit: 255
+    t.string   "banner",         limit: 255
+    t.string   "main_pic",       limit: 255
   end
 
   create_table "shelf_items", force: :cascade do |t|
@@ -220,17 +218,12 @@ ActiveRecord::Schema.define(version: 20160717150805) do
     t.string   "thumb",               limit: 255
   end
 
-  create_table "support_types", force: :cascade do |t|
-    t.string   "support_type_name", limit: 255
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
-
   create_table "supports", force: :cascade do |t|
-    t.string   "openid",          limit: 255
-    t.string   "support_type_id", limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "user_id",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "project_id", limit: 255
+    t.string   "type",       limit: 255
   end
 
   create_table "users", force: :cascade do |t|

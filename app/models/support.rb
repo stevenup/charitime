@@ -2,5 +2,6 @@ class Support < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
 
-  belongs_to :support_type
+  # DEDICATION: 无偿支持； PURCHASE: 购买支持
+  enum type: { 'DEDICATION': 1, 'PURCHASE': 2 }
 end
