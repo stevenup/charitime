@@ -1,3 +1,5 @@
+<div id="overlay"></div>
+
 <div class="project_detail" id="project_detail">
   <div class="project-detail-head">
     <%= image_tag @project.main_pic.to_s %>
@@ -84,8 +86,39 @@
   </div>
 
   <div class="btn-bottom-area">
-    <button class="btn-default btn-highlight m-l m-r p-t p-b">无偿支持</button>
+    <button class="btn-default btn-highlight m-l m-r p-t p-b" id="dedicate-btn">无偿支持</button>
     <button class="btn-default m-l m-r p-t p-b">购买支持</button>
   </div>
 
 </div>
+
+<div class="dedications m-t m-b" id="dedications">
+  <%= form_tag supports_path, method: :post do %>
+    <p class="title">请输入任意大于等于1的数字</p>
+    <p class="title">您的点滴付出对我们都是洪流般的帮助</p>
+    <%= number_field_tag :money, min: '1', max: '100' %>
+    <span>元</span>
+    <%= hidden_field_tag 'pid', @project.id %>
+    <%= hidden_field_tag 'type', '1' %>
+    <div class="buttons m-t m-b">
+      <%= submit_tag '确定', id: 'confirm-btn', class: 'btn btn-default btn-highlight btn-middle m-l m-r p-t p-b' %>
+    </div>
+  <% end %>
+</div>
+
+<% content_for :title, '项目详情' %>
+
+<script>
+  $(document).ready(function () {
+    $('#dedicate-btn').on('click', function () {
+      $('#overlay').fadeIn('fast', function () {
+        $('#dedications').animate({height: 'toggle'}, 'fast')
+      })
+    });
+    $('#overlay').on('click', function () {
+      $('#dedications').animate({height: 'toggle'}, 'fast', function () {
+        $('#overlay').fadeOut('fast')
+      })
+    });
+  })
+</script>

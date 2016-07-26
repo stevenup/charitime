@@ -1310,7 +1310,34 @@ ul.products-list {
     .btn-default {
       line-height: p2e(56px);
     }
+  }
+}
 
+.dedications {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+  background: white;
+  text-align: center;
 
+  input[type=number] {
+    line-height: p2e(80px);
+    @include font-dpr(20px);
+    text-align: center;
+    width: p2e(150px);
+    border: 1px solid red;
+  }
+
+  .title {
+    @include font-dpr(16px);
+    text-align: center;
+    margin: p2e(36px) auto;
+    color: grey;
+  }
+
+  .buttons {
+    margin: p2e(36px) auto;
   }
 }
