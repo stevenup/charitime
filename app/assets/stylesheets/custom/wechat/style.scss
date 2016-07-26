@@ -1341,3 +1341,21 @@ ul.products-list {
     margin: p2e(36px) auto;
   }
 }
+
+.purchases {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+  background: white;
+  text-align: center;
+
+  .title {
+    @include font-dpr(16px);
+    text-align: center;
+    margin: p2e(36px) auto;
+    color: grey;
+  }
+
+}
