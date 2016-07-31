@@ -1358,4 +1358,56 @@ ul.products-list {
     color: grey;
   }
 
+  .purchase-item {
+    border-bottom: p2e(1px) solid lightgrey;
+    display: inline-flex;
+
+    .item-left {
+      width: p2e(200px);
+      -moz-box-flex: 1;
+      -webkit-box-flex: 1;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .item-right {
+      text-align: left;
+      -moz-box-flex: 5;
+      -webkit-box-flex: 5;
+
+      .info-top {
+        @include font-dpr(14px);
+
+        p {
+          line-height: p2e(42px);
+        }
+      }
+
+      .info-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .item-price {
+          -webkit-box-flex: 1;
+          @include font-dpr(18px);
+          color: red;
+        }
+
+        .item-btn {
+          -webkit-box-flex: 1;
+          align-self: flex-end;
+
+          .btn-highlight {
+            padding-left: p2e(20px);
+            padding-right: p2e(20px);
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
 }

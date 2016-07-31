@@ -108,7 +108,46 @@
 
 <div class="purchases tt m-t m-b" id="purchases">
   <p class="title">通过购买以下商品，您将直接或间接支持到该项目</p>
-  <p>K。之前写的demo可以拿来直接用的，手贱被我删了。。。。。。。</p>
+  <div class="purchase-item p-l p-r p-t p-b">
+    <div class="item-left">
+      <%= image_tag 'p1.jpg' %>
+    </div>
+    <div class="item-right">
+      <div class="info-top">
+        <p>阿斯顿飞规划局看沙壤土是大法官会尽快是地方各环节</p>
+      </div>
+      <div class="info-bottom m-t">
+        <div class="item-price">
+          ￥10000
+        </div>
+        <div class="item-btn">
+          <%= button_to '前往购买', '#', :method => 'get', :class => 'btn btn-default btn-highlight m-l m-r p-t p-b' %>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="purchase-item p-l p-r p-t p-b">
+    <div class="item-left">
+      <%= image_tag 'p1.jpg' %>
+    </div>
+    <div class="item-right">
+      <div class="info-top">
+        <p>阿斯顿飞规划局看沙壤土是大法官会尽快是地方各环节</p>
+      </div>
+      <div class="info-bottom m-t">
+        <div class="item-price">
+          ￥10000
+        </div>
+        <div class="item-btn">
+          <%= button_to '前往购买', '#', :method => 'get', :class => 'btn btn-default btn-highlight m-l m-r p-t p-b' %>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <% content_for :title, '项目详情' %>
