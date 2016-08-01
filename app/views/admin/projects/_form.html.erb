@@ -19,10 +19,10 @@
     <div class="col-lg-4"><%= f.file_field :main_pic, class: 'col-lg-4 form-control', required: true %></div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :project_type, class: 'col-lg-1 control-label' %>
-    <div class="col-lg-4"><%= f.select :project_type_id, ProjectType.all.collect { |ele| [ele.project_type_name, ele.id] }, {include_blank: '-- select one --'}, class: 'col-lg-4 form-control', required: true %></div>
-  </div>
+  <%# <div class="form-group"> %>
+  <%#   <%= f.label :project_type, class: 'col-lg-1 control-label' %1> %>
+  <%#   <div class="col-lg-4"><%= f.select :project_type_id, ProjectType.all.collect { |ele| [ele.project_type_name, ele.id] }, {include_blank: '-- select one --'}, class: 'col-lg-4 form-control', required: true %1></div> %>
+  <%# </div> %>
 
   <div class="form-group">
     <%= f.label :project_detail, class: 'col-lg-1 control-label' %>
