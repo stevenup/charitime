@@ -141,7 +141,7 @@
           ￥10000
         </div>
         <div class="item-btn">
-          <%= button_to '前往购买', '#', :method => 'get', :class => 'btn btn-default btn-highlight m-l m-r p-t p-b' %>
+          <%= button_to '前往购买', {:controller => 'shelf_items', :action => 'show', :id => @project.shelf_item_id}, params: { pid: @project.id }, :method => 'get', :class => 'btn btn-default btn-highlight m-l m-r p-t p-b' %>
         </div>
         <div class="clear"></div>
       </div>
