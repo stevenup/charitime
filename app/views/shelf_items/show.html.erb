@@ -1,5 +1,17 @@
 <div id="overlay"></div>
 
+<div class="project-overview p-l p-r p-t p-b">
+  <div class="p-thumb">
+    <%= image_tag @project.thumb %>
+  </div>
+  <div class="p-title p-l p-r">
+    <%= @project.project_name.to_s %>
+  </div>
+  <div class="p-btn m-r">
+    <%= button_to '前去看看', {:controller => 'projects', :action => 'detail', :id => @project.id}, :method => 'get', :class => 'btn btn-default btn-highlight p-t p-b' %>
+  </div>
+</div>
+
 <div class="shelf-item-detail">
   <div class="big-thumb">
     <%= image_tag @shelf_item.thumb %>

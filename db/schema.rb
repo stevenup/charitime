@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803153223) do
+ActiveRecord::Schema.define(version: 20160809142717) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "user_id",        limit: 255
@@ -192,6 +192,7 @@ ActiveRecord::Schema.define(version: 20160803153223) do
     t.string   "shelf_item_id",  limit: 255
     t.string   "banner",         limit: 255
     t.string   "main_pic",       limit: 255
+    t.string   "thumb",          limit: 255
   end
 
   create_table "projects_shelf_items", id: false, force: :cascade do |t|

@@ -6,14 +6,6 @@ class ProjectsController < BaseController
   def detail
     id = params[:id]
     @project = Project.find_by_id(id)
-  end
-
-  def xx
-
-    if condition
-      i = 1
-      ii = 11
-      iii = 111
-    end
+    @shelf_items = ShelfItem.where(:project_id => id)
   end
 end
