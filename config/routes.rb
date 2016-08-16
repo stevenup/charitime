@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get :my_gyb,           on: :collection
     get :donate_page,      on: :collection
     get :my_address,       on: :collection
+    get :exchange,         on: :collection
   end
 
   resources :shelf_items
@@ -38,6 +39,7 @@ Rails.application.routes.draw do
 
     resources :users
     resources :products
+    resources :gybs
 
     resources :shelf_items do
       get :pull_off_shelf,     on: :member

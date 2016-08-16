@@ -14,6 +14,7 @@ class HomeController < BaseController
   end
 
   def my_gyb
+    @user = current_user
   end
 
   def project_detail
@@ -26,7 +27,12 @@ class HomeController < BaseController
   end
 
   def my_address
+  end
 
+  def exchange
+    exchange_code = params[:exchange_code]
+    puts '>>>>>>>>'
+    puts exchange_code
   end
 
 end

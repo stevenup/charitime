@@ -1,10 +1,10 @@
 <div class="my-gyb" id="my-gyb">
   <div class="profile">
     <div class="avatar">
-      <%= image_tag 'avatar.jpg' %>
+      <%= image_tag @user.headimgurl.to_s %>
     </div>
     <div class="wx_name">
-      <p>九个太阳！</p>
+      <p><%= @user.nickname.to_s %></p>
     </div>
     <div class="total-gyb">
       <p>100</p>
@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div class="switch-tabs" id="switch-tabs">
+  <div class="switch-tabs p-t p-b" id="switch-tabs">
     <div class="tabs-wrapper p-b p-t p-l p-r">
       <span class="income">
         收入
@@ -30,8 +30,8 @@
     </div>
 
     <div class="exchange-area">
-      <%= form_tag("/exchange", method: "get") do %>
-        <%= text_field_tag(:exchange_code, " 输入兑换码", :class => 'exchange-box m-r') %>
+      <%= form_tag("/home/exchange", method: "get") do %>
+        <%= text_field_tag(:exchange_code, nil, :placeholder => "输入兑换码", :class => 'exchange-box m-r') %>
         <%= submit_tag("兑换", :class => 'exchange-btn m-l' )%>
       <% end %>
     </div>

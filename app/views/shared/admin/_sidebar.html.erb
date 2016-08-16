@@ -173,6 +173,27 @@
             </li>
           </ul>
         </li>
+
+        <li class="openable bg-palette2">
+          <a href="#">
+            <span class="menu-content block">
+              <span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+              <span class="text m-left-sm">公益券管理</span>
+              <span class="submenu-icon"></span>
+            </span>
+            <span class="menu-content-hover block">
+              公益券
+            </span>
+          </a>
+
+          <ul class="submenu bg-palette2">
+            <li class="<%= render_active ({:menu => 'gybs' }) %>">
+              <%= link_to admin_gybs_path do %>
+                <span class="submenu-label">全部公益券</span>
+              <% end %>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
