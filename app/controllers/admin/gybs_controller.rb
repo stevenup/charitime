@@ -6,6 +6,10 @@ class Admin::GybsController < Admin::BaseController
     end
   end
 
+  def new
+    @gyb = Gyb.new
+  end
+
   def edit
     @gyb = Gyb.find params[:id]
   end

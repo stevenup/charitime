@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809142717) do
+ActiveRecord::Schema.define(version: 20160816144948) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "user_id",        limit: 255
@@ -108,6 +108,31 @@ ActiveRecord::Schema.define(version: 20160809142717) do
     t.datetime "updated_at",                       null: false
   end
 
+  create_table "gyb_incomes", force: :cascade do |t|
+    t.string   "user_id",    limit: 255
+    t.string   "gyb_id",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "gyb_payments", force: :cascade do |t|
+    t.string   "user_id",       limit: 255
+    t.string   "shelf_item_id", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "gybs", force: :cascade do |t|
+    t.string   "title",           limit: 255
+    t.integer  "type",            limit: 4
+    t.string   "exchange_code",   limit: 255
+    t.integer  "price",           limit: 4
+    t.string   "stock",           limit: 255
+    t.datetime "expiration_time"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
   create_table "logistics_companies", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
@@ -179,6 +204,12 @@ ActiveRecord::Schema.define(version: 20160809142717) do
   create_table "products_projects", id: false, force: :cascade do |t|
     t.integer "product_id", limit: 4
     t.integer "project_id", limit: 4
+  end
+
+  create_table "project_types", force: :cascade do |t|
+    t.string   "project_type_name", limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "projects", force: :cascade do |t|
