@@ -54,6 +54,6 @@ class Admin::GybsController < Admin::BaseController
   end
 
   def gyb_params
-    params.require(:gyb).permit(:title, :type, :exchange_code, :price, :stock, :expiration_time)
+    params.require(:gyb).permit(:title, :gyb_type, :exchange_code, :price, :stock, :expiration_time)
   end
 end

@@ -17,7 +17,7 @@
       <%= dt id: 'gybs_datatable', class: 'table table-striped b-t b-b', :'data-url' => admin_gybs_path(:format => :json) do %>
         <%= dt_col(Gyb.hn(:id), data: {data: 'id'}) %>
         <%= dt_col(Gyb.hn(:title), data: {data: 'title'}) %>
-        <%= dt_col(Gyb.hn(:type), data: {data: 'type'}) %>
+        <%= dt_col(Gyb.hn(:gyb_type), data: {data: 'gyb_type'}) %>
         <%= dt_col(Gyb.hn(:price), data: {data: 'price'}) %>
         <%= dt_col(Gyb.hn(:stock), data: {data: 'stock'}) %>
         <%= dt_col(Gyb.hn(:expiration_time), data: {data: 'expiration_time'}) %>

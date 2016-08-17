@@ -1,7 +1,8 @@
 datatable_json_response(json) do
   json.array! @rows do |row|
-    json.id                 row.id
+    json.id                     row.id
     json.title                  row.title
+    json.gyb_type               row.gyb_type
     json.price                  row.price
     json.stock                  row.stock
     json.expiration_time        row.expiration_time
