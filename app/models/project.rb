@@ -9,5 +9,5 @@ class Project < ActiveRecord::Base
 
   has_and_belongs_to_many :shelf_items, foreign_key: 'project_id'
 
-  enum type: { 'TYPE1': 1, 'TYPE2': 2 }
+  # enum type: { 'TYPE1': 1, 'TYPE2': 2 }
 end
