@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901140906) do
+ActiveRecord::Schema.define(version: 20160911152739) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "user_id",        limit: 255
@@ -232,21 +232,21 @@ ActiveRecord::Schema.define(version: 20160901140906) do
   end
 
   create_table "shelf_items", force: :cascade do |t|
-    t.string   "product_id",          limit: 255
-    t.string   "project_id",          limit: 255
-    t.string   "product_name",        limit: 255
-    t.string   "product_category_id", limit: 255
-    t.string   "product_label_id",    limit: 255
-    t.string   "product_detail",      limit: 255
-    t.float    "price",               limit: 24
-    t.float    "gyb_discount",        limit: 24
-    t.integer  "stock",               limit: 4
-    t.integer  "sales",               limit: 4
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "is_on_shelf",         limit: 1
-    t.string   "recommended",         limit: 1
-    t.string   "thumb",               limit: 255
+    t.string   "product_id",     limit: 255
+    t.string   "project_id",     limit: 255
+    t.string   "product_name",   limit: 255
+    t.string   "category",       limit: 255
+    t.string   "label",          limit: 255
+    t.string   "product_detail", limit: 255
+    t.float    "price",          limit: 24
+    t.float    "gyb_discount",   limit: 24
+    t.integer  "stock",          limit: 4
+    t.integer  "sales",          limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "is_on_shelf",    limit: 1
+    t.string   "recommended",    limit: 1
+    t.string   "thumb",          limit: 255
   end
 
   create_table "supports", force: :cascade do |t|
