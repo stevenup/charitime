@@ -15,6 +15,7 @@
       <%= dt id: 'projects_datatable', class: 'table table-striped b-t b-b', :'data-url' => admin_projects_path(:format => :json)  do %>
           <%= dt_col(Project.hn(:project_id), data: { data: 'project_id' }) %>
           <%= dt_col(Project.hn(:project_name), data: { data: 'project_name' }) %>
+          <%= dt_col(Project.hn(:thumb), data: { data: 'thumb' }) %>
           <%= dt_col(Project.hn(:banner), data: { data: 'banner' }) %>
           <%= dt_col(Project.hn(:main_pic), data: { data: 'main_pic' }) %>
           <%= dt_col(Project.hn(:category), data: { data: 'category' }) %>

@@ -58,7 +58,7 @@ class Admin::ProjectsController < Admin::BaseController
     if id == 0
       project = Project.new data.except(:shelf_item_ids)
       shelf_item_ids.each do |_id|
-        shelf_item = ShelfItem.find_by(_id)
+        shelf_item = ShelfItem.find_by(:id => _id)
         shelf_item.project_id = data[:project_id] if shelf_item
         shelf_item.save
       end
@@ -74,7 +74,7 @@ class Admin::ProjectsController < Admin::BaseController
   end
 
   def project_params
-    params.require(:project).permit(:project_id, :project_name, :banner, :main_pic, :project_type_id, :project_detail,
+    params.require(:project).permit(:project_id, :project_name, :banner, :main_pic, :thumb, :project_type_id, :project_detail,
                                     :support_type_id, shelf_item_ids: [:shelf_item_id_1, :shelf_item_id_2])
   end
 end
