@@ -1413,16 +1413,15 @@ ul.products-list {
 
 .project-overview {
   background: #ffffff;
-  display: table;
-  width: 100%;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-around;
   border-bottom: 1px solid grey;
 
   .p-thumb {
     border: 1px solid black;
-    display: table-cell;
-    vertical-align: middle;
-    width: 15%;
-    height: 15%;
+    //display: inline-flex;
+    width: 25%;
 
     img {
       width: 100%;
@@ -1430,15 +1429,14 @@ ul.products-list {
   }
 
   .p-title {
-    display: table-cell;
-    vertical-align: middle;
-    width: 50%;
+    display: inline-flex;
+    width: 60%;
+    @include font-dpr(14px);
   }
 
   .p-btn {
-    display: table-cell;
-    vertical-align: middle;
-    width: 20%;
+    display: inline-flex;
+    width: 21%;
 
     .btn-highlight {
       padding-left: p2e(20px);
