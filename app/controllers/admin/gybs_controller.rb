@@ -22,6 +22,11 @@ class Admin::GybsController < Admin::BaseController
     create_or_update params[:id], gyb_params
   end
 
+  def destroy
+    gyb = Gyb.find params[:id]
+    redirect_to admin_gybs_path if gyb.destroy
+  end
+
   private
   def get_rows
     dt = decode_datatables_params
@@ -46,6 +51,8 @@ class Admin::GybsController < Admin::BaseController
   def create_or_update(id = 0, data)
     if id == 0
       gyb = Gyb.new data
+      exchange_code = SecureRandom.random_number(999999999999).to_s
+      gyb.exchange_code = exchange_code
       redirect_to admin_gybs_path if gyb.save
     else
       gyb = Gyb.find(id)
@@ -54,6 +61,6 @@ class Admin::GybsController < Admin::BaseController
   end
 
   def gyb_params
-    params.require(:gyb).permit(:title, :gyb_type, :exchange_code, :price, :stock, :expiration_time)
+    params.require(:gyb).permit(:title, :gyb_type, :price, :stock, :expiration_time)
   end
 end

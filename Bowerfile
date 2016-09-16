@@ -4,3 +4,4 @@ asset 'jquery-timeago', main_files: ["./locales/jquery.timeago.zh-CN.js"]
 asset 'bootstrap-modal'
 asset 'swiper'
 asset 'jquery.spinner'
+asset 'datetimepicker'

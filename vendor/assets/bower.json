@@ -6,6 +6,7 @@
     "jquery-timeago": "latest",
     "bootstrap-modal": "latest",
     "swiper": "latest",
-    "jquery.spinner": "latest"
+    "jquery.spinner": "latest",
+    "datetimepicker": "latest"
   }
 }

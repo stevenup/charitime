@@ -18,6 +18,8 @@
 //= require jquery-timeago/jquery.timeago
 //= require jquery-timeago/locales/jquery.timeago.zh-CN
 
+//= require datetimepicker/build/jquery.datetimepicker.full.min
+
 //= require bootstrap-modal/js/bootstrap-modalmanager
 //= require bootstrap-modal/js/bootstrap-modal
 //= require integrations/bootstrap-modal-bs3-fix
