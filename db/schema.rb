@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160911152739) do
+ActiveRecord::Schema.define(version: 20160917143951) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "user_id",        limit: 255
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 20160911152739) do
     t.integer  "gyb_type",        limit: 4
     t.string   "exchange_code",   limit: 255
     t.integer  "price",           limit: 4
-    t.string   "stock",           limit: 255
+    t.integer  "stock",           limit: 4
     t.datetime "expiration_time"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
@@ -274,10 +274,10 @@ ActiveRecord::Schema.define(version: 20160911152739) do
     t.integer  "subscribe",      limit: 1
     t.string   "subscribe_time", limit: 255
     t.string   "address",        limit: 255
-    t.integer  "gyb",            limit: 4
+    t.integer  "gyb",            limit: 4,   default: 0
     t.string   "other",          limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "tagid_list",     limit: 255
   end
 

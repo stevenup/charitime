@@ -54,6 +54,10 @@ html, body {
   @include font-dpr(20px);
   color: #32CD32;
 
+  a {
+    color: #32CD32;
+  }
+
   p {
     display: inline-block;
   }
@@ -611,7 +615,7 @@ i.arrow {
 
       .gyb-item-pic {
         display: inline-block;
-        width: 30%;
+        width: 20%;
 
         img {
           width: 100%;
@@ -620,7 +624,7 @@ i.arrow {
 
       .gyb-item-detail {
         display: inline-block;
-        width: 60%;
+        width: 70%;
         position: absolute;
 
         p.gyb-plus {

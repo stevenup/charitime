@@ -7,8 +7,11 @@
       <p><%= @user.nickname.to_s %></p>
     </div>
     <div class="total-gyb">
-      <p>100</p>
-
+      <%= link_to my_gyb_home_index_path do %>
+        <p style="text-decoration: underline">
+          <%= @user.gyb.to_s %>
+        </p>
+      <% end %>
       <p class="tt">公益币</p>
     </div>
   </div>

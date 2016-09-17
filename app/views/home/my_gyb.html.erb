@@ -7,7 +7,7 @@
       <p><%= @user.nickname.to_s %></p>
     </div>
     <div class="total-gyb">
-      <p>100</p>
+      <p><%= @user.gyb.to_s %></p>
 
       <p class="tt">公益币</p>
     </div>
@@ -31,7 +31,7 @@
 
     <div class="exchange-area">
       <%= form_tag("/home/exchange", method: "get") do %>
-        <%= text_field_tag(:exchange_code, nil, :placeholder => "输入兑换码", :class => 'exchange-box m-r') %>
+        <%= text_field_tag(:exchange_code, nil, :placeholder => "输入兑换码", :class => 'exchange-box m-r', :required => true) %>
         <%= submit_tag("兑换", :class => 'exchange-btn m-l' )%>
       <% end %>
     </div>
@@ -40,29 +40,27 @@
   <div class="gyb-got" id="gyb-got">
     <div class="remarks m-t m-b p-t p-b">以下是您获得的公益币</div>
 
-    <div class="gyb-item s-s">
-      <div class="gyb-item-head">
-        <i class="menu-icon fa fa-tag fa-lg"></i>
-        <p class="menu-name">2016.5.1</p>
-        <i class="arrow fa fa-angle-right fa-2x"></i>
-      </div>
+    <% @gyb_incomes.each do |ele| %>
+      <div class="gyb-item s-s">
+        <div class="gyb-item-head">
+          <i class="menu-icon fa fa-tag fa-lg"></i>
+          <p class="menu-name"><%= ele.created_at.strftime('%Y-%m-%d %T').to_s %></p>
+          <!--<i class="arrow fa fa-angle-right fa-2x"></i>-->
+        </div>
 
-      <div class="gyb-item-pic p-l">
-        <%= image_tag 'p1.jpg' %>
-      </div>
+        <div class="gyb-item-pic p-l m-t m-b">
+          <%= image_tag 'p1.jpg' %>
+        </div>
 
-      <div class="gyb-item-detail m-t m-l">
-        <p class="gyb-source">
-          这里是公益币的来源，可以是项目名称或是捐赠物品的名称，或是参加的活动
-        </p>
-        <p class="gyb-plus m-t">
-          感谢您的爱心，您获得&nbsp;<span>+100</span>&nbsp;公益币！
-        </p>
+        <div class="gyb-item-detail m-t m-b m-l">
+          <p class="gyb-source">
+            <%= ele.gyb.title.to_s %>
+          </p>
+          <p class="gyb-plus m-t">
+            感谢您的爱心，您获得&nbsp;<span><%= ele.gyb.price.to_s %></span>&nbsp;公益币！
+          </p>
+        </div>
       </div>
-
-    </div>
+    <% end %>
   </div>
-
-
-
 </div>
