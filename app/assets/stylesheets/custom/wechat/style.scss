@@ -1130,70 +1130,81 @@ ul.products-list {
 }
 
 /**********  orders/index style  ***********/
-.order-list {
-  .order-item {
-    background: #FFFFFF;
-    @include font-dpr(14px);
-    line-height: p2e(56px);
+.orders {
+  .no-orders {
+    margin: p2e(300px) auto;
+    text-align: center;
 
-    .item-head {
-      border-bottom: p2e(1px) solid lightgray;
+    p {
+      color: #000;
+    }
+  }
 
-      .delivery-status {
-        display: table;
-        margin: p2e(10px) auto;
+  .order-list {
+    .order-item {
+      background: #FFFFFF;
+      @include font-dpr(14px);
+      line-height: p2e(56px);
 
-        p {
-          display: table-cell;
-          vertical-align: middle;
+      .item-head {
+        border-bottom: p2e(1px) solid lightgray;
+
+        .delivery-status {
+          display: table;
+          margin: p2e(10px) auto;
+
+          p {
+            display: table-cell;
+            vertical-align: middle;
+          }
         }
       }
-    }
 
-    .item-body {
-      .brief-info {
-        background: #FFFFFF;
+      .item-body {
+        .brief-info {
+          background: #FFFFFF;
 
-        .product-thumb {
-          display: inline-block;
-          width: p2e(150px);
+          .product-thumb {
+            display: inline-block;
+            width: p2e(150px);
 
-          img {
-            width: 100%;
+            img {
+              width: 100%;
+            }
           }
-        }
 
-        .product-name {
-          @include font-dpr(16px);
-          display: inline-block;
-          position: absolute;
+          .product-name {
+            @include font-dpr(16px);
+            display: inline-block;
+            position: absolute;
 
-          p {
-            line-height: p2e(48px);
+            p {
+              line-height: p2e(48px);
+            }
           }
-        }
 
-        .product-price {
-          display: inline-block;
+          .product-price {
+            display: inline-block;
 
-          p {
-            @include font-dpr(14px);
+            p {
+              @include font-dpr(14px);
+            }
           }
-        }
 
-        .product-count {
-          display: inline-block;
+          .product-count {
+            display: inline-block;
 
-          p {
-            @include font-dpr(14px);
+            p {
+              @include font-dpr(14px);
+            }
           }
-        }
 
-        .order-price {
-          display: inline-block;
+          .order-price {
+            display: inline-block;
 
-          p {
-            @include font-dpr(14px);
+            p {
+              @include font-dpr(14px);
+            }
           }
         }
       }
