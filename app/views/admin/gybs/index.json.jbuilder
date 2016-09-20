@@ -4,6 +4,7 @@ datatable_json_response(json) do
     json.title                  row.title
     json.gyb_type               row.gyb_type
     json.price                  row.price
+    json.exchange_code          partially_hidden(row.exchange_code)
     json.stock                  row.stock
     json.expiration_time        row.expiration_time.strftime('%Y-%m-%d').to_s
     json.created_at             timeago(row.created_at)

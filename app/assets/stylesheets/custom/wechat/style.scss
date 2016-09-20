@@ -53,6 +53,7 @@ html, body {
   top: p2e(120px);
   @include font-dpr(20px);
   color: #32CD32;
+  font-weight: bold;
 
   a {
     color: #32CD32;
@@ -566,15 +567,15 @@ i.arrow {
   .switch-tabs {
     background: #ffffff;
     text-align: center;
-    @include font-dpr(16px);
+    @include font-dpr(14px);
 
     span {
-      border: 1px dodgerblue solid;
+      border: 1px limegreen solid;
       padding: p2e(10px) p2e(40px);
     }
 
-    span.income {
-      background: #4CD964;
+    .active {
+      background: limegreen;
       color: #ffffff;
     }
   }
@@ -582,24 +583,26 @@ i.arrow {
   .exchange {
     text-align: center;
     color: #9b9b9b;
-    @include font-dpr(16px);
+    @include font-dpr(14px);
 
     .exchange-area {
       text-align: center;
 
       .exchange-box {
-        border: 1px #4CD964 solid;
-        color: #9b9b9b;
         padding: p2e(10px) p2e(20px);
+        line-height: p2e(45px);
         border-radius: p2e(4px);
+        border: 1px limegreen solid;
+        color: #9b9b9b;
       }
 
       .exchange-btn {
-        background: #4CD964;
-        color: #ffffff;
-        padding: p2e(10px) p2e(20px);
+        padding: p2e(10px) p2e(30px);
         border: none;
+        line-height: p2e(45px);
         border-radius: p2e(4px);
+        background: limegreen;
+        color: #ffffff;
       }
     }
   }
@@ -607,6 +610,8 @@ i.arrow {
   .gyb-got {
     .gyb-item {
       position: relative;
+      padding-left: p2e(14px);
+      @include font-dpr(14px);
 
       .gyb-item-head {
         padding: p2e(10px);
@@ -1137,6 +1142,13 @@ ul.products-list {
 
     p {
       color: #000;
+      @include font-dpr(14px);
+      margin-top: p2e(14px);
+
+      a {
+        color: dodgerblue;
+        text-decoration: underline;
+      }
     }
   }
 

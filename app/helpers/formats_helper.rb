@@ -37,4 +37,10 @@ module FormatsHelper
       "%g" % val.round(decimal_point)
     end
   end
+
+  def partially_hidden(str)
+    length = str.length
+    str[(length/2 - 2)..(length/2 + 1)] = '****'
+    str
+  end
 end
