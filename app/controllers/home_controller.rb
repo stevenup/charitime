@@ -16,7 +16,9 @@ class HomeController < BaseController
 
   def my_gyb
     @user = current_user
-    @gyb_incomes = GybIncome.where("user_id = ?", @user.id).order(created_at: :desc)
+    type = params[:type]
+    @gyb_incomes = GybIncome.where("user_id = ?", @user.id).order(created_at: :desc) if type == '0'
+    @gyb_payments = GybPayment.where("user_id = ?", @user.id).order(created_at: :desc) if type == '1'
   end
 
   def project_detail

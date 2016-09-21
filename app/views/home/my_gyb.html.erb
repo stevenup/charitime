@@ -15,12 +15,8 @@
 
   <div class="switch-tabs p-t p-b" id="switch-tabs">
     <div class="tabs-wrapper">
-      <span class="income active">
-        收入
-      </span>
-      <span class="cost">
-        支出
-      </span>
+      <%= link_to '收入', my_gyb_home_index_path(type: '0'), class: 'active' %>
+      <%= link_to '支出', my_gyb_home_index_path(type: '1') %>
     </div>
   </div>
 
@@ -37,30 +33,66 @@
     </div>
   </div>
 
-  <div class="gyb-got" id="gyb-got">
-    <div class="remarks m-t m-b p-t p-b">以下是您获得的公益币</div>
+  <% if @gyb_incomes %>
+    <div class="gyb-got" id="gyb-got">
+      <div class="remarks m-t m-b p-t p-b">以下是您获得的公益币</div>
 
-    <% @gyb_incomes.each do |ele| %>
-      <div class="gyb-item s-s">
-        <div class="gyb-item-head">
-          <i class="menu-icon fa fa-tag fa-lg"></i>
-          <p class="menu-name"><%= ele.created_at.strftime('%Y-%m-%d %T').to_s %></p>
-          <!--<i class="arrow fa fa-angle-right fa-2x"></i>-->
-        </div>
+      <% @gyb_incomes.each do |ele| %>
+        <div class="gyb-item s-s">
+          <div class="gyb-item-head">
+            <i class="menu-icon fa fa-tag fa-lg"></i>
+            <p class="menu-name"><%= ele.created_at.strftime('%Y-%m-%d %T').to_s %></p>
+            <!--<i class="arrow fa fa-angle-right fa-2x"></i>-->
+          </div>
 
-        <div class="gyb-item-pic m-t m-b">
-          <%= image_tag 'p1.jpg' %>
-        </div>
+          <div class="gyb-item-pic m-t m-b">
+            <%= image_tag 'p1.jpg' %>
+          </div>
 
-        <div class="gyb-item-detail m-t m-b m-l">
-          <p class="gyb-source">
-            <%= ele.gyb.title.to_s %>
-          </p>
-          <p class="gyb-plus m-t">
-            感谢您的爱心，您获得&nbsp;<span><%= ele.gyb.price.to_s %></span>&nbsp;公益币！
-          </p>
+          <div class="gyb-item-detail m-t m-b m-l">
+            <p class="gyb-source">
+              <%= ele.gyb.title.to_s %>
+            </p>
+            <p class="gyb-plus m-t">
+              感谢您的爱心，您获得&nbsp;<span><%= ele.gyb.price.to_s %></span>&nbsp;公益币！
+            </p>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @gyb_payments %>
+    <div class="gyb-got" id="gyb-got">
+      <div class="remarks m-t m-b p-t p-b">以下是您支出的公益币</div>
+
+      <% @gyb_payments.each do |ele| %>
+        <div class="gyb-item s-s">
+          <div class="gyb-item-head">
+            <i class="menu-icon fa fa-tag fa-lg"></i>
+            <p class="menu-name"><%= ele.created_at.strftime('%Y-%m-%d %T').to_s %></p>
+            <!--<i class="arrow fa fa-angle-right fa-2x"></i>-->
+          </div>
+
+          <div class="gyb-item-pic m-t m-b">
+            <%= image_tag 'p1.jpg' %>
+          </div>
+
+          <div class="gyb-item-detail m-t m-b m-l">
+            <p class="gyb-source">
+
+            </p>
+            <p class="gyb-plus m-t">
+              您为商品&nbsp;<span><%= ele.shelf_item_id.to_s %></span>&nbsp;支出若干公益币！
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @gyb_incomes.nil? && @gyb_payments.nil? %>
+    <div class="no-records">尚无记录。</div>
+  <% end %>
+
 </div>

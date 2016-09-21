@@ -564,19 +564,29 @@ i.arrow {
 
 /****************  my-gyb style  **************/
 .my-gyb {
+  .no-records {
+    text-align: center;
+    margin-top: p2e(45px);
+  }
+
   .switch-tabs {
     background: #ffffff;
     text-align: center;
     @include font-dpr(14px);
 
-    span {
-      border: 1px limegreen solid;
-      padding: p2e(10px) p2e(40px);
-    }
+    .tabs-wrapper {
+      a {
+        display: inline-block;
+        border: 1px limegreen solid;
+        padding: p2e(10px) p2e(40px);
+        margin-left: p2e(-4px);
+        margin-right: p2e(-4px);
+      }
 
-    .active {
-      background: limegreen;
-      color: #ffffff;
+      .active {
+        background: limegreen;
+        color: #ffffff;
+      }
     }
   }
 
