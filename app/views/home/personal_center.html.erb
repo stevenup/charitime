@@ -7,7 +7,7 @@
       <p><%= @user.nickname.to_s %></p>
     </div>
     <div class="total-gyb">
-      <%= link_to my_gyb_home_index_path(type: '0') do %>
+      <%= link_to gybs_path do %>
         <p style="text-decoration: underline">
           <%= @user.gyb.to_s %>
         </p>
@@ -31,7 +31,7 @@
       </div>
     <% end %>
 
-    <%= link_to my_gyb_home_index_path(type: '0') do %>
+    <%= link_to gybs_path do %>
       <div class="my-gyb-menu s-s" id="my-gyb-menu">
         <div class="t-left">
           <i class="menu-icon fa fa-money fa-lg"></i>

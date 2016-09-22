@@ -9,11 +9,13 @@ Rails.application.routes.draw do
   resources :home, only: [:index] do
     get :personal_center,  on: :collection
     get :donations_center, on: :collection
-    get :my_gyb,           on: :collection
     get :donate_page,      on: :collection
     get :my_address,       on: :collection
-    get :exchange,         on: :collection
   end
+
+  get 'gybs' => 'gybs#index'
+  get 'gybs/append'
+  get 'gybs/exchange'
 
   resources :shelf_items
 
