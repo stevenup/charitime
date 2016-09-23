@@ -27,6 +27,12 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to admin_products_path if product.destroy
   end
 
+  def preview
+    id = params[:id]
+    @product = Product.find_by_id(id)
+    render layout: 'application'
+  end
+
   def set_recommended
     id = params[:id]
     product = Product.find_by_id(id)

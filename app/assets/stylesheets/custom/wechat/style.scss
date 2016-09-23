@@ -1484,3 +1484,12 @@ ul.products-list {
     }
   }
 }
+
+.preview {
+  margin: 0 auto;
+  width: p2e(750px);
+
+  .project_detail {
+    padding-bottom: 0;
+  }
+}

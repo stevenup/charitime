@@ -27,6 +27,21 @@ class Admin::ProjectsController < Admin::BaseController
     redirect_to admin_projects_path if project.destroy
   end
 
+  def preview
+    id = params[:id]
+    @project = Project.find_by_project_id(id)
+    render layout: 'application'
+  end
+
+  def publish
+    id = params[:id]
+    project = Project.find_by_project_id(id)
+    if project
+      project.update_attribute(:is_published, '1')
+      redirect_to admin_projects_path
+    end
+  end
+
   private
   def get_rows
     dt = decode_datatables_params

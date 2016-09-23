@@ -37,10 +37,13 @@ Rails.application.routes.draw do
   get '/orders/pay/:id', to: 'orders#pay', as: 'order_pay'
 
   namespace :admin do
-    get 'home'                 => 'home#index'
+    get 'home' => 'home#index'
 
     resources :users
-    resources :products
+    resources :products do
+      get :preview, on: :member
+    end
+
     resources :gybs
 
     resources :shelf_items do
@@ -55,7 +58,10 @@ Rails.application.routes.draw do
     end
     resources :product_categories
     resources :product_labels
-    resources :projects
+    resources :projects do
+      get :preview, on: :member
+      get :publish, on: :member
+    end
     resources :donations
     resources :banners
     resources :orders do

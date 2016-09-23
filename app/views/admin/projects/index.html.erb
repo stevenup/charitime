@@ -19,9 +19,10 @@
           <%= dt_col(Project.hn(:banner), data: { data: 'banner' }) %>
           <%= dt_col(Project.hn(:main_pic), data: { data: 'main_pic' }) %>
           <%= dt_col(Project.hn(:category), data: { data: 'category' }) %>
-          <%= dt_col(Project.hn(:project_detail), data: { data: 'project_detail' }) %>
           <%= dt_col(Project.hn(:created_at), data: { data: 'created_at' }) %>
           <%= dt_col(Project.hn(:action), data: { data: 'actions' }) %>
+          <%= dt_col(Project.hn(:preview_action), data: { data: 'preview_action' }) %>
+          <%= dt_col(Project.hn(:publish_action), data: { data: 'publish_action' }) %>
       <% end %>
     </div>
   </div>
