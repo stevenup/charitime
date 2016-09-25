@@ -15,10 +15,14 @@
       <%= dt id: 'projects_datatable', class: 'table table-striped b-t b-b', :'data-url' => admin_projects_path(:format => :json)  do %>
           <%= dt_col(Project.hn(:project_id), data: { data: 'project_id' }) %>
           <%= dt_col(Project.hn(:project_name), data: { data: 'project_name' }) %>
-          <%= dt_col(Project.hn(:project_type), data: { data: 'project_type_id' }) %>
-          <%= dt_col(Project.hn(:project_detail), data: { data: 'project_detail' }) %>
+          <%= dt_col(Project.hn(:thumb), data: { data: 'thumb' }) %>
+          <%= dt_col(Project.hn(:banner), data: { data: 'banner' }) %>
+          <%= dt_col(Project.hn(:main_pic), data: { data: 'main_pic' }) %>
+          <%= dt_col(Project.hn(:category), data: { data: 'category' }) %>
           <%= dt_col(Project.hn(:created_at), data: { data: 'created_at' }) %>
           <%= dt_col(Project.hn(:action), data: { data: 'actions' }) %>
+          <%= dt_col(Project.hn(:preview_action), data: { data: 'preview_action' }) %>
+          <%= dt_col(Project.hn(:publish_action), data: { data: 'publish_action' }) %>
       <% end %>
     </div>
   </div>

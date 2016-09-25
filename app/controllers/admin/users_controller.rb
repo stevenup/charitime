@@ -28,6 +28,6 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def users_params
-    params.require(:users).permit(:openid, :nickname, :mobile, :sex, :country, :city, :province, :headimgurl, :address, :gyb, :other)
+    params.require(:users).permit(:openid, :nickname, :mobile, :sex, :country, :city, :province, :headimgurl, :address, :gybs, :other)
   end
 end

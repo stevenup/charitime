@@ -22,9 +22,7 @@ class Admin::ShelfItemsController < Admin::BaseController
 
   def edit
     @shelf_item = ShelfItem.new
-    puts '>>>>>>>>'
     id =  params[:id]
-    puts id
     @product = Product.find_by :id => id       # product info will be displayed in the form modal
     render 'form', :layout =>  'bootstrap_modal'
   end
@@ -136,7 +134,7 @@ class Admin::ShelfItemsController < Admin::BaseController
 
   end
 
-  def create_or_update(id, form_data, template = 'form')
+  def create_or_update(id, form_data)
     if id == 0
       product = Product.find_by :id => params[:id]
       merged_data = product.attributes.merge form_data
@@ -148,12 +146,15 @@ class Admin::ShelfItemsController < Admin::BaseController
       @shelf_item.save
     else
       product = Product.find_by :id => params[:id]
-      @shelf_item = ShelfItem.find_by :id => params[:id]
-      @shelf_item.is_on_shelf = '1'
-      @shelf_item.thumb = product.thumb
       product.is_on_shelf = '1'
       product.save
-      @shelf_item.update_attributes form_data
+      @shelf_item = ShelfItem.find_by :id => params[:id]
+      data = product.attributes.merge form_data
+      # @shelf_item.is_on_shelf = '1'
+      #
+      # @shelf_item.thumb = product.thumb
+
+      @shelf_item.update_attributes data
     end
     # response_after_save_json result, @shelf_item
     redirect_to off_shelf_list_admin_shelf_items_path

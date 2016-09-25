@@ -24,14 +24,13 @@ class AddressesController < BaseController
     # The params province, city and district, are not submitted together with the hash from the form.
     # So they need to be received alone.
     province = params[:province]
-    city = params[:city]
+    city     = params[:city]
     district = params[:district]
 
     if id == 0
       data[:province] = ChinaCity.get province
       data[:city]     = ChinaCity.get city
       data[:district] = ChinaCity.get district
-      user_id         = current_user.id
       address         = Address.new data
       address.user_id = current_user.id
       address.default = '1' if Address.where(user_id: current_user.id).count == 0
@@ -46,6 +45,6 @@ class AddressesController < BaseController
   end
 
   def address_params
-    params.require(:address).permit(:openid, :receiver_name, :province, :city, :district, :detail_address, :mobile)
+    params.require(:address).permit(:receiver_name, :province, :city, :district, :detail_address, :mobile)
   end
 end

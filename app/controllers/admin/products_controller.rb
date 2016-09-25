@@ -27,6 +27,12 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to admin_products_path if product.destroy
   end
 
+  def preview
+    id = params[:id]
+    @product = Product.find_by_id(id)
+    render layout: 'application'
+  end
+
   def set_recommended
     id = params[:id]
     product = Product.find_by_id(id)
@@ -92,6 +98,6 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def product_params
-    params.require(:product).permit(:product_name, :thumb, :product_category_id, :product_label_id, :product_detail)
+    params.require(:product).permit(:product_name, :thumb, :category, :product_detail)
   end
 end

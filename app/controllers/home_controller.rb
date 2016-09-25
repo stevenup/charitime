@@ -3,15 +3,14 @@ class HomeController < BaseController
 
   def index
     @recommended_products = ShelfItem.where "recommended = '1'"
+    @projects = Project.all.order(created_at: :desc)
   end
 
   def personal_center
+    @user = current_user
   end
 
   def donations_center
-  end
-
-  def my_gyb
   end
 
   def project_detail
@@ -24,7 +23,5 @@ class HomeController < BaseController
   end
 
   def my_address
-
   end
-
 end

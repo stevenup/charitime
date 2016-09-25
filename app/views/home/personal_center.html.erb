@@ -1,14 +1,17 @@
 <div class="personal-center" id="personal-center">
   <div class="profile">
     <div class="avatar">
-      <%= image_tag 'avatar.jpg' %>
+      <%= image_tag @user.headimgurl.to_s %>
     </div>
     <div class="wx_name">
-      <p>九个太阳！</p>
+      <p><%= @user.nickname.to_s %></p>
     </div>
     <div class="total-gyb">
-      <p>100</p>
-
+      <%= link_to gybs_path do %>
+        <p style="text-decoration: underline">
+          <%= @user.gyb.to_s %>
+        </p>
+      <% end %>
       <p class="tt">公益币</p>
     </div>
   </div>
@@ -28,7 +31,7 @@
       </div>
     <% end %>
 
-    <%= link_to do %>
+    <%= link_to gybs_path do %>
       <div class="my-gyb-menu s-s" id="my-gyb-menu">
         <div class="t-left">
           <i class="menu-icon fa fa-money fa-lg"></i>
@@ -136,3 +139,6 @@
   </div>
 
 </div>
+
+
+<% content_for :title, set_title('个人中心')  %>

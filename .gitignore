@@ -16,8 +16,8 @@
 !/log/.keep
 /tmp
 /public/*
-/.idea/*
 /config/database.yml
 /public/uploads/*
 /config/application.yml
 /config/wechat.yml
+/.ruby-version

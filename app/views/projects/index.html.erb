@@ -1,43 +1,15 @@
-<div class="demo" id="demo">
-  <div class="demo-head">
-    <div class="demo-headimg">
-      <%= image_tag 'donation_bgp.png' %>
-    </div>
-
-    <div class="demo-title m-t">
-      <p>这里输入标题</p>
-    </div>
-
-    <div class="demo-desc" id="demo-desc">
-      <p>这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述</p>
-    </div>
-
+<div class="projects p-t p-b" id="projects">
+  <div class="project-list p-r p-l">
+    <% @projects.each do |ele| %>
+      <%= link_to detail_project_path ele.id do %>
+        <div class="project-item m-t">
+          <div class="project-pic">
+            <%= image_tag ele.banner %>
+          </div>
+        </div>
+      <% end %>
+    <% end  %>
   </div>
-
-  <div class="demo-head">
-    <div class="demo-headimg">
-      <%= image_tag 'hebe.jpg' %>
-    </div>
-
-    <div class="demo-title m-t">
-      <p>这里输入标题</p>
-    </div>
-
-    <div class="demo-desc" id="demo-desc">
-      <p>这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述</p>
-    </div>
-
-  </div>
-
 </div>
 
-<script>
-  $('.demo-head').one('click', function() {
-    $('.demo-head').remove();
-    $(this).appendTo('#demo');
-    $('#demo-desc').remove();
-    content = "<%= j render(:partial => 'shared/demo/demo_content') %>";
-    $(content).hide().appendTo('#demo').fadeIn(1000);
-  });
-
-</script>
+<%= content_for :title, set_title('公益项目') %>

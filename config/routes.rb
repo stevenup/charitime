@@ -9,18 +9,23 @@ Rails.application.routes.draw do
   resources :home, only: [:index] do
     get :personal_center,  on: :collection
     get :donations_center, on: :collection
-    get :my_gyb,           on: :collection
     get :donate_page,      on: :collection
     get :my_address,       on: :collection
   end
+
+  get 'gybs' => 'gybs#index'
+  get 'gybs/append'
+  get 'gybs/exchange'
 
   resources :shelf_items
 
   resources :projects do
     member do
-      get :index
+      get :detail
     end
   end
+
+  resources :supports
 
   resources :donations
   resources :addresses
@@ -32,10 +37,14 @@ Rails.application.routes.draw do
   get '/orders/pay/:id', to: 'orders#pay', as: 'order_pay'
 
   namespace :admin do
-    get 'home'                 => 'home#index'
+    get 'home' => 'home#index'
 
     resources :users
-    resources :products
+    resources :products do
+      get :preview, on: :member
+    end
+
+    resources :gybs
 
     resources :shelf_items do
       get :pull_off_shelf,     on: :member
@@ -49,9 +58,10 @@ Rails.application.routes.draw do
     end
     resources :product_categories
     resources :product_labels
-    resources :projects
-    resources :project_types
-    resources :support_types
+    resources :projects do
+      get :preview, on: :member
+      get :publish, on: :member
+    end
     resources :donations
     resources :banners
     resources :orders do
