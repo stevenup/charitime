@@ -182,6 +182,7 @@ i.arrow {
 
 /**************  homepage style  **************/
 .homepage {
+  padding-bottom: p2e(100px);
 
   /**********  start of common style  **********/
   .header-section {
@@ -204,20 +205,26 @@ i.arrow {
 
   .goods-item {
     width: p2e(340px);
-    height: p2e(470px);
+    //height: p2e(470px);
     border: p2e(1px) lightgray solid;
     display: inline-block;
+
+    img {
+      width: 100%;
+    }
 
     .item-property {
       .item-name {
         margin: p2e(10px);
-        text-align: left;
+        text-align: center;
         @include font-dpr(14px);
       }
 
       .item-bottom {
         .item-price {
           margin: p2e(8px);
+          text-align: center;
+          @include font-dpr(14px);
           font-weight: 600;
         }
 
@@ -374,23 +381,38 @@ i.arrow {
   }
 
   .bottom-nav {
-    background: whitesmoke;
-    width: 100%;
     position: fixed;
     bottom: 0;
-    border-top: p2e(1px) solid lightgray;
+    width: 100%;
+    background: #ececec;
+    border-top: p2e(1px) solid rgba(128, 128, 128, 0.71);
     text-align: center;
     @include font-dpr(16px);
 
     .bottom-nav-fixed {
+      margin-bottom: p2e(4px);
+      padding-top: p2e(12px);
+      display: -webkit-flex; /* Safari */
+      display: flex;
+      justify-content: space-between;
+
       a {
+        //display: inline-flex;
         text-decoration: none;
         color: orangered;
-      }
+        text-align: center;
+        padding-left: p2e(80px);
+        padding-right: p2e(80px);
 
-      i {
-        padding-left: p2e(50px);
-        padding-right: p2e(50px);
+        i {
+          display: block;
+        }
+
+        p {
+          display: block;
+          margin-top: p2e(14px);
+          @include font-dpr(10px);
+        }
       }
     }
   }
@@ -398,6 +420,7 @@ i.arrow {
 
 /*********** project list style *******/
 .projects {
+  margin-bottom: p2e(80px);
   background: #ffffff;
 
   .project-list {
