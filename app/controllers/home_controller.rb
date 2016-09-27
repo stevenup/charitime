@@ -3,7 +3,7 @@ class HomeController < BaseController
 
   def index
     @recommended_products = ShelfItem.where "recommended = '1'"
-    @projects = Project.all.order(created_at: :desc)
+    @projects = Project.where("is_published = ?", '1').order(created_at: :desc)
   end
 
   def personal_center

@@ -16,12 +16,12 @@
       <a href="/shelf_items" class="all m-b">查看全部 &nbsp;<i class="fa fa-angle-right fa-lg"></i></a>
     </div>
 
-    <div class="rcmds-list s-s m-t">
+    <div class="shelf-items-list s-s m-t">
       <% @recommended_products.each do |p| %>
         <%= link_to shelf_item_path p.id do %>
-          <div class="goods-item">
+          <div class="item">
             <%= image_tag p.thumb.to_s %>
-            <div class="item-property">
+            <div class="item-property p-b">
               <div class="item-name">
                 <%= p.product_name.to_s %>
               </div>
@@ -32,7 +32,6 @@
                 <!--<div class="item-hearts t-right">-->
                   <!--<i class="fa fa-heart red"></i>&nbsp; 100-->
                 <!--</div>-->
-                <div class="clear"></div>
               </div>
             </div>
           </div>
