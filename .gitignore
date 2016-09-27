@@ -17,7 +17,6 @@
 /tmp
 /public/*
 /config/database.yml
-/public/uploads/*
 /config/application.yml
 /config/wechat.yml
 /.ruby-version
