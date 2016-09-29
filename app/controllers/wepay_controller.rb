@@ -38,26 +38,54 @@ class WepayController < ApplicationController
 
   def unified_order
     Rails.logger.info '****************** in unified order *******************'
-    id  = params[:id]
+    id           = params[:id]
     order_detail = OrderDetail.find_by(:order_id => id)
-    params = {
-      body:         order_detail.product_name,
-      out_trade_no: order_detail.order_id,
-      total_fee:    (order_detail.order.total_price * 100).to_int,
-      openid:       current_user.openid,
-      trade_type:   'JSAPI',
-      notify_url:   'http://charitime.nonprofit.cn/wepay/notify',
-      spbill_create_ip: '127.0.0.1'
-    }
+    project      = Project.find_by(:project_id => id)
+    support      = Support.find_by(user_id: current_user.id, project_id: id)
 
-    res = Wepay::Service.invoke_unifiedorder params
-    if res['return_code'] == 'SUCCESS'
-      render json: { result: 'success', data: res['prepay_id'] } if res['result_code'] == 'SUCCESS'
-      render json: { result: 'fail', data: res['err_code_des'] } if res['result_code'] == 'FAIL'
+    # if - else 判断是支付订单还是使用维修支付为项目无偿捐赠
+    if order_detail
+      params = {
+        body:         order_detail.product_name,
+        out_trade_no: order_detail.order_id,
+        total_fee:    (order_detail.order.total_price * 100).to_int,
+        openid:       current_user.openid,
+        trade_type:   'JSAPI',
+        notify_url:   'http://charitime.nonprofit.cn/wepay/notify',
+        spbill_create_ip: '127.0.0.1'
+      }
+
+      res = Wepay::Service.invoke_unifiedorder params
+      if res['return_code'] == 'SUCCESS'
+        render json: { result: 'success', data: res['prepay_id'] } if res['result_code'] == 'SUCCESS'
+        render json: { result: 'fail', data: res['err_code_des'] } if res['result_code'] == 'FAIL'
+      else
+        render json: { result: 'fail', data: res['return_msg'] }
+      end
+      Rails.logger.info '**************** leave unified order *****************'
+
+    elsif project and support
+      params = {
+        body:         project.project_name,
+        out_trade_no: project.project_id,
+        total_fee:    (support.money).to_int,
+        openid:       current_user.openid,
+        trade_type:   'JSAPI',
+        notify_url:   'http://charitime.nonprofit.cn/wepay/notify',
+        spbill_create_ip: '127.0.0.1'
+      }
+
+      res = Wepay::Service.invoke_unifiedorder params
+      if res['return_code'] == 'SUCCESS'
+        render json: { result: 'success', data: res['prepay_id'] } if res['result_code'] == 'SUCCESS'
+        render json: { result: 'fail', data: res['err_code_des'] } if res['result_code'] == 'FAIL'
+      else
+        render json: { result: 'fail', data: res['return_msg'] }
+      end
+      Rails.logger.info '**************** leave unified order *****************'
     else
-      render json: { result: 'fail', data: res['return_msg'] }
+      render plain: '出错啦~~~'
     end
-    Rails.logger.info '**************** leave unified order *****************'
   end
 
   def refund_order

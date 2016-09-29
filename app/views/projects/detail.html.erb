@@ -99,9 +99,9 @@
     <%= number_field_tag :money, min: '1', max: '100' %>
     <span>元</span>
     <%= hidden_field_tag 'pid', @project.id %>
-    <%= hidden_field_tag 'type', '1' %>
+    <%= hidden_field_tag 'type', '0' %>
     <div class="buttons m-t m-b">
-      <%= submit_tag '确定', id: 'confirm-btn', class: 'btn btn-default btn-highlight btn-middle m-l m-r p-t p-b' %>
+      <%= submit_tag '确定', class: 'btn btn-default btn-highlight btn-middle m-l m-r p-t p-b' %>
     </div>
   <% end %>
 </div>

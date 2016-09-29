@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'gybs/append'
   get 'gybs/exchange'
 
+  get 'supports/pay'
+
   resources :shelf_items
 
   resources :projects do

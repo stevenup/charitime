@@ -41,7 +41,7 @@ class OrdersController < BaseController
     order_detail_params = shelf_item.attributes.merge(address.attributes)
                               .except("id","project_id", "product_category_id", "product_label_id",
                                       "product_detail", "stock", "sales", "is_on_shelf", "recommended",
-                                      "created_at", "updated_at", "user_id", "default")
+                                      "created_at", "updated_at", "user_id", "default", "category", "label")
     # generate a unique order_id to relate Order with OrderDetail model
     order_id      = 1000000000 + SecureRandom.random_number(999999999)
     out_refund_no = 1000000000 + SecureRandom.random_number(999999999)

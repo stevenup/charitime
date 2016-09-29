@@ -1573,3 +1573,50 @@ ul.shelf-items-list {
     }
   }
 }
+
+.support-confirm {
+  text-align: center;
+
+  p {
+    margin-top: p2e(28px);
+    @include font-dpr(16px);
+  }
+
+  .project-item {
+    position: relative;
+
+    .project-pic {
+      display: block;
+      position: relative;
+      left: 0;
+      margin: 0 auto;
+      //width: 100%;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .sum {
+    margin-top: p2e(80px);
+    margin-bottom: p2e(28px);
+    @include font-dpr(24px);
+    color: red;
+    font-weight: bolder;
+
+    span {
+      @include font-dpr(14px);
+      color: #000;
+    }
+  }
+
+  .remarks {
+    margin-top: p2e(100px);
+
+    p {
+      @include font-dpr(12px);
+      margin-top: p2e(14px);
+    }
+  }
+}
