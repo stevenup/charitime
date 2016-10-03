@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   get 'gybs/append'
   get 'gybs/exchange'
 
-  get 'supports/pay'
+  resources :supports
+  get '/supports/pay/:id', to: 'supports#pay', as: 'support_pay'
 
   resources :shelf_items
 
@@ -26,8 +27,6 @@ Rails.application.routes.draw do
       get :detail
     end
   end
-
-  resources :supports
 
   resources :donations
   resources :addresses

@@ -3,7 +3,7 @@ class SupportsController < BaseController
   end
 
   def pay
-    pid = params[:pid]
+    pid = params[:id]
     @project = Project.find_by(:project_id => pid)
     @support = Support.where("user_id = ? and project_id = ?", current_user.id, pid).last
   end
@@ -16,7 +16,7 @@ class SupportsController < BaseController
     support.user_id    = current_user.id
     support.project_id = pid
     support.save if support
-    redirect_to controller: 'supports', action: 'pay', pid: pid
+    redirect_to support_pay_path(pid)
   end
 
   def change_support_status
