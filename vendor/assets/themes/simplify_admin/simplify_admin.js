@@ -12,5 +12,7 @@
 //= require simplify_admin/js/rapheal.min
 //= require simplify_admin/js/sparkline.min
 //= require simplify_admin/js/waypoints.min
+//= require jquery-timeago/jquery.timeago
+//= require jquery-timeago/locales/jquery.timeago.zh-CN
 //= require simplify_admin/js/simplify/simplify
 //= require simplify_admin/js/simplify/simplify_dashboard
