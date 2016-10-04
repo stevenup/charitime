@@ -1620,3 +1620,80 @@ ul.shelf-items-list {
     }
   }
 }
+
+.supports {
+  margin-bottom: p2e(80px);
+  background: #ffffff;
+
+  .support-list {
+    .support-item {
+      position: relative;
+      width: 100%;
+
+      .mask {
+        position: absolute;
+        z-index: 999;
+        height: 100%;
+        width: 100%;
+        background: rgba(136, 136, 136, 0.71);
+
+        .description {
+          margin: p2e(64px) auto;
+          text-align: center;
+
+          p {
+            color: #ffffff;
+            padding: p2e(8px);
+          }
+
+          p.title {
+            @include font-dpr(18px);
+          }
+        }
+
+        img {
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 70%;
+        }
+      }
+
+      .support-pic {
+        position: relative;
+        left: 0;
+        width: 100%;
+        display: block;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .support-info {
+        text-align: left;
+        width: 60%;
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        p.title {
+          @include font-dpr(14px);
+          color: #000;
+        }
+
+        p.description {
+          @include font-dpr(12px);
+          color: #9b9b9b;
+        }
+
+        .support-info {
+          .target {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
