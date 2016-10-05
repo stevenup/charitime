@@ -1,5 +1,6 @@
 class SupportsController < BaseController
   def index
+    @supports = Support.where("user_id = ? and status = ?", current_user.id, 1).order(created_at: :desc)
   end
 
   def pay
@@ -30,6 +31,7 @@ class SupportsController < BaseController
     end
 
   end
+
   private
   def support_params
     params.permit(:pid, :money, :type, :utf8, :authenticity_token, :commit)
