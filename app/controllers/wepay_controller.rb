@@ -67,7 +67,7 @@ class WepayController < ApplicationController
     elsif project and support
       params = {
         body:         project.project_name,
-        out_trade_no: support.id,
+        out_trade_no: project.project_id,
         total_fee:    (support.money).to_int,
         openid:       current_user.openid,
         trade_type:   'JSAPI',
@@ -125,12 +125,12 @@ class WepayController < ApplicationController
       transaction_id = result['transaction_id']
 
       order = Order.find_by(order_id: out_trade_no)
-      support = Support.find_by(id: out_trade_no)
+      support = Support.where("user_id = ? and project_id = ?", current_user.id, out_trade_no).last
       if order
         order.update_attributes({ order_status: 1, transaction_id: transaction_id })
         render :xml => { return_code: "SUCCESS" }.to_xml(root: 'xml', dasherize: false)
       elsif support
-        support.update_attribute( status: '1' )
+        support.update_attribute( :status, '1' )
         render :xml => { return_code: "SUCCESS" }.to_xml(root: 'xml', dasherize: false)
       end
 
