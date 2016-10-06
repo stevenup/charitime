@@ -110,7 +110,7 @@ WXPayToDedicte = (prepay_id) ->
             url: '/supports/change_support_status',
             data: {id: $(this).data('id')},
             success: (res) ->
-              alert('修改订单状态成功！') if res.status == 'success'
+              alert('成功支持！') if res.status == 'success'
         else
           alert(res.errMsg)
       cancel: () ->
