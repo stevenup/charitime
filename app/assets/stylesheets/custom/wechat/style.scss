@@ -1580,6 +1580,11 @@ ul.shelf-items-list {
   p {
     margin-top: p2e(28px);
     @include font-dpr(16px);
+
+    a {
+      text-decoration: underline;
+      color: dodgerblue;
+    }
   }
 
   .project-item {

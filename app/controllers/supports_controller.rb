@@ -20,16 +20,9 @@ class SupportsController < BaseController
     redirect_to support_pay_path(pid)
   end
 
-  def change_support_status
+  def show
     id = params[:id]
-    support = Support.find_by(user_id: current_user.id, project_id: id)
-    if support
-      support.update_attribute(:status, '1')
-      render json: { status: 'success' }
-    else
-      render json: { status: 'failed'}
-    end
-
+    @support = Support.where("user_id = ? and project_id = ?", current_user.id, id).last
   end
 
   private

@@ -126,7 +126,7 @@ class WepayController < ApplicationController
       transaction_id = result['transaction_id']
 
       order   = Order.find_by(order_id: out_trade_no)
-      support = Support.find_by(id: out_trade_no - 1000000)
+      support = Support.find_by(id: out_trade_no.to_i - 1000000)
 
       if order
         order.update_attributes({ order_status: 1, transaction_id: transaction_id })

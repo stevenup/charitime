@@ -1,15 +1,12 @@
 <% if @support != [] %>
   <div class="support-confirm">
-    <p>您将为该项目捐赠</p>
     <div class="project-item m-t m-b p-t p-b p-l p-r">
       <div class="project-pic">
-        <%= image_tag @project.banner %>
+        <%= image_tag @support.project.banner %>
       </div>
     </div>
-    <div class="sum">
-      ￥<%= @support.money.to_s %><span class="m-l">分</span>
-    </div>
-    <button id="dedicate-confirm-btn" class="btn btn-default btn-highlight btn-middle m-l m-r p-t p-b" data-id="<%= @project.project_id %>">立即支付</button>
+    <p>感谢您的捐赠!</p>
+    <p>前往<a href="/supports">我支持的项目</a>查看</p>
     <div class="remarks">
       <p>捐款将由探索公益基金会代为接收</p>
       <p>后续公示请关注索益公益传播公众号</p>
