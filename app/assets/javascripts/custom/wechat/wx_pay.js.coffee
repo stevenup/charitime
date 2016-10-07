@@ -105,12 +105,6 @@ WXPayToDedicte = (prepay_id) ->
       success: (res) ->
         if res.errMsg == "chooseWXPay:ok"
           alert('支付成功！')
-          $.ajax
-            type: 'POST',
-            url: '/supports/show',
-            data: {id: $(this).data('id')},
-            success: (res) ->
-              alert('成功支持！') if res.status == 'success'
         else
           alert(res.errMsg)
       cancel: () ->
