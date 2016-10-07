@@ -43,7 +43,7 @@ class WepayController < ApplicationController
     project      = Project.find_by(:project_id => id)
     support      = Support.find_by(user_id: current_user.id, project_id: id)
 
-    # if - else 判断是支付订单还是使用维修支付为项目无偿捐赠
+    # if - else 判断是支付订单还是使用微信支付为项目无偿捐赠
     if order_detail
       params = {
         body:         order_detail.product_name,
@@ -67,7 +67,7 @@ class WepayController < ApplicationController
     elsif project and support
       params = {
         body:         project.project_name,
-        out_trade_no: project.project_id,
+        out_trade_no: 1000000 + support.id,
         total_fee:    (support.money).to_int,
         openid:       current_user.openid,
         trade_type:   'JSAPI',
@@ -83,6 +83,7 @@ class WepayController < ApplicationController
         render json: { result: 'fail', data: res['return_msg'] }
       end
       Rails.logger.info '**************** leave unified order *****************'
+
     else
       render plain: '出错啦~~~'
     end
@@ -124,13 +125,14 @@ class WepayController < ApplicationController
       out_trade_no   = result['out_trade_no']
       transaction_id = result['transaction_id']
 
-      order = Order.find_by(order_id: out_trade_no)
-      support = Support.where("user_id = ? and project_id = ?", current_user.id, out_trade_no).last
+      order   = Order.find_by(order_id: out_trade_no)
+      support = Support.find_by(id: out_trade_no - 1000000)
+
       if order
         order.update_attributes({ order_status: 1, transaction_id: transaction_id })
         render :xml => { return_code: "SUCCESS" }.to_xml(root: 'xml', dasherize: false)
       elsif support
-        support.update_attribute( :status, '1' )
+        support.update_attribute(:status, 1)
         render :xml => { return_code: "SUCCESS" }.to_xml(root: 'xml', dasherize: false)
       end
 
