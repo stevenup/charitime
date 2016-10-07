@@ -107,7 +107,7 @@ WXPayToDedicte = (prepay_id) ->
           alert('支付成功！')
           $.ajax
             type: 'GET',
-            url: '/supports/show',
+            url: '/supports',
             data: {id: $(this).data('id')},
             success: (res) ->
               alert('成功支持！') if res.status == 'success'
