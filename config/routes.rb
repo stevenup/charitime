@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :supports
   get '/supports/pay/:id', to: 'supports#pay', as: 'support_pay'
+  post '/supports/show'
 
   resources :shelf_items
 
