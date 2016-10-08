@@ -1,5 +1,5 @@
 <div class="orders">
-  <% if !@orders.nil? %>
+  <% if @orders == [] %>
     <div class="no-orders">
       <p>还没有买过东西哦～</p>
       <p><a href="/home">返回</a>首页看看吧。</p>
@@ -49,6 +49,5 @@
     </ul>
   <% end %>
 </div>
-
 
 <% content_for :title, set_title('我的订单')  %>

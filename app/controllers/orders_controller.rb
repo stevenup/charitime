@@ -1,11 +1,12 @@
 class OrdersController < BaseController
   def index
     status = params[:status]
-    if status
-      @orders = Order.where("user_id = ? and logistics_status != ?", current_user.id, '2').order(created_at: :desc) if status == '0'
-      @orders = Order.where("order_status = ? or logistics_status = ?", '1', '2').order(created_at: :desc) if status == '1'
+    if status == '0'
+      @orders = Order.where("user_id = ? and logistics_status != ?", current_user.id, 2).order("created_at DESC")
+    elsif status == '1'
+      @orders = Order.where("user_id = ? and logistics_status = ?", current_user.id, 2).order("created_at DESC")
     else
-      @orders = Order.where("user_id = ?", current_user.id).order(created_at: :desc)
+      @orders = Order.where("user_id = ?", current_user.id).order("created_at DESC")
     end
   end
 
