@@ -76,12 +76,13 @@ chooseWXPay = (prepay_id) ->
       success: (res) ->
         if res.errMsg == "chooseWXPay:ok"
           alert('支付成功！')
-          $.ajax
-            type: 'GET',
-            url: '/orders/change_order_status',
-            data: {id: $(this).data('id')},
-            success: (res) ->
-              alert('修改订单状态成功！') if res.status == 'success'
+          window.location.href = "charitime.nonprofit.cn/orders?status=0"
+#          $.ajax
+#            type: 'GET',
+#            url: '/orders/change_order_status',
+#            data: {id: $(this).data('id')},
+#            success: (res) ->
+#              alert('修改订单状态成功！') if res.status == 'success'
         else
           alert(res.errMsg)
       cancel: () ->
@@ -105,6 +106,7 @@ WXPayToDedicte = (prepay_id) ->
       success: (res) ->
         if res.errMsg == "chooseWXPay:ok"
           alert('支付成功！')
+          window.location.href = "charitime.nonprofit.cn/supports"
         else
           alert(res.errMsg)
       cancel: () ->
