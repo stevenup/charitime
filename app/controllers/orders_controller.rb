@@ -1,6 +1,7 @@
 class OrdersController < BaseController
   def index
-    if status = params[:status]
+    status = params[:status]
+    if status
       @orders = Order.where("user_id = ? and logistics_status != ?", current_user.id, '2').order(created_at: :desc) if status == '0'
       @orders = Order.where("order_status = ? or logistics_status = ?", '1', '2').order(created_at: :desc) if status == '1'
     else
