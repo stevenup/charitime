@@ -7,7 +7,7 @@ class SupportsController < BaseController
     pid = params[:id]
     @project = Project.find_by(:project_id => pid)
     @support = Support.where("user_id = ? and project_id = ?", current_user.id, pid).last
-    redirect_to supports_show_path(pid: pid), status: 200
+    # redirect_to supports_show_path(pid: pid), status: 200
   end
 
   def create

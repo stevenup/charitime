@@ -76,7 +76,7 @@ chooseWXPay = (prepay_id) ->
       success: (res) ->
         if res.errMsg == "chooseWXPay:ok"
           alert('支付成功！')
-          window.location.href = "charitime.nonprofit.cn/orders?status=0"
+          window.location.href = "http://charitime.nonprofit.cn/orders?status=0"
 #          $.ajax
 #            type: 'GET',
 #            url: '/orders/change_order_status',
@@ -106,7 +106,7 @@ WXPayToDedicte = (prepay_id) ->
       success: (res) ->
         if res.errMsg == "chooseWXPay:ok"
           alert('支付成功！')
-          window.location.href = "charitime.nonprofit.cn/supports"
+          window.location.href = "http://charitime.nonprofit.cn/supports"
         else
           alert(res.errMsg)
       cancel: () ->
