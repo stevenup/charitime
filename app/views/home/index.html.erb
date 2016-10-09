@@ -17,7 +17,7 @@
     </div>
 
     <div class="shelf-items-list s-s m-t">
-      <% @recommended_products.each do |p| %>
+      <% @recommended_items.each do |p| %>
         <%= link_to shelf_item_path p.id do %>
           <div class="item">
             <%= image_tag p.thumb.to_s %>

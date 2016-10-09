@@ -717,7 +717,7 @@ i.arrow {
 
       .cate-title {
         .p-bar {
-          width: p2e(20px);
+          width: p2e(15px);
           display: table-cell;
           background: #d88b1f;
         }
@@ -735,8 +735,8 @@ i.arrow {
 
     .project-supporters {
       .supporter-avatar {
-        height: p2e(80px);
-        width: p2e(80px);
+        height: p2e(60px);
+        width: p2e(60px);
         border-radius: 50%;
         overflow: hidden;
         display: inline-block;
@@ -896,16 +896,18 @@ i.arrow {
   .detail-body {
     @include font-dpr(14px);
     line-height: p2e(48px);
+    padding-bottom: p2e(120px);
   }
 
   .buttons {
+    display: flex;
     position: fixed;
     z-index: 999;
     bottom: 0;
     width: 100%;
     text-align: center;
     background-color: white;
-    display: flex;
+    line-height: p2e(45px);
 
     .btn-default {
       border-radius: 0;

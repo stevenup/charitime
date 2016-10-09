@@ -50,6 +50,9 @@
         <span class="p-title p-l">发起人</span>
       </div>
     </div>
+    <div class="detail-body p-t p-b p-l p-r">
+      test test test
+    </div>
   </div>
 
   <div class="project-detail-area m-l m-r m-t m-b">
@@ -80,6 +83,10 @@
       </div>
     </div>
 
+    <div class="detail-body p-t p-b p-l p-r">
+      test test test
+    </div>
+
     <div class="project-comment">
     </div>
 
@@ -106,29 +113,34 @@
   <% end %>
 </div>
 
-<div class="purchases tt m-t m-b" id="purchases">
-  <p class="title">通过购买以下商品，您将直接或间接支持到该项目</p>
-  <% @shelf_items.each do |item| %>
-    <div class="purchase-item p-l p-r p-t p-b">
-      <div class="item-left">
-        <%= image_tag item.thumb %>
-      </div>
-      <div class="item-right">
-        <div class="info-top">
-          <p><%= item.product_name.to_s %></p>
+<div class="purchases tt m-t" id="purchases">
+  <% if @shelf_items != [] %>
+    <p class="title">通过购买以下商品，您将直接或间接支持到该项目</p>
+    <% @shelf_items.each do |item| %>
+      <div class="purchase-item p-l p-r p-t p-b">
+        <div class="item-left">
+          <%= image_tag item.thumb %>
         </div>
-        <div class="info-bottom m-t">
-          <div class="item-price">
-            ￥<%= item.price.to_s %>
+        <div class="item-right">
+          <div class="info-top">
+            <p><%= item.product_name.to_s %></p>
           </div>
-          <div class="item-btn">
-            <%= button_to '前往购买', {:controller => 'shelf_items', :action => 'show', :id => item.id}, params: { pid: @project.id }, :method => 'get', :class => 'btn btn-default btn-highlight m-l m-r p-t p-b' %>
+          <div class="info-bottom m-t">
+            <div class="item-price">
+              ￥<%= item.price.to_s %>
+            </div>
+            <div class="item-btn">
+              <%= button_to '前往购买', {:controller => 'shelf_items', :action => 'show', :id => item.id}, params: { pid: @project.id }, :method => 'get', :class => 'btn btn-default btn-highlight m-l m-r p-t p-b' %>
+            </div>
+            <div class="clear"></div>
           </div>
-          <div class="clear"></div>
         </div>
       </div>
-    </div>
+    <% end %>
+  <% else %>
+    <p class="title">该项目尚未关任何商品。</p>
   <% end %>
+
 </div>
 
 <% content_for :title, '项目详情' %>
