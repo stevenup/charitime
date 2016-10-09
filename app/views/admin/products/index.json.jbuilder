@@ -5,7 +5,7 @@ datatable_json_response(json) do
     json.thumb            render_img row.thumb, :width => '80px', :height => '80px'
     json.category         row.category
     # json.label          row.label
-    json.created_at       timeago(row.created_at)
+    json.created_at       row.created_at.strftime("%Y-%m-%d %T")
     json.actions          edit_and_del edit_admin_product_path(row), admin_product_path(row, :format => :json), { edit: { data: { id: row.id }, class: 'btn btn-sm btn-info edit-btn' }, delete: { data: { id: row.id, confirm: '确认删除？' }, class: 'btn btn-sm btn-dark delete-btn m-l-sm' } }
     json.preview_action   row_action '预览', preview_admin_product_path(row.id), { class: 'btn btn-sm btn-info preview-btn', target: '_blank' }
   end

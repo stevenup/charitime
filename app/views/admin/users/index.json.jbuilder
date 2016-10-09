@@ -9,7 +9,7 @@ datatable_json_response(json) do
     json.province     row.province
     json.city         row.city
     json.subscribe    row.subscribe == 1 ? '已关注' : '未关注'
-    json.created_at   timeago(row.created_at)
+    json.created_at   row.created_at.strftime("%Y-%m-%d %T")
     json.address      row.address
     json.gyb          row.gyb
   end

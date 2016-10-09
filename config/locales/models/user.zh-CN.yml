@@ -14,6 +14,6 @@ zh-CN:
         headimgurl: '头像'
         subscribe:  '是否关注'
         gyb:        '公益币'
-        created_at: '新建时间'
+        created_at: '关注时间'
         action:     '操作'
 
