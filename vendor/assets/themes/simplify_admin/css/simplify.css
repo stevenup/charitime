@@ -771,6 +771,7 @@ a.list-group-item.active:focus {
 }
 .sidebar-menu .main-menu ul li.open > a {
   color: #ffffff;
+  background: #1c2b36;
 }
 .sidebar-menu .main-menu ul li.open > a .menu-icon {
   color: #fff;
