@@ -6,8 +6,7 @@ datatable_json_response(json) do
     json.banner             render_img row.banner,   :width => '80px', :height => '60px'
     json.main_pic           render_img row.main_pic, :width => '80px', :height => '60px'
     json.category           row.category
-    json.project_detail     row.project_detail
-    json.created_at         timeago(row.created_at)
+    json.created_at         row.created_at.strftime("%Y-%m-%d %T")
     json.actions            edit_and_del edit_admin_project_path(row), admin_project_path(row, :format => :json), { edit: { data: { id: row.id }, class: 'btn btn-sm btn-info edit-btn' }, delete: { data: { id: row.id, confirm: '确认删除？' }, class: 'btn btn-sm btn-dark delete-btn m-l-sm' } }
     json.preview_action     row_action '预览', preview_admin_project_path(row.id), { class: 'btn btn-sm btn-info preview-btn', target: '_blank' }
     json.publish_action     row_action '发布', publish_admin_project_path(row), {id: row.id, class: 'btn btn-sm btn-info publish-btn', data: { confirm: "确认发布该项目？"}}
