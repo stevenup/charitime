@@ -65,6 +65,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'quiet_assets'                # Quiet assets access log in development server
   gem 'thin'                        # use thin as local development server
+  gem 'better_errors'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

@@ -65,7 +65,6 @@ Rails.application.routes.draw do
       get :publish, on: :member
     end
     resources :donations
-    resources :banners
     resources :orders do
       collection do
         get :refund_orders
