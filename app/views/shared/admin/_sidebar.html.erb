@@ -131,13 +131,16 @@
                 <span class="submenu-label">待发货订单</span>
               <% end %>
             </li>
-            <li><a href="form_validation.html"><span class="submenu-label">待签收订单</span></a></li>
             <li class="<%= render_active ({:menu => 'refund_orders' }) %>">
               <%= link_to refund_orders_admin_orders_path do %>
                 <span class="submenu-label">退货退款订单</span>
               <% end %>
             </li>
-            <li><a href="form_validation.html"><span class="submenu-label">已完成订单</span></a></li>
+            <li class="<%= render_active ({:menu => 'index' }) %>">
+              <%= link_to admin_orders_path do %>
+                <span class="submenu-label">订单查询</span>
+              <% end %>
+            </li>
           </ul>
         </li>
 

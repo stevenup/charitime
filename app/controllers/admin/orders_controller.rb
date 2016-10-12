@@ -1,4 +1,11 @@
 class Admin::OrdersController < Admin::BaseController
+  def index
+    respond_to do |format|
+      format.html
+      format.json { get_rows }
+    end
+  end
+
   def undelivered_orders
     respond_to do |format|
       format.html
