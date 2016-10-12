@@ -4,10 +4,6 @@
     <li>订单管理</li>
     <li>订单查询</li>
   </ul>
-
-  <%= link_to new_admin_gyb_path, class: 'btn-new btn btn-primary marginTB-xs' do %>
-    <i class="fa fa-plus m-right-xs"></i>New Gyb
-  <% end %>
 </div>
 
 <div class="smart-widget">
@@ -17,13 +13,13 @@
   <div class="smart-widget-inner">
     <div class="smart-widget-body">
       <div class="row">
-        <%= form_tag '', url: '', html: {class: 'form-horizontal'} do |f| %>
+        <%= form_for nil, remote: true, method: :get do |f| %>
           <div class="col-md-2">
-            <%= text_field_tag :user_id, nil, class: 'form-control', placeholder: '用户id' %>
+            <%= text_field_tag :user_id, nil, class: 'form-control', placeholder: '用户id', data: { :prop => 'user_id' }  %>
           </div>
 
           <div class="col-md-2">
-            <%= text_field_tag :order_id, nil, class: 'form-control', placeholder: '订单编号' %>
+            <%= text_field_tag :order_id, nil, class: 'form-control', placeholder: '订单编号', data: { :prop => 'order_id' }  %>
           </div>
 
           <div class="col-md-2">
@@ -39,7 +35,7 @@
           </div>
 
           <div class="col-md-1">
-            <%= submit_tag '查  询', class: "btn btn-primary" %>
+            <%= button_tag '查  询', type: 'button', id: 'query-btn', class: "btn btn-primary" %>
           </div>
 
           <div class="col-md-1">
@@ -47,7 +43,6 @@
           </div>
 
         <% end %>
-
       </div>
     </div>
   </div>
@@ -62,7 +57,6 @@
         <%= dt_col(Order.hn(:order_status), data: {data: 'order_status'}) %>
         <%= dt_col(Order.hn(:total_price), data: {data: 'total_price'}) %>
         <%= dt_col(Order.hn(:created_at), data: {data: 'created_at'}) %>
-        <%= dt_col(Product.hn(:action), data: {data: 'actions'}) %>
       <% end %>
     </div>
   </div>
@@ -71,8 +65,3 @@
 <% content_for :scripts do %>
   <%= controller_js_include %>
 <% end %>
-
-<script>
-  $('#datetimepicker1').datetimepicker();
-  $('#datetimepicker2').datetimepicker();
-</script>

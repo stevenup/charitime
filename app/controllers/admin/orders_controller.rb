@@ -1,5 +1,7 @@
 class Admin::OrdersController < Admin::BaseController
   def index
+    puts '****************************************'
+    puts params[:user_id]
     respond_to do |format|
       format.html
       format.json { get_rows }
@@ -9,7 +11,7 @@ class Admin::OrdersController < Admin::BaseController
   def undelivered_orders
     respond_to do |format|
       format.html
-      format.json { get_rows }
+      format.json { get_undelivered_rows }
     end
   end
 
@@ -30,7 +32,45 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   private
+
   def get_rows
+    dt = decode_datatables_params
+
+    search_obj = {
+      :include => [],
+      :joins => [],
+      :order => dt[:sort_statement],
+      :conditions => wrap_search_obj(params)
+    }
+
+    @total_rows = Order.joins(search_obj[:joins]).where(search_obj[:conditions]).count()
+    @rows = Order.page(dt[:page]).per(dt[:per_page])
+              .includes(search_obj[:include])
+              .joins(search_obj[:joins])
+              .order(search_obj[:order])
+              .where(search_obj[:conditions])
+  end
+
+  def wrap_search_obj(params)
+    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    puts params[:user_id]
+    puts params[:order_id]
+    where_array = []
+    where_array << "user_id=:order_id" unless params['user_id'].blank?
+    where_array << "order_id=:order_id" unless params['order_id'].blank?
+    where_array << "order_status=:order_status" unless params['order_status'].blank?
+    where_array << "created_at BETWEEN :start_date AND :end_date" unless params['start_date'].blank? and params['end_date'].blank?
+
+    placeholder_obj = {}
+    %w(user_id order_id order_status start_date end_date).each {|k| placeholder_obj[k.to_sym] = params[k]}
+
+    arr = []
+    arr << [where_array.join(' AND '), placeholder_obj]
+    puts '>>>>>>>>>>>'
+    puts arr
+  end
+
+  def get_undelivered_rows
     dt = decode_datatables_params
 
     where_array = []
@@ -74,5 +114,9 @@ class Admin::OrdersController < Admin::BaseController
 
   def order_detail_params
     params.require(:order_detail).permit(:delivery_company, :delivery_id)
+  end
+
+  def order_query_params
+    params.require(:order).permit(:user_id, :order_id, :order_status, :start_date, :end_date)
   end
 end
