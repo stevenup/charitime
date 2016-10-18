@@ -1,7 +1,4 @@
 module FormatsHelper
-
-  # Format date time for API, it will be formatted as following:
-  #   2012/03/05 12:03:45 => 20120305120345
   def format_datetime(date)
     date.strftime("%Y%m%d%H%M%S") if date
   end
@@ -42,5 +39,18 @@ module FormatsHelper
     length = str.length
     str[(length/2 - 2)..(length/2 + 1)] = '****'
     str
+  end
+
+  def display_status(str)
+    '退款驳回'    if str == '-5'
+    '退款处理中'  if str == '-4'
+    '已退款'      if str == '-3'
+    '支付取消'    if str == '-2'
+    '支付失败'    if str == '-1'
+    '未支付'      if str == '0'
+    '已支付'      if str == '1'
+    '未发货'      if str == '2'
+    '已发货'      if str == '3'
+    '已完成'      if str == '4'
   end
 end

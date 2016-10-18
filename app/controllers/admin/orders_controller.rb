@@ -1,10 +1,10 @@
 class Admin::OrdersController < Admin::BaseController
-  def index
-    puts '****************************************'
-    puts params[:user_id]
+  include FormatsHelper
+
+  def query_orders
     respond_to do |format|
       format.html
-      format.json { get_rows }
+      format.json { get_rows_with_query_params }
     end
   end
 
@@ -33,7 +33,7 @@ class Admin::OrdersController < Admin::BaseController
 
   private
 
-  def get_rows
+  def get_rows_with_query_params
     dt = decode_datatables_params
 
     search_obj = {
@@ -52,11 +52,8 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def wrap_search_obj(params)
-    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-    puts params[:user_id]
-    puts params[:order_id]
     where_array = []
-    where_array << "user_id=:order_id" unless params['user_id'].blank?
+    where_array << "user_id=:user_id" unless params['user_id'].blank?
     where_array << "order_id=:order_id" unless params['order_id'].blank?
     where_array << "order_status=:order_status" unless params['order_status'].blank?
     where_array << "created_at BETWEEN :start_date AND :end_date" unless params['start_date'].blank? and params['end_date'].blank?
@@ -64,10 +61,7 @@ class Admin::OrdersController < Admin::BaseController
     placeholder_obj = {}
     %w(user_id order_id order_status start_date end_date).each {|k| placeholder_obj[k.to_sym] = params[k]}
 
-    arr = []
-    arr << [where_array.join(' AND '), placeholder_obj]
-    puts '>>>>>>>>>>>'
-    puts arr
+    [where_array.join(' AND '), placeholder_obj]
   end
 
   def get_undelivered_rows

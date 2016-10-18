@@ -18,7 +18,7 @@ module ApplicationHelper
   # Render the active sidebar menu
   def render_active(opts)
     menu = opts.delete :menu
-    return 'active' if menu == params[:controller].split('/')[1] || menu == params[:action]
+    'active' if menu == params[:controller].split('/')[1] || menu == params[:action]
   end
 
   def set_title(title)

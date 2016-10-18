@@ -2,9 +2,9 @@ class OrdersController < BaseController
   def index
     status = params[:status]
     if status == '0'
-      @orders = Order.where("user_id = ? and logistics_status != ?", current_user.id, 2).order("created_at DESC")
+      @orders = Order.where("user_id = ? and logistics_status != ?", current_user.id, 4).order("created_at DESC")
     elsif status == '1'
-      @orders = Order.where("user_id = ? and logistics_status = ?", current_user.id, 2).order("created_at DESC")
+      @orders = Order.where("user_id = ? and logistics_status = ?", current_user.id, 4).order("created_at DESC")
     else
       @orders = Order.where("user_id = ?", current_user.id).order("created_at DESC")
     end
@@ -23,14 +23,14 @@ class OrdersController < BaseController
   def apply_refund
     order_id = params[:id]
     order = Order.find_by_order_id order_id
-    order.update_attribute(:order_status, -3)
+    order.update_attribute(:order_status, -4)
     redirect_to orders_path :id => order_id
   end
 
   def cancel_order
     id = params[:id]
     order = Order.find_by_order_id id
-    order.update_attribute(:order_status, 2)
+    order.update_attribute(:order_status, -2)
     redirect_to :action => 'show', :id => id
   end
 
