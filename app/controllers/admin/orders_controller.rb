@@ -1,7 +1,7 @@
 class Admin::OrdersController < Admin::BaseController
   include FormatsHelper
 
-  def query_orders
+  def query
     respond_to do |format|
       format.html
       format.json { get_rows_with_query_params }

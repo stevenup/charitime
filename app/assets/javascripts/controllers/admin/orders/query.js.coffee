@@ -1,8 +1,8 @@
 using Utils.Datatables, (ctx) ->
-  dt = ctx.newForAjax '#query_orders_datatable', {
-  scrollX: false,
-  order: [[ 7, 'desc' ]]
+  dt = ctx.newForAjax '#query_orders-datatable', {
+    scrollX: false
   }
+
   $('#query-btn').on 'click', -> dt.draw()
 
   $('#datetimepicker1').datetimepicker()
