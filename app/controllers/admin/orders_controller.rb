@@ -8,6 +8,12 @@ class Admin::OrdersController < Admin::BaseController
     end
   end
 
+  def get_excel
+    puts '>>>>>>>>>>>>>> came here!'
+    @orders = Order.order('created_at DESC').where(wrap_search_obj(params))
+    render xlsx: "get_excel", disposition: "attachment", filename: "orders_export_#{Time.now.strftime("%Y%m%d_%H%M%S")}.xlsx"
+  end
+
   def undelivered_orders
     respond_to do |format|
       format.html

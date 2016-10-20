@@ -1,0 +1,9 @@
+# -*- encoding : utf-8 -*-
+wb = xlsx_package.workbook
+style_shout = wb.styles.add_style sz: 14, b: true, alignment: { horizontal: :center }
+wb.add_worksheet(name: "订单列表") do |sheet|
+  sheet.add_row ['用户id', '订单id', '订单状态', '创建时间']
+  @orders.each do |ele|
+    sheet.add_row [ele.user_id, ele.order_id, ele.order_status, ele.created_at.strftime("%y/%m/%d %H:%M")]
+  end
+end

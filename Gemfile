@@ -27,6 +27,10 @@ gem 'rabl'
 gem 'faraday'
 gem 'table_print'
 
+gem 'rubyzip'
+gem 'axlsx'
+gem 'axlsx_rails'
+
 # rich-text editor
 gem 'ckeditor'
 gem 'carrierwave'

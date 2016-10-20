@@ -70,6 +70,7 @@ Rails.application.routes.draw do
         get :query
         get :refund_orders
         get :undelivered_orders
+        post :get_excel, :defaults => { :format => 'xlsx' }
       end
     end
   end

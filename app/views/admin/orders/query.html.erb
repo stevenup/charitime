@@ -38,9 +38,9 @@
             <%= button_tag '查  询', type: 'button', id: 'query-btn', class: "btn btn-primary" %>
           </div>
 
-          <div class="col-md-1">
-            <button class="btn btn-primary">导  出</button>
-          </div>
+          <%= link_to 'javascript:;', class: 'btn btn-primary', id: 'download_xls_btn', data:{ url: get_excel_admin_orders_path() }  do %>
+            <i class="fa fa-file-excel-o"></i>导出订单
+          <% end %>
 
         <% end %>
       </div>
