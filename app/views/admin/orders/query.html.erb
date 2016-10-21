@@ -34,13 +34,12 @@
             <%= text_field_tag :end_date, nil, id: 'datetimepicker2', class: 'form-control filter-input', placeholder: '结束时间', data: { :prop => 'end_date' } %>
           </div>
 
-          <div class="col-md-1">
+          <div class="col-md-2">
             <%= button_tag '查  询', type: 'button', id: 'query-btn', class: "btn btn-primary" %>
+            <%= link_to 'javascript:;', class: 'btn btn-primary', id: 'download_xls_btn', data:{ url: get_excel_admin_orders_path(), confirm: '确定导出到Excel?' } do %>
+              <i class="fa fa-file-excel-o"></i>&nbsp;导出订单
+            <% end %>
           </div>
-
-          <%= link_to 'javascript:;', class: 'btn btn-primary', id: 'download_xls_btn', data:{ url: get_excel_admin_orders_path() }  do %>
-            <i class="fa fa-file-excel-o"></i>导出订单
-          <% end %>
 
         <% end %>
       </div>

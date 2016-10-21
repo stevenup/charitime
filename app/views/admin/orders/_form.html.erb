@@ -23,7 +23,7 @@
 
   <div class="form-group">
     <%= f.label :商品, class: 'col-lg-1 control-label' %>
-    <div class="col-lg-4"><%= image_tag Product.find_by_product_id(@order_detail.product_id).try(:thumb), class: 'col-lg-4', required: true %></div>
+    <div class="col-lg-4"><%= image_tag ShelfItem.find_by_product_id(@order_detail.product_id).try(:thumb), class: 'col-lg-4', required: true %></div>
   </div>
 
   <div class="form-group">
@@ -63,12 +63,12 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :物流公司, class: 'col-lg-1 control-label' %>
-    <div class="col-lg-4"><%= f.text_field :delivery_company, class: 'col-lg-4 form-control', required: true %></div>
+    <%= f.label :快递公司, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.select :delivery_company, options_for_select([["申通快递", "申通"], ["圆通快递", "圆通"], ["顺丰快递", "顺丰"]]), {prompt: '-- 请选择快递公司 --'}, {class: 'col-lg-4 form-control', required: true} %></div>
   </div>
 
   <div class="form-group">
-    <%= f.label :单号, class: 'col-lg-1 control-label' %>
+    <%= f.label :快递单号, class: 'col-lg-1 control-label' %>
     <div class="col-lg-4"><%= f.text_field :delivery_id, class: 'col-lg-4 form-control', required: true %></div>
   </div>
 
