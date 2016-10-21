@@ -23,7 +23,7 @@
           </div>
 
           <div class="col-md-2">
-            <%= select_tag :order_status, "<option value='2'>未发货</option><option value='3'>已发货</option><option value='4'>已完成</option>", class: 'form-control filter-input', prompt: '- 请选择订单状态 -', data: { :prop => 'order_status' } %>
+            <%= select_tag :logistics_status, "<option value=''>全部</option><option value='0'>待发货</option><option value='3'>已发货</option><option value='4'>已签收</option>", class: 'form-control filter-input', prompt: '- 请选择订单状态 -', data: { :prop => 'logistics_status' } %>
           </div>
 
           <div class="col-md-2">

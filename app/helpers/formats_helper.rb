@@ -40,17 +40,4 @@ module FormatsHelper
     str[(length/2 - 2)..(length/2 + 1)] = '****'
     str
   end
-
-  def display_status(str)
-    '退款驳回'    if str == '-5'
-    '退款处理中'  if str == '-4'
-    '已退款'      if str == '-3'
-    '支付取消'    if str == '-2'
-    '支付失败'    if str == '-1'
-    '未支付'      if str == '0'
-    '已支付'      if str == '1'
-    '未发货'      if str == '2'
-    '已发货'      if str == '3'
-    '已完成'      if str == '4'
-  end
 end

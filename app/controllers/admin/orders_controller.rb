@@ -1,5 +1,5 @@
 class Admin::OrdersController < Admin::BaseController
-  include FormatsHelper
+  include StatusesHelper
 
   def query
     respond_to do |format|
@@ -9,9 +9,8 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def get_excel
-    puts '>>>>>>>>>>>>>> came here!'
-    @orders = Order.order('created_at DESC').where(wrap_search_obj(params))
-    render xlsx: "get_excel", disposition: "attachment", filename: "orders_export_#{Time.now.strftime("%Y%m%d_%H%M%S")}.xlsx"
+    @orders = Order.order('created_at DESC').where(wrap_search_obj(params)).joins(:order_details).all
+    render xlsx: "generic_result", disposition: "attachment", filename: "orders_export_#{Time.now.strftime("%Y%m%d_%H%M%S")}.xlsx"
   end
 
   def undelivered_orders
@@ -61,11 +60,11 @@ class Admin::OrdersController < Admin::BaseController
     where_array = []
     where_array << "user_id=:user_id" unless params['user_id'].blank?
     where_array << "order_id=:order_id" unless params['order_id'].blank?
-    where_array << "order_status=:order_status" unless params['order_status'].blank?
+    where_array << "logistics_status=:logistics_status and order_status = '1'" unless params['logistics_status'].blank?
     where_array << "created_at BETWEEN :start_date AND :end_date" unless params['start_date'].blank? and params['end_date'].blank?
 
     placeholder_obj = {}
-    %w(user_id order_id order_status start_date end_date).each {|k| placeholder_obj[k.to_sym] = params[k]}
+    %w(user_id order_id logistics_status start_date end_date).each {|k| placeholder_obj[k.to_sym] = params[k]}
 
     [where_array.join(' AND '), placeholder_obj]
   end
@@ -74,7 +73,7 @@ class Admin::OrdersController < Admin::BaseController
     dt = decode_datatables_params
 
     where_array = []
-    where_array << 'orders.order_status = 1 and orders.logistics_status = 0'
+    where_array << 'orders.order_status = 1'
 
     search_obj = {
         :include => [],
