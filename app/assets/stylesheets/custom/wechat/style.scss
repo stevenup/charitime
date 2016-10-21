@@ -1384,6 +1384,16 @@ ul.shelf-items-list {
       border-bottom: p2e(1px) solid lightgray;
     }
   }
+
+  .buttons {
+    line-height: p2e(36px);
+    @include font-dpr(14px);
+  }
+  a {
+    text-align: center;
+    line-height: p2e(36px);
+    @include font-dpr(14px);
+  }
 }
 
 .add-address-form {

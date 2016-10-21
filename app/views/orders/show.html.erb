@@ -67,7 +67,7 @@
       <%= button_to '立即付款', order_pay_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-highlight m-l m-r p-t p-b t-right' %>
       <div class="clear"></div>
     </div>
-  <% elsif @order_detail.order.order_status.to_s == 'PAID' %>
+  <% elsif @order_detail.order.order_status.to_s == 'PAID' and @order_detail.order.logistics_status != 'DELIVERED' %>
     <div class="buttons p-l p-r m-t">
       <%= button_to '申请退款', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default m-l m-r p-t p-b t-left', :'data-confirm' => '确定申请退货退款吗？' %>
       <!--<button class="btn btn-default btn-highlight m-l m-r p-t p-b t-right">查看物流</button>-->
@@ -76,7 +76,7 @@
   <% elsif @order_detail.order.order_status.to_s == 'PAID' and @order_detail.order.logistics_status == 'DELIVERED' %>
     <div class="buttons p-l p-r m-t">
       <%= button_to '申请退货', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default m-l m-r p-t p-b t-left', :'data-confirm' => '确定申请退货退款吗？' %>
-      <button class="btn btn-default btn-highlight m-l m-r p-t p-b t-right">查看物流</button>
+      <%= button_to '查看物流', "http://m.kuaidi100.com/index_all.html", params:{ type: @order_detail.delivery_company, postid: @order_detail.delivery_id, callbackurl: order_url(@order_detail.order_id) }, method: 'get', class: 'btn btn-default m-l m-r p-t p-b t-left' %>
       <div class="clear"></div>
     </div>
   <% end %>
