@@ -3767,6 +3767,7 @@ table tbody td.text-right {
 .btn.btn-success {
   background: #2baab1;
   border: 1px solid #26969c;
+  width: 100%;
 }
 .btn.btn-success:hover,
 .btn.btn-success:focus,

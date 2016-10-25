@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   resource :wechat, only: [:show, :create]
 
   mount Ckeditor::Engine => '/ckeditor'

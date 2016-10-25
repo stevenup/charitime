@@ -31,6 +31,8 @@ gem 'rubyzip'
 gem 'axlsx'
 gem 'axlsx_rails'
 
+gem 'devise'
+
 # rich-text editor
 gem 'ckeditor'
 gem 'carrierwave'

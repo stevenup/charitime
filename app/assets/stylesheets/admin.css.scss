@@ -1,11 +1,9 @@
-/*
- *= require simplify_admin/simplify_admin.css
- *= require font-awesome
- *= require ionicons
- #= require integrations/bootstrap-modal-bs3patch.css
- *= require bootstrap-modal/css/bootstrap-modal.css
- *= require datatables/media/css/dataTables.bootstrap.css
- *= require custom/admin/style
- *= require integrations/bootstrap_datatables_patch.scss
- *= require datetimepicker/jquery.datetimepicker
- */
+@import "simplify_admin/simplify_admin.css";
+@import "font-awesome";
+@import "ionicons";
+@import "integrations/bootstrap-modal-bs3patch.css";
+@import "bootstrap-modal/css/bootstrap-modal.css";
+@import "datatables/media/css/dataTables.bootstrap.css";
+@import "integrations/bootstrap_datatables_patch.scss";
+@import "datetimepicker/jquery.datetimepicker";
+@import "custom/admin/style.scss";
