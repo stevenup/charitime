@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
       </button>
 
-      <a href="/admin/home" class="brand">
+      <a href="/admin" class="brand">
         <i class="fa fa-database"></i><span class="brand-name">Charitime Admin</span>
       </a>
     </div>
@@ -32,7 +32,7 @@
           <a href="#" id="userToggle" data-toggle="dropdown">
             <%= image_tag 'avatar.jpg', class: 'img-circle inline-block user-profile-pic' %>
             <div class="user-detail inline-block">
-              Steven Tang
+              Admin
               <i class="fa fa-angle-down"></i>
             </div>
           </a>
@@ -52,9 +52,9 @@
                   </a>
                 </li>
                 <li>
-                  <a href="signin.html">
-                    <i class="fa fa-power-off fa-lg"></i><span class="m-left-xs">Sign out</span>
-                  </a>
+                  <%= link_to destroy_admin_session_path, method: 'delete' do %>
+                    <i class="fa fa-power-off fa-lg"></i><span class="m-left-xs"></span>Sign out
+                  <% end %>
                 </li>
               </ul>
             </div>

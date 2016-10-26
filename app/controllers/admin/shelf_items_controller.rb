@@ -1,4 +1,4 @@
-class Admin::ShelfItemsController < Admin::BaseController
+class Admin::ShelfItemsController < Admin::AuthenticatedController
   def off_shelf_list
     respond_to do |format|
       format.html

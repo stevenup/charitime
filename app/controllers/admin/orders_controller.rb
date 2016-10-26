@@ -1,4 +1,4 @@
-class Admin::OrdersController < Admin::BaseController
+class Admin::OrdersController < Admin::AuthenticatedController
   include StatusesHelper
 
   def query

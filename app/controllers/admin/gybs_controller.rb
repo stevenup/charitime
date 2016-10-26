@@ -1,4 +1,4 @@
-class Admin::GybsController < Admin::BaseController
+class Admin::GybsController < Admin::AuthenticatedController
   include FormatsHelper
 
   def index

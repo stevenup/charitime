@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :admins
+  devise_for :admin, controllers: {
+    :sessions => "admin/sessions"
+  }
+
   resource :wechat, only: [:show, :create]
 
   mount Ckeditor::Engine => '/ckeditor'
@@ -20,7 +23,6 @@ Rails.application.routes.draw do
 
   resources :supports
   get '/supports/pay/:id', to: 'supports#pay', as: 'support_pay'
-  # post '/supports/show'
 
   resources :shelf_items
 
@@ -40,7 +42,9 @@ Rails.application.routes.draw do
   get '/orders/pay/:id', to: 'orders#pay', as: 'order_pay'
 
   namespace :admin do
-    get 'home' => 'home#index'
+    root :to => 'home#index'
+
+    # get 'home' => 'home#index'
 
     resources :users
     resources :products do

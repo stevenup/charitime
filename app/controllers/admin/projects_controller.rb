@@ -1,4 +1,4 @@
-class Admin::ProjectsController < Admin::BaseController
+class Admin::ProjectsController < Admin::AuthenticatedController
   def index
     respond_to do |format|
       format.html

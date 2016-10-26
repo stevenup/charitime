@@ -1,4 +1,4 @@
-class Admin::DonationsController < Admin::BaseController
+class Admin::DonationsController < Admin::AuthenticatedController
   def index
     respond_to do |format|
       format.html
