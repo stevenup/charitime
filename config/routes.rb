@@ -43,8 +43,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root :to => 'home#index'
-
-    # get 'home' => 'home#index'
+    get 'home' => 'home#index'
 
     resources :users
     resources :products do
