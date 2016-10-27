@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :admin, controllers: {
-    :sessions => "admin/sessions"
-  }
-
-  resource :wechat, only: [:show, :create]
-
   mount Ckeditor::Engine => '/ckeditor'
   mount ChinaCity::Engine => '/china_city'
 
+  devise_for :admin, controllers: {
+  :sessions => "admin/sessions"
+  }
+
   root 'home#index'
+
+  resource :wechat, only: [:show, :create]
 
   resources :home, only: [:index] do
     get :personal_center,  on: :collection
