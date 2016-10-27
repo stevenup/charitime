@@ -1,14 +1,12 @@
 module StatusesHelper
   def display_status(order_status, logistics_status)
     if order_status == 'PAID'
-      if logistics_status == 'UNDELIVERED'
-        return '待发货'
-      elsif logistics_status == 'DELIVERED'
+      if logistics_status == 'DELIVERED'
         return '已发货'
       elsif logistics_status == 'COMPLETED'
         return '已完成'
       else
-        return 'NaN'
+        return '待发货'
       end
     else
       return '退款驳回'    if order_status == 'REFUND_REJECTED'

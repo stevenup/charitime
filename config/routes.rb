@@ -71,6 +71,7 @@ Rails.application.routes.draw do
     resources :donations
     resources :orders do
       collection do
+        post :update
         get :query
         get :refund_orders
         get :undelivered_orders

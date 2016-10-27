@@ -32,8 +32,15 @@ class Admin::OrdersController < Admin::AuthenticatedController
   end
 
   def update
-    order_detail = OrderDetail.find_by_order_id(params[:id])
-    redirect_to admin_orders_path if order_detail.update_attributes order_detail_params
+    order_detail                  = OrderDetail.find_by_order_id(params[:order_id])
+    order_detail.delivery_company = order_detail_params[:delivery_company]
+    order_detail.delivery_id      = order_detail_params[:delivery_id]
+    if order_detail.save
+      order_detail.order.update_attribute(:logistics_status, 'DELIVERED')
+      redirect_to undelivered_orders_admin_orders_path
+    else
+      render plain: 'failed to update logistics info.'
+    end
   end
 
   private
