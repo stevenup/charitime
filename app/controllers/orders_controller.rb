@@ -1,4 +1,7 @@
 class OrdersController < BaseController
+  include StatusesHelper
+  include UrlHelper
+
   def index
     status = params[:status]
     if status == '0'

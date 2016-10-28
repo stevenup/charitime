@@ -7,38 +7,38 @@
   <% else %>
     <ul class="order-list" id="order-list">
       <% @orders.each do |ele| %>
-        <li class="order-item p-l p-r">
+        <li class="order-item p-l p-r m-b">
           <div class="item-head">
             <p class="t-left"><%= ele.created_at.strftime("%Y.%m.%d %H:%M:%S") %></p>
 
             <div class="delivery-status t-right">
-              <p><%= ele.order_status.to_s %></p>
-              <i class="arrow fa fa-angle-right fa-2x"></i>
+              <p><%= display_status(ele.order_status, ele.logistics_status) %></p>
+              <i class="arrow fa fa-angle-right fa-lg"></i>
               <div class="clear"></div>
             </div>
             <div class="clear"></div>
           </div>
 
-          <%= link_to order_path(ele.order_id)  do %>
-            <div class="item-body">
-              <div class="brief-info m-b">
+          <%= link_to order_path(ele.order_id) do %>
+            <div class="item-body p-t p-b">
+              <div class="brief-info">
                 <div class="product-thumb p-l p-r">
                   <%= image_tag ShelfItem.find_by_product_id(ele.order_details.first.product_id).try(:thumb) %>
                 </div>
 
-                <div class="product-name m-r m-l m-t m-b">
+                <div class="product-name m-r">
                   <p><%= ele.order_details.first.product_name.to_s %></p>
                 </div>
 
-                <div class="product-price m-t p-b p-r">
+                <div class="product-price p-r">
                   <p class="inline-block">￥<%= ele.order_details.first.price.to_s %></p>
                 </div>
 
-                <div class="product-count m-t p-b p-r">
+                <div class="product-count p-r">
                   <p class="inline-block">x<%= ele.order_details.first.count.to_s %></p>
                 </div>
 
-                <div class="order-price m-t p-b p-r">
+                <div class="order-price p-r">
                   <p class="inline-block red">实付:￥<%= ele.total_price.to_s %></p>
                 </div>
               </div>

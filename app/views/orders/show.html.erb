@@ -3,7 +3,7 @@
     <p class="t-left">订单号: <%= @order_detail.order.order_id.to_s %></p>
 
     <div class="order-status t-right">
-      <p><%= @order_detail.order.order_status.to_s %></p>
+      <p><%= display_status(@order_detail.order.order_status, @order_detail.order.logistics_status) %></p>
       <div class="clear"></div>
     </div>
     <div class="clear"></div>
@@ -17,7 +17,7 @@
 
   <div class="product-info p-t p-b">
     <div class="product-thumb p-l p-r">
-      <%= image_tag @order_detail.thumb.to_s %>
+      <%= image_tag ShelfItem.find_by_product_id(@order_detail.product_id).try(:thumb) %>
     </div>
 
     <div class="product-name m-r m-l m-t">
@@ -61,24 +61,50 @@
     </div>
   </div>
 
-  <% if @order_detail.order.order_status.to_s == 'UNPAID' %>
-    <div class="buttons p-l p-r m-t">
-      <%= button_to '取消订单', cancel_order_order_path(@order_detail.order.order_id), :method => 'get', :'data-confirm' => '确定取消订单嘛？', :class => 'btn btn-default m-l m-r p-t p-b t-left', :id => 'cancel-btn' %>
-      <%= button_to '立即付款', order_pay_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-highlight m-l m-r p-t p-b t-right' %>
-      <div class="clear"></div>
+  <% if @order_detail.order.order_status.to_s == 'PAID' and @order_detail.order.logistics_status == 'DELIVERED' %>
+    <div class="delivery-info m-t p-l p-r">
+      <%= link_to generate_url("http://m.kuaidi100.com/index_all.html", { type: @order_detail.delivery_company, postid: @order_detail.delivery_id, callbackurl: order_url(@order_detail.order_id) }) do %>
+        <div class="border-bottom">
+          <p class="inline-block t-left">物流信息</p>
+          <p class="inline-block t-right">查询&nbsp;<i class="fa fa-angle-right fa-lg"></i></p>
+          <div class="clear"></div>
+        </div>
+      <% end %>
+
+      <div class="border-bottom">
+        <p class="inline-block t-left"><%= @order_detail.delivery_company %></p>
+        <p class="inline-block t-right"><%= @order_detail.delivery_id %></p>
+        <div class="clear"></div>
+      </div>
     </div>
+
+    <div class="user-actions">
+      <div class="buttons p-l p-r p-t p-b">
+        <%= button_to '申请退货', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small m-l m-r p-t p-b t-right', :'data-confirm' => '确定申请退货退款吗？' %>
+        <div class="clear"></div>
+      </div>
+    </div>
+
   <% elsif @order_detail.order.order_status.to_s == 'PAID' and @order_detail.order.logistics_status != 'DELIVERED' %>
-    <div class="buttons p-l p-r m-t">
-      <%= button_to '申请退款', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default m-l m-r p-t p-b t-left', :'data-confirm' => '确定申请退货退款吗？' %>
-      <!--<button class="btn btn-default btn-highlight m-l m-r p-t p-b t-right">查看物流</button>-->
-      <div class="clear"></div>
+    <div class="user-actions">
+      <div class="buttons p-l p-r p-t p-b">
+        <%= button_to '申请退款', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small m-l m-r p-t p-b t-right', :'data-confirm' => '确定申请退货退款吗？' %>
+        <!--<button class="btn btn-default btn-highlight m-l m-r p-t p-b t-right">查看物流</button>-->
+        <div class="clear"></div>
+      </div>
     </div>
-  <% elsif @order_detail.order.order_status.to_s == 'PAID' and @order_detail.order.logistics_status == 'DELIVERED' %>
-    <div class="buttons p-l p-r m-t">
-      <%= button_to '申请退货', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default m-l m-r p-t p-b t-left', :'data-confirm' => '确定申请退货退款吗？' %>
-      <%= button_to '查看物流', "http://m.kuaidi100.com/index_all.html", params:{ type: @order_detail.delivery_company, postid: @order_detail.delivery_id, callbackurl: order_url(@order_detail.order_id) }, method: 'get', class: 'btn btn-default m-l m-r p-t p-b t-left' %>
-      <div class="clear"></div>
+
+
+  <% elsif @order_detail.order.order_status.to_s == 'UNPAID' %>
+    <div class="user-actions">
+      <div class="buttons p-l p-r p-t p-b">
+        <%= button_to '立即付款', order_pay_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small btn-highlight m-l m-r p-t p-b t-right' %>
+        <%= button_to '取消订单', cancel_order_order_path(@order_detail.order.order_id), :method => 'get', :'data-confirm' => '确定取消订单嘛？', :class => 'btn btn-default btn-small m-l m-r p-t p-b t-right', :id => 'cancel-btn' %>
+
+        <div class="clear"></div>
+      </div>
     </div>
+
   <% end %>
 </div>
 

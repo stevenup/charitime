@@ -1270,9 +1270,10 @@ ul.shelf-items-list {
           }
 
           .product-name {
-            @include font-dpr(16px);
+            @include font-dpr(14px);
             display: inline-block;
             position: absolute;
+            padding-right: p2e(20px);
 
             p {
               line-height: p2e(48px);
@@ -1382,6 +1383,38 @@ ul.shelf-items-list {
 
     .border-bottom {
       border-bottom: p2e(1px) solid lightgray;
+    }
+  }
+
+  .delivery-info {
+    @include font-dpr(14px);
+    background: #FFFFFF;
+    //line-height: p2e(56px);
+
+    a {
+      line-height: p2e(56px);
+    }
+
+    .border-bottom {
+      border-bottom: p2e(1px) solid lightgray;
+
+      a {
+        width: 100%;
+      }
+    }
+  }
+
+  .user-actions {
+    @include font-dpr(14px);
+    background: #FFFFFF;
+    border-top: p2e(1px) solid lightgray;
+
+    .buttons {
+      .btn-small {
+        margin-left: p2e(18px);
+        width: 25%;
+        @include font-dpr(12px);
+      }
     }
   }
 
