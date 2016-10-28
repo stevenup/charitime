@@ -23,7 +23,7 @@
             <div class="item-body">
               <div class="brief-info m-b">
                 <div class="product-thumb p-l p-r">
-                  <%= image_tag ele.order_details.first.thumb.to_s %>
+                  <%= image_tag ShelfItem.find_by_product_id(ele.order_details.first.product_id).try(:thumb) %>
                 </div>
 
                 <div class="product-name m-r m-l m-t m-b">

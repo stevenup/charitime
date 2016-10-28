@@ -7,7 +7,7 @@
 
   <div class="brief-info m-t m-b">
     <div class="product-thumb p-l p-r">
-      <%= image_tag 'p1.jpg' %>
+      <%= image_tag ShelfItem.find_by_product_id(@order_detail.product_id).try(:thumb) %>
     </div>
 
     <div class="product-name m-r m-l m-t m-b">
