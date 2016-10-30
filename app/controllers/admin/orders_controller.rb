@@ -33,13 +33,19 @@ class Admin::OrdersController < Admin::AuthenticatedController
 
   def update
     order_detail                  = OrderDetail.find_by_order_id(params[:order_id])
-    order_detail.delivery_company = order_detail_params[:delivery_company]
-    order_detail.delivery_id      = order_detail_params[:delivery_id]
-    if order_detail.save
-      order_detail.order.update_attribute(:logistics_status, 'DELIVERED')
-      redirect_to undelivered_orders_admin_orders_path
+    if order_detail.nil?
+      render plain: 'failed to find the order.'
+    elsif order_detail.order_status == 'REFUNDING'
+      render plain: 'the user has applied for refunding.'
     else
-      render plain: 'failed to update logistics info.'
+      order_detail.delivery_company = order_detail_params[:delivery_company]
+      order_detail.delivery_id      = order_detail_params[:delivery_id]
+      if order_detail.save
+        order_detail.order.update_attribute(:logistics_status, 'DELIVERED')
+        redirect_to undelivered_orders_admin_orders_path
+      else
+        render plain: 'failed to update logistics info.'
+      end
     end
   end
 
