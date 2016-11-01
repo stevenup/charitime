@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   resources :orders do
     get :cancel_order,           on: :member
     get :apply_refund,           on: :member
+    get :confirm_complete,       on: :member
     get :add_gyb_payment_record, on: :collection
   end
   get '/orders/pay/:id', to: 'orders#pay', as: 'order_pay'

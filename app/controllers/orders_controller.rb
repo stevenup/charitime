@@ -37,6 +37,13 @@ class OrdersController < BaseController
     redirect_to :action => 'show', :id => id
   end
 
+  def confirm_complete
+    id = params[:id]
+    order = Order.find_by_order_id id
+    order.update_attribute(:logistics_status, 4)
+    redirect_to :action => 'show', :id => id
+  end
+
   def create
     count = params[:count]
     aid   = params[:aid]

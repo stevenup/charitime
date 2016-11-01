@@ -61,7 +61,17 @@
     </div>
   </div>
 
-  <% if @order_detail.order.order_status.to_s == 'PAID' and @order_detail.order.logistics_status == 'DELIVERED' %>
+  <% if @order_detail.order.order_status.to_s == 'UNPAID' %>
+  <div class="user-actions">
+    <div class="buttons p-l p-r p-t p-b">
+      <%= button_to '立即付款', order_pay_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small btn-highlight m-l m-r p-t p-b t-right' %>
+      <%= button_to '取消订单', cancel_order_order_path(@order_detail.order.order_id), :method => 'get', :'data-confirm' => '确定取消订单嘛？', :class => 'btn btn-default btn-small m-l m-r p-t p-b t-right', :id => 'cancel-btn' %>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <% elsif @order_detail.order.order_status.to_s == 'PAID' and @order_detail.order.logistics_status == 'DELIVERED' %>
     <div class="delivery-info m-t p-l p-r">
       <%= link_to generate_url("http://m.kuaidi100.com/index_all.html", { type: @order_detail.delivery_company, postid: @order_detail.delivery_id, callbackurl: order_url(@order_detail.order_id) }) do %>
         <div class="border-bottom">
@@ -80,12 +90,13 @@
 
     <div class="user-actions">
       <div class="buttons p-l p-r p-t p-b">
-        <%= button_to '申请退货', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small m-l m-r p-t p-b t-right', :'data-confirm' => '确定申请退货退款吗？' %>
+        <%= button_to '确认收货', confirm_complete_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-highlight btn-small m-l m-r p-t p-b t-right', :'data-confirm' => '确定完成该笔订单吗?' %>
+        <%= button_to '申请退货', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small m-l m-r p-t p-b t-right', :'data-confirm' => '确定申请退货退款吗?' %>
         <div class="clear"></div>
       </div>
     </div>
 
-  <% elsif @order_detail.order.order_status.to_s == 'PAID' and @order_detail.order.logistics_status != 'DELIVERED' %>
+  <% elsif @order_detail.order.order_status.to_s == 'PAID' and @order_detail.order.logistics_status != 'DELIVERED' and @order_detail.order.logistics_status != 'COMPLETED' %>
     <div class="user-actions">
       <div class="buttons p-l p-r p-t p-b">
         <%= button_to '申请退款', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small m-l m-r p-t p-b t-right', :'data-confirm' => '确定申请退货退款吗？' %>
@@ -94,18 +105,8 @@
       </div>
     </div>
 
-
-  <% elsif @order_detail.order.order_status.to_s == 'UNPAID' %>
-    <div class="user-actions">
-      <div class="buttons p-l p-r p-t p-b">
-        <%= button_to '立即付款', order_pay_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small btn-highlight m-l m-r p-t p-b t-right' %>
-        <%= button_to '取消订单', cancel_order_order_path(@order_detail.order.order_id), :method => 'get', :'data-confirm' => '确定取消订单嘛？', :class => 'btn btn-default btn-small m-l m-r p-t p-b t-right', :id => 'cancel-btn' %>
-
-        <div class="clear"></div>
-      </div>
-    </div>
-
   <% end %>
+
 </div>
 
 <div class="tuihuo" id="tuihuo">
