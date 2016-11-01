@@ -75,18 +75,18 @@ chooseWXPay = (prepay_id) ->
       paySign: data.paySign
       success: (res) ->
         if res.errMsg == "chooseWXPay:ok"
-          alert('支付成功！')
+#          alert('支付成功！')
           window.location.href = "http://charitime.nonprofit.cn/orders?status=0"
-#          $.ajax
-#            type: 'GET',
-#            url: '/orders/change_order_status',
-#            data: {id: $(this).data('id')},
-#            success: (res) ->
-#              alert('修改订单状态成功！') if res.status == 'success'
+          $.ajax
+            type: 'GET',
+            url: '/orders/add_gyb_payment_record',
+            data: {id: $(this).data('id')},
+            success: (res) ->
+              alert('添加gyb支出记录成功！') if res.status == 'success'
         else
           alert(res.errMsg)
       cancel: () ->
-        alert('支付取消')
+#        alert('支付取消')
     })
 
 WXPayToDedicte = (prepay_id) ->
@@ -105,10 +105,10 @@ WXPayToDedicte = (prepay_id) ->
       paySign: data.paySign
       success: (res) ->
         if res.errMsg == "chooseWXPay:ok"
-          alert('支付成功！')
+#          alert('支付成功！')
           window.location.href = "http://charitime.nonprofit.cn/supports"
         else
           alert(res.errMsg)
       cancel: () ->
-        alert('支付取消')
+#        alert('支付取消')
     })

@@ -1207,6 +1207,14 @@ ul.shelf-items-list {
     p {
       @include font-dpr(14px);
     }
+
+    .tip {
+      margin-right: p2e(14px);
+      display: block;
+      @include font-dpr(12px);
+      color: #696969;
+      text-align: right;
+    }
   }
 
   .total-price {

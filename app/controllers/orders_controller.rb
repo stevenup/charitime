@@ -56,19 +56,35 @@ class OrdersController < BaseController
     order_detail = OrderDetail.new order_detail_params
     order_detail.save
     order = Order.new
-    order[:order_id]     = order_id
-    order[:user_id]      = current_user.id
-    total_price          = order_detail_params[:count] * (shelf_item.price - shelf_item.gyb_discount)
+    order[:order_id] = order_id
+    order[:user_id]  = current_user.id
+
+    # Determine whether the user has enough gybs for discount and calculate the total price.
+    if current_user.gyb < shelf_item.gyb_discount
+      total_price = (order_detail_params[:count] * shelf_item.price) - 0
+    else
+      total_price = (order_detail_params[:count] * shelf_item.price) - (shelf_item.gyb_discount.to_f / 100)
+    end
+
     order[:total_price]  = total_price
     order[:order_status] = '0'
     order.save
     redirect_to :action => 'pay', :id => order_id
   end
 
-  def change_order_status
+  def add_gyb_payment_record
     id = params[:id]
-    order = Order.find_by :order_id => id
-    order.update_attribute(:order_status, 1)
+    order_detail = OrderDetail.find_by :order_id => id
+    gyb_payment  = GybPayment.new
+    gyb_payment.user_id = current_user.id
+    gyb_payment.shelf_item_id = order_detail.product_id
+    gyb_payment.save
+
+    shelf_item = ShelfItem.find_by_product_id(order_detail.product_id)
+    if current_user.gyb >= shelf_item.gyb_discount
+      current_user.gyb -= shelf_item.gyb_discount
+      current_user.save
+    end
     render json: { status: 'success' }
   end
 end
