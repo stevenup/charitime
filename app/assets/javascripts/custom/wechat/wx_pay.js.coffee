@@ -57,9 +57,9 @@ payBtnMonitor = () ->
     .fail ->
       alert('出错啦！！')
     .done ->
-      chooseWXPay(prepay_id)
+      chooseWXPay(prepay_id, id)
 
-chooseWXPay = (prepay_id) ->
+chooseWXPay = (prepay_id, id) ->
   $.ajax
     url: '/wepay/init_jspay_info',
     type: 'GET',
@@ -76,13 +76,13 @@ chooseWXPay = (prepay_id) ->
       success: (res) ->
         if res.errMsg == "chooseWXPay:ok"
 #          alert('支付成功！')
-          window.location.href = "http://charitime.nonprofit.cn/orders?status=0"
           $.ajax
             type: 'GET',
             url: '/orders/add_gyb_payment_record',
-            data: {id: $(this).data('id')},
+            data: {id: id},
             success: (res) ->
               alert('添加gyb支出记录成功！') if res.status == 'success'
+              window.location.href = "http://charitime.nonprofit.cn/orders?status=0"
         else
           alert(res.errMsg)
       cancel: () ->
