@@ -1,5 +1,5 @@
 <% if @gyb_incomes %>
-    <div class="gyb-got" id="gyb-got">
+    <div class="gyb-record" id="gyb-income">
       <div class="remarks m-t m-b p-t p-b">以下是您获得的公益币</div>
 
       <% @gyb_incomes.each do |ele| %>
@@ -11,7 +11,7 @@
             </div>
 
             <div class="gyb-item-pic m-t m-b">
-              <%= image_tag 'p1.jpg' %>
+              <%= image_tag 'gyb.png' %>
             </div>
 
             <div class="gyb-item-detail m-t m-b m-l">
@@ -19,7 +19,7 @@
                 <%= ele.gyb.title.to_s %>
               </p>
               <p class="gyb-plus m-t">
-                感谢您的爱心，您获得&nbsp;<span><%= ele.gyb.price.to_s %></span>&nbsp;公益币！
+                感谢您的爱心，您获得&nbsp;<span><%= ele.gyb.price.to_s %></span>&nbsp;公益币。
               </p>
             </div>
           </div>
@@ -28,7 +28,7 @@
 <% end %>
 
 <% if @gyb_payments %>
-    <div class="gyb-got" id="gyb-got">
+    <div class="gyb-record" id="gyb-cost">
       <div class="remarks m-t m-b p-t p-b">以下是您支出的公益币</div>
 
       <% @gyb_payments.each do |ele| %>
@@ -40,7 +40,7 @@
             </div>
 
             <div class="gyb-item-pic m-t m-b">
-              <%= image_tag 'p1.jpg' %>
+              <%= image_tag ShelfItem.find_by_product_id(ele.shelf_item_id).try(:thumb) %>
             </div>
 
             <div class="gyb-item-detail m-t m-b m-l">
@@ -48,7 +48,10 @@
 
               </p>
               <p class="gyb-plus m-t">
-                您为商品&nbsp;<span><%= ele.shelf_item_id.to_s %></span>&nbsp;支出若干公益币！
+                您为商品&nbsp;
+                <span><%= ele.shelf_item_id.to_s %></span>&nbsp;支出
+                <span>&nbsp;<%= ShelfItem.find_by_product_id(ele.shelf_item_id).try(:gyb_discount).to_i %>&nbsp;</span>
+                公益币。
               </p>
             </div>
           </div>

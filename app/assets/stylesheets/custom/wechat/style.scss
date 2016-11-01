@@ -639,7 +639,7 @@ i.arrow {
   }
 
   #tab-content {
-    .gyb-got {
+    .gyb-record {
       .gyb-item {
         position: relative;
         padding-left: p2e(14px);
@@ -667,7 +667,7 @@ i.arrow {
           p.gyb-plus {
             span {
               color: red;
-              @include font-dpr(16px);
+              @include font-dpr(14px);
               font-weight: bold;
             }
           }

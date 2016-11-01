@@ -81,8 +81,7 @@ chooseWXPay = (prepay_id, id) ->
             url: '/orders/add_gyb_payment_record',
             data: {id: id},
             success: (res) ->
-              alert('添加gyb支出记录成功！') if res.status == 'success'
-              window.location.href = "http://charitime.nonprofit.cn/orders?status=0"
+              window.location.href = "http://charitime.nonprofit.cn/orders?status=0" if res.status == 'success'
         else
           alert(res.errMsg)
       cancel: () ->
