@@ -5,9 +5,11 @@ class OrdersController < BaseController
   def index
     status = params[:status]
     if status == '0'
-      @orders = Order.where("user_id = ? and logistics_status != ?", current_user.id, 4).order("created_at DESC")
+      @orders = Order.where("user_id = ? and order_status = ? and logistics_status != ?", current_user.id, 1, 4).order("created_at DESC")
     elsif status == '1'
       @orders = Order.where("user_id = ? and logistics_status = ?", current_user.id, 4).order("created_at DESC")
+    elsif status == '2'
+      @orders = Order.where("user_id = ? and (order_status = ? or order_status = ? or order_status = ?)", current_user.id, -3, -4, -5).order("created_at DESC")
     else
       @orders = Order.where("user_id = ?", current_user.id).order("created_at DESC")
     end

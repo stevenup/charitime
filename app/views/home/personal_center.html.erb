@@ -91,6 +91,21 @@
       </div>
     <% end %>
 
+    <%= link_to orders_path(:status => '2') do %>
+      <div class="unfinished-orders" id="unfinished-orders">
+        <div class="t-left">
+          <i class="menu-icon fa fa-bars fa-lg"></i>
+
+          <p class="menu-name">退款/售后订单</p>
+        </div>
+
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
     <%= link_to supports_path do %>
       <div class="supported-projects s-s" id="supported-projects">
         <div class="t-left">

@@ -1,6 +1,6 @@
 class ProjectsController < BaseController
   def index
-    @projects = Project.all.order(created_at: :desc)
+    @projects = Project.where("is_published = ?", '1').order("updated_at DESC")
   end
 
   def detail

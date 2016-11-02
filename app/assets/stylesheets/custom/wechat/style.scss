@@ -382,8 +382,8 @@ i.arrow {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: #ececec;
-    border-top: p2e(1px) solid rgba(128, 128, 128, 0.71);
+    background: #ffffff;
+    box-shadow: p2e(6px) p2e(-8px) p2e(2px) #ececec;
     text-align: center;
     @include font-dpr(16px);
 
