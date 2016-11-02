@@ -383,7 +383,7 @@ i.arrow {
     bottom: 0;
     width: 100%;
     background: #ffffff;
-    box-shadow: p2e(6px) p2e(-8px) p2e(2px) #ececec;
+    box-shadow: p2e(-8px) p2e(2px) p2e(4px) p2e(9px) rgba(236, 236, 236, 0.38);
     text-align: center;
     @include font-dpr(16px);
 
@@ -410,6 +410,7 @@ i.arrow {
           display: block;
           margin-top: p2e(14px);
           @include font-dpr(10px);
+          color: #717171;
         }
       }
     }
@@ -418,7 +419,7 @@ i.arrow {
 
 /*********** project list style *******/
 .projects {
-  margin-bottom: p2e(80px);
+  //margin-bottom: p2e(80px);
   background: #ffffff;
 
   .project-list {
@@ -492,6 +493,12 @@ i.arrow {
     .unfinished-orders {
       background: #ffffff;
       padding: p2e(10px);
+    }
+
+    .after-sale-orders {
+      background: #ffffff;
+      padding: p2e(10px);
+      border-top: p2e(1px) solid lightgray;
     }
 
     .supported-projects {
@@ -1128,8 +1135,6 @@ ul.shelf-items-list {
     }
   }
 }
-
-
 
 /**********  orders/pay style  ***********/
 .order-pay {
