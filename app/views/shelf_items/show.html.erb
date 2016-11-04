@@ -8,7 +8,7 @@
       <%= @project.project_name.to_s %>
     </div>
     <div class="p-btn m-r">
-      <%= button_to '前去看看', {:controller => 'projects', :action => 'detail', :id => @project.id}, :method => 'get', :class => 'btn btn-default btn-highlight p-t p-b' %>
+      <%= button_to '前去看看', { :controller => 'projects', :action => 'detail', :id => @project.id }, :method => 'get', :class => 'btn btn-default btn-highlight p-t p-b' %>
     </div>
   </div>
 <% end %>
@@ -97,16 +97,16 @@
 <!--if not, redirect to address_adding page-->
 <% if @address.nil? %>
   <div class="confirm-box" id="confirm-box">
-      <%= link_to addresses_path do %>
-        <button id="address-btn" class="btn btn-default btn-highlight m-l m-r p-t p-b">添加地址</button>
-      <% end %>
-      <div class="item-number" data-trigger="spinner" id="spinner">
-        <p>购买数量：</p>
-        <a href="javascript:;" data-spin="down" class="t-minus">-</a>
-        <%= text_field_tag :count, '1', class: 'count', data: {rule: 'quantity', max: '10'} %>
-        <a href="javascript:;" data-spin="up" class="t-plus">+</a>
-      </div>
+    <%= link_to addresses_path do %>
+      <button id="address-btn" class="btn btn-default btn-highlight m-l m-r p-t p-b">添加地址</button>
+    <% end %>
+    <div class="item-number" data-trigger="spinner" id="spinner">
+      <p>购买数量：</p>
+      <a href="javascript:;" data-spin="down" class="t-minus">-</a>
+      <%= text_field_tag :count, '1', class: 'count', data: {rule: 'quantity', max: '10'} %>
+      <a href="javascript:;" data-spin="up" class="t-plus">+</a>
     </div>
+  </div>
 <% else %>
   <div class="confirm-box" id="confirm-box">
     <%= form_tag '/orders', method: :post do %>
@@ -126,11 +126,11 @@
       <div class="buttons">
         <%= submit_tag '确定提交', id: 'confirm-btn', class: 'btn btn-default btn-highlight btn-middle m-l m-r p-t p-b' %>
       </div>
-    </div>
-  <% end %>
+      </div>
+    <% end %>
 <% end %>
 
-<% content_for :title, set_title('商品详情')  %>
+<% content_for :title, set_title('商品详情') %>
 
 <script>
   $(document).ready(function () {

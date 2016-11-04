@@ -1,7 +1,7 @@
 <ul class="shelf-items-list">
   <% @shelf_items.each do |p| %>
     <%= link_to shelf_item_path p.id do %>
-      <li class='item'>
+      <li class="item">
         <%= image_tag p.thumb.to_s %>
         <div class="item-property p-b">
           <div class="item-name">
@@ -18,4 +18,4 @@
   <% end %>
 </ul>
 
-<% content_for :title, set_title('商品列表')  %>
+<% content_for :title, set_title('好物') %>
