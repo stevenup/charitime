@@ -47,34 +47,37 @@ class OrdersController < BaseController
   end
 
   def create
-    count = params[:count]
-    aid   = params[:aid]
-    siid  = params[:siid]
-    shelf_item  = ShelfItem.find_by_id siid
-    address     = Address.find_by_id aid
+    count               = params[:count]
+    aid                 = params[:aid]
+    siid                = params[:siid]
+    shelf_item          = ShelfItem.find_by_id siid
+    address             = Address.find_by_id aid
     order_detail_params = shelf_item.attributes.merge(address.attributes)
                               .except("id","project_id", "product_category_id", "product_label_id",
                                       "product_detail", "stock", "sales", "is_on_shelf", "recommended",
-                                      "created_at", "updated_at", "user_id", "default", "category", "label")
-    # generate a unique order_id to relate Order with OrderDetail model
-    order_id      = 1000000000 + SecureRandom.random_number(999999999)
-    out_refund_no = 1000000000 + SecureRandom.random_number(999999999)
-    order_detail_params[:count]         = count.to_i
-    order_detail_params[:order_id]      = order_id
-    order_detail_params[:out_refund_no] = out_refund_no
-    order_detail = OrderDetail.new order_detail_params
-    order_detail.save
-    order = Order.new
-    order[:order_id] = order_id
-    order[:user_id]  = current_user.id
+                                      "created_at", "updated_at", "user_id", "default", "category", "label", "gyb_discount")
+    # Generate a unique order_id to relate Order with OrderDetail model
+    order_id                             = 10000000000 + SecureRandom.random_number(9999999999)
+    out_refund_no                        = order_id
+    order_detail_params[:count]          = count.to_i
+    order_detail_params[:order_id]       = order_id
+    order_detail_params[:out_refund_no]  = out_refund_no
+    order_detail                         = OrderDetail.new order_detail_params
 
     # Determine whether the user has enough gybs for discount and calculate the total price.
     if current_user.gyb < shelf_item.gyb_discount
-      total_price = (order_detail_params[:count] * shelf_item.price) - 0
+      order_detail_params[:gyb_discount] = 0
+      total_price                        = (order_detail_params[:count] * shelf_item.price) - order_detail_params[:gyb_discount]
     else
-      total_price = (order_detail_params[:count] * shelf_item.price) - (shelf_item.gyb_discount.to_f / 100)
+      order_detail_params[:gyb_discount] = shelf_item.gyb_discount.to_f / 100
+      total_price                        = (order_detail_params[:count] * shelf_item.price) - order_detail_params[:gyb_discount]
     end
 
+    order_detail.save
+
+    order = Order.new
+    order[:order_id]     = order_id
+    order[:user_id]      = current_user.id
     order[:total_price]  = total_price
     order[:order_status] = '0'
     order.save
@@ -83,17 +86,22 @@ class OrdersController < BaseController
 
   def add_gyb_payment_record
     id = params[:id]
-    order_detail = OrderDetail.find_by :order_id => id
-    gyb_payment  = GybPayment.new
-    gyb_payment.user_id = current_user.id
-    gyb_payment.shelf_item_id = order_detail.product_id
-    gyb_payment.save
+    order_detail           = OrderDetail.find_by :order_id => id
 
-    shelf_item = ShelfItem.find_by_product_id(order_detail.product_id)
-    if current_user.gyb >= shelf_item.gyb_discount
-      current_user.gyb -= shelf_item.gyb_discount
+    if order_detail.gyb_discount > 0
+      gyb_payment          = GybPayment.new
+      gyb_payment.user_id  = current_user.id
+      gyb_payment.order_id = order_detail.order_id
+      gyb_payment.save
+
+      current_user.gyb     -= order_detail.gyb_discount
       current_user.save
+
+      render json: { status: 'success' }
+
+    else
+      render json: { status: 'no gyb discount in order' }
     end
-    render json: { status: 'success' }
+
   end
 end

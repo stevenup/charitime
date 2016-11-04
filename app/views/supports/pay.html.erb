@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="sum">
-      ￥<%= @support.money.to_s %><span class="m-l">分</span>
+      ￥<%= @support.money.to_f / 100 %><span class="m-l">元</span>
     </div>
     <button id="dedicate-confirm-btn" class="btn btn-default btn-highlight btn-middle m-l m-r p-t p-b" data-id="<%= @project.project_id %>">立即支付</button>
     <div class="remarks">

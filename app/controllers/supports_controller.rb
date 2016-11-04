@@ -7,14 +7,15 @@ class SupportsController < BaseController
     pid = params[:id]
     @project = Project.find_by(:project_id => pid)
     @support = Support.where("user_id = ? and project_id = ?", current_user.id, pid).last
-    # redirect_to supports_show_path(pid: pid), status: 200
   end
 
   def create
     money              = params['money']
     pid                = params['pid']
     type               = params['type'].to_i
-    support            = Support.new({ money: money, support_type: type })
+    puts '>>>>>>>>>>>>>>>>>>>'
+    puts type
+    support            = Support.new({ money: money * 100, support_type: type })
     support.user_id    = current_user.id
     support.project_id = pid
     support.save if support

@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
   has_many :supports
   # has_many :users, through: :supports
 
-  has_and_belongs_to_many :shelf_items, foreign_key: 'project_id'
+  has_many :shelf_items
 
   # enum type: { 'TYPE1': 1, 'TYPE2': 2 }
 end
