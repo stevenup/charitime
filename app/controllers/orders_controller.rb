@@ -55,24 +55,25 @@ class OrdersController < BaseController
     order_detail_params = shelf_item.attributes.merge(address.attributes)
                               .except("id","project_id", "product_category_id", "product_label_id",
                                       "product_detail", "stock", "sales", "is_on_shelf", "recommended",
-                                      "created_at", "updated_at", "user_id", "default", "category", "label", "gyb_discount")
+                                      "created_at", "updated_at", "user_id", "default", "category", "label")
+
     # Generate a unique order_id to relate Order with OrderDetail model
     order_id                             = 10000000000 + SecureRandom.random_number(9999999999)
     out_refund_no                        = order_id
     order_detail_params[:count]          = count.to_i
     order_detail_params[:order_id]       = order_id
     order_detail_params[:out_refund_no]  = out_refund_no
-    order_detail                         = OrderDetail.new order_detail_params
 
     # Determine whether the user has enough gybs for discount and calculate the total price.
     if current_user.gyb < shelf_item.gyb_discount
       order_detail_params[:gyb_discount] = 0
-      total_price                        = (order_detail_params[:count] * shelf_item.price) - order_detail_params[:gyb_discount]
+      total_price                        = (order_detail_params[:count] * shelf_item.price) - order_detail_params[:gyb_discount] / 100
     else
-      order_detail_params[:gyb_discount] = shelf_item.gyb_discount.to_f / 100
-      total_price                        = (order_detail_params[:count] * shelf_item.price) - order_detail_params[:gyb_discount]
+      order_detail_params[:gyb_discount] = shelf_item.gyb_discount
+      total_price                        = (order_detail_params[:count] * shelf_item.price) - order_detail_params[:gyb_discount] / 100
     end
 
+    order_detail                         = OrderDetail.new order_detail_params
     order_detail.save
 
     order = Order.new

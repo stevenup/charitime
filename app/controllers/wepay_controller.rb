@@ -125,20 +125,22 @@ class WepayController < ApplicationController
       out_trade_no   = result['out_trade_no']
       transaction_id = result['transaction_id']
 
-      order_detail          = OrderDetail.find_by(order_id: out_trade_no)
+      user           = User.find_by_openid result['openid']
+
+      order_detail   = OrderDetail.find_by(order_id: out_trade_no)
       support        = Support.find_by(id: out_trade_no.to_i - 1000000)
 
       if order_detail
         order_detail.order.update_attributes({ order_status: 1, transaction_id: transaction_id })
 
         if order_detail.gyb_discount > 0
-          purchase_support = Support.new
-          purchase_support.user_id = current_user.id
-          purchase_support.order_id = order_detail.order_id
-          purchase_support.project_id = order_detail.shelf_items.first.project.project_id
-          purchase_support.money = order_detail.gyb_discount
+          purchase_support              = Support.new
+          purchase_support.user_id      = user.id
+          purchase_support.order_id     = order_detail.order_id
+          purchase_support.project_id   = order_detail.shelf_item.project_id
+          purchase_support.money        = order_detail.gyb_discount
           purchase_support.support_type = 1
-          purchase_support.status = 1
+          purchase_support.status       = 1
           purchase_support.save
         end
         render :xml => { return_code: "SUCCESS" }.to_xml(root: 'xml', dasherize: false)
