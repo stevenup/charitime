@@ -80,12 +80,7 @@ class Admin::ProductsController < Admin::AuthenticatedController
   def create_or_update(id = 0, data)
     if id == 0
       product = Product.new data
-      product_id = generate_unique_id
-      unless Product.find_by_product_id(product_id)
-        product.product_id = product_id
-      else
-        product.product_id = generate_unique_id
-      end
+      product.product_id = generate_unique_id unless Product.find_by_product_id(product_id)
       redirect_to admin_products_path if product.save
     else
       product = Product.find(id)
