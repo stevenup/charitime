@@ -53,13 +53,14 @@ class OrdersController < BaseController
     shelf_item          = ShelfItem.find_by_id siid
     address             = Address.find_by_id aid
     order_detail_params = shelf_item.attributes.merge(address.attributes)
-                              .except("id","project_id", "product_category_id", "product_label_id",
+                              .except("id","project_id", "product_id", "product_category_id", "product_label_id",
                                       "product_detail", "stock", "sales", "is_on_shelf", "recommended",
                                       "created_at", "updated_at", "user_id", "default", "category", "label")
 
     # Generate a unique order_id to relate Order with OrderDetail model
     order_id                             = 10000000000 + SecureRandom.random_number(9999999999)
     out_refund_no                        = order_id
+    order_detail_params[:shelf_item_id]  = siid
     order_detail_params[:count]          = count.to_i
     order_detail_params[:order_id]       = order_id
     order_detail_params[:out_refund_no]  = out_refund_no
@@ -77,16 +78,16 @@ class OrdersController < BaseController
     order_detail.save
 
     order = Order.new
-    order[:order_id]     = order_id
-    order[:user_id]      = current_user.id
-    order[:total_price]  = total_price
-    order[:order_status] = '0'
+    order[:order_id]       = order_id
+    order[:user_id]        = current_user.id
+    order[:total_price]    = total_price
+    order[:order_status]   = '0'
     order.save
     redirect_to :action => 'pay', :id => order_id
   end
 
   def add_gyb_payment_record
-    id = params[:id]
+    id                     = params[:id]
     order_detail           = OrderDetail.find_by :order_id => id
 
     if order_detail.gyb_discount > 0
