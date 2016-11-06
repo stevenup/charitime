@@ -18,7 +18,7 @@ class ProjectsController < BaseController
           @total                  += ele.money
           @num_dedication_support += 1
         elsif ele.order_detail_id and ele.support_type == '1'
-          @total                  += ele.order_detail.gyb_discount
+          @total                  += ele.order_detail.gyb_discount.to_f / 100
           @num_purchase_support   += 1
         end
       end
