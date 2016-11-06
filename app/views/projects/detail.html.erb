@@ -9,24 +9,28 @@
 
   <div class="progress">
     <div class="progress-bar">
-      <div class="green-bar"></div>
+      <% if @percent <= 100 %>
+        <div class="green-bar" style="width: <%= (@percent * 100).to_i.to_s + '%' %> "></div>
+      <% else %>
+        <div class="green-bar" style="width: 100%;"></div>
+      <% end %>
     </div>
     <div class="progress-percent">
-      <p>40%</p>
+      <p><%= (@percent * 100).to_i.to_s + '%' %></p>
     </div>
   </div>
 
   <div class="support-info m-t m-b">
     <div class="supporters p-r">
-      <p class="total">10</p>
+      <p class="total"><%= @num_dedication_support.to_s %></p>
       <p>无偿奉献爱心</p>
     </div>
     <div class="supporters p-r">
-      <p class="total">10</p>
+      <p class="total"><%= @num_purchase_support.to_s %></p>
       <p>购买给予支持</p>
     </div>
     <div class="money p-r">
-      <p class="total">5000</p>
+      <p class="total">¥<%= @total.to_f.round(2) %></p>
       <p>累计款项</p>
     </div>
   </div>
@@ -43,54 +47,53 @@
     </div>
   </div>
 
-  <div class="project-detail-area m-l m-r m-t m-b">
-    <div class="cate-title-wrapper p-t p-b">
-      <div class="cate-title p-l">
-        <div class="p-bar"></div>
-        <span class="p-title p-l">发起人</span>
-      </div>
-    </div>
-    <div class="detail-body p-t p-b p-l p-r">
-      test test test
-    </div>
-  </div>
+  <!--<div class="project-detail-area m-l m-r m-t m-b">-->
+    <!--<div class="cate-title-wrapper p-t p-b">-->
+      <!--<div class="cate-title p-l">-->
+        <!--<div class="p-bar"></div>-->
+        <!--<span class="p-title p-l">发起人</span>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="detail-body p-t p-b p-l p-r">-->
+      <!--test test test-->
+    <!--</div>-->
+  <!--</div>-->
 
-  <div class="project-detail-area m-l m-r m-t m-b">
-    <div class="cate-title-wrapper p-t p-b">
-      <div class="cate-title p-l">
-        <div class="p-bar"></div>
-        <span class="p-title p-l">支持者</span>
-      </div>
-    </div>
-
-    <div class="project-supporters p-b">
-      <div class="supporter-avatar m-t m-l">
-        <%= image_tag 'avatar.jpg' %>
+  <% if @supports != [] %>
+    <div class="project-detail-area m-l m-r m-t m-b">
+      <div class="cate-title-wrapper p-t p-b">
+        <div class="cate-title p-l">
+          <div class="p-bar"></div>
+          <span class="p-title p-l">支持者</span>
+        </div>
       </div>
 
-      <div class="supporter-avatar m-t m-l">
-        <%= image_tag 'avatar.jpg' %>
+      <div class="project-supporters p-b">
+        <% @supports.each do |ele| %>
+          <div class="supporter-avatar m-t m-l">
+            <%= image_tag User.find_by_id(ele.user_id).try(:headimgurl) %>
+          </div>
+        <% end %>
       </div>
     </div>
+  <% end %>
 
-  </div>
+  <!--<div class="project-detail-area m-l m-r m-t m-b">-->
+    <!--<div class="cate-title-wrapper p-t p-b">-->
+      <!--<div class="cate-title p-l">-->
+        <!--<div class="p-bar"></div>-->
+        <!--<span class="p-title p-l">留言区</span>-->
+      <!--</div>-->
+    <!--</div>-->
 
-  <div class="project-detail-area m-l m-r m-t m-b">
-    <div class="cate-title-wrapper p-t p-b">
-      <div class="cate-title p-l">
-        <div class="p-bar"></div>
-        <span class="p-title p-l">留言区</span>
-      </div>
-    </div>
+    <!--<div class="detail-body p-t p-b p-l p-r">-->
+      <!--test test test-->
+    <!--</div>-->
 
-    <div class="detail-body p-t p-b p-l p-r">
-      test test test
-    </div>
+    <!--<div class="project-comment">-->
+    <!--</div>-->
 
-    <div class="project-comment">
-    </div>
-
-  </div>
+  <!--</div>-->
 
   <div class="btn-bottom-area">
     <button class="btn-default btn-highlight m-l m-r p-t p-b" id="dedicate-btn">无偿支持</button>
