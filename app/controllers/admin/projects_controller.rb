@@ -89,7 +89,7 @@ class Admin::ProjectsController < Admin::AuthenticatedController
   end
 
   def project_params
-    params.require(:project).permit(:project_id, :project_name, :category, :banner, :main_pic, :thumb, :project_type_id, :project_detail,
+    params.require(:project).permit(:project_id, :project_name, :category, :banner, :main_pic, :thumb, :project_type_id, :goal, :project_detail,
                                     :support_type_id, shelf_item_ids: [:shelf_item_id_1, :shelf_item_id_2])
   end
 end

@@ -1,4 +1,4 @@
-<div class="order-detail" id="order-detail">
+     <div class="order-detail" id="order-detail">
   <div class="order-detail-head p-l p-r">
     <p class="t-left">订单号: <%= @order_detail.order.order_id.to_s %></p>
 
@@ -17,7 +17,7 @@
 
   <div class="product-info p-t p-b">
     <div class="product-thumb p-l p-r">
-      <%= image_tag ShelfItem.find_by_product_id(@order_detail.product_id).try(:thumb) %>
+      <%= image_tag @order_detail.shelf_item.thumb %>
     </div>
 
     <div class="product-name m-r m-l m-t">
@@ -42,7 +42,7 @@
     </div>
     <div>
       <p class="inline-block t-left">公益优惠</p>
-      <p class="inline-block t-right red">￥<%= @order_detail.gyb_discount.to_s %></p>
+      <p class="inline-block t-right red">￥<%= @order_detail.gyb_discount.to_f / 100 %></p>
       <div class="clear"></div>
     </div>
     <div class="border-bottom">

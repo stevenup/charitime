@@ -13,8 +13,6 @@ class SupportsController < BaseController
     money              = params['money']
     pid                = params['pid']
     type               = params['type'].to_i
-    puts '>>>>>>>>>>>>>>>>>>>'
-    puts type
     support            = Support.new({ money: money * 100, support_type: type })
     support.user_id    = current_user.id
     support.project_id = pid
