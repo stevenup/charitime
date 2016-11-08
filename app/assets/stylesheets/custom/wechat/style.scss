@@ -303,18 +303,27 @@ i.arrow {
   }
 
   .rcmds {
-    .shelf-items-list {
-      text-align: center;
-      display: table;
+    .shelf-items-wrapper {
+      text-align: left;
 
-      img {
-        width: 100%;
+      .shelf-items-list {
+        text-align: center;
+        display: table;
 
-      }
+        img {
+          width: 100%;
 
-      a {
-        display: inline-block;
-        vertical-align: middle;
+        }
+
+        a {
+          display: inline-block;
+          vertical-align: middle;
+
+          .item {
+            width: p2e(373px);
+            border-top: none;
+          }
+        }
       }
     }
   }
@@ -382,7 +391,8 @@ i.arrow {
     bottom: 0;
     width: 100%;
     background: #ffffff;
-    box-shadow: p2e(-8px) p2e(2px) p2e(4px) p2e(9px) rgba(236, 236, 236, 0.38);
+    border-top: p2e(1px) solid #afafaf;
+    box-shadow: p2e(-8px) p2e(2px) p2e(4px) p2e(5px) rgba(236, 236, 236, 0.38);
     text-align: center;
     @include font-dpr(16px);
 
@@ -913,11 +923,12 @@ i.arrow {
     width: 100%;
     text-align: center;
     background-color: white;
-    line-height: p2e(45px);
+    line-height: p2e(56px);
 
     .btn-default {
       border-radius: 0;
-      border: p2e(1px) solid #c7c7c7;
+      border: none;
+      border-top: p2e(1px) solid #c7c7c7;
     }
 
     .buy-btn {
@@ -978,48 +989,51 @@ i.arrow {
   }
 }
 
-ul.shelf-items-list {
-  background: #FFFFFF;
-  list-style: none;
-  display: table;
-  width: 100%;
-  text-align: center;
+.shelf-items-wrapper {
+  text-align: left;
 
-  a {
-    display: inline-block;
-    vertical-align: middle;
-    //text-align: center;
+  ul.shelf-items-list {
+    list-style: none;
+    display: table;
+    width: 100%;
 
-    .item {
-      width: p2e(340px);
-      border: p2e(1px) solid lightgray;
+    a {
       display: inline-block;
+      vertical-align: middle;
+      background: #ffffff;
+      margin-left: p2e(6px);
+      margin-top: p2e(6px);
 
-      img {
-        width: 100%;
-      }
+      .item {
+        width: p2e(366px);
+        display: inline-block;
 
-      .item-property {
-        .item-name {
-          margin: p2e(10px);
-          text-align: center;
-          @include font-dpr(14px);
+        img {
+          width: 100%;
         }
 
-        .item-bottom {
-          .item-price {
-            margin: p2e(8px);
+        .item-property {
+          .item-name {
+            margin: p2e(10px);
             text-align: center;
             @include font-dpr(14px);
-            font-weight: 600;
           }
 
-          .item-hearts {
-            margin: p2e(8px);
+          .item-bottom {
+            .item-price {
+              margin: p2e(8px);
+              text-align: center;
+              @include font-dpr(14px);
+              font-weight: 600;
+            }
 
-            i {
-              margin-left: p2e(8px);
-              margin-right: p2e(8px);
+            .item-hearts {
+              margin: p2e(8px);
+
+              i {
+                margin-left: p2e(8px);
+                margin-right: p2e(8px);
+              }
             }
           }
         }
@@ -1027,6 +1041,7 @@ ul.shelf-items-list {
     }
   }
 }
+
 
 #overlay {
   display: none;
@@ -1526,12 +1541,12 @@ ul.shelf-items-list {
 
   .purchase-item {
     border-bottom: p2e(1px) solid lightgrey;
-    display: inline-flex;
 
     .item-left {
-      width: p2e(200px);
-      -moz-box-flex: 1;
-      -webkit-box-flex: 1;
+      padding: p2e(14px);
+      display: inline-block;
+      vertical-align: middle;
+      width: 25%;
 
       img {
         width: 100%;
@@ -1539,9 +1554,11 @@ ul.shelf-items-list {
     }
 
     .item-right {
+      padding: p2e(14px);
+      display: inline-block;
+      vertical-align: middle;
+      width: 65%;
       text-align: left;
-      -moz-box-flex: 5;
-      -webkit-box-flex: 5;
 
       .info-top {
         @include font-dpr(14px);
@@ -1563,8 +1580,7 @@ ul.shelf-items-list {
         }
 
         .item-btn {
-          -webkit-box-flex: 1;
-          align-self: flex-end;
+          position: relative;
 
           .btn-highlight {
             padding-left: p2e(20px);

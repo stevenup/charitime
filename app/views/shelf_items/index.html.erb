@@ -1,21 +1,23 @@
-<ul class="shelf-items-list">
-  <% @shelf_items.each do |p| %>
-    <%= link_to shelf_item_path p.id do %>
-      <li class="item">
-        <%= image_tag p.thumb.to_s %>
-        <div class="item-property p-b">
-          <div class="item-name">
-            <%= p.product_name.to_s %>
-          </div>
-          <div class="item-bottom">
-            <div class="item-price red">
-              ¥<%= p.price.to_s %>
+<div class="shelf-items-wrapper">
+  <ul class="shelf-items-list">
+    <% @shelf_items.each do |p| %>
+      <%= link_to shelf_item_path p.id do %>
+        <li class="item">
+          <%= image_tag p.thumb.to_s %>
+          <div class="item-property p-b">
+            <div class="item-name">
+              <%= p.product_name.to_s %>
+            </div>
+            <div class="item-bottom">
+              <div class="item-price red">
+                ¥<%= p.price.to_s %>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
+  </ul>
+</div>
 
 <% content_for :title, set_title('好物') %>
