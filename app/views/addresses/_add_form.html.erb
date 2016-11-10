@@ -1,0 +1,39 @@
+<%= form_for '', url: url do |f| %>
+  <div class="form-item">
+    <%= f.label :姓名, class: 'label-text' %>
+    <div class="field-column"><%= f.text_field :receiver_name, class: 'field-control', required: true %></div>
+  </div>
+
+  <div class="form-item">
+    <%= f.label :手机, class: 'label-text' %>
+    <div class="field-column"><%= f.text_field :mobile, class: 'field-control', required: true %></div>
+  </div>
+
+  <div class="form-item">
+    <div class="label-text">地址</div>
+  </div>
+
+  <div class="form-item">
+    <div class="city-group">
+      <select name="province" class="city-select">
+        <option>--省份--</option>
+        <%= options_for_select(ChinaCity.list) %>
+      </select>
+      <select name="city" class="city-select">
+        <option>--城市--</option>
+      </select>
+      <select name="district" class="city-select">
+        <option>--区域--</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-item">
+    <div class="field-column"><%= f.text_field :detail_address, class: 'field-control', size: 30, placeholder: '请输入详细地址', required: true %></div>
+  </div>
+
+  <div class="buttons">
+    <%= f.submit '保存', class: "btn btn-default btn-highlight" %>
+    <%= link_to '取消', '#', id: 'cancel-btn', class: "btn btn-default" %>
+  </div>
+<% end %>

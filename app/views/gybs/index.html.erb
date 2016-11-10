@@ -27,8 +27,8 @@
 
     <div class="exchange-area">
       <%= form_tag("/gybs/exchange", method: "get") do %>
-          <%= text_field_tag(:exchange_code, nil, :placeholder => "输入兑换码", :class => 'exchange-box m-r', :required => true) %>
-          <%= submit_tag("兑换", :class => 'exchange-btn m-l' )%>
+        <%= text_field_tag(:exchange_code, nil, :placeholder => "输入兑换码", :class => 'exchange-box m-r', :required => true) %>
+        <%= submit_tag("兑换", :class => 'exchange-btn m-l') %>
       <% end %>
     </div>
   </div>

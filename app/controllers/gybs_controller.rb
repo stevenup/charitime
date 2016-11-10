@@ -12,16 +12,16 @@ class GybsController < BaseController
 
   def exchange
     exchange_code = params[:exchange_code]
-    gyb = Gyb.find_by_exchange_code(exchange_code)
+    gyb           = Gyb.find_by_exchange_code(exchange_code)
     if gyb.nil?
-      render json: {status: 'exchange code not existed.'}
+      render json: { status: 'exchange code not existed.' }
     else
       # determine whether the current user has exchanged the code.
       if GybIncome.where("user_id = ? and gyb_id = ?", current_user.id, gyb.id) == []
         # save the income gybs to the gyb_income table.
-        gyb_income = GybIncome.new
+        gyb_income         = GybIncome.new
         gyb_income.user_id = current_user.id
-        gyb_income.gyb_id = gyb.id
+        gyb_income.gyb_id  = gyb.id
         gyb_income.save
         gyb.stock -= 1
         gyb.save

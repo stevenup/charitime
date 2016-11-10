@@ -1125,7 +1125,6 @@ i.arrow {
 }
 
 .my-address {
-  //background: #979797;
   @include font-dpr(14px);
 
   p {
@@ -1134,7 +1133,7 @@ i.arrow {
 
   .address-item {
     background-color: #FFFFFF;
-    border: p2e(1px) solid lightgray;
+    border-bottom: p2e(5px) dashed #178fe5;
 
     .name {
       display: inline-block;
@@ -1147,6 +1146,23 @@ i.arrow {
     .address {
       display: block;
     }
+
+    .buttons {
+      padding-top: p2e(12px);
+      padding-left: p2e(12px);
+      border-top: p2e(1px) solid lightgray;
+      @include font-dpr(12px);
+
+      a {
+        color: gray;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .buttons {
+    margin: p2e(14px) auto;
+    text-align: center;
   }
 }
 
@@ -1456,11 +1472,16 @@ i.arrow {
   }
 }
 
-.add-address-form {
-  background: #ffffff;
-  @include font-dpr(16px);
+.address-form {
+  display: none;
+  z-index: 999;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   padding-top: p2e(14px);
   padding-bottom: p2e(14px);
+  background: #ffffff;
+  @include font-dpr(16px);
 
   .form-item {
     display: table;

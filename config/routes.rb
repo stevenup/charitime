@@ -33,7 +33,9 @@ Rails.application.routes.draw do
   end
 
   resources :donations
-  resources :addresses
+  resources :addresses do
+    get :modify, on: :collection
+  end
 
   resources :orders do
     get :cancel_order,           on: :member

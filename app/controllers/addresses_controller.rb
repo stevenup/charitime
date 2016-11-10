@@ -3,6 +3,12 @@ class AddressesController < BaseController
     @addresses = Address.where :user_id => current_user.id
   end
 
+  def modify
+    puts '>>>>>>>>>>>>'
+    puts params[:id]
+    render 'edit_form', layout: 'form'
+  end
+
   def new
     @address = Address.new
   end
@@ -36,7 +42,7 @@ class AddressesController < BaseController
       address.default = '1' if Address.where(user_id: current_user.id).count == 0
       redirect_to addresses_path if address.save
     else
-      address = Address.find(id)
+      address         = Address.find(id)
       data[:province] = ChinaCity.get province
       data[:city]     = ChinaCity.get city
       data[:district] = ChinaCity.get district
@@ -45,6 +51,6 @@ class AddressesController < BaseController
   end
 
   def address_params
-    params.require(:address).permit(:receiver_name, :province, :city, :district, :detail_address, :mobile)
+    params.permit(:receiver_name, :province, :city, :district, :detail_address, :mobile)
   end
 end
