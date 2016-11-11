@@ -4,9 +4,7 @@ class AddressesController < BaseController
   end
 
   def modify
-    puts '>>>>>>>>>>>>'
-    puts params[:id]
-    render 'edit_form', layout: 'form'
+    render partial: 'form', locals: { id: params[:id] }
   end
 
   def new

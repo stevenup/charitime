@@ -2,18 +2,15 @@
 
 <div id="my-address" class="my-address">
   <% if @addresses.nil? %>
-
     <%= link_to new_address_path do %>
       <button id="add-address-btn" class="btn btn-default btn-highlight btn-wide p-t p-b m-t">添加地址</button>
     <% end %>
-
   <% else %>
-
     <% @addresses.each do |addr| %>
       <div class="address-item p-l p-r p-t p-b">
         <p class="name"><%= addr.receiver_name %></p>
         <p class="tel"><%= addr.mobile %></p>
-        <p class="address"><%= addr.province.to_s + addr.city.to_s + addr.district.to_s + addr.detail_address.to_s %></p>
+        <p class="address"><%= "#{ addr.province.to_s }#{ addr.city.to_s }#{ addr.district.to_s }#{ addr.detail_address.to_s }" %></p>
         <div class="buttons">
           <a href="javascript:;" data-id="<%= addr.id %>" class="t-left set-default-btn"><i class="fa fa-check-square fa-lg"></i>&nbsp;设为默认</a>
           <a href="javascript:;" data-id="<%= addr.id %>" class="t-right delete-btn p-l"><i class="fa fa-trash fa-lg"></i>&nbsp;删除</a>
@@ -26,13 +23,14 @@
     <div class="buttons">
       <button id="add-address-btn" class="btn btn-default btn-highlight p-t p-b m-t">添加地址</button>
     </div>
-
   <% end %><!-- if end -->
 </div>
 
 <div id="add-address-form" class="address-form">
-  <%= render partial: 'add_form', locals: { url: addresses_path } %>
+  <%= render partial: 'form', locals: { url: addresses_path } %>
 </div>
+
+<div id="edit-address-form" class="address-form" style="display: none"></div>
 
 <script>
   $(document).ready(function () {
@@ -42,8 +40,11 @@
         method: 'get',
         url: '/addresses/modify',
         data: { id: id },
-        success: function () {
-          $('#edit-address-form').css("display", "block");
+        success: function (res) {
+          $('#overlay').fadeIn('fast', function () {
+            $('#edit-address-form').append(res);
+            $('#edit-address-form').animate({ height: 'toggle' }, 'fast')
+          })
         }
       })
     });
