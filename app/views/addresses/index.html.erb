@@ -42,8 +42,9 @@
         data: { id: id },
         success: function (res) {
           $('#overlay').fadeIn('fast', function () {
+            $('body').append('<div id="edit-address-form" class="address-form"></div>');
             $('#edit-address-form').append(res);
-            $('#edit-address-form').animate({ height: 'toggle' }, 'fast')
+            $('#edit-address-form').fadeIn('fast')
           })
         }
       })
@@ -56,18 +57,19 @@
     });
 
     $('#overlay').on('click', function () {
-      $('#add-address-form').animate({height: 'toggle'}, 'fast', function () {
-        $('#overlay').fadeOut('fast')
-      })
-    });
-
-    $('#cancel-btn').on('click', function () {
-      $('#add-address-form').animate({height: 'toggle'}, 'fast', function () {
+      $('.address-form').fadeOut('fast', function () {
         $('#overlay').fadeOut('fast');
+        $('#edit-address-form').remove();
+
       });
     });
 
-
+    $('body').on('click', '#cancel-btn', function () {
+      $('.address-form').fadeOut('fast', function () {
+        $('#edit-address-form').remove();
+        $('#overlay').fadeOut('fast');
+      });
+    });
   })
 </script>
 

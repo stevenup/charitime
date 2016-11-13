@@ -4,7 +4,8 @@ class AddressesController < BaseController
   end
 
   def modify
-    render partial: 'form', locals: { id: params[:id] }
+    @address = Address.find_by_id(params[:id])
+    render partial: 'form'
   end
 
   def new

@@ -1,4 +1,4 @@
-<%= form_for '' do |f| %>
+<%= form_for @address == nil ? '' : @address do |f| %>
   <div class="form-item">
     <%= f.label :姓名, class: 'label-text' %>
     <div class="field-column"><%= f.text_field :receiver_name, class: 'field-control', required: true %></div>
@@ -17,13 +17,29 @@
     <div class="city-group">
       <select name="province" class="city-select">
         <option>--省份--</option>
-        <%= options_for_select(ChinaCity.list) %>
+        <% if @address %>
+          <%# binding.pry %>
+          <%= options_for_select(ChinaCity.list, selected: "#{@address.province}") %>
+        <% else %>
+          <%= options_for_select(ChinaCity.list) %>
+        <% end %>
+
       </select>
       <select name="city" class="city-select">
-        <option>--城市--</option>
+        <% if @address %>
+          <option>--城市--</option>
+          <option selected="selected"><%= @address.city %></option>
+        <% else %>
+          <option>--城市--</option>
+        <% end %>
       </select>
       <select name="district" class="city-select">
-        <option>--区域--</option>
+        <% if @address %>
+          <option>--区域--</option>
+          <option selected="selected"><%= @address.district %></option>
+        <% else %>
+          <option>--区域--</option>
+        <% end %>
       </select>
     </div>
   </div>
@@ -37,3 +53,6 @@
     <%= link_to '取消', '#', id: 'cancel-btn', class: "btn btn-default" %>
   </div>
 <% end %>
+
+
+
