@@ -246,18 +246,6 @@ ActiveRecord::Schema.define(version: 20161106104534) do
     t.integer "shelf_item_id", limit: 4
   end
 
-  create_table "rich_rich_images", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image_file_name",    limit: 255
-    t.string   "image_content_type", limit: 255
-    t.integer  "image_file_size",    limit: 4
-    t.datetime "image_updated_at"
-    t.string   "owner_type",         limit: 255
-    t.integer  "owner_id",           limit: 4
-    t.text     "uri_cache",          limit: 65535
-  end
-
   create_table "shelf_items", force: :cascade do |t|
     t.string   "product_id",     limit: 255
     t.string   "project_id",     limit: 255

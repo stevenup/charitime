@@ -34,7 +34,8 @@ Rails.application.routes.draw do
 
   resources :donations
   resources :addresses do
-    get :modify, on: :collection
+    get :modify,      on: :collection
+    get :set_default, on: :member
   end
 
   resources :orders do

@@ -1,11 +1,13 @@
 class AddressesController < BaseController
   def index
     @addresses = Address.where :user_id => current_user.id
-  end
-
-  def modify
-    @address = Address.find_by_id(params[:id])
-    render partial: 'form'
+    if @addresses != []
+      @addresses.each do |ele|
+        ele.province = ChinaCity.get ele.province
+        ele.city     = ChinaCity.get ele.city
+        ele.district = ChinaCity.get ele.district
+      end
+    end
   end
 
   def new
@@ -24,28 +26,44 @@ class AddressesController < BaseController
     create_or_update params[:id], address_params
   end
 
+  def destroy
+    address = Address.find_by_id(params[:id])
+    redirect_to :back if address.destroy
+  end
+
+  def modify
+    @address = Address.find_by_id(params[:id])
+    render partial: 'form'
+  end
+
+  def set_default
+    _address = Address.find_by(:default => 1)
+    _address.update_attribute(:default, 0)
+    address = Address.find_by_id(params[:id])
+    address.update_attribute(:default, 1)
+    redirect_to addresses_path
+  end
+
   private
   def create_or_update(id = 0, data)
-    # The params province, city and district, are not submitted together with the hash from the form.
-    # So they need to be received alone.
     province = params[:province]
     city     = params[:city]
     district = params[:district]
 
     if id == 0
-      data[:province] = ChinaCity.get province
-      data[:city]     = ChinaCity.get city
-      data[:district] = ChinaCity.get district
+      data[:province] = province
+      data[:city]     = city
+      data[:district] = district
       address         = Address.new data
       address.user_id = current_user.id
       address.default = '1' if Address.where(user_id: current_user.id).count == 0
-      redirect_to addresses_path if address.save
+      redirect_to :back if address.save
     else
       address         = Address.find(id)
-      data[:province] = ChinaCity.get province
-      data[:city]     = ChinaCity.get city
-      data[:district] = ChinaCity.get district
-      redirect_to addresses_path if address.update_attributes data
+      data[:province] = province
+      data[:city]     = city
+      data[:district] = district
+      redirect_to :back if address.update_attributes data
     end
   end
 

@@ -56,7 +56,7 @@
       <div class="clear"></div>
     </div>
     <div>
-      <p class="inline-block t-right"><%= @order_detail.created_at.strftime("%Y.%m.%d %H:%M:%S") %></p>
+      <p class="inline-block t-right"><%= @order_detail.created_at.strftime("%Y.%m.%d %T") %></p>
       <div class="clear"></div>
     </div>
   </div>
@@ -66,7 +66,6 @@
     <div class="buttons p-l p-r p-t p-b">
       <%= button_to '立即付款', order_pay_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small btn-highlight m-l m-r p-t p-b t-right' %>
       <%= button_to '取消订单', cancel_order_order_path(@order_detail.order.order_id), :method => 'get', :'data-confirm' => '确定取消订单嘛？', :class => 'btn btn-default btn-small m-l m-r p-t p-b t-right', :id => 'cancel-btn' %>
-
       <div class="clear"></div>
     </div>
   </div>

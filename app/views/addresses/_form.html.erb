@@ -19,7 +19,7 @@
         <option>--省份--</option>
         <% if @address %>
           <%# binding.pry %>
-          <%= options_for_select(ChinaCity.list, selected: "#{@address.province}") %>
+          <%= options_for_select(ChinaCity.list, "#{@address.province}") %>
         <% else %>
           <%= options_for_select(ChinaCity.list) %>
         <% end %>
@@ -27,16 +27,14 @@
       </select>
       <select name="city" class="city-select">
         <% if @address %>
-          <option>--城市--</option>
-          <option selected="selected"><%= @address.city %></option>
+          <%= options_for_select(ChinaCity.list(@address.province), "#{@address.city}") %>
         <% else %>
           <option>--城市--</option>
         <% end %>
       </select>
       <select name="district" class="city-select">
         <% if @address %>
-          <option>--区域--</option>
-          <option selected="selected"><%= @address.district %></option>
+          <%= options_for_select(ChinaCity.list(@address.city), "#{@address.district}") %>
         <% else %>
           <option>--区域--</option>
         <% end %>
