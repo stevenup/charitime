@@ -3,7 +3,7 @@
     <p class="t-left">订单号: <%= @order_detail.order.order_id.to_s %></p>
 
     <div class="order-status t-right">
-      <p><%= display_status(@order_detail.order.order_status, @order_detail.order.logistics_status) %></p>
+      <p><%= transform_status(@order_detail.order.order_status, @order_detail.order.logistics_status) %></p>
       <div class="clear"></div>
     </div>
     <div class="clear"></div>

@@ -32,7 +32,7 @@ class Admin::OrdersController < Admin::AuthenticatedController
   end
 
   def update
-    order_detail                  = OrderDetail.find_by_order_id(params[:order_id])
+    order_detail = OrderDetail.find_by_order_id(params[:order_id])
     if order_detail.nil?
       render plain: 'failed to find the order.'
     elsif order_detail.order_status == 'REFUNDING'

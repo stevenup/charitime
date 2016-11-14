@@ -1,5 +1,5 @@
 module StatusesHelper
-  def display_status(order_status, logistics_status)
+  def transform_status(order_status, logistics_status)
     if order_status == 'PAID'
       if logistics_status == 'DELIVERED'
         return '已发货'

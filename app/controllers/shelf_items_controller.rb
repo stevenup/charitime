@@ -12,5 +12,10 @@ class ShelfItemsController < BaseController
       @project = Project.find_by_project_id(pid)
     end
     @address = Address.find_by({user_id: current_user.id, default: '1'}) # the default value is used to mark the default address
+    if @address
+      @address.province = ChinaCity.get @address.province
+      @address.city     = ChinaCity.get @address.city
+      @address.district = ChinaCity.get @address.district
+    end
   end
 end
