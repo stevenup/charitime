@@ -1,14 +1,8 @@
 <%= form_for @project, url: url, html: {class: 'form-horizontal'} do |f| %>
   <div class="form-group">
-    <%= f.label :project_id, class: 'col-lg-1 control-label' %>
-    <div class="col-lg-4"><%= f.text_field :project_id, class: 'col-lg-4 form-control', required: true %></div>
-  </div>
-
-  <div class="form-group">
     <%= f.label :project_name, class: 'col-lg-1 control-label' %>
     <div class="col-lg-4"><%= f.text_field :project_name, class: 'col-lg-4 form-control', required: true %></div>
   </div>
-
 
   <div class="form-group">
     <%= f.label :category, class: 'col-lg-1 control-label' %>

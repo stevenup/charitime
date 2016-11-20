@@ -14,7 +14,7 @@
         <div class="buttons">
           <%= link_to set_default_address_path(addr.id), :method => 'get', :'data-confirm' => '确定设置为默认地址吗？', :class => 't-left set-default-btn' do %>
             <% if addr.default == '1' %>
-              <i class="fa fa-check-square fa-lg default"></i>&nbsp;设为默认
+              <i class="fa fa-check-square fa-lg default"></i>&nbsp;已设为默认
             <% else %>
               <i class="fa fa-check-square fa-lg"></i>&nbsp;设为默认
             <% end %>
