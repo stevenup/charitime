@@ -10,7 +10,7 @@ class SupportsController < BaseController
   end
 
   def create
-    money              = params['money']
+    money              = params['money'].to_i
     pid                = params['pid']
     type               = params['type'].to_i
     support            = Support.new({ money: money * 100, support_type: type })

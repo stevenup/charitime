@@ -24,8 +24,8 @@
         <%= @shelf_item.product_name.to_s %>
       </div>
       <div class="price">
-        <span class="big-price">￥<%= @shelf_item.price %></span>
-        <span class="coin"><%= @shelf_item.gyb_discount %>公益币</span>
+        <span class="big-price">￥<%= '%.2f' % @shelf_item.price %></span>
+        <span class="coin"><%= @shelf_item.gyb_discount.to_i %>&nbsp;公益币</span>
       </div>
 
       <!--<div class="info">-->
@@ -124,7 +124,7 @@
       <%= hidden_field_tag 'aid', @address.id %>
       <%= hidden_field_tag 'siid', @shelf_item.id %>
       <div class="buttons">
-        <%= submit_tag '确定提交', id: 'confirm-btn', class: 'btn btn-default btn-highlight btn-middle m-l m-r p-t p-b' %>
+        <%= submit_tag '确定提交', id: 'confirm-btn', data: { disable_with: '正在下单...' }, class: 'btn btn-default btn-highlight btn-middle m-l m-r p-t p-b' %>
       </div>
       </div>
     <% end %>

@@ -1263,6 +1263,10 @@ i.arrow {
       @include font-dpr(16px);
     }
   }
+
+  .buttons {
+    text-align: center;
+  }
 }
 
 /**********  orders/index style  ***********/

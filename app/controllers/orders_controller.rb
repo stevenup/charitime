@@ -16,8 +16,11 @@ class OrdersController < BaseController
   end
 
   def pay
-    order_id = params[:id]
-    @order_detail = OrderDetail.find_by_order_id order_id
+    order_id               = params[:id]
+    @order_detail          = OrderDetail.find_by_order_id order_id
+    @order_detail.province = ChinaCity.get @order_detail.province
+    @order_detail.city     = ChinaCity.get @order_detail.city
+    @order_detail.district = ChinaCity.get @order_detail.district
   end
 
   def show

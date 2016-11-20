@@ -15,7 +15,7 @@
     </div>
 
     <div class="product-price red p-b p-l p-r">
-      <p class="inline-block">￥<%= @order_detail.price.to_s %></p>
+      <p class="inline-block">￥<%= '%.2f' % @order_detail.price.to_s %></p>
     </div>
 
     <div class="product-count red p-b p-l p-r">
@@ -37,19 +37,18 @@
   <% else %>
     <div class="gyb-discount p-l p-r p-b p-t">
       <p class="inline-block">公益优惠</p>
-      <p class="inline-block right-align red">&nbsp;￥<%= @order_detail.gyb_discount/100 %></p>
+      <p class="inline-block right-align red">&nbsp;￥<%= '%.2f' % (@order_detail.gyb_discount/100) %></p>
       <div class="tip">共&nbsp;<%= current_user.gyb %>&nbsp;个公益币, 本次使用&nbsp;<%= @order_detail.gyb_discount.to_i %>&nbsp;个</div>
     </div>
   <% end %>
 
   <div class="total-price p-l p-r p-b p-t">
     <p class="inline-block">合计</p>
-    <p class="inline-block right-align red">￥<%= @order_detail.order.total_price %></p>
+    <p class="inline-block right-align red">￥<%= '%.2f' % @order_detail.order.total_price %></p>
   </div>
 
-
   <div class="buttons m-t">
-    <button id="pay-btn" class="btn btn-default btn-highlight btn-wide p-t p-b" data-id ="<%= @order_detail.order_id %>">立即支付</button>
+    <%= button_tag '立即支付', id: "pay-btn", class: "btn btn-default btn-highlight btn-middle m-l m-r p-t p-b", data: { id: @order_detail.order_id, disable_with: "正在发起支付..."} %>
   </div>
 </div>
 
