@@ -46,28 +46,25 @@ class AddressesController < BaseController
 
   private
   def create_or_update(id = 0, data)
-    province = params[:province]
-    city     = params[:city]
-    district = params[:district]
-
     if id == 0
-      data[:province] = province
-      data[:city]     = city
-      data[:district] = district
       address         = Address.new data
       address.user_id = current_user.id
       address.default = '1' if Address.where(user_id: current_user.id).count == 0
       redirect_to :back if address.save
     else
-      address         = Address.find(id)
-      data[:province] = province
-      data[:city]     = city
-      data[:district] = district
-      redirect_to :back if address.update_attributes data
+      address                       = Address.find(id)
+      address_data                  = Hash.new
+      address_data[:province]       = data[:province]
+      address_data[:city]           = data[:city]
+      address_data[:district]       = data[:district]
+      address_data[:receiver_name]  = data[:address][:receiver_name]
+      address_data[:mobile]         = data[:address][:mobile]
+      address_data[:detail_address] = data[:address][:detail_address]
+      redirect_to :back if address.update_attributes address_data
     end
   end
 
   def address_params
-    params.permit(:receiver_name, :province, :city, :district, :detail_address, :mobile)
+    params.permit(:id, :receiver_name, :province, :city, :district, :detail_address, :mobile, address: [:receiver_name, :mobile, :detail_address])
   end
 end
