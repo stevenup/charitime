@@ -7,7 +7,7 @@
     </div>
   <% else %>
     <% @addresses.each do |addr| %>
-      <div class="address-item p-l p-r p-t p-b">
+      <div class="address-item p-l p-r p-t p-b" data-id="<%= addr.id %>">
         <p class="name"><%= addr.receiver_name %></p>
         <p class="tel"><%= addr.mobile %></p>
         <p class="address"><%= "#{ addr.province.to_s }#{' '}#{ addr.city.to_s }#{' '}#{ addr.district.to_s }#{' '}#{ addr.detail_address.to_s }" %></p>
@@ -78,6 +78,45 @@
         $('#overlay').fadeOut('fast');
       });
     });
+
+    $('#save-address').on('click', function (check) {
+      var receiver_name  = document.getElementById('receiver_name').value;
+      var mobile         = document.getElementById('mobile').value;
+      var province       = document.getElementById('province').value;
+      var city           = document.getElementById('city').value;
+      var district       = document.getElementById('district').value;
+      var detail_address = document.getElementById('detail_address').value;
+
+      isFilledProperly = true;
+
+      if (receiver_name == '') {
+        alert('请填写收货人姓名！');
+        isFilledProperly = false;
+      }
+
+      if (!checkPhone(mobile)) {
+        alert('手机号码有误，请检查！');
+        isFilledProperly = false;
+      }
+
+      if (province == "--省份--" || city == "--城市--" || district == "--区域--") {
+        alert('请检查省市区是否已选择！');
+        isFilledProperly = false;
+      }
+
+      if (detail_address == '') {
+        alert('请填写详细地址！');
+        isFilledProperly = false;
+      }
+
+      if (!isFilledProperly) {
+        check.preventDefault();
+      }
+    });
+
+    function checkPhone(mobile){
+      return (/^1[34578]\d{9}$/.test(mobile));
+    }
   })
 </script>
 

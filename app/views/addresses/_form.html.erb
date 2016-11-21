@@ -1,12 +1,12 @@
 <%= form_for @address == nil ? '' : @address do |f| %>
   <div class="form-item">
     <%= f.label :姓名, class: 'label-text' %>
-    <div class="field-column"><%= f.text_field :receiver_name, class: 'field-control', required: true %></div>
+    <div class="field-column"><%= f.text_field :receiver_name, id: 'receiver_name', class: 'field-control', required: true %></div>
   </div>
 
   <div class="form-item">
     <%= f.label :手机, class: 'label-text' %>
-    <div class="field-column"><%= f.text_field :mobile, class: 'field-control', required: true %></div>
+    <div class="field-column"><%= f.text_field :mobile, id: 'mobile', class: 'field-control', required: true %></div>
   </div>
 
   <div class="form-item">
@@ -15,7 +15,7 @@
 
   <div class="form-item">
     <div class="city-group">
-      <select name="province" class="city-select">
+      <select name="province" id="province" class="city-select">
         <option>--省份--</option>
         <% if @address %>
           <%# binding.pry %>
@@ -23,31 +23,33 @@
         <% else %>
           <%= options_for_select(ChinaCity.list) %>
         <% end %>
-
       </select>
-      <select name="city" class="city-select">
+
+      <select name="city" id="city" class="city-select">
         <% if @address %>
           <%= options_for_select(ChinaCity.list(@address.province), "#{@address.city}") %>
         <% else %>
           <option>--城市--</option>
         <% end %>
       </select>
-      <select name="district" class="city-select">
+
+      <select name="district" id="district" class="city-select">
         <% if @address %>
           <%= options_for_select(ChinaCity.list(@address.city), "#{@address.district}") %>
         <% else %>
           <option>--区域--</option>
         <% end %>
       </select>
+
     </div>
   </div>
 
   <div class="form-item">
-    <div class="field-column"><%= f.text_field :detail_address, class: 'field-control', size: 30, placeholder: '请输入详细地址', required: true %></div>
+    <div class="field-column"><%= f.text_field :detail_address, id: 'detail_address', class: 'field-control', size: 30, placeholder: '请输入详细地址', required: true %></div>
   </div>
 
   <div class="buttons">
-    <%= f.submit '保存', class: "btn btn-default btn-highlight" %>
+    <%= f.submit '保存', id: 'save-address', class: "btn btn-default btn-highlight" %>
     <%= link_to '取消', '#', id: 'cancel-btn', class: "btn btn-default" %>
   </div>
 <% end %>
