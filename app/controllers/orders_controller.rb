@@ -53,6 +53,7 @@ class OrdersController < BaseController
     count               = params[:count]
     aid                 = params[:aid]
     siid                = params[:siid]
+    remark              = params[:remark]
     shelf_item          = ShelfItem.find_by_id siid
     address             = Address.find_by_id aid
     order_detail_params = shelf_item.attributes.merge(address.attributes)
@@ -67,6 +68,7 @@ class OrdersController < BaseController
     order_detail_params[:count]          = count.to_i
     order_detail_params[:order_id]       = order_id
     order_detail_params[:out_refund_no]  = out_refund_no
+    order_detail_params[:remark]         = remark
 
     # Determine whether the user has enough gybs for discount and calculate the total price.
     if current_user.gyb < shelf_item.gyb_discount

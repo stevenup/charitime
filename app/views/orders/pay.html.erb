@@ -42,6 +42,11 @@
     </div>
   <% end %>
 
+  <div class="remark p-l p-r p-b p-t">
+    <p class="inline-block">备注</p>
+    <p class="inline-block right-align"><%= @order_detail.remark %></p>
+  </div>
+
   <div class="total-price p-l p-r p-b p-t">
     <p class="inline-block">合计</p>
     <p class="inline-block right-align red">￥<%= '%.2f' % @order_detail.order.total_price %></p>

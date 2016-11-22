@@ -18,7 +18,6 @@
       <select name="province" id="province" class="city-select">
         <option>--省份--</option>
         <% if @address %>
-          <%# binding.pry %>
           <%= options_for_select(ChinaCity.list, "#{@address.province}") %>
         <% else %>
           <%= options_for_select(ChinaCity.list) %>

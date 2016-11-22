@@ -1,0 +1,37 @@
+<div id="my-address" class="my-address">
+
+
+  <% if addresses == [] %>
+    <div class="buttons">
+      <button id="add-address-btn" class="btn btn-default btn-highlight p-t p-b m-t">添加地址</button>
+    </div>
+  <% else %>
+    <% addresses.each do |addr| %>
+      <div class="address-item p-l p-r p-t p-b">
+        <div id="address-info" class="address-info" data-id="<%= addr.id %>">
+          <p class="name"><%= addr.receiver_name %></p>
+          <p class="tel"><%= addr.mobile %></p>
+          <p class="address"><%= "#{ addr.province.to_s }#{' '}#{ addr.city.to_s }#{' '}#{ addr.district.to_s }#{' '}#{ addr.detail_address.to_s }" %></p>
+        </div>
+        <!--<div class="buttons">-->
+          <%#= link_to set_default_address_path(addr.id), :method => 'get', :'data-confirm' => '确定设置为默认地址吗？', :class => 't-left set-default-btn' do %>
+            <%# if addr.default == '1' %>
+              <!--<i class="fa fa-check-square fa-lg default"></i>&nbsp;已设为默认-->
+            <%# else %>
+              <!--<i class="fa fa-check-square fa-lg"></i>&nbsp;设为默认-->
+            <%# end %>
+          <%# end %>
+          <%#= link_to address_path(addr.id), :method => 'delete', :'data-confirm' => '确定删除嘛？', :class => 't-right delete-btn p-l' do %>
+            <!--<i class="fa fa-trash fa-lg"></i>&nbsp;删除-->
+          <%# end %>
+          <!--<a href="javascript:;" data-id="<%#= addr.id %>" class="t-right edit-btn"><i class="fa fa-edit fa-lg"></i>&nbsp;编辑</a>-->
+          <div class="clear"></div>
+        <!--</div>-->
+      </div>
+    <% end %>
+
+    <!--<div class="buttons">-->
+      <!--<button id="add-address-btn" class="btn btn-default btn-highlight p-t p-b m-t">添加地址</button>-->
+    <!--</div>-->
+    <% end %><!-- if end -->
+</div>

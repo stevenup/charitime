@@ -6,16 +6,34 @@ class ShelfItemsController < BaseController
   def show
     @shelf_item = ShelfItem.find_by(:id => params[:id])
     pid = params[:pid]
+
     if pid.nil?
       @project = Project.find_by_project_id(@shelf_item.project_id)
     else
       @project = Project.find_by_project_id(pid)
     end
-    @address = Address.find_by({user_id: current_user.id, default: '1'}) # the default value is used to mark the default address
+
+    @address = Address.find_by({user_id: current_user.id, default: '1'})
+
     if @address
       @address.province = ChinaCity.get @address.province
       @address.city     = ChinaCity.get @address.city
       @address.district = ChinaCity.get @address.district
+    end
+  end
+
+  def update_order_address
+    _addresses = Address.where("user_id = ?", current_user.id)
+    if _addresses != []
+      _addresses.each do |_addr|
+        _addr.province = ChinaCity.get _addr.province
+        _addr.city     = ChinaCity.get _addr.city
+        _addr.district = ChinaCity.get _addr.district
+      end
+    end
+
+    respond_to do |format|
+      format.js { render :update_order_address, locals: {addresses: _addresses} }
     end
   end
 end

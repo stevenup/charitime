@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get '/supports/pay/:id', to: 'supports#pay', as: 'support_pay'
 
   resources :shelf_items
+  get '/update_order_address' => 'shelf_items#update_order_address'
 
   resources :projects do
     member do
