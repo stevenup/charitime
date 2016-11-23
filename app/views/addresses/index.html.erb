@@ -51,8 +51,7 @@
         success: function (res) {
           $('#overlay').fadeIn('fast', function () {
             $('body').append('<div id="edit-address-form" class="address-form"></div>');
-            $('#edit-address-form').append(res);
-            $('#edit-address-form').fadeIn('fast')
+            $('#edit-address-form').append(res).fadeIn('fast');
           })
         }
       })

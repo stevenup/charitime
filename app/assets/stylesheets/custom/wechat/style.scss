@@ -1042,7 +1042,6 @@ i.arrow {
   }
 }
 
-
 #overlay {
   display: none;
   position: fixed;
@@ -1111,6 +1110,7 @@ i.arrow {
     margin: 0 0 p2e(36px);
     text-align: left;
     color: #000000;
+    @include font-dpr(14px);
 
     p {
       display: inline-block;
@@ -1150,12 +1150,13 @@ i.arrow {
 }
 
 .address-list {
-  display: block;
-  position: absolute;
+  display: none;
+  position: fixed;
   width: 100%;
   height: 100%;
-  top: 0;
-  right: p2e(-750px);
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
   z-index: 9999;
   background: #ffffff;
 }

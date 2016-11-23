@@ -129,7 +129,7 @@
       </div>
       <div class="remark">
         <p>备注：</p>
-        <%= text_field_tag :remark, '', class: 'light-border', placeholder: '可以留言哦。不超过20字。', size: '35', maxlength: '20' %>
+        <%= text_field_tag :remark, '', class: 'light-border', placeholder: '限20字，可不填。', size: '35', maxlength: '20' %>
       </div>
       <%= hidden_field_tag 'aid', @address.id %>
       <%= hidden_field_tag 'siid', @shelf_item.id %>
@@ -160,12 +160,13 @@
     });
 
     $('#delivery-addr-wrapper').on('click', function () {
+//      var address_list = $('#address-list');
       $.ajax({
         method: 'get',
         url: '/update_order_address',
         success: function () {
-          var slider_width = $('#address-list').width();
-          $('#address-list').animate({"margin-right": '+='+slider_width}, 'fast');
+//          var slider_width = $('#address-list').width();
+          $('#address-list').toggle('fast');
         }
       })
     });
@@ -181,8 +182,8 @@
       $('#delivery-addr-wrapper .tel').text(tel);
       $('#delivery-addr-wrapper .address').text(address);
 
-      var slider_width = $('#address-list').width();
-      $('#address-list').animate({"margin-right": '-='+slider_width}, 'fast');
+//      var slider_width = $('#address-list').width();
+      $('#address-list').toggle('fast');
     })
   })
 </script>
