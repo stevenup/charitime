@@ -490,6 +490,8 @@ i.arrow {
 
     .all-orders {
       padding: p2e(10px);
+      border-top: p2e(1px) solid lightgray;
+      background: #ffffff;
     }
 
     .finished-orders {
@@ -1146,6 +1148,10 @@ i.arrow {
     .more {
       flex-grow: 1;
     }
+  }
+
+  .buttons {
+    text-align: center;
   }
 }
 

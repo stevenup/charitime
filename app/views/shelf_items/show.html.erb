@@ -124,7 +124,7 @@
       <div class="item-number" data-trigger="spinner" id="spinner">
         <p>购买数量：</p>
         <a href="javascript:;" data-spin="down" class="t-minus">-</a>
-        <%= text_field_tag :count, '1', class: 'count', data: {rule: 'quantity', max: '100'} %>
+        <%= number_field_tag :count, '1', class: 'count', data: {rule: 'quantity'} %>
         <a href="javascript:;" data-spin="up" class="t-plus">+</a>
       </div>
       <div class="remark">
@@ -140,14 +140,25 @@
   </div>
 <% end %>
 
-<div id="address-list" class="address-list">
-
-</div>
+<div id="address-list" class="address-list"></div>
 
 <% content_for :title, set_title('商品详情') %>
 
 <script>
   $(document).ready(function () {
+    $('confirm-btn').on('click', function (check) {
+      var count = $('#count').val();
+      alert(count);
+      if (isNum(count)) {
+        check.preventDefault();
+        alert('数量只能为数字!');
+      }
+
+      function isNum(input) {
+        return (/^[0-9]*$ /.test(input));
+      }
+    });
+
     $('#buy-btn').on('click', function () {
       $('#overlay').fadeIn('fast', function () {
         $('#confirm-box').animate({height: 'toggle'}, 'fast')
@@ -160,12 +171,10 @@
     });
 
     $('#delivery-addr-wrapper').on('click', function () {
-//      var address_list = $('#address-list');
       $.ajax({
         method: 'get',
         url: '/update_order_address',
         success: function () {
-//          var slider_width = $('#address-list').width();
           $('#address-list').toggle('fast');
         }
       })
@@ -177,12 +186,13 @@
       var tel     = $(this).children('p.tel').html();
       var address = $(this).children('p.address').html();
 
-      $('#aid').val(id);
-      $('#delivery-addr-wrapper .name').text(name);
-      $('#delivery-addr-wrapper .tel').text(tel);
-      $('#delivery-addr-wrapper .address').text(address);
+      var delivery_address = $('#delivery-addr-wrapper');
 
-//      var slider_width = $('#address-list').width();
+      $('#aid').val(id);
+      delivery_address.find('.name').text(name);
+      delivery_address.find('.tel').text(tel);
+      delivery_address.find('.address').text(address);
+
       $('#address-list').toggle('fast');
     })
   })

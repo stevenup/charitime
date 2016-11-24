@@ -24,26 +24,26 @@ class OrdersController < BaseController
   end
 
   def show
-    order_id = params[:id]
+    order_id      = params[:id]
     @order_detail = OrderDetail.find_by_order_id order_id
   end
 
   def apply_refund
     order_id = params[:id]
-    order = Order.find_by_order_id order_id
+    order    = Order.find_by_order_id order_id
     order.update_attribute(:order_status, -4)
     redirect_to orders_path :id => order_id
   end
 
   def cancel_order
-    id = params[:id]
+    id    = params[:id]
     order = Order.find_by_order_id id
     order.update_attribute(:order_status, -2)
     redirect_to :action => 'show', :id => id
   end
 
   def confirm_complete
-    id = params[:id]
+    id    = params[:id]
     order = Order.find_by_order_id id
     order.update_attribute(:logistics_status, 4)
     redirect_to :action => 'show', :id => id
