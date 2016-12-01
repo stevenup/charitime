@@ -102,20 +102,6 @@
 
 </div>
 
-<div class="dedications tt m-t" id="dedications">
-  <%= form_tag supports_path, method: :post do %>
-    <p class="title">请输入任意大于等于1的整数</p>
-    <p class="title">您的点滴付出对我们都是洪流般的帮助</p>
-    <%= number_field_tag :money, min: '1', max: '100', id: 'money' %>
-    <span>元</span>
-    <%= hidden_field_tag 'pid', @project.id %>
-    <%= hidden_field_tag 'type', '0' %>
-    <div class="buttons m-t m-b">
-      <%= submit_tag '确定', id: 'submit', class: 'btn btn-default btn-highlight btn-middle m-l m-r p-t p-b' %>
-    </div>
-  <% end %>
-</div>
-
 <div class="purchases tt m-t" id="purchases">
   <% if @shelf_items != [] %>
     <p class="title">通过购买以下商品，您将直接支持到该项目</p>
@@ -146,6 +132,53 @@
 
 </div>
 
+<div class="dedications tt m-t p-t" id="dedications">
+  <%= form_tag supports_path, method: :post do %>
+
+    <%= label_tag 'money_option_5', class: 'option money-option' do %>
+      <%= radio_button_tag 'money_option', '5', nil %>
+      <span>5元</span>
+    <% end %>
+
+    <%= label_tag 'money_option_10', class: 'option money-option' do %>
+      <%= radio_button_tag 'money_option', '10', nil %>
+      <span>10元</span>
+    <% end %>
+
+    <%= label_tag 'money_option_30', class: 'option money-option' do %>
+      <%= radio_button_tag 'money_option', '30', nil %>
+      <span>30元</span>
+    <% end %>
+
+    <%= label_tag 'money_option_50', class: 'option money-option' do %>
+      <%= radio_button_tag 'money_option', '50', nil %>
+      <span>50元</span>
+    <% end %>
+
+    <%= label_tag 'money_option_100', class: 'option money-option' do %>
+      <%= radio_button_tag 'money_option', '100', nil %>
+      <span>100元</span>
+    <% end %>
+
+    <%= label_tag 'money_option_self_define', class: 'option', id: 'self-define-btn' do %>
+      <%= radio_button_tag 'money_option', 'self_define', nil %>
+      <span>自定义</span>
+    <% end %>
+
+    <div class="self-define-area" id="self-define-area">
+      <!--<p class="title">请输入任意大于等于1的整数</p>-->
+      <%= number_field_tag :money, min: '1', max: '1000', id: 'money' %>
+      <span>元</span>
+    </div>
+
+    <%= hidden_field_tag 'pid', @project.id %>
+    <%= hidden_field_tag 'type', '0' %>
+    <div class="buttons m-t m-b">
+      <%= submit_tag '确定', id: 'submit', class: 'btn btn-default btn-highlight btn-middle m-l m-r p-t p-b' %>
+    </div>
+  <% end %>
+</div>
+
 <% content_for :title, '项目详情' %>
 
 <script>
@@ -161,17 +194,32 @@
       })
     });
     $('#overlay').on('click', function () {
-      $('.tt').slideUp( 'fast', function () {
+      $('.tt').slideUp('fast', function () {
         $('#overlay').fadeOut('fast')
       })
     });
 
+    var options = $('.option');
+    var money_options = $('.money-option');
+    var self_define_area = $('#self-define-area');
+    money_options.on('click', function () {
+      options.removeClass('selected');
+      $(this).addClass('selected');
+      self_define_area.hide('500');
+    });
+
+    $('#self-define-btn').on('click', function () {
+      options.removeClass('selected');
+      $(this).addClass('selected');
+      self_define_area.show('500');
+    });
+
     $(":submit[id=submit]").click(function (check) {
       var money = $('#money').val();
-      if (!isPositiveInteger(money)) {
-        check.preventDefault();
-        alert('请输入大于1的整数哦~');
-      }
+//      if (!isPositiveInteger(money)) {
+//        check.preventDefault();
+//        alert('请输入大于1的整数哦~');
+//      }
 
       function isPositiveInteger(n) {
         return 0 === n % (!isNaN(parseFloat(n)) && 0 < ~~n);

@@ -11,6 +11,9 @@ class SupportsController < BaseController
 
   def create
     money              = params['money'].to_i
+    money_option       = params['money_option']
+    puts '>>>>>>>>>>'
+    puts money_option
     pid                = params['pid']
     type               = params['type'].to_i
     support            = Support.new({ money: money * 100, support_type: type })
@@ -27,6 +30,6 @@ class SupportsController < BaseController
 
   private
   def support_params
-    params.permit(:pid, :money, :type, :utf8, :authenticity_token, :commit)
+    params.permit(:pid, :money_option, :type, :utf8, :authenticity_token, :commit)
   end
 end

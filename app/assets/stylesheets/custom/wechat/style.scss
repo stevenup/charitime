@@ -1586,19 +1586,47 @@ i.arrow {
   background: white;
   text-align: center;
 
-  input[type=number] {
-    line-height: p2e(80px);
-    @include font-dpr(20px);
-    text-align: center;
-    width: p2e(150px);
-    border: 1px solid red;
+  label {
+    display: inline-block;
+    width: 15%;
+    margin: p2e(10px) p2e(10px);
+    padding: p2e(10px) p2e(40px);
+    cursor: pointer;
+    border: p2e(2px) solid gray;
+    border-radius: p2e(7px);
+
+    span {
+      @include font-dpr(14px);
+    }
   }
 
-  .title {
-    @include font-dpr(16px);
-    text-align: center;
-    margin: p2e(36px) auto;
-    color: grey;
+  input[type="radio"] {
+    display: none;
+  }
+
+  .selected {
+    background: #32CD32;
+    border: p2e(2px) solid #32CD32;
+    color: white;
+  }
+
+  .self-define-area {
+    display: none;
+
+    input[type=number] {
+      line-height: p2e(80px);
+      @include font-dpr(20px);
+      text-align: center;
+      width: p2e(150px);
+      border: 1px solid red;
+    }
+
+    .title {
+      @include font-dpr(16px);
+      text-align: center;
+      margin: p2e(36px) auto;
+      color: grey;
+    }
   }
 
   .buttons {
