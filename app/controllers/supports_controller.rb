@@ -10,13 +10,12 @@ class SupportsController < BaseController
   end
 
   def create
-    money              = params['money'].to_i
-    money_option       = params['money_option']
+    money_option       = params['money_option'].to_i
     puts '>>>>>>>>>>'
     puts money_option
     pid                = params['pid']
     type               = params['type'].to_i
-    support            = Support.new({ money: money * 100, support_type: type })
+    support            = Support.new({ money: money_option * 100, support_type: type })
     support.user_id    = current_user.id
     support.project_id = pid
     support.save if support
