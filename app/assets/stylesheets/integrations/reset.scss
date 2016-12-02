@@ -1,5 +1,10 @@
 @import "adjust_config";
 // css3 for resetting form default style
+input[type=checkbox] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 input[type="submit"],
 input[type="reset"],
 input[type="button"],

@@ -219,7 +219,7 @@
       var self_define_checked = money_option_self_define.prop("checked");
       if(self_define_checked) {
         var money = $('#money').val();
-        if(money != '' && isPositiveInteger(money)) {
+        if (money != '' && isPositiveInteger(money)) {
           money_option_self_define.val(money);
         }
         else {
@@ -228,13 +228,7 @@
         }
       }
       else {
-          for(var i=0;i<money_options.length;i++)
-          {
-              if(money_options.checked)
-              {
-                  alert(parseInt(i+1));
-              }
-          }
+        $('#money').val('');
       }
 
       function isPositiveInteger(n) {
