@@ -12,10 +12,11 @@ class AddressesController < BaseController
 
   def new
     @address = Address.new
+    render partial: 'form'
   end
 
   def edit
-    @address = Address.find params[:id]
+    @address = Address.find_by_id params[:id]
   end
 
   def create
@@ -47,21 +48,27 @@ class AddressesController < BaseController
   private
   def create_or_update(id = 0, data)
     if id == 0
-      address         = Address.new data
+      address_data    = wrap_address(data)
+      address         = Address.new address_data
       address.user_id = current_user.id
       address.default = '1' if Address.where(user_id: current_user.id).count == 0
       redirect_to :back if address.save
     else
-      address                       = Address.find(id)
-      address_data                  = Hash.new
-      address_data[:province]       = data[:province]
-      address_data[:city]           = data[:city]
-      address_data[:district]       = data[:district]
-      address_data[:receiver_name]  = data[:address][:receiver_name]
-      address_data[:mobile]         = data[:address][:mobile]
-      address_data[:detail_address] = data[:address][:detail_address]
+      address         = Address.find_by_id(id)
+      address_data    = wrap_address(data)
       redirect_to :back if address.update_attributes address_data
     end
+  end
+
+  def wrap_address(data)
+    address_data                  = Hash.new
+    address_data[:province]       = data[:province]
+    address_data[:city]           = data[:city]
+    address_data[:district]       = data[:district]
+    address_data[:receiver_name]  = data[:address][:receiver_name]
+    address_data[:mobile]         = data[:address][:mobile]
+    address_data[:detail_address] = data[:address][:detail_address]
+    address_data
   end
 
   def address_params

@@ -1,4 +1,5 @@
-<%= form_for @address == nil ? '' : @address do |f| %>
+<%= form_for @address == nil ? '/addresses' : @address do |f| %>
+  <%#= binding.pry %>
   <div class="form-item">
     <%= f.label :姓名, class: 'label-text' %>
     <div class="field-column"><%= f.text_field :receiver_name, id: 'receiver_name', class: 'field-control', required: true %></div>
@@ -17,27 +18,15 @@
     <div class="city-group">
       <select name="province" id="province" class="city-select">
         <option>--省份--</option>
-        <% if @address %>
-          <%= options_for_select(ChinaCity.list, "#{@address.province}") %>
-        <% else %>
           <%= options_for_select(ChinaCity.list) %>
-        <% end %>
       </select>
 
       <select name="city" id="city" class="city-select">
-        <% if @address %>
-          <%= options_for_select(ChinaCity.list(@address.province), "#{@address.city}") %>
-        <% else %>
           <option>--城市--</option>
-        <% end %>
       </select>
 
       <select name="district" id="district" class="city-select">
-        <% if @address %>
-          <%= options_for_select(ChinaCity.list(@address.city), "#{@address.district}") %>
-        <% else %>
           <option>--区域--</option>
-        <% end %>
       </select>
 
     </div>

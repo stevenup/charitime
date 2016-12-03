@@ -36,12 +36,6 @@
   <% end %><!-- if end -->
 </div>
 
-<div id="add-address-form" class="address-form">
-  <%= render partial: 'form', locals: { url: addresses_path } %>
-</div>
-
-<div id="edit-address-form" class="address-form" style="display: none"></div>
-
 <script>
   $(document).ready(function () {
     $('.edit-btn').on('click', function () {
@@ -54,22 +48,35 @@
           $('#overlay').fadeIn('fast', function () {
             $('body').append('<div id="edit-address-form" class="address-form"></div>');
             $('#edit-address-form').append(res).fadeIn('fast');
+            $('.city-group').china_city();
           })
         }
       })
     });
 
     $('#add-address-btn').on('click', function () {
-      $('#overlay').fadeIn('fast', function () {
-        $('#add-address-form').animate({height: 'toggle'}, 'fast')
+      $.ajax({
+        method: 'get',
+        url: '/addresses/new',
+        remote: 'true',
+        success: function (res) {
+          $('#overlay').fadeIn('fast', function () {
+            $('#overlay').fadeIn('fast', function () {
+              $('body').append('<div id="add-address-form" class="address-form"></div>');
+              $('#add-address-form').append(res).fadeIn('fast');
+              $('.city-group').china_city();
+            })
+          })
+        }
       })
+
     });
 
     $('#overlay').on('click', function () {
       $('.address-form').fadeOut('fast', function () {
         $('#overlay').fadeOut('fast');
         $('#edit-address-form').remove();
-
+        $('#add-address-form').remove();
       });
     });
 
@@ -80,7 +87,7 @@
       });
     });
 
-    $('#save-address').on('click', function (check) {
+    $('body').on('click', '#save-address', function (check) {
       var receiver_name  = document.getElementById('receiver_name').value;
       var mobile         = document.getElementById('mobile').value;
       var province       = document.getElementById('province').value;

@@ -1586,6 +1586,13 @@ i.arrow {
   background: white;
   text-align: center;
 
+  .title {
+    @include font-dpr(16px);
+    text-align: center;
+    margin: p2e(36px) auto;
+    color: grey;
+  }
+
   label {
     display: inline-block;
     width: 15%;
