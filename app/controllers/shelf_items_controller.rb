@@ -5,7 +5,7 @@ class ShelfItemsController < BaseController
 
   def show
     @shelf_item = ShelfItem.find_by(:id => params[:id])
-    pid = params[:pid]
+    pid         = params[:pid]
 
     if pid.nil?
       @project = Project.find_by_project_id(@shelf_item.project_id)
@@ -13,7 +13,17 @@ class ShelfItemsController < BaseController
       @project = Project.find_by_project_id(pid)
     end
 
-    @address = Address.find_by({user_id: current_user.id, default: '1'})
+    addresses = Address.where(user_id: current_user.id)
+    if addresses != []
+      addresses.each do |ele|
+        if ele.default == '1'
+          @address = ele
+          break
+        else
+          @address = addresses.last
+        end
+      end
+    end
 
     if @address
       @address.province = ChinaCity.get @address.province
@@ -33,7 +43,7 @@ class ShelfItemsController < BaseController
     end
 
     respond_to do |format|
-      format.js { render :update_order_address, locals: {addresses: _addresses} }
+      format.js { render :update_order_address, locals: { addresses: _addresses } }
     end
   end
 end

@@ -95,14 +95,21 @@
 
 <% if @address.nil? %>
   <div class="confirm-box" id="confirm-box">
-    <%= link_to addresses_path do %>
-      <button id="address-btn" class="btn btn-default btn-highlight m-l m-r p-t p-b">添加地址</button>
+    <%= link_to 'javascript:;' do %>
+      <button id="add-address-btn" class="btn btn-default btn-highlight m-l m-r m-t p-t p-b">添加地址</button>
     <% end %>
     <div class="item-number" data-trigger="spinner" id="spinner">
       <p>购买数量：</p>
       <a href="javascript:;" data-spin="down" class="t-minus">-</a>
       <%= text_field_tag :count, '1', class: 'count', data: {rule: 'quantity', max: '10'} %>
       <a href="javascript:;" data-spin="up" class="t-plus">+</a>
+    </div>
+    <div class="remark">
+      <p>备注：</p>
+      <%= text_field_tag :remark, '', class: 'light-border', placeholder: '限20字，可不填。', size: '35', maxlength: '20' %>
+    </div>
+    <div class="buttons">
+      <%= submit_tag '确定提交', id: 'confirm-btn', disabled: true, class: 'btn btn-default btn-highlight btn-middle btn-disabled m-l m-r p-t p-b' %>
     </div>
   </div>
 <% else %>
@@ -146,6 +153,68 @@
 
 <script>
   $(document).ready(function () {
+    $('#add-address-btn').on('click', function () {
+      $.ajax({
+        method: 'get',
+        url: '/addresses/new',
+        remote: 'true',
+        success: function (res) {
+          $('#overlay').fadeIn('fast', function () {
+            $('#overlay').fadeIn('fast', function () {
+              $('body').append('<div id="add-address-form" class="address-form"></div>');
+              $('#add-address-form').append(res).fadeIn('fast');
+              $('.city-group').china_city();
+            })
+          })
+        }
+      })
+    });
+
+    $('body').on('click', '#cancel-btn', function () {
+      $('.address-form').fadeOut('fast', function () {
+        $('#add-address-form').fadeOut().remove();
+      });
+    });
+
+    $('body').on('click', '#save-address', function (check) {
+      var receiver_name  = document.getElementById('receiver_name').value;
+      var mobile         = document.getElementById('mobile').value;
+      var province       = document.getElementById('province').value;
+      var city           = document.getElementById('city').value;
+      var district       = document.getElementById('district').value;
+      var detail_address = document.getElementById('detail_address').value;
+
+      isFilledProperly = true;
+
+      if (receiver_name == '') {
+        alert('请填写收货人姓名！');
+        isFilledProperly = false;
+      }
+
+      if (!checkPhone(mobile)) {
+        alert('手机号码有误，请检查！');
+        isFilledProperly = false;
+      }
+
+      if (province == "--省份--" || city == "--城市--" || district == "--区域--") {
+        alert('请检查省市区是否已选择！');
+        isFilledProperly = false;
+      }
+
+      if (detail_address == '') {
+        alert('请填写详细地址！');
+        isFilledProperly = false;
+      }
+
+      if (!isFilledProperly) {
+        check.preventDefault();
+      }
+    });
+
+    function checkPhone(mobile){
+      return (/^1[34578]\d{9}$/.test(mobile));
+    }
+
     $('confirm-btn').on('click', function (check) {
       var count = $('#count').val();
       alert(count);
@@ -166,6 +235,7 @@
     });
     $('#overlay').on('click', function () {
       $('#confirm-box').animate({height: 'toggle'}, 'fast', function () {
+        $('#add-address-form').fadeOut().remove();
         $('#overlay').fadeOut('fast')
       })
     });

@@ -39,7 +39,7 @@ class AddressesController < BaseController
 
   def set_default
     _address = Address.find_by(:default => 1)
-    _address.update_attribute(:default, 0)
+    _address.update_attribute(:default, 0) if _address
     address = Address.find_by_id(params[:id])
     address.update_attribute(:default, 1)
     redirect_to addresses_path
@@ -51,7 +51,6 @@ class AddressesController < BaseController
       address_data    = wrap_address(data)
       address         = Address.new address_data
       address.user_id = current_user.id
-      address.default = '1' if Address.where(user_id: current_user.id).count == 0
       redirect_to :back if address.save
     else
       address         = Address.find_by_id(id)
