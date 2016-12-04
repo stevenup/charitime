@@ -1,6 +1,4 @@
 class HomeController < BaseController
-  before_action :auth_user, only: [:index]
-
   def index
     @recommended_items = ShelfItem.where("recommended = '1'").order("updated_at DESC")
     @projects          = Project.where("is_published = ?", '1').order("updated_at DESC")
