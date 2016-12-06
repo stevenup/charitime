@@ -13,66 +13,69 @@
 
 ActiveRecord::Schema.define(version: 20161106104534) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "addresses", force: :cascade do |t|
-    t.string   "user_id",        limit: 255
-    t.string   "receiver_name",  limit: 255
-    t.string   "province",       limit: 255
-    t.string   "city",           limit: 255
-    t.string   "district",       limit: 255
-    t.string   "detail_address", limit: 255
-    t.string   "mobile",         limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "user_id"
+    t.string   "receiver_name"
+    t.string   "province"
+    t.string   "city"
+    t.string   "district"
+    t.string   "detail_address"
+    t.string   "mobile"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "default",        limit: 1
   end
 
   create_table "admins", force: :cascade do |t|
-    t.string   "name",                   limit: 255
-    t.string   "password",               limit: 255
-    t.string   "auth",                   limit: 255
-    t.string   "remarks",                limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "name"
+    t.string   "password"
+    t.string   "auth"
+    t.string   "remarks"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "banners", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.string   "image",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "title"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "carts", force: :cascade do |t|
-    t.string   "openid",        limit: 255
-    t.string   "product_id",    limit: 255
-    t.integer  "product_price", limit: 4
-    t.string   "count",         limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "openid"
+    t.string   "product_id"
+    t.integer  "product_price"
+    t.string   "count"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
-    t.string   "data_file_name",    limit: 255, null: false
-    t.string   "data_content_type", limit: 255
-    t.integer  "data_file_size",    limit: 4
-    t.integer  "assetable_id",      limit: 4
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
     t.string   "assetable_type",    limit: 30
     t.string   "type",              limit: 30
-    t.integer  "width",             limit: 4
-    t.integer  "height",            limit: 4
+    t.integer  "width"
+    t.integer  "height"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -81,221 +84,209 @@ ActiveRecord::Schema.define(version: 20161106104534) do
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "donation_categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "donation_records", force: :cascade do |t|
-    t.string   "donation_record_id", limit: 255
-    t.string   "openid",             limit: 255
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "donation_record_id"
+    t.string   "openid"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "donation_reviews", force: :cascade do |t|
-    t.string   "admin_id",   limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "donation_states", force: :cascade do |t|
-    t.string   "name",       limit: 255, default: "正在处理中"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.string   "name",       default: "正在处理中"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "donations", force: :cascade do |t|
-    t.string   "donation_record_id",   limit: 255
-    t.string   "donation_id",          limit: 255
-    t.string   "donation_name",        limit: 255
-    t.string   "donation_category_id", limit: 255
-    t.string   "donation_description", limit: 255
-    t.integer  "gyb",                  limit: 4
-    t.string   "estimated_value",      limit: 255
-    t.string   "donation_state_id",    limit: 255
-    t.string   "donation_review_id",   limit: 255
-    t.string   "logistics_company",    limit: 255
-    t.string   "delivery_num",         limit: 255
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.string   "donation_record_id"
+    t.string   "donation_id"
+    t.string   "donation_name"
+    t.string   "donation_category_id"
+    t.string   "donation_description"
+    t.integer  "gyb"
+    t.string   "estimated_value"
+    t.string   "donation_state_id"
+    t.string   "donation_review_id"
+    t.string   "logistics_company"
+    t.string   "delivery_num"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "gyb_incomes", force: :cascade do |t|
-    t.string   "user_id",    limit: 255
-    t.string   "gyb_id",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "user_id"
+    t.string   "gyb_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "gyb_payments", force: :cascade do |t|
-    t.string   "user_id",    limit: 255
-    t.string   "order_id",   limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "user_id"
+    t.string   "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "gybs", force: :cascade do |t|
-    t.string   "title",           limit: 255
-    t.integer  "gyb_type",        limit: 4
-    t.string   "exchange_code",   limit: 255
-    t.integer  "price",           limit: 4
-    t.integer  "stock",           limit: 4
+    t.string   "title"
+    t.integer  "gyb_type"
+    t.string   "exchange_code"
+    t.integer  "price"
+    t.integer  "stock"
     t.datetime "expiration_time"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "logistics_companies", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "order_details", force: :cascade do |t|
-    t.string   "order_detail_id",  limit: 255
-    t.string   "order_id",         limit: 255
-    t.string   "shelf_item_id",    limit: 255
-    t.float    "price",            limit: 24
-    t.integer  "count",            limit: 4
-    t.string   "remark",           limit: 255
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "receiver_name",    limit: 255
-    t.string   "province",         limit: 255
-    t.string   "city",             limit: 255
-    t.string   "district",         limit: 255
-    t.string   "detail_address",   limit: 255
-    t.string   "mobile",           limit: 255
-    t.integer  "express_price",    limit: 4
-    t.string   "product_name",     limit: 255
-    t.string   "delivery_id",      limit: 255
-    t.string   "delivery_company", limit: 255
-    t.float    "gyb_discount",     limit: 24
-    t.string   "out_refund_no",    limit: 255
-    t.string   "thumb",            limit: 255
+    t.string   "order_detail_id"
+    t.string   "order_id"
+    t.string   "shelf_item_id"
+    t.float    "price"
+    t.integer  "count"
+    t.string   "remark"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "receiver_name"
+    t.string   "province"
+    t.string   "city"
+    t.string   "district"
+    t.string   "detail_address"
+    t.string   "mobile"
+    t.integer  "express_price"
+    t.string   "product_name"
+    t.string   "delivery_id"
+    t.string   "delivery_company"
+    t.float    "gyb_discount"
+    t.string   "out_refund_no"
+    t.string   "thumb"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string   "user_id",          limit: 255
-    t.string   "order_id",         limit: 255
-    t.integer  "order_status",     limit: 4,               null: false
-    t.float    "total_price",      limit: 24
-    t.string   "transaction_id",   limit: 255
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.integer  "logistics_status", limit: 4,   default: 0, null: false
-    t.string   "out_trade_no",     limit: 255
-  end
-
-  create_table "product_categories", force: :cascade do |t|
-    t.string   "product_category_name", limit: 255
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-  end
-
-  create_table "product_labels", force: :cascade do |t|
-    t.string   "product_label_name", limit: 255
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "user_id"
+    t.string   "order_id"
+    t.integer  "order_status",                 null: false
+    t.float    "total_price"
+    t.string   "transaction_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "logistics_status", default: 0, null: false
+    t.string   "out_trade_no"
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "product_id",     limit: 255
-    t.string   "project_id",     limit: 255
-    t.string   "product_name",   limit: 255
-    t.string   "category",       limit: 255
-    t.string   "label",          limit: 255
-    t.text     "product_detail", limit: 65535
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.string   "product_id"
+    t.string   "project_id"
+    t.string   "product_name"
+    t.string   "category"
+    t.string   "label"
+    t.text     "product_detail"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "recommended",    limit: 1
-    t.string   "thumb",          limit: 255
-    t.string   "is_on_shelf",    limit: 255,   default: "0"
+    t.string   "thumb"
+    t.string   "is_on_shelf",              default: "0"
   end
 
   create_table "products_projects", id: false, force: :cascade do |t|
-    t.integer "product_id", limit: 4
-    t.integer "project_id", limit: 4
+    t.integer "product_id"
+    t.integer "project_id"
   end
 
   create_table "project_types", force: :cascade do |t|
-    t.string   "project_type_name", limit: 255
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "project_type_name"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string   "project_id",     limit: 255
-    t.string   "project_name",   limit: 255
-    t.string   "category",       limit: 255
-    t.string   "project_detail", limit: 255
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.string   "project_id"
+    t.string   "project_name"
+    t.string   "category"
+    t.string   "project_detail"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "recommended",    limit: 1
-    t.string   "shelf_item_id",  limit: 255
-    t.string   "banner",         limit: 255
-    t.string   "main_pic",       limit: 255
-    t.string   "thumb",          limit: 255
-    t.string   "is_published",   limit: 255, default: "0"
-    t.integer  "goal",           limit: 4
+    t.string   "shelf_item_id"
+    t.string   "banner"
+    t.string   "main_pic"
+    t.string   "thumb"
+    t.string   "is_published",             default: "0"
+    t.integer  "goal"
   end
 
   create_table "projects_shelf_items", id: false, force: :cascade do |t|
-    t.integer "project_id",    limit: 4
-    t.integer "shelf_item_id", limit: 4
+    t.integer "project_id"
+    t.integer "shelf_item_id"
   end
 
   create_table "shelf_items", force: :cascade do |t|
-    t.string   "product_id",     limit: 255
-    t.string   "project_id",     limit: 255
-    t.string   "product_name",   limit: 255
-    t.string   "category",       limit: 255
-    t.string   "label",          limit: 255
-    t.text     "product_detail", limit: 65535
-    t.float    "price",          limit: 24
-    t.float    "gyb_discount",   limit: 24
-    t.integer  "stock",          limit: 4
-    t.integer  "sales",          limit: 4
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.string   "product_id"
+    t.string   "project_id"
+    t.string   "product_name"
+    t.string   "category"
+    t.string   "label"
+    t.text     "product_detail"
+    t.float    "price"
+    t.float    "gyb_discount"
+    t.integer  "stock"
+    t.integer  "sales"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "is_on_shelf",    limit: 1
     t.string   "recommended",    limit: 1
-    t.string   "thumb",          limit: 255
+    t.string   "thumb"
   end
 
   create_table "supports", force: :cascade do |t|
-    t.string   "user_id",         limit: 255
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.string   "project_id",      limit: 255
-    t.string   "support_type",    limit: 255
-    t.float    "money",           limit: 24
-    t.string   "status",          limit: 255, default: "0"
-    t.string   "order_detail_id", limit: 255
+    t.string   "user_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "project_id"
+    t.string   "support_type"
+    t.float    "money"
+    t.string   "status",          default: "0"
+    t.string   "order_detail_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "openid",         limit: 255
-    t.string   "nickname",       limit: 255
-    t.string   "mobile",         limit: 255
-    t.integer  "sex",            limit: 1
-    t.string   "city",           limit: 255
-    t.string   "province",       limit: 255
-    t.string   "country",        limit: 255
-    t.string   "headimgurl",     limit: 255
-    t.string   "unionid",        limit: 255
-    t.string   "groupid",        limit: 255
-    t.string   "remark",         limit: 255
-    t.string   "language",       limit: 255
-    t.integer  "subscribe",      limit: 1
-    t.string   "subscribe_time", limit: 255
-    t.string   "address",        limit: 255
-    t.integer  "gyb",            limit: 4,   default: 0
-    t.string   "other",          limit: 255
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "tagid_list",     limit: 255
+    t.string   "openid"
+    t.string   "nickname"
+    t.string   "mobile"
+    t.integer  "sex",            limit: 2
+    t.string   "city"
+    t.string   "province"
+    t.string   "country"
+    t.string   "headimgurl"
+    t.string   "unionid"
+    t.string   "groupid"
+    t.string   "remark"
+    t.string   "language"
+    t.integer  "subscribe",      limit: 2
+    t.string   "subscribe_time"
+    t.string   "address"
+    t.integer  "gyb",                      default: 0
+    t.string   "other"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "tagid_list"
   end
 
 end

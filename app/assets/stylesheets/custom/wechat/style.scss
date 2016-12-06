@@ -1549,6 +1549,7 @@ i.arrow {
   padding-bottom: p2e(14px);
   background: #ffffff;
   @include font-dpr(16px);
+  line-height: p2e(64px);
 
   .form-item {
     display: table;
@@ -1563,21 +1564,32 @@ i.arrow {
 
     .field-column {
       display: table-cell;
-      line-height: p2e(56px);
+
+      input[type=text] {
+        line-height: p2e(64px);
+      }
+
+      input[type=number] {
+        line-height: p2e(64px);
+      }
     }
 
     .city-group {
       display: block;
+
+      select {
+        width: 30%;
+      }
     }
   }
 
   .buttons {
     text-align: center;
-    @include font-dpr(14px);
+    @include font-dpr(16px);
     margin: p2e(28px);
 
     .btn-default {
-      line-height: p2e(56px);
+      line-height: p2e(72px);
     }
   }
 }

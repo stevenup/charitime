@@ -13,7 +13,7 @@ class ShelfItemsController < BaseController
       @project = Project.find_by_project_id(pid)
     end
 
-    addresses = Address.where(user_id: current_user.id)
+    addresses = Address.where(user_id: current_user.id.to_s)
     if addresses != []
       addresses.each do |ele|
         if ele.default == '1'
@@ -33,7 +33,7 @@ class ShelfItemsController < BaseController
   end
 
   def update_order_address
-    _addresses = Address.where("user_id = ?", current_user.id)
+    _addresses = Address.where("user_id = ?", current_user.id.to_s)
     if _addresses != []
       _addresses.each do |_addr|
         _addr.province = ChinaCity.get _addr.province

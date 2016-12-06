@@ -41,7 +41,7 @@ class WepayController < ApplicationController
     id           = params[:id]
     order_detail = OrderDetail.find_by(:order_id => id)
     project      = Project.find_by(:project_id => id)
-    support      = Support.where("user_id = ? and project_id = ?", current_user.id, id).last
+    support      = Support.where("user_id = ? and project_id = ?", current_user.id.to_s, id).last
 
     # if - else 判断是支付订单还是使用微信支付为项目无偿捐赠
     if order_detail

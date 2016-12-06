@@ -1,7 +1,7 @@
 class CreateOrderDetails < ActiveRecord::Migration
   def change
     create_table :order_details do |t|
-      t.string :order_detail_id, primary_key: true
+      t.string :order_detail_id
       t.string :order_id
       t.string :product_id
       t.string :product_price

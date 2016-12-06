@@ -1,6 +1,6 @@
 class AddressesController < BaseController
   def index
-    @addresses = Address.where :user_id => current_user.id
+    @addresses = Address.where :user_id => current_user.id.to_s
     if @addresses != []
       @addresses.each do |ele|
         ele.province = ChinaCity.get ele.province
@@ -41,7 +41,7 @@ class AddressesController < BaseController
     _address = Address.find_by(:default => 1)
     _address.update_attribute(:default, 0) if _address
     address = Address.find_by_id(params[:id])
-    address.update_attribute(:default, 1)
+    address.update_attribute(:default, 1) if address
     redirect_to addresses_path
   end
 
@@ -50,7 +50,7 @@ class AddressesController < BaseController
     if id == 0
       address_data    = wrap_address(data)
       address         = Address.new address_data
-      address.user_id = current_user.id
+      address.user_id = current_user.id.to_s
       redirect_to :back if address.save
     else
       address         = Address.find_by_id(id)
@@ -71,6 +71,6 @@ class AddressesController < BaseController
   end
 
   def address_params
-    params.permit(:id, :receiver_name, :province, :city, :district, :detail_address, :mobile, address: [:receiver_name, :mobile, :detail_address])
+    params.permit(:id, :province, :city, :district, address: [:receiver_name, :mobile, :detail_address])
   end
 end

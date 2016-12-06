@@ -5,13 +5,13 @@ class OrdersController < BaseController
   def index
     status = params[:status]
     if status == '0'
-      @orders = Order.where("user_id = ? and order_status = ? and logistics_status != ?", current_user.id, 1, 4).order("created_at DESC")
+      @orders = Order.where("user_id = ? and order_status = ? and logistics_status != ?", current_user.id.to_s, 1, 4).order("created_at DESC")
     elsif status == '1'
-      @orders = Order.where("user_id = ? and logistics_status = ?", current_user.id, 4).order("created_at DESC")
+      @orders = Order.where("user_id = ? and logistics_status = ?", current_user.id.to_s, 4).order("created_at DESC")
     elsif status == '2'
-      @orders = Order.where("user_id = ? and (order_status = ? or order_status = ? or order_status = ?)", current_user.id, -3, -4, -5).order("created_at DESC")
+      @orders = Order.where("user_id = ? and (order_status = ? or order_status = ? or order_status = ?)", current_user.id.to_s, -3, -4, -5).order("created_at DESC")
     else
-      @orders = Order.where("user_id = ?", current_user.id).order("created_at DESC")
+      @orders = Order.where("user_id = ?", current_user.id.to_s).order("created_at DESC")
     end
   end
 
@@ -84,7 +84,7 @@ class OrdersController < BaseController
 
     order = Order.new
     order[:order_id]       = order_id
-    order[:user_id]        = current_user.id
+    order[:user_id]        = current_user.id.to_s
     order[:total_price]    = total_price
     order[:order_status]   = '0'
     order.save
@@ -97,7 +97,7 @@ class OrdersController < BaseController
 
     if order_detail.gyb_discount > 0
       gyb_payment          = GybPayment.new
-      gyb_payment.user_id  = current_user.id
+      gyb_payment.user_id  = current_user.id.to_s
       gyb_payment.order_id = order_detail.order_id
       gyb_payment.save
 
