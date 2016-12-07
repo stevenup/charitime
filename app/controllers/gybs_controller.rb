@@ -1,6 +1,6 @@
 class GybsController < BaseController
   def index
-    @gyb_incomes = GybIncome.where("user_id = ?", current_user.id).order(created_at: :desc)
+    @gyb_incomes = GybIncome.where("user_id = ?", current_user.id.to_s).order(created_at: :desc)
   end
 
   def append
@@ -17,10 +17,10 @@ class GybsController < BaseController
       render json: { status: 'exchange code not existed.' }
     else
       # determine whether the current user has exchanged the code.
-      if GybIncome.where("user_id = ? and gyb_id = ?", current_user.id, gyb.id) == []
+      if GybIncome.where("user_id = ? and gyb_id = ?", current_user.id.to_s, gyb.id) == []
         # save the income gybs to the gyb_income table.
         gyb_income         = GybIncome.new
-        gyb_income.user_id = current_user.id
+        gyb_income.user_id = current_user.id.to_s
         gyb_income.gyb_id  = gyb.id
         gyb_income.save
         gyb.stock -= 1
@@ -38,7 +38,7 @@ class GybsController < BaseController
 
   private
   def fetch(type)
-    @gyb_incomes  = GybIncome.where("user_id = ?", current_user.id).order(created_at: :desc) if type == '0'
-    @gyb_payments = GybPayment.where("user_id = ?", current_user.id).order(created_at: :desc) if type == '1'
+    @gyb_incomes  = GybIncome.where("user_id = ?", current_user.id.to_s).order(created_at: :desc) if type == '0'
+    @gyb_payments = GybPayment.where("user_id = ?", current_user.id.to_s).order(created_at: :desc) if type == '1'
   end
 end

@@ -6,11 +6,11 @@ class ProjectsController < BaseController
   def detail
     id = params[:id]
     @project = Project.find_by_project_id(id)
-    @shelf_items = ShelfItem.where("project_id = ? and is_on_shelf = ?", id, 1)
+    @shelf_items = ShelfItem.where("project_id = ? and is_on_shelf = ?", id, '1')
 
     @total, @num_dedication_support, @num_purchase_support, @percent = 0, 0, 0, 0
 
-    @supports = Support.where("project_id = ? and status = ?", id, 1)
+    @supports = Support.where("project_id = ? and status = ?", id, '1')
 
     if @supports != []
       @supports.each do |ele|

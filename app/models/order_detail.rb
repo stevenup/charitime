@@ -1,4 +1,6 @@
 class OrderDetail < ActiveRecord::Base
+  self.primary_key= 'order_detail_id'
+
   belongs_to :order
   belongs_to :user
 
