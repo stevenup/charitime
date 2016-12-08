@@ -128,17 +128,28 @@ module DatatablesHelper
 
   alias :edit_and_del :render_edit_and_del_actions
 
-  # Method used to wrap the recommend button for table rows, which is meant to add the target product to recommendations.
-  # == Parameters:
-  # target::
-  #    link target for recommend action
-  # opts::
-  #    options to be passed to the buttons.
-  # == Usage:
-  #    recommend admin_product_path(row), {id: row.id, class: 'btn btn-sm btn-info recommend-btn'}
-  #
+  def render_more_actions(action_names, targets, opts)
+    count   = action_names.count
+    button  = {}
+    buttons = []
 
-  def render_row_action( action_name, target, opts = {} )
+    (0..(count-1)).each do |ele|
+      button = button.merge(
+        {
+          target: targets[ele],
+          link_text: action_names[ele],
+          options: opts[ele]
+        }
+      )
+      buttons[ele.to_i] = button
+    end
+
+    render_row buttons
+
+  end
+  alias :more_actions :render_more_actions
+
+  def render_row_action(action_name, target, opts = {})
     render_row [
                    {
                        target: target,
@@ -157,7 +168,6 @@ module DatatablesHelper
     end
     actions << '</li></ul></div>'
   end
-
 
   # Generate Img codes in jbuidler
   def render_img(url, options ={})
