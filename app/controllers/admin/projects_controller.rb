@@ -7,12 +7,18 @@ class Admin::ProjectsController < Admin::AuthenticatedController
   end
 
   def new
-    @project = Project.new
+    @not_linked_items = ShelfItem.where(project_id: nil)
+    if @not_linked_items != []
+      @project          = Project.new
+    else
+      render text: '啊哦～～不存在多余的可关联的商品。请先添加商品。'
+    end
+
   end
 
   def edit
     @project               = Project.find params[:id]
-    @not_linked_items      = ShelfItem.where(project_id: '')
+    @not_linked_items      = ShelfItem.where(project_id: nil)
     @items_of_this_project = ShelfItem.where("project_id = ?", params[:id])
   end
 

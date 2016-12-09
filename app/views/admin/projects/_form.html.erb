@@ -51,20 +51,21 @@
           <div style="margin-bottom: 14px; display: inline-block"><%= render_img item.thumb, :width => '80px', :height => '80px' %></div>
         <% end %>
       </div>
-      <div class="col-lg-9 col-lg-offset-1">
-        <%= f.fields_for :shelf_item_ids do |item| %>
-          <div class="col-lg-3"><%= item.collection_select :shelf_item_id_1, @not_linked_items, :id, :product_name, {prompt: '-- select one --'}, {id: 'item1'} %></div>
-          <div class="col-lg-3"><%= item.collection_select :shelf_item_id_2, @not_linked_items, :id, :product_name, {prompt: '-- select one --'}, {id: 'item2'} %></div>
-          <div class="col-lg-3"><%= item.collection_select :shelf_item_id_3, @not_linked_items, :id, :product_name, {prompt: '-- select one --'}, {id: 'item3'} %></div>
-        <% end %>
-      </div>
 
-    <% else %>
-      <%= f.fields_for :shelf_item_ids do |item| %>
-        <div class="col-lg-3"><%= item.collection_select :shelf_item_id_1, @not_linked_items, :id, :product_name, {prompt: '-- select one --'}, {id: 'item1'} %></div>
-        <div class="col-lg-3"><%= item.collection_select :shelf_item_id_2, @not_linked_items, :id, :product_name, {prompt: '-- select one --'}, {id: 'item2'} %></div>
-        <div class="col-lg-3"><%= item.collection_select :shelf_item_id_3, @not_linked_items, :id, :product_name, {prompt: '-- select one --'}, {id: 'item3'} %></div>
+      <% if @not_linked_items != [] %>
+        <div class="col-lg-9 col-lg-offset-1">
+          <%= f.fields_for :shelf_item_ids do |item| %>
+            <div class="col-lg-3"><%= item.collection_select :shelf_item_id_1, @not_linked_items, :id, :product_name, {prompt: '-- select one --'}, {id: 'item1'} %></div>
+            <div class="col-lg-3"><%= item.collection_select :shelf_item_id_2, @not_linked_items, :id, :product_name, {prompt: '-- select one --'}, {id: 'item2'} %></div>
+            <div class="col-lg-3"><%= item.collection_select :shelf_item_id_3, @not_linked_items, :id, :product_name, {prompt: '-- select one --'}, {id: 'item3'} %></div>
+          <% end %>
+        </div>
+
+      <% else %>
+        <%# binding.pry %>
+        <div class="col-lg-10 col-lg-offset-1">不存在多余的可关联的商品。</div>
       <% end %>
+
     <% end %>
 
     <!--<div id="add-shelf-item-btn" class="col-lg-1">-->
