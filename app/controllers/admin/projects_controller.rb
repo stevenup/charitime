@@ -11,7 +11,9 @@ class Admin::ProjectsController < Admin::AuthenticatedController
   end
 
   def edit
-    @project = Project.find params[:id]
+    @project               = Project.find params[:id]
+    @not_linked_items      = ShelfItem.where(project_id: '')
+    @items_of_this_project = ShelfItem.where("project_id = ?", params[:id])
   end
 
   def create
@@ -64,26 +66,30 @@ class Admin::ProjectsController < Admin::AuthenticatedController
   end
 
   def create_or_update(id = 0, data)
+    ##################################################
+    # Still remains lots of problems in this action. #
+    ##################################################
+
     shelf_item_ids = params[:project][:shelf_item_ids]
-    id1 = shelf_item_ids[:shelf_item_id_1]
-    id2 = shelf_item_ids[:shelf_item_id_2]
-    puts '>>>>>>'
-    puts id1
-    puts id2
     if id == 0
       project = Project.new data.except(:shelf_item_ids)
       project.project_id = generate_unique_id
       shelf_item_ids.each do |_id|
-        shelf_item = ShelfItem.find_by(:id => _id)
-        shelf_item.project_id = data[:project_id] if shelf_item
-        shelf_item.save
+        if _id[1] != ''
+          shelf_item = ShelfItem.find_by(:id => _id[1])
+          # binding.pry
+          shelf_item.project_id = data[:project_id] if shelf_item
+          shelf_item.save if shelf_item
+        end
       end
       redirect_to admin_projects_path if project.save
     else
       project = Project.find(id)
       shelf_item_ids.each do |_id|
-        shelf_item = ShelfItem.find_by(:id => _id)
-        shelf_item.update_attribute(:project_id, project.project_id)
+        if _id[1] != ''
+          shelf_item = ShelfItem.find_by(:id => _id[1])
+          shelf_item.update_attribute(:project_id, project.project_id)
+        end
       end
       redirect_to admin_projects_path if project.update_attributes data.except(:shelf_item_ids)
     end
@@ -95,6 +101,6 @@ class Admin::ProjectsController < Admin::AuthenticatedController
 
   def project_params
     params.require(:project).permit(:project_name, :category, :banner, :main_pic, :thumb, :project_type_id, :goal,
-                                    :project_detail, :support_type_id, shelf_item_ids: [:shelf_item_id_1, :shelf_item_id_2])
+                                    :project_detail, :support_type_id, shelf_item_ids: [:shelf_item_id_1, :shelf_item_id_2, :shelf_item_id_3])
   end
 end
