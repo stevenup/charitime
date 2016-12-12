@@ -52,6 +52,9 @@ Rails.application.routes.draw do
     get 'home' => 'home#index'
 
     resources :users
+
+    resources :banners
+
     resources :products do
       get :preview, on: :member
     end
@@ -59,9 +62,9 @@ Rails.application.routes.draw do
     resources :gybs
 
     resources :shelf_items do
-      get :pull_off_shelf,     on: :member
-      get :set_recommended,    on: :member
-      get :reset_recommended,  on: :member
+      get :pull_off_shelf,    on: :member
+      get :set_recommended,   on: :member
+      get :reset_recommended, on: :member
       collection do
         get :on_shelf_list
         get :off_shelf_list

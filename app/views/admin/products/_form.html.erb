@@ -20,7 +20,7 @@
         <div class="col-lg-4"><%= f.select :category, options_for_select([["类别1", "1"], ["类别2", "2"]]), { prompt: '-- select one --' }, { class: 'col-lg-4 form-control', required: true } %></div>
       <% else %>
         <div class="col-lg-4"><%= f.select :category, options_for_select([["类别1", "1"], ["类别2", "2"]], selected: "#{@product.category}"), {}, { class: 'col-lg-4 form-control', required: true } %></div>
-    <% end %>
+      <% end %>
     </div>
 
     <!--<div class="form-group">-->
