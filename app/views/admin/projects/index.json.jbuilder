@@ -14,7 +14,7 @@ datatable_json_response(json) do
                                     delete: { data: { id: row.id, confirm: '确认删除？' }, class: 'btn btn-sm btn-dark btn-table-action delete-btn m-l-sm' }
                                   }
 
-    json.more_actions    more_actions ['预览', '发布'], [preview_admin_project_path(row.id),publish_admin_project_path(row)],
+    json.more_actions    more_actions %w(预览 发布), [preview_admin_project_path(row.id), publish_admin_project_path(row)],
                                 [
                                   { class: 'btn btn-sm btn-info btn-table-action preview-btn', target: '_blank' },
                                   { class: 'btn btn-sm btn-info btn-table-action publish-btn', data: { confirm: "确认发布该项目?", id: row.id }}

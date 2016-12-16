@@ -53,7 +53,11 @@ Rails.application.routes.draw do
 
     resources :users
 
-    resources :banners
+    resources :carousels do
+      get :preview,   on: :member
+      get :publish,   on: :member
+      get :depublish, on: :member
+    end
 
     resources :products do
       get :preview, on: :member
