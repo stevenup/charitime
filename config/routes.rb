@@ -17,6 +17,11 @@ Rails.application.routes.draw do
     get :my_address,       on: :collection
   end
 
+
+  resources :carousels, only: [:detail] do
+    get :detail, on: :member
+  end
+
   get 'gybs' => 'gybs#index'
   get 'gybs/append'
   get 'gybs/exchange'

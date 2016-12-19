@@ -266,7 +266,17 @@ i.arrow {
           -ms-flex-align: center;
           -webkit-align-items: center;
           align-items: center;
+
+          img {
+            width: 100%;
+          }
         }
+      }
+
+      .swiper-pagination-bullet {
+        width: p2e(12px);
+        height: p2e(12px);
+
       }
     }
   }

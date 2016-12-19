@@ -2,9 +2,21 @@
   <div class="carousel-swiper" id="carousel-swiper">
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">Slide 1</div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
+        <% @carousels.each do |carousel| %>
+          <% if carousel.is_custom == '1' %>
+            <div class="swiper-slide">
+              <%= link_to carousel.custom_url do %>
+                <%= image_tag carousel.image.to_s %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="swiper-slide">
+              <%= link_to detail_carousel_path(carousel.id) do %>
+                <%= image_tag carousel.image.to_s %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
       <div class="swiper-pagination"></div>
     </div>
