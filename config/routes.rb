@@ -78,8 +78,9 @@ Rails.application.routes.draw do
     resources :product_categories
     resources :product_labels
     resources :projects do
-      get :preview, on: :member
-      get :publish, on: :member
+      get :preview,   on: :member
+      get :publish,   on: :member
+      get :depublish, on: :member
     end
     resources :donations
     resources :orders do

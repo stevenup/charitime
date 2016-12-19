@@ -36,6 +36,8 @@ class Admin::CarouselsController < Admin::AuthenticatedController
     @carousel = Carousel.find_by(:id => params[:id])
     if @carousel.is_custom == '1'
       redirect_to @carousel.custom_url
+    else
+      render layout: 'mobile'
     end
   end
 

@@ -1,0 +1,22 @@
+@import "../../integrations/adjust_config";
+@import "../../integrations/page_settings";
+@import "../../integrations/reset";
+
+.preview {
+  margin: 0 auto;
+  width: p2e(750px);
+
+  .shelf-item-detail {
+    .buttons {
+      width: 100%;
+    }
+  }
+
+  .project_detail {
+    padding-bottom: 0;
+
+    .btn-bottom-area {
+      width: 100%;
+    }
+  }
+}

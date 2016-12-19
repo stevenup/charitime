@@ -19,7 +19,7 @@ class Admin::ProjectsController < Admin::AuthenticatedController
   def edit
     @project               = Project.find params[:id]
     @not_linked_items      = ShelfItem.where(project_id: nil)
-    @items_of_this_project = ShelfItem.where("project_id = ?", params[:id])
+    @items_of_this_project = ShelfItem.where('project_id = ?', params[:id])
   end
 
   def create
@@ -47,6 +47,17 @@ class Admin::ProjectsController < Admin::AuthenticatedController
     if project
       project.update_attribute(:is_published, '1')
       redirect_to admin_projects_path
+    end
+  end
+
+  def depublish
+    id = params[:id]
+    project = Project.find_by_project_id(id)
+    if project
+      project.update_attribute(:is_published, '0')
+      redirect_to admin_projects_path
+    else
+      render plain: '出错啦～～'
     end
   end
 
