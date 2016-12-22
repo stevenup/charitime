@@ -16,19 +16,19 @@ datatable_json_response(json) do
     if row.is_published == '1'
       if row.is_recommended == '1'
         json.more_actions    more_actions %w(预览 撤销发布 取消推荐),
-                                          [ preview_admin_project_path(row.id), depublish_admin_project_path(row), reset_recommend_admin_projects_path(row) ],
+                                          [ preview_admin_project_path(row.id), depublish_admin_project_path(row), reset_recommend_admin_project_path(row) ],
                                           [
                                               { class: 'btn btn-sm btn-info btn-table-action preview-btn', target: '_blank' },
-                                              { class: 'btn btn-sm btn-info btn-table-action publish-btn', data: { confirm: "确认撤销发布该项目?" }},
-                                              { class: 'btn btn-sm btn-info btn-table-action reset-recommend-btn', data: { confirm: "确认取消推荐该项目?" }}
+                                              { class: 'btn btn-sm btn-info btn-table-action publish-btn', data: { confirm: '确认撤销发布该项目?' }},
+                                              { class: 'btn btn-sm btn-info btn-table-action reset-recommend-btn', data: { confirm: '确认取消推荐该项目?' }}
                                           ]
       else
         json.more_actions    more_actions %w(预览 撤销发布 加入推荐),
-                                          [ preview_admin_project_path(row.id), depublish_admin_project_path(row), recommend_admin_projects_path(row) ],
+                                          [ preview_admin_project_path(row.id), depublish_admin_project_path(row), recommend_admin_project_path(row) ],
                                           [
                                               { class: 'btn btn-sm btn-info btn-table-action preview-btn', target: '_blank' },
-                                              { class: 'btn btn-sm btn-info btn-table-action publish-btn', data: { confirm: "确认撤销发布该项目?" }},
-                                              { class: 'btn btn-sm btn-info btn-table-action recommend-btn', data: { confirm: "确认推荐该项目?" }}
+                                              { class: 'btn btn-sm btn-info btn-table-action publish-btn', data: { confirm: '确认撤销发布该项目?' }},
+                                              { class: 'btn btn-sm btn-info btn-table-action recommend-btn', data: { confirm: '确认推荐该项目?' }}
                                           ]
       end
 
@@ -37,7 +37,7 @@ datatable_json_response(json) do
                                         [ preview_admin_project_path(row.id), publish_admin_project_path(row) ],
                                         [
                                             { class: 'btn btn-sm btn-info btn-table-action preview-btn', target: '_blank' },
-                                            { class: 'btn btn-sm btn-info btn-table-action publish-btn', data: { confirm: "确认发布该项目?", id: row.id }}
+                                            { class: 'btn btn-sm btn-info btn-table-action publish-btn', data: { confirm: '确认发布该项目?' }}
                                         ]
     end
   end

@@ -191,20 +191,6 @@ fieldset[disabled] .btn-dark.active {
   }
 }
 
-table {
-  tr {
-    a.recommend-btn {
-      display: none;
-    }
-  }
-
-  tr:hover {
-    .recommend-btn {
-      display: block;
-    }
-  }
-}
-
 .modal {
   bottom: auto;
 }

@@ -89,11 +89,12 @@ Rails.application.routes.draw do
         get :preview
         get :publish
         get :depublish
-      end
-      collection do
-        get :recommended_projects
         get :recommend
         get :reset_recommend
+      end
+      collection do
+        get :all
+        get :recommended_projects
       end
     end
 

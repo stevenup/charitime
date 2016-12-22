@@ -1,5 +1,5 @@
 class Admin::ProjectsController < Admin::AuthenticatedController
-  def index
+  def all
     respond_to do |format|
       format.html
       format.json { get_rows(0) }
@@ -60,7 +60,7 @@ class Admin::ProjectsController < Admin::AuthenticatedController
     id = params[:id]
     project = Project.find_by_project_id(id)
     if project
-      project.update_attribute(:is_published, '0')
+      project.update_attributes(:is_published => '0', :is_recommended => '0')
       redirect_to admin_projects_path
     else
       render plain: '出错啦～～'
@@ -69,15 +69,19 @@ class Admin::ProjectsController < Admin::AuthenticatedController
 
   def recommend
     id = params[:id]
-    project = Project.find_by(:id => id)
-    project.update_attribute(:is_recommended, '1') if project
+    project = Project.find_by_project_id(id)
+    if project
+      project.update_attribute(:is_recommended, '1')
+    end
     redirect_to admin_projects_path
   end
 
   def reset_recommend
     id = params[:id]
-    project = Project.find_by(:id => id)
-    project.update_attribute(:is_recommended, '0') if project
+    project = Project.find_by_project_id(id)
+    if project
+      project.update_attribute(:is_recommended, '0')
+    end
     redirect_to recommended_projects_admin_projects_path
   end
 
@@ -87,10 +91,7 @@ class Admin::ProjectsController < Admin::AuthenticatedController
 
     where_array = []
 
-    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-    puts filter
-
-    if filter == '1'
+    if filter == 1
       where_array << "is_recommended = '1'"
     end
 

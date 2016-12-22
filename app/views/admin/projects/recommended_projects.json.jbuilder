@@ -9,10 +9,10 @@ datatable_json_response(json) do
     json.goal            row.goal
     json.created_at      row.created_at.strftime('%Y-%m-%d %T')
     json.more_actions    more_actions %w(预览 取消推荐),
-                                      [ preview_admin_project_path(row.id), reset_recommend_admin_projects_path(row.id) ],
+                                      [ preview_admin_project_path(row.id), reset_recommend_admin_project_path(row.id) ],
                                       [
                                           { class: 'btn btn-sm btn-info btn-table-action preview-btn', target: '_blank' },
-                                          { class: 'btn btn-sm btn-info btn-table-action publish-btn', data: { confirm: "确认取消推荐该项目?", id: row.id }}
+                                          { class: 'btn btn-sm btn-info btn-table-action depublish-btn', data: { confirm: '确认取消推荐该项目?' }}
                                       ]
   end
 end
