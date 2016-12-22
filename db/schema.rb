@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216063618) do
+ActiveRecord::Schema.define(version: 20161222065627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -243,6 +243,7 @@ ActiveRecord::Schema.define(version: 20161216063618) do
     t.string   "thumb"
     t.string   "is_published",             default: "0"
     t.integer  "goal"
+    t.string   "is_recommended",           default: "0"
   end
 
   create_table "projects_shelf_items", id: false, force: :cascade do |t|

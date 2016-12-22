@@ -80,14 +80,25 @@ Rails.application.routes.draw do
         get :recommended_list
       end
     end
+
     resources :product_categories
     resources :product_labels
+
     resources :projects do
-      get :preview,   on: :member
-      get :publish,   on: :member
-      get :depublish, on: :member
+      member do
+        get :preview
+        get :publish
+        get :depublish
+      end
+      collection do
+        get :recommended_projects
+        get :recommend
+        get :reset_recommend
+      end
     end
+
     resources :donations
+
     resources :orders do
       collection do
         post :update

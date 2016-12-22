@@ -98,7 +98,7 @@
             </li>
             <li class="<%= render_active ({:menu => 'recommended_list' }) %>">
               <%= link_to recommended_list_admin_shelf_items_path do %>
-                <span class="submenu-label">推荐的商品</span>
+                <span class="submenu-label">推荐位商品</span>
               <% end %>
             </li>
           </ul>
@@ -123,7 +123,13 @@
               <% end %>
             </li>
           </ul>
-        </li>
+          <ul class="submenu bg-palette2">
+            <li class="<%= render_active ({:menu => 'recommended_projects' }) %>">
+              <%= link_to recommended_projects_admin_projects_path do %>
+                <span class="submenu-label">推荐位项目</span>
+              <% end %>
+            </li>
+          </ul>
         </li>
 
         <li class="openable bg-palette4">

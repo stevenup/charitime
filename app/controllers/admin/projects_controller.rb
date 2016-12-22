@@ -2,18 +2,24 @@ class Admin::ProjectsController < Admin::AuthenticatedController
   def index
     respond_to do |format|
       format.html
-      format.json { get_rows }
+      format.json { get_rows(0) }
+    end
+  end
+
+  def recommended_projects
+    respond_to do |format|
+      format.html
+      format.json { get_rows(1) }
     end
   end
 
   def new
     @not_linked_items = ShelfItem.where(project_id: nil)
     if @not_linked_items != []
-      @project          = Project.new
+      @project = Project.new
     else
       render text: '啊哦～～不存在多余的可关联的商品。请先添加商品。'
     end
-
   end
 
   def edit
@@ -61,11 +67,32 @@ class Admin::ProjectsController < Admin::AuthenticatedController
     end
   end
 
+  def recommend
+    id = params[:id]
+    project = Project.find_by(:id => id)
+    project.update_attribute(:is_recommended, '1') if project
+    redirect_to admin_projects_path
+  end
+
+  def reset_recommend
+    id = params[:id]
+    project = Project.find_by(:id => id)
+    project.update_attribute(:is_recommended, '0') if project
+    redirect_to recommended_projects_admin_projects_path
+  end
+
   private
-  def get_rows
+  def get_rows(filter)
     dt = decode_datatables_params
 
     where_array = []
+
+    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    puts filter
+
+    if filter == '1'
+      where_array << "is_recommended = '1'"
+    end
 
     search_obj = {
         :include => [],
