@@ -62,12 +62,8 @@ class Admin::ShelfItemsController < Admin::AuthenticatedController
     id = params[:id]
     product = Product.find_by :id => id
     shelf_item = ShelfItem.find_by :id => id
-    shelf_item.is_on_shelf = '0'
-    shelf_item.recommended = '0'
-    product.is_on_shelf = '0'
-    product.save
-    shelf_item.save
-
+    shelf_item.update_attributes(:is_on_shelf => '0', :recommended => '0')
+    product.update_attribute(:is_on_shelf, '0')
     redirect_to on_shelf_list_admin_shelf_items_path
   end
 

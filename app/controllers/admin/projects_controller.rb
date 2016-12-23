@@ -38,21 +38,21 @@ class Admin::ProjectsController < Admin::AuthenticatedController
 
   def destroy
     project = Project.find params[:id]
-    redirect_to admin_projects_path if project.destroy
+    redirect_to all_admin_projects_path if project.destroy
   end
 
   def preview
-    id = params[:id]
+    id       = params[:id]
     @project = Project.find_by_project_id(id)
     render layout: 'application'
   end
 
   def publish
-    id = params[:id]
+    id      = params[:id]
     project = Project.find_by_project_id(id)
     if project
       project.update_attribute(:is_published, '1')
-      redirect_to admin_projects_path
+      redirect_to all_admin_projects_path
     end
   end
 
@@ -61,23 +61,23 @@ class Admin::ProjectsController < Admin::AuthenticatedController
     project = Project.find_by_project_id(id)
     if project
       project.update_attributes(:is_published => '0', :is_recommended => '0')
-      redirect_to admin_projects_path
+      redirect_to all_admin_projects_path
     else
       render plain: '出错啦～～'
     end
   end
 
   def recommend
-    id = params[:id]
+    id      = params[:id]
     project = Project.find_by_project_id(id)
     if project
       project.update_attribute(:is_recommended, '1')
     end
-    redirect_to admin_projects_path
+    redirect_to all_admin_projects_path
   end
 
   def reset_recommend
-    id = params[:id]
+    id      = params[:id]
     project = Project.find_by_project_id(id)
     if project
       project.update_attribute(:is_recommended, '0')

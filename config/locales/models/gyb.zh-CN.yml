@@ -1,0 +1,15 @@
+zh-CN:
+  activerecord:
+    models:
+      gyb: '公益币'
+    attributes:
+      gyb:
+        id:              '编号'
+        title:           '标题'
+        gyb_type:        '券种'
+        price:           '券值'
+        exchange_code:   '兑换码'
+        stock:           '存量'
+        expiration_time: '有效日期'
+        created_at:      '创建时间'
+        action:          '操作'

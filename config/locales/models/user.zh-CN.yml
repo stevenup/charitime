@@ -4,7 +4,7 @@ zh-CN:
       user: '用户'
     attributes:
       user:
-        openid:     'openid'
+        id:         '编号'
         nickname:   '昵称'
         mobile:     '手机号'
         sex:        '性别'

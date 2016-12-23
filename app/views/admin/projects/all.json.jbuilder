@@ -8,12 +8,12 @@ datatable_json_response(json) do
     json.category        row.category
     json.goal            row.goal
     json.created_at      row.created_at.strftime('%Y-%m-%d %T')
-    json.actions         edit_and_del edit_admin_project_path(row), admin_project_path(row, :format => :json),
-                                      {
-                                        edit: { data: { id: row.id }, class: 'btn btn-sm btn-info btn-table-action edit-btn' },
-                                        delete: { data: { id: row.id, confirm: '确认删除？' }, class: 'btn btn-sm btn-dark btn-table-action delete-btn m-l-sm' }
-                                      }
     if row.is_published == '1'
+      json.actions         edit_and_del 'javascript:;', 'javascript:;',
+                                        {
+                                          edit: { class: 'btn btn-sm btn-disable btn-table-action edit-btn' },
+                                          delete: { class: 'btn btn-sm btn-disable btn-table-action delete-btn m-l-sm' }
+                                        }
       if row.is_recommended == '1'
         json.more_actions    more_actions %w(预览 撤销发布 取消推荐),
                                           [ preview_admin_project_path(row.id), depublish_admin_project_path(row), reset_recommend_admin_project_path(row) ],
@@ -33,6 +33,11 @@ datatable_json_response(json) do
       end
 
     else
+      json.actions         edit_and_del edit_admin_project_path(row), admin_project_path(row, :format => :json),
+                                        {
+                                          edit: { class: 'btn btn-sm btn-info btn-table-action edit-btn' },
+                                          delete: { data: { confirm: '确认删除？' }, class: 'btn btn-sm btn-dark btn-table-action delete-btn m-l-sm' }
+                                        }
       json.more_actions    more_actions %w(预览 发布),
                                         [ preview_admin_project_path(row.id), publish_admin_project_path(row) ],
                                         [
