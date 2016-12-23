@@ -79,7 +79,7 @@ chooseWXPay = (prepay_id, id) ->
           $.ajax
             type: 'GET',
             url: '/orders/add_gyb_payment_record',
-            data: {id: id},
+            data: { id: id },
             success: (res) ->
               window.location.href = "http://charitime.nonprofit.cn/orders?status=0" if res.status == 'success'
         else

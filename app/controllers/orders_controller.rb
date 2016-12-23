@@ -82,11 +82,11 @@ class OrdersController < BaseController
     order_detail                         = OrderDetail.new order_detail_params
     order_detail.save
 
-    order = Order.new
-    order[:order_id]       = order_id
-    order[:user_id]        = current_user.id.to_s
-    order[:total_price]    = total_price
-    order[:order_status]   = '0'
+    order                = Order.new
+    order[:order_id]     = order_id
+    order[:user_id]      = current_user.id.to_s
+    order[:total_price]  = total_price
+    order[:order_status] = '0'
     order.save
     redirect_to :action => 'pay', :id => order_id
   end
@@ -103,12 +103,7 @@ class OrdersController < BaseController
 
       current_user.gyb     -= order_detail.gyb_discount
       current_user.save
-
-      render json: { status: 'success' }
-
-    else
-      render json: { status: 'no gyb discount in order' }
     end
-
+    render json: { status: 'success' }
   end
 end

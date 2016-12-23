@@ -38,11 +38,16 @@ class AddressesController < BaseController
   end
 
   def set_default
-    _address = Address.find_by(:default => 1)
-    _address.update_attribute(:default, 0) if _address
-    address = Address.find_by_id(params[:id])
-    address.update_attribute(:default, 1) if address
-    redirect_to addresses_path
+    _address = Address.find_by(:user_id => current_user.id.to_s, :default => 1)
+    address  = Address.find_by_id(params[:id])
+    if _address and address
+      _address.update_attribute(:default, 0)
+      address.update_attribute(:default, 1)
+      redirect_to addresses_path
+    else
+      Logger.error 'error in setting default address.'
+      redirect_to addresses_path
+    end
   end
 
   private
