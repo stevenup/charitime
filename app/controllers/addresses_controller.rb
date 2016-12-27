@@ -1,6 +1,6 @@
 class AddressesController < BaseController
   def index
-    @addresses = Address.where :user_id => current_user.id.to_s
+    @addresses = Address.where(:user_id => current_user.id.to_s).order('created_at DESC')
     if @addresses != []
       @addresses.each do |ele|
         ele.province = ChinaCity.get ele.province
@@ -45,7 +45,7 @@ class AddressesController < BaseController
       address.update_attribute(:default, 1)
       redirect_to addresses_path
     else
-      Logger.error 'error in setting default address.'
+      Rails.logger.info '******************** error in setting default address. ********************'
       redirect_to addresses_path
     end
   end

@@ -30,7 +30,7 @@
       <p>购买给予支持</p>
     </div>
     <div class="money p-r">
-      <p class="total">¥<%= @total.to_f.round(2) %></p>
+      <p class="total">¥<%= '%.2f' % @total.to_f %></p>
       <p>累计款项</p>
     </div>
   </div>

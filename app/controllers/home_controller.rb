@@ -1,7 +1,7 @@
 class HomeController < BaseController
   def index
-    @recommended_items = ShelfItem.where("recommended = '1'").order("updated_at DESC")
-    @projects          = Project.where("is_published = ?", '1').order("updated_at DESC")
+    @recommended_items = ShelfItem.where("'recommended = '1'").order('updated_at DESC')
+    @projects          = Project.where('is_published = ?', '1').order('updated_at DESC')
     @carousels         = Carousel.where('is_published = ?', '1').order('updated_at DESC').first(3)
   end
 
