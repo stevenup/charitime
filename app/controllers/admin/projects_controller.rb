@@ -14,7 +14,7 @@ class Admin::ProjectsController < Admin::AuthenticatedController
   end
 
   def new
-    @not_linked_items = ShelfItem.where(project_id: nil)
+    @not_linked_items = ShelfItem.where('project_id IS NULL and is_on_shelf = ?', '1')
     if @not_linked_items != []
       @project = Project.new
     else
@@ -24,8 +24,8 @@ class Admin::ProjectsController < Admin::AuthenticatedController
 
   def edit
     @project               = Project.find params[:id]
-    @not_linked_items      = ShelfItem.where(project_id: nil)
-    @items_of_this_project = ShelfItem.where('project_id = ?', params[:id])
+    @not_linked_items      = ShelfItem.where(project_id: nil, is_on_shelf: '1')
+    @items_of_this_project = ShelfItem.where('project_id = ? and is_on_shelf = ?', params[:id], '1')
   end
 
   def create
@@ -119,24 +119,28 @@ class Admin::ProjectsController < Admin::AuthenticatedController
     if id == 0
       project = Project.new data.except(:shelf_item_ids)
       project.project_id = generate_unique_id
-      shelf_item_ids.each do |_id|
-        if _id[1] != ''
-          shelf_item = ShelfItem.find_by(:id => _id[1])
-          # binding.pry
-          shelf_item.project_id = data[:project_id] if shelf_item
-          shelf_item.save if shelf_item
+      if shelf_item_ids
+        shelf_item_ids.each do |_id|
+          if _id[1] != ''
+            shelf_item = ShelfItem.find_by(:id => _id[1])
+            # binding.pry
+            shelf_item.project_id = data[:project_id] if shelf_item
+            shelf_item.save if shelf_item
+          end
         end
       end
-      redirect_to admin_projects_path if project.save
+      redirect_to all_admin_projects_path if project.save
     else
       project = Project.find(id)
-      shelf_item_ids.each do |_id|
-        if _id[1] != ''
-          shelf_item = ShelfItem.find_by(:id => _id[1])
-          shelf_item.update_attribute(:project_id, project.project_id)
+      if shelf_item_ids
+        shelf_item_ids.each do |_id|
+          if _id[1] != ''
+            shelf_item = ShelfItem.find_by(:id => _id[1])
+            shelf_item.update_attribute(:project_id, project.project_id)
+          end
         end
       end
-      redirect_to admin_projects_path if project.update_attributes data.except(:shelf_item_ids)
+      redirect_to all_admin_projects_path if project.update_attributes data.except(:shelf_item_ids)
     end
   end
 
