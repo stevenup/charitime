@@ -11,12 +11,12 @@
   <div class="panel panel-default">
     <div class="table-responsive">
       <%= dt id: 'refund_orders_datatable', class: 'table table-striped b-t b-b', :'data-url' => refund_orders_admin_orders_path(:format => :json) do %>
-        <%= dt_col(Order.hn(:user_id), data: {data: 'user_id'}) %>
-        <%= dt_col(Order.hn(:order_id), data: {data: 'order_id'}) %>
-        <%= dt_col(Order.hn(:order_status), data: {data: 'order_status'}) %>
-        <%= dt_col(Order.hn(:total_price), data: {data: 'total_price'}) %>
-        <%= dt_col(Order.hn(:created_at), data: {data: 'created_at'}) %>
-        <%= dt_col(Product.hn(:action), data: {data: 'actions'}) %>
+        <%= dt_col(Order.hn(:user_id), data: { data: 'user_id' }) %>
+        <%= dt_col(Order.hn(:order_id), data: { data: 'order_id' }) %>
+        <%= dt_col(Order.hn(:order_status), data: { data: 'order_status' }) %>
+        <%= dt_col(Order.hn(:total_price), data: { data: 'total_price' }) %>
+        <%= dt_col(Order.hn(:created_at), data: { data: 'created_at' }) %>
+        <%= dt_col(Order.hn(:actions), data: { data: 'actions' }) %>
       <% end %>
     </div>
   </div>

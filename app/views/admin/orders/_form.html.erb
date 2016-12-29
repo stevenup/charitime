@@ -1,4 +1,4 @@
-<%= form_for @order_detail, url: url, method: 'post', html: { class: 'form-horizontal' } do |f| %>
+<%= form_for @order_detail, url: url, method: 'post', html: {class: 'form-horizontal'} do |f| %>
   <div class="form-group">
     <%= f.label :用户ID, class: 'col-lg-1 control-label' %>
     <div class="col-lg-4"><%= f.label @order_detail.order.user_id, class: 'col-lg-4 form-control', required: true %></div>
@@ -11,7 +11,7 @@
 
   <div class="form-group">
     <%= f.label :订单状态, class: 'col-lg-1 control-label' %>
-    <div class="col-lg-4"><%= f.label @order_detail.order.order_status, class: 'col-lg-4 form-control', required: true %></div>
+    <div class="col-lg-4"><%= f.label transform_status(@order_detail.order.order_status, @order_detail.order.logistics_status), class: 'col-lg-4 form-control', required: true %></div>
   </div>
 
   <div class="form-group">
@@ -23,7 +23,7 @@
 
   <div class="form-group">
     <%= f.label :商品, class: 'col-lg-1 control-label' %>
-    <div class="col-lg-4"><%= image_tag ShelfItem.find_by_product_id(@order_detail.product_id).try(:thumb), class: 'col-lg-4', required: true %></div>
+    <div class="col-lg-4"><%= image_tag ShelfItem.find_by_id(@order_detail.shelf_item_id).try(:thumb), class: 'col-lg-4', required: true %></div>
   </div>
 
   <div class="form-group">
@@ -62,23 +62,70 @@
     <div class="col-lg-4"><%= f.label @order_detail.province.to_s + @order_detail.city.to_s + @order_detail.district.to_s + @order_detail.detail_address.to_s, class: 'col-lg-4 form-control', required: true %></div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :快递公司, class: 'col-lg-1 control-label' %>
-    <div class="col-lg-4"><%= f.select :delivery_company, options_for_select([["申通快递", "申通快递"], ["圆通快递", "圆通快递"], ["顺丰快递", "顺丰快递"]]), {prompt: '-- 请选择快递公司 --'}, {class: 'col-lg-4 form-control', required: true} %></div>
-  </div>
+  <% if @order_detail.order.order_status == 'REFUNDING' %>
+    <div class="form-group">
+      <%= f.label :处理退款, class: 'col-lg-1 control-label' %>
+      <div class="col-lg-1"><%= radio_button('', :flag, '1') %>&nbsp;同意</div>
+      <div class="col-lg-1"><%= radio_button('', :flag, '0') %>&nbsp;驳回</div>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :快递单号, class: 'col-lg-1 control-label' %>
-    <div class="col-lg-4"><%= f.text_field :delivery_id, class: 'col-lg-4 form-control', required: true %></div>
-  </div>
+    <div class="form-group" id="refund-note" style="display: none;">
+      <%= f.label :驳回理由, class: 'col-lg-1 control-label' %>
+      <div class="col-lg-4"><%= text_area('', :refusal, rows: 2, class: 'col-lg-4 form-control') %></div>
+    </div>
+
+    <% if @records %>
+      <div class="form-group">
+        <%= f.label :处理记录历史, class: 'col-lg-1 control-label' %>
+        <div class="col-lg-4">
+          <div class="history-records" style="border: 1px solid lightgrey; padding: 10px;">
+            <% @records.each do |r| %>
+              <%= simple_format(r) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <div class="col-lg-offset-1 col-lg-10">
+        <%= f.submit '提交', class: 'btn btn-sm btn-primary' %>
+        &nbsp;
+        <%= link_to '返回', '#', class: 'btn btn-sm btn-info', onclick: 'history.back()' %>
+      </div>
+    </div>
+
+  <% else %>
+    <div class="form-group">
+      <%= f.label :快递公司, class: 'col-lg-1 control-label' %>
+      <div class="col-lg-4"><%= f.select :delivery_company, options_for_select([%w(申通快递 申通快递), %w(圆通快递 圆通快递), %w(顺丰快递 顺丰快递)]), {prompt: '-- 请选择快递公司 --'}, {class: 'col-lg-4 form-control', required: true} %></div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :快递单号, class: 'col-lg-1 control-label' %>
+      <div class="col-lg-4"><%= f.text_field :delivery_id, class: 'col-lg-4 form-control', required: true %></div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-lg-offset-1 col-lg-10">
+        <%= f.submit '提交', class: 'btn btn-sm btn-primary' %>
+        &nbsp;
+        <%= link_to '返回', '#', class: 'btn btn-sm btn-info', onclick: 'history.back()' %>
+      </div>
+    </div>
+  <% end %>
 
   <%= hidden_field_tag 'order_id', @order_detail.order_id %>
-
-  <div class="form-group">
-    <div class="col-lg-offset-1 col-lg-10">
-      <%= f.submit '提交', class: "btn btn-sm btn-primary" %>
-      &nbsp
-      <%= link_to '返回', '#', class: "btn btn-sm btn-info", onclick: "history.back()" %>
-    </div>
-  </div>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $('#_flag_1').on('click', function () {
+    $('#refund-note').fadeOut('fast');
+    $('#history-note').fadeOut('fast');
+  });
+
+  $('#_flag_0').on('click', function () {
+    $('#refund-note').fadeIn('fast');
+    $('#history-note').fadeIn('fast');
+  });
+</script>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222065627) do
+ActiveRecord::Schema.define(version: 20161229060100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(version: 20161222065627) do
     t.float    "gyb_discount"
     t.string   "out_refund_no"
     t.string   "thumb"
+    t.string   "note"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -221,12 +222,6 @@ ActiveRecord::Schema.define(version: 20161222065627) do
   create_table "products_projects", id: false, force: :cascade do |t|
     t.integer "product_id"
     t.integer "project_id"
-  end
-
-  create_table "project_types", force: :cascade do |t|
-    t.string   "project_type_name"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
   end
 
   create_table "projects", force: :cascade do |t|

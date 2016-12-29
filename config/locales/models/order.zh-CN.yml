@@ -10,4 +10,5 @@ zh-CN:
         total_price:   '订单价格'
         created_at:    '创建时间'
         action:        '操作'
+        more_actions:  '更多操作'
 

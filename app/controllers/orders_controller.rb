@@ -26,6 +26,9 @@ class OrdersController < BaseController
   def show
     order_id      = params[:id]
     @order_detail = OrderDetail.find_by_order_id order_id
+    if @order_detail.note
+      @records = @order_detail.note.split('\n')
+    end
   end
 
   def apply_refund

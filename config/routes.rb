@@ -108,6 +108,8 @@ Rails.application.routes.draw do
         get :undelivered_orders
         post :get_excel, :defaults => { :format => 'xlsx' }
       end
+
+      get :refund_process, on: :member
     end
   end
 

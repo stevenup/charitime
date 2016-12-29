@@ -10,7 +10,7 @@ class Admin::OrdersController < Admin::AuthenticatedController
 
   def get_excel
     @orders = Order.order('created_at DESC').where(wrap_search_obj(params)).joins(:order_details).all
-    render xlsx: "generic_result", disposition: "attachment", filename: "orders_export_#{Time.now.strftime("%Y%m%d_%H%M%S")}.xlsx"
+    render xlsx: 'generic_result', disposition: 'attachment', filename: "orders_export_#{Time.now.strftime('%Y%m%d_%H%M%S')}.xlsx"
   end
 
   def undelivered_orders
@@ -27,21 +27,38 @@ class Admin::OrdersController < Admin::AuthenticatedController
     end
   end
 
+  def refund_process
+    @order_detail = OrderDetail.find_by_order_id(params[:id])
+    if @order_detail.note
+      @records = @order_detail.note.split('\n')
+    end
+  end
+
   def edit
     @order_detail = OrderDetail.find_by_order_id params[:id]
   end
 
   def update
     order_detail = OrderDetail.find_by_order_id(params[:order_id])
+    flag = params[:flag]
     if order_detail.nil?
       render plain: 'failed to find the order.'
-    elsif order_detail.order_status == 'REFUNDING'
-      render plain: 'the user has applied for refunding.'
+    elsif order_detail.order.order_status == 'REFUNDING'
+      if flag == '1'
+        redirect_to refund_order_path(id: params[:order_id])
+      elsif flag == '0'
+        note = Time.now.strftime('%Y-%m-%d %T').to_s + ': ' + params[:refusal].to_s + '\n'
+        if order_detail.note.nil?
+          order_detail.note = note
+        else
+          order_detail.note += note
+        end
+        redirect_to refund_orders_admin_orders_path if order_detail.save && order_detail.order.update_attribute(:order_status, -5)
+      end
     else
       order_detail.delivery_company = order_detail_params[:delivery_company]
       order_detail.delivery_id      = order_detail_params[:delivery_id]
-      if order_detail.save
-        order_detail.order.update_attribute(:logistics_status, 'DELIVERED')
+      if order_detail.save && order_detail.order.update_attribute(:logistics_status, 'DELIVERED')
         redirect_to undelivered_orders_admin_orders_path
       else
         render plain: 'failed to update logistics info.'

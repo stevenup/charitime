@@ -56,7 +56,7 @@
       <div class="clear"></div>
     </div>
     <div>
-      <p class="inline-block t-right"><%= @order_detail.created_at.strftime("%Y.%m.%d %T") %></p>
+      <p class="inline-block t-right"><%= @order_detail.created_at.strftime('%Y.%m.%d %T') %></p>
       <div class="clear"></div>
     </div>
   </div>
@@ -72,7 +72,7 @@
 
   <% elsif @order_detail.order.order_status.to_s == 'PAID' and @order_detail.order.logistics_status == 'DELIVERED' %>
     <div class="delivery-info m-t p-l p-r">
-      <%= link_to generate_url("http://m.kuaidi100.com/index_all.html", { type: @order_detail.delivery_company, postid: @order_detail.delivery_id, callbackurl: order_url(@order_detail.order_id) }) do %>
+      <%= link_to generate_url('http://m.kuaidi100.com/index_all.html', { type: @order_detail.delivery_company, postid: @order_detail.delivery_id, callbackurl: order_url(@order_detail.order_id) }) do %>
         <div class="border-bottom">
           <p class="inline-block t-left">物流信息</p>
           <p class="inline-block t-right">查询&nbsp;<i class="fa fa-angle-right fa-lg"></i></p>
@@ -95,7 +95,7 @@
       </div>
     </div>
 
-  <% elsif @order_detail.order.order_status.to_s == 'PAID' and @order_detail.order.logistics_status != 'DELIVERED' and @order_detail.order.logistics_status != 'COMPLETED' %>
+  <% elsif (@order_detail.order.order_status.to_s == 'PAID' and @order_detail.order.logistics_status != 'DELIVERED' and @order_detail.order.logistics_status != 'COMPLETED') or (@order_detail.order.order_status.to_s == 'REFUND_REJECTED') %>
     <div class="user-actions">
       <div class="buttons p-l p-r p-t p-b">
         <%= button_to '申请退款', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small m-l m-r p-t p-b t-right', :'data-confirm' => '确定申请退货退款吗？' %>
@@ -103,13 +103,16 @@
         <div class="clear"></div>
       </div>
     </div>
-
   <% end %>
-
 </div>
 
-<div class="tuihuo" id="tuihuo">
-
+<div class="refund m-t p-t p-b p-l p-r" id="refund">
+  <p class="title p-t">操作记录</p>
+  <% if @records %>
+    <% @records.each do |r| %>
+      <%= simple_format(r) %>
+    <% end %>
+  <% end %>
 </div>
 
 <% content_for :title, set_title('订单详情')  %>

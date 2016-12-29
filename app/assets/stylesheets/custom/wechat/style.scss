@@ -1549,6 +1549,16 @@ i.arrow {
   }
 }
 
+.refund {
+  @include font-dpr(12px);
+  line-height: p2e(48px);
+  background: #ffffff;
+
+  p.title {
+    @include font-dpr(13px);
+  }
+}
+
 .address-form {
   display: none;
   z-index: 999;
