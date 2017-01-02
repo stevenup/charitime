@@ -86,6 +86,7 @@
     $('body').on('click', '#cancel-btn', function () {
       $('.address-form').fadeOut('fast', function () {
         $('#edit-address-form').remove();
+        $('#add-address-form').remove();
         $('#overlay').fadeOut('fast');
       });
     });
