@@ -88,10 +88,10 @@ class Admin::OrdersController < Admin::AuthenticatedController
 
   def wrap_search_obj(params)
     where_array = []
-    where_array << "user_id=:user_id" unless params['user_id'].blank?
-    where_array << "order_id=:order_id" unless params['order_id'].blank?
+    where_array << 'user_id=:user_id' unless params['user_id'].blank?
+    where_array << 'order_id=:order_id' unless params['order_id'].blank?
     where_array << "logistics_status=:logistics_status AND order_status = '1'" unless params['logistics_status'].blank?
-    where_array << "created_at BETWEEN :start_date AND :end_date" unless params['start_date'].blank? and params['end_date'].blank?
+    where_array << 'created_at BETWEEN :start_date AND :end_date' unless params['start_date'].blank? and params['end_date'].blank?
 
     placeholder_obj = {}
     %w(user_id order_id logistics_status start_date end_date).each {|k| placeholder_obj[k.to_sym] = params[k]}
