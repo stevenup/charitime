@@ -224,6 +224,12 @@ ActiveRecord::Schema.define(version: 20161229060100) do
     t.integer "project_id"
   end
 
+  create_table "project_types", force: :cascade do |t|
+    t.string   "project_type_name"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string   "project_id"
     t.string   "project_name"
