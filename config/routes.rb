@@ -53,8 +53,7 @@ Rails.application.routes.draw do
   get '/orders/pay/:id', to: 'orders#pay', as: 'order_pay'
 
   namespace :admin do
-    root :to => 'home#index'
-    get 'home' => 'home#index'
+    get 'dashboard' => 'home#index'
 
     resources :users
 

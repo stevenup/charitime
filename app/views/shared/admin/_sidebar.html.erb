@@ -7,7 +7,7 @@
         </li>
 
         <li class="bg-palette1">
-          <a href="/admin">
+          <a href="/admin/dashboard">
             <span class="menu-content block">
               <span class="menu-icon"><i class="block fa fa-home fa-lg"></i></span>
               <span class="text m-left-sm">Dashboard</span>
@@ -147,11 +147,13 @@
             <li class="<%= render_active ({:menu => 'undelivered_orders' }) %>">
               <%= link_to undelivered_orders_admin_orders_path do %>
                 <span class="submenu-label">待发货订单</span>
+                <small class="badge badge-purple badge-square bounceIn animation-delay5 m-left-xs">5</small>
               <% end %>
             </li>
             <li class="<%= render_active ({:menu => 'refund_orders' }) %>">
               <%= link_to refund_orders_admin_orders_path do %>
                 <span class="submenu-label">退货退款订单</span>
+                <small class="badge badge-danger badge-square bounceIn animation-delay5 m-left-xs">5</small>
               <% end %>
             </li>
             <li class="<%= render_active ({:menu => 'query' }) %>">
