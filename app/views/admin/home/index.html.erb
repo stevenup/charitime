@@ -5,14 +5,16 @@
 </div>
 
 <div class="row m-bottom-md">
-   <div class="col-lg-3 col-sm-6">
+  <div class="col-lg-3 col-sm-6">
     <div class="statistic-box bg-primary m-bottom-md">
       <div class="statistic-title">
-        今日销量
+        待发货订单
       </div>
 
       <div class="statistic-value">
-        751
+        <%= link_to undelivered_orders_admin_orders_path do %>
+          <%= @num_undelivered_orders %>
+        <% end %>
       </div>
 
       <!--<div class="m-top-md">8% Higher than last week</div>-->
@@ -30,7 +32,7 @@
       </div>
 
       <div class="statistic-value">
-        ￥124.45k
+        ￥<%= '%.2f' % @sales_volume %>
       </div>
 
       <!--<div class="m-top-md">7% Higher than last week</div>-->
@@ -48,7 +50,7 @@
       </div>
 
       <div class="statistic-value">
-        129
+        <%= @num_new_users %>
       </div>
 
       <!--<div class="m-top-md">3% Higher than last week</div>-->
@@ -66,7 +68,7 @@
       </div>
 
       <div class="statistic-value">
-        96.7k
+        <%= @num_supports %>
       </div>
 
       <!--<div class="m-top-md">11% Higher than last week</div>-->

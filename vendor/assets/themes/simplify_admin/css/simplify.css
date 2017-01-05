@@ -2305,6 +2305,10 @@ a.list-group-item.active:focus {
   font-weight: 600;
   z-index: 2;
 }
+.statistic-box .statistic-value a {
+  color: #ffffff;
+  text-decoration: underline;
+}
 .statistic-box .statistic-icon-background {
   position: absolute;
   font-size: 160px;

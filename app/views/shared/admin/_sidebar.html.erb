@@ -55,20 +55,20 @@
           </a>
 
           <ul class="submenu bg-palette2">
-            <li class="<%= render_active ({:menu => 'products' }) %>">
+            <li class="<%= render_active ({:menu => 'products'}) %>">
               <%= link_to admin_products_path do %>
                 <span class="submenu-label">全部商品</span>
               <% end %>
             </li>
             <!--<li class="<%#= render_active ({:menu => 'product_categories' }) %>">-->
-              <!--<%#= link_to admin_product_categories_path do %>-->
-                <!--<span class="submenu-label">商品类别</span>-->
-              <!--<%# end %>-->
+            <!--<%#= link_to admin_product_categories_path do %>-->
+            <!--<span class="submenu-label">商品类别</span>-->
+            <!--<%# end %>-->
             <!--</li>-->
             <!--<li class="<%#= render_active ({:menu => 'product_labels' }) %>">-->
-              <!--<%#= link_to admin_product_labels_path do %>-->
-                <!--<span class="submenu-label">商品标签</span>-->
-              <!--<%# end %>-->
+            <!--<%#= link_to admin_product_labels_path do %>-->
+            <!--<span class="submenu-label">商品标签</span>-->
+            <!--<%# end %>-->
             <!--</li>-->
           </ul>
         </li>
@@ -86,17 +86,17 @@
           </a>
 
           <ul class="submenu bg-palette2">
-            <li class="<%= render_active ({:menu => 'off_shelf_list' }) %>">
+            <li class="<%= render_active ({:menu => 'off_shelf_list'}) %>">
               <%= link_to off_shelf_list_admin_shelf_items_path do %>
                 <span class="submenu-label">待上架商品</span>
               <% end %>
             </li>
-            <li class="<%= render_active ({:menu => 'on_shelf_list' }) %>">
+            <li class="<%= render_active ({:menu => 'on_shelf_list'}) %>">
               <%= link_to on_shelf_list_admin_shelf_items_path do %>
                 <span class="submenu-label">已上架商品</span>
               <% end %>
             </li>
-            <li class="<%= render_active ({:menu => 'recommended_list' }) %>">
+            <li class="<%= render_active ({:menu => 'recommended_list'}) %>">
               <%= link_to recommended_list_admin_shelf_items_path do %>
                 <span class="submenu-label">推荐位商品</span>
               <% end %>
@@ -117,14 +117,14 @@
           </a>
 
           <ul class="submenu bg-palette2">
-            <li class="<%= render_active ({:menu => 'all' }) %>">
+            <li class="<%= render_active ({:menu => 'all'}) %>">
               <%= link_to all_admin_projects_path do %>
                 <span class="submenu-label">全部项目</span>
               <% end %>
             </li>
           </ul>
           <ul class="submenu bg-palette2">
-            <li class="<%= render_active ({:menu => 'recommended_projects' }) %>">
+            <li class="<%= render_active ({:menu => 'recommended_projects'}) %>">
               <%= link_to recommended_projects_admin_projects_path do %>
                 <span class="submenu-label">推荐位项目</span>
               <% end %>
@@ -144,19 +144,21 @@
             </span>
           </a>
           <ul class="submenu bg-palette4">
-            <li class="<%= render_active ({:menu => 'undelivered_orders' }) %>">
+            <li class="<%= render_active ({:menu => 'undelivered_orders'}) %>">
               <%= link_to undelivered_orders_admin_orders_path do %>
                 <span class="submenu-label">待发货订单</span>
-                <small class="badge badge-purple badge-square bounceIn animation-delay5 m-left-xs">5</small>
+                <!--<small class="badge badge-purple badge-square bounceIn animation-delay5 m-left-xs"></small>-->
               <% end %>
             </li>
-            <li class="<%= render_active ({:menu => 'refund_orders' }) %>">
+            <li class="<%= render_active ({:menu => 'refund_orders'}) %>">
               <%= link_to refund_orders_admin_orders_path do %>
                 <span class="submenu-label">退货退款订单</span>
-                <small class="badge badge-danger badge-square bounceIn animation-delay5 m-left-xs">5</small>
+                <% if @num_refunding_orders != 0 %>
+                  <small class="badge badge-danger badge-square bounceIn animation-delay5 m-left-xs"><%= @num_refunding_orders %></small>
+                <% end %>
               <% end %>
             </li>
-            <li class="<%= render_active ({:menu => 'query' }) %>">
+            <li class="<%= render_active ({:menu => 'query'}) %>">
               <%= link_to query_admin_orders_path do %>
                 <span class="submenu-label">订单查询</span>
               <% end %>
@@ -177,7 +179,7 @@
           </a>
 
           <ul class="submenu bg-palette2">
-            <li class="<%= render_active ({:menu => 'donations' }) %>">
+            <li class="<%= render_active ({:menu => 'donations'}) %>">
               <%= link_to admin_donations_path do %>
                 <span class="submenu-label">全部捐赠</span>
               <% end %>
@@ -198,7 +200,7 @@
           </a>
 
           <ul class="submenu bg-palette2">
-            <li class="<%= render_active ({:menu => 'gybs' }) %>">
+            <li class="<%= render_active ({:menu => 'gybs'}) %>">
               <%= link_to admin_gybs_path do %>
                 <span class="submenu-label">全部公益券</span>
               <% end %>
