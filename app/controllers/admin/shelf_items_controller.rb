@@ -137,6 +137,7 @@ class Admin::ShelfItemsController < Admin::AuthenticatedController
       shelf_item = ShelfItem.new merged_data
       shelf_item.is_on_shelf = '1'
       shelf_item.thumb = product.thumb
+      binding.pry
       product.is_on_shelf = '1'
       product.save
       shelf_item.save
@@ -146,10 +147,8 @@ class Admin::ShelfItemsController < Admin::AuthenticatedController
       product.save
       shelf_item = ShelfItem.find_by :id => params[:id]
       data = product.attributes.merge form_data
-      # @shelf_item.is_on_shelf = '1'
-      #
-      # @shelf_item.thumb = product.thumb
-
+      shelf_item.is_on_shelf = '1'
+      shelf_item.thumb = product.thumb
       shelf_item.update_attributes data
     end
     # response_after_save_json result, @shelf_item
