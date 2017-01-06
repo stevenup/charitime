@@ -137,7 +137,6 @@ class Admin::ShelfItemsController < Admin::AuthenticatedController
       shelf_item = ShelfItem.new merged_data
       shelf_item.is_on_shelf = '1'
       shelf_item.thumb = product.thumb
-      binding.pry
       product.is_on_shelf = '1'
       product.save
       shelf_item.save

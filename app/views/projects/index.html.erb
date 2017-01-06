@@ -1,9 +1,9 @@
-<div class="projects p-t p-b" id="projects">
-  <div class="project-list p-r p-l">
+<div class="projects" id="projects">
+  <div class="project-list">
     <% if @projects != [] %>
       <% @projects.each do |ele| %>
         <%= link_to detail_project_path ele.id do %>
-          <div class="project-item m-t">
+          <div class="project-item m-b">
             <div class="project-pic">
               <%= image_tag ele.banner %>
             </div>

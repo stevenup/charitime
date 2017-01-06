@@ -30,16 +30,16 @@
   </div>
 
   <div class="rcmds s-s" id="rcmds">
-    <div class="header-section p-t p-l p-r">
-      <p class="title m-b">推荐</p>
-      <a href="/shelf_items" class="all m-b">查看全部 &nbsp;<i class="fa fa-angle-right fa-lg"></i></a>
+    <div class="header-section p-l p-r">
+      <p class="title">推荐</p>
+      <a href="/shelf_items" class="all">查看全部 &nbsp;<i class="fa fa-angle-right fa-lg"></i></a>
     </div>
 
     <div class="shelf-items-wrapper">
-      <div class="shelf-items-list">
+      <ul class="shelf-items-list">
         <% @recommended_items.each do |p| %>
           <%= link_to shelf_item_path p.id do %>
-            <div class="item">
+            <li class="item">
               <%= image_tag p.thumb.to_s %>
               <div class="item-property p-b">
                 <div class="item-name">
@@ -54,7 +54,7 @@
                   <!--</div>-->
                 </div>
               </div>
-            </div>
+            </li>
           <% end %>
         <% end %>
 
@@ -97,7 +97,7 @@
         <!--</div>-->
         <!--</div>-->
 
-      </div>
+      </ul>
 
     </div>
 
@@ -126,15 +126,15 @@
   <!--</div>-->
 
   <div class="projects s-s p-b" id="projects">
-    <div class="header-section p-t p-l p-r">
-      <p class="title m-b">公益项目</p>
-      <a href="/projects" class="all m-b">查看全部 &nbsp;<i class="fa fa-angle-right fa-lg"></i></a>
+    <div class="header-section p-l p-r">
+      <p class="title">公益项目</p>
+      <a href="/projects" class="all">查看全部 &nbsp;<i class="fa fa-angle-right fa-lg"></i></a>
     </div>
 
-    <div class="project-list p-r p-l">
+    <div class="project-list">
       <% @projects.each do |ele| %>
         <%= link_to detail_project_path ele.id do %>
-          <div class="project-item m-t">
+          <div class="project-item m-b">
             <div class="project-pic">
               <%= image_tag ele.banner %>
             </div>

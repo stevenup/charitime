@@ -189,7 +189,10 @@ i.arrow {
 
   /**********  start of common style  **********/
   .header-section {
-    border-bottom: p2e(1px) solid #979797;
+    //border-bottom: p2e(1px) solid #979797;
+    padding-top: p2e(20px);
+    padding-bottom: p2e(20px);
+    background: rgba(250, 250, 250, 0.7);
 
     .title {
       @include font-dpr(14px);
@@ -203,42 +206,6 @@ i.arrow {
       display: inline-block;
       position: absolute;
       right: p2e(32px);
-    }
-  }
-
-  .item {
-    width: p2e(340px);
-    border: p2e(1px) lightgray solid;
-    display: inline-block;
-
-    img {
-      width: 100%;
-    }
-
-    .item-property {
-      .item-name {
-        margin: p2e(10px);
-        text-align: center;
-        @include font-dpr(14px);
-      }
-
-      .item-bottom {
-        .item-price {
-          margin: p2e(8px);
-          text-align: center;
-          @include font-dpr(14px);
-          font-weight: 600;
-        }
-
-        .item-hearts {
-          margin: p2e(8px);
-
-          i {
-            margin-left: p2e(8px);
-            margin-right: p2e(8px);
-          }
-        }
-      }
     }
   }
 
@@ -318,25 +285,56 @@ i.arrow {
   }
 
   .rcmds {
+    background: rgba(250, 250, 250, 0.7);
+
     .shelf-items-wrapper {
       text-align: left;
 
-      .shelf-items-list {
-        text-align: center;
+      ul.shelf-items-list {
+        list-style: none;
         display: table;
-
-        img {
-          width: 100%;
-
-        }
+        width: 100%;
 
         a {
           display: inline-block;
           vertical-align: middle;
+          background: #ffffff;
+          margin-left: p2e(6px);
+          margin-top: p2e(6px);
 
           .item {
-            width: p2e(373px);
-            border-top: none;
+            width: p2e(366px);
+            display: inline-block;
+
+            img {
+              width: 100%;
+            }
+
+            .item-property {
+              .item-name {
+                margin: p2e(10px);
+                text-align: center;
+                @include font-dpr(14px);
+              }
+
+              .item-bottom {
+                .item-price {
+                  margin: p2e(8px);
+                  text-align: center;
+                  @include font-dpr(14px);
+                  font-weight: 600;
+                }
+
+                .item-hearts {
+                  margin: p2e(8px);
+
+                  i {
+                    margin-left: p2e(8px);
+                    margin-right: p2e(8px);
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -444,7 +442,7 @@ i.arrow {
 /*********** project list style *******/
 .projects {
   //margin-bottom: p2e(80px);
-  background: #ffffff;
+  background: rgba(250, 250, 250, 0.7);
 
   .project-list {
     .project-item {
@@ -459,6 +457,7 @@ i.arrow {
 
         img {
           width: 100%;
+          height: 100%;
         }
       }
 
