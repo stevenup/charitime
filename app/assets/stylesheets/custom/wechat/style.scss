@@ -1242,7 +1242,7 @@ i.arrow {
 
   .delivery-addr {
     background: #FFFFFF;
-    padding: p2e(18px);
+    //padding: p2e(18px);
     @include font-dpr(14px);
     border-bottom: p2e(1px) solid lightgray;
 
@@ -1455,10 +1455,6 @@ i.arrow {
     display: table;
     width: 100%;
     border-bottom: p2e(1px) solid lightgray;
-
-    p {
-      margin: p2e(14px) auto;
-    }
 
     .inline-block {
       display: inline-block;

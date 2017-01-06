@@ -9,7 +9,7 @@
     <div class="clear"></div>
   </div>
 
-  <div class="delivery-addr m-b p-l p-r">
+  <div class="delivery-addr m-t m-b p-l p-r p-t p-b">
     <p class="inline-block"><%= @order_detail.receiver_name.to_s %></p>
     <p class="inline-block"><%= @order_detail.mobile %></p>
     <p><%= @order_detail.province.to_s + '  ' + @order_detail.city.to_s + '  ' + @order_detail.district.to_s + '  ' + @order_detail.detail_address.to_s %></p>
@@ -20,11 +20,11 @@
       <%= image_tag @order_detail.shelf_item.thumb %>
     </div>
 
-    <div class="product-name m-r m-l m-t">
+    <div class="product-name m-r">
       <p><%= @order_detail.product_name.to_s %></p>
     </div>
 
-    <div class="product-count m-r m-l m-t">
+    <div class="product-count m-r">
       <p class="inline-block">x<%= @order_detail.count.to_s %></p>
     </div>
   </div>
@@ -37,12 +37,12 @@
     </div>
     <div>
       <p class="inline-block t-left">单价</p>
-      <p class="inline-block t-right red">￥<%= @order_detail.price.to_s %></p>
+      <p class="inline-block t-right red">￥<%= '%.2f' % @order_detail.price.to_s %></p>
       <div class="clear"></div>
     </div>
     <div>
       <p class="inline-block t-left">公益优惠</p>
-      <p class="inline-block t-right red">￥<%= @order_detail.gyb_discount.to_f / 100 %></p>
+      <p class="inline-block t-right red">￥<%= '%.2f' % (@order_detail.gyb_discount.to_f / 100) %></p>
       <div class="clear"></div>
     </div>
     <div class="border-bottom">
@@ -52,7 +52,7 @@
     </div>
     <div class="border-bottom">
       <p class="inline-block t-left">实付款</p>
-      <p class="inline-block t-right red">￥<%= @order_detail.order.total_price %></p>
+      <p class="inline-block t-right red">￥<%= '%.2f' % @order_detail.order.total_price %></p>
       <div class="clear"></div>
     </div>
     <div>
@@ -64,7 +64,7 @@
   <% if @order_detail.order.order_status.to_s == 'UNPAID' %>
     <div class="user-actions">
       <div class="buttons p-l p-r p-t p-b">
-        <%= button_to '立即付款', order_pay_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small btn-highlight m-l m-r p-t p-b t-right' %>
+        <%= button_to '前往支付', order_pay_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small btn-highlight m-l m-r p-t p-b t-right' %>
         <%= button_to '取消订单', cancel_order_order_path(@order_detail.order.order_id), :method => 'get', :'data-confirm' => '确定取消订单嘛？', :class => 'btn btn-default btn-small m-l m-r p-t p-b t-right', :id => 'cancel-btn' %>
         <div class="clear"></div>
       </div>
