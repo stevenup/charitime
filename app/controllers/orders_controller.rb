@@ -4,8 +4,9 @@ class OrdersController < BaseController
 
   def index
     status = params[:status]
+    @title = params[:title]
     if status == '0'
-      @orders = Order.where('user_id = ? and order_status = ? and logistics_status != ?', current_user.id.to_s, 1, 4).order('created_at DESC')
+      @orders = Order.where('user_id = ? and (order_status = ? or order_status = ?) and logistics_status != ?', current_user.id.to_s, 0, 1, 4).order('created_at DESC')
     elsif status == '1'
       @orders = Order.where('user_id = ? and logistics_status = ?', current_user.id.to_s, 4).order('created_at DESC')
     elsif status == '2'

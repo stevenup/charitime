@@ -18,17 +18,17 @@
 
   <div class="menu">
     <%#= link_to do %>
-      <!--<div class="my-cart s-s" id="my-cart">-->
-        <!--<div class="t-left">-->
-          <!--<i class="menu-icon fa fa-shopping-cart fa-lg"></i>-->
+    <!--<div class="my-cart s-s" id="my-cart">-->
+    <!--<div class="t-left">-->
+    <!--<i class="menu-icon fa fa-shopping-cart fa-lg"></i>-->
 
-          <!--<p class="menu-name">我的购物车</p>-->
-        <!--</div>-->
-        <!--<div class="t-right">-->
-          <!--<i class="arrow fa fa-angle-right fa-2x"></i>-->
-        <!--</div>-->
-        <!--<div class="clear"></div>-->
-      <!--</div>-->
+    <!--<p class="menu-name">我的购物车</p>-->
+    <!--</div>-->
+    <!--<div class="t-right">-->
+    <!--<i class="arrow fa fa-angle-right fa-2x"></i>-->
+    <!--</div>-->
+    <!--<div class="clear"></div>-->
+    <!--</div>-->
     <%# end %>
 
     <%= link_to gybs_path do %>
@@ -46,7 +46,7 @@
       </div>
     <% end %>
 
-    <%= link_to orders_path(:status => '0') do %>
+    <%= link_to orders_path(:status => '0', :title => '未完成订单') do %>
       <div class="finished-orders s-s" id="finished-orders">
         <div class="t-left">
           <i class="menu-icon fa fa-bars fa-lg"></i>
@@ -61,7 +61,7 @@
       </div>
     <% end %>
 
-    <%= link_to orders_path(:status => '1') do %>
+    <%= link_to orders_path(:status => '1', :title => '已完成订单') do %>
       <div class="unfinished-orders" id="unfinished-orders">
         <div class="t-left">
           <i class="menu-icon fa fa-bars fa-lg"></i>
@@ -76,7 +76,7 @@
       </div>
     <% end %>
 
-    <%= link_to orders_path(:status => '2') do %>
+    <%= link_to orders_path(:status => '2', :title => '退款/售后订单') do %>
       <div class="after-sale-orders" id="after-sale-orders">
         <div class="t-left">
           <i class="menu-icon fa fa-bars fa-lg"></i>
@@ -91,7 +91,7 @@
       </div>
     <% end %>
 
-    <%= link_to orders_path do %>
+    <%= link_to orders_path(:title => '所有订单') do %>
       <div class="all-orders" id="all-orders">
         <div class="t-left">
           <i class="menu-icon fa fa-bars fa-lg"></i>
