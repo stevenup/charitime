@@ -3,9 +3,7 @@ class AddressesController < BaseController
     @addresses = Address.where(:user_id => current_user.id.to_s).order('created_at DESC')
     if @addresses != []
       @addresses.each do |ele|
-        ele.province = ChinaCity.get ele.province
-        ele.city     = ChinaCity.get ele.city
-        ele.district = ChinaCity.get ele.district
+        Address.convert_addr(ele)
       end
     end
   end

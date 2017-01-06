@@ -16,16 +16,15 @@ class OrdersController < BaseController
   end
 
   def pay
-    order_id               = params[:id]
-    @order_detail          = OrderDetail.find_by_order_id order_id
-    @order_detail.province = ChinaCity.get @order_detail.province
-    @order_detail.city     = ChinaCity.get @order_detail.city
-    @order_detail.district = ChinaCity.get @order_detail.district
+    order_id      = params[:id]
+    @order_detail = OrderDetail.find_by_order_id order_id
+    Address.convert_addr(@order_detail)
   end
 
   def show
     order_id      = params[:id]
     @order_detail = OrderDetail.find_by_order_id order_id
+    Address.convert_addr(@order_detail)
     if @order_detail.note
       @records = @order_detail.note.split('\n')
     end
