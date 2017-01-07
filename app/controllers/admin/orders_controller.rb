@@ -103,7 +103,7 @@ class Admin::OrdersController < Admin::AuthenticatedController
     dt = decode_datatables_params
 
     where_array = []
-    where_array << 'orders.order_status = 1'
+    where_array << 'orders.order_status = 1 and logistics_status != 3 and logistics_status != 4'
 
     search_obj = {
         :include => [],

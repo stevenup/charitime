@@ -40,7 +40,7 @@
             </div>
 
             <div class="gyb-item-pic m-t m-b">
-              <%= image_tag ShelfItem.find_by_product_id(ele.shelf_item_id).try(:thumb) %>
+              <%= image_tag OrderDetail.find_by_order_id(ele.order_id).try(:thumb) %>
             </div>
 
             <div class="gyb-item-detail m-t m-b m-l">
@@ -48,9 +48,9 @@
 
               </p>
               <p class="gyb-plus m-t">
-                您为商品&nbsp;
-                <span><%= ele.shelf_item_id.to_s %></span>&nbsp;支出
-                <span>&nbsp;<%= ShelfItem.find_by_product_id(ele.shelf_item_id).try(:gyb_discount).to_i %>&nbsp;</span>
+                购买&nbsp;
+                <span><%= OrderDetail.find_by_order_id(ele.order_id).try(:product_name) %></span>&nbsp;支出
+                <span>&nbsp;<%= OrderDetail.find_by_order_id(ele.order_id).try(:gyb_discount).to_i %>&nbsp;</span>
                 公益币。
               </p>
             </div>
@@ -66,5 +66,3 @@
 <% if @gyb_incomes == [] && @gyb_payments.nil? %>
     <div class="no-records">尚无收入记录。</div>
 <% end %>
-
-</div>
