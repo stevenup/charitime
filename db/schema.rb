@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161229060100) do
+ActiveRecord::Schema.define(version: 20170107103748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 20161229060100) do
     t.string   "gyb_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "remark"
   end
 
   create_table "gyb_payments", force: :cascade do |t|
@@ -222,12 +223,6 @@ ActiveRecord::Schema.define(version: 20161229060100) do
   create_table "products_projects", id: false, force: :cascade do |t|
     t.integer "product_id"
     t.integer "project_id"
-  end
-
-  create_table "project_types", force: :cascade do |t|
-    t.string   "project_type_name"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
   end
 
   create_table "projects", force: :cascade do |t|

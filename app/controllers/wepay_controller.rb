@@ -110,6 +110,16 @@ class WepayController < ApplicationController
         else
           order_detail.note += note
         end
+
+        # Process Gyb returning.
+        if order_detail.gyb_discount > 0
+          gyb_income         = GybIncome.new
+          gyb_income.user_id = current_user.id
+          gyb_income.gyb_id  = Gyb.first.id
+          gyb_income.remark  = order_detail.order_id
+          gyb_income.save
+        end
+
         order_detail.save
         order_detail.order.update_attribute(:order_status, -3)
         render json: { result: 'success' }

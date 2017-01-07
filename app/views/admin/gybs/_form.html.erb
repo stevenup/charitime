@@ -1,36 +1,44 @@
 <%= form_for @gyb, url: url, html: {class: 'form-horizontal'} do |f| %>
-    <div class="form-group">
-      <%= f.label :title, class: 'col-lg-1 control-label' %>
-      <div class="col-lg-4"><%= f.text_field :title, class: 'col-lg-4 form-control', required: true %></div>
-    </div>
+  <div class="form-group">
+    <%= f.label :title, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.text_field :title, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :gyb_type, class: 'col-lg-1 control-label' %>
-      <div class="col-lg-4"><%= f.select :gyb_type, options_for_select([["类别1", "1"], ["类别2", "2"], ["类别3", "3"], ["类别4", "4"]]), {prompt: '-- select one --'}, {class: 'col-lg-4 form-control', required: true} %></div>
-    </div>
+  <div class="form-group">
+    <%= f.label :gyb_type, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.select :gyb_type, options_for_select([["类别1", "1"], ["类别2", "2"], ["类别3", "3"], ["类别4", "4"]]), {prompt: '-- select one --'}, {class: 'col-lg-4 form-control', required: true} %></div>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :price, class: 'col-lg-1 control-label' %>
-      <div class="col-lg-4"><%= f.text_field :price, class: 'col-lg-4 form-control', required: true %></div>
-    </div>
+  <div class="form-group">
+    <%= f.label :price, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.text_field :price, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :stock, class: 'col-lg-1 control-label' %>
-      <div class="col-lg-4"><%= f.text_field :stock, class: 'col-lg-4 form-control', required: true %></div>
-    </div>
+  <div class="form-group">
+    <%= f.label :stock, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.text_field :stock, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
 
+  <% if @gyb.expiration_time.nil? %>
+    <div class="form-group">
+      <%= f.label :expiration_time, class: 'col-lg-1 control-label' %>
+      <div class="col-lg-4"><%= f.text_field :expiration_time, class: 'col-lg-4 form-control', id: 'datetimepicker', required: true %></div>
+    </div>
+  <% else %>
     <div class="form-group">
       <%= f.label :expiration_time, class: 'col-lg-1 control-label' %>
       <div class="col-lg-4"><%= f.text_field :expiration_time, :value => @gyb.expiration_time.strftime("%Y-%m-%d %H:%M"), class: 'col-lg-4 form-control', id: 'datetimepicker', required: true %></div>
     </div>
+  <% end %>
 
-    <div class="form-group">
-      <div class="col-lg-offset-1 col-lg-10">
-        <%= f.submit '保存', class: "btn btn-sm btn-primary" %>
-        &nbsp
-        <%= link_to '返回', '#', class: "btn btn-sm btn-info", onclick: "history.back()" %>
-      </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-1 col-lg-10">
+      <%= f.submit '保存', class: "btn btn-sm btn-primary" %>
+      &nbsp
+      <%= link_to '返回', '#', class: "btn btn-sm btn-info", onclick: "history.back()" %>
     </div>
+  </div>
 <% end %>
 
 <script>
