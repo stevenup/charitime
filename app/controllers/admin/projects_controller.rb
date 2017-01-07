@@ -6,6 +6,13 @@ class Admin::ProjectsController < Admin::AuthenticatedController
     end
   end
 
+  def get_supports
+    respond_to do |format|
+      format.html
+      format.json { get_supports_rows }
+    end
+  end
+
   def recommended_projects
     respond_to do |format|
       format.html
@@ -108,6 +115,27 @@ class Admin::ProjectsController < Admin::AuthenticatedController
                 .joins(search_obj[:joins])
                 .order(search_obj[:order])
                 .where(search_obj[:conditions])
+  end
+
+  def get_supports_rows
+    dt = decode_datatables_params
+
+    where_array = []
+    where_array << "status = '1'"
+
+    search_obj = {
+      :include => [],
+      :joins => [],
+      :order => dt[:sort_statement],
+      :conditions => [where_array.join(' AND ')]
+    }
+
+    @total_rows = Support.count(search_obj)
+    @rows = Support.page(dt[:page]).per(dt[:per_page])
+              .includes(search_obj[:include])
+              .joins(search_obj[:joins])
+              .order(search_obj[:order])
+              .where(search_obj[:conditions])
   end
 
   def create_or_update(id = 0, data)

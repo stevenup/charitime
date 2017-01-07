@@ -1,0 +1,28 @@
+<div class="nav-content-head">
+  <ul class="breadcrumb">
+    <li><span class="primary-font"><i class="icon-home"></i></span><a href="/admin/dashboard"> 首页</a></li>
+    <li>项目管理</li>
+    <li>项目支持</li>
+  </ul>
+</div>
+
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="table-responsive">
+      <%= dt id: 'get_supports_datatable', class: 'table table-striped b-t b-b', :'data-url' => get_supports_admin_projects_path(:format => :json)  do %>
+        <%= dt_col(Support.hn(:id), data: { data: 'id' }) %>
+        <%= dt_col(Support.hn(:project_name), data: { data: 'project_name' }) %>
+        <%= dt_col(Support.hn(:project_id), data: { data: 'project_id' }) %>
+        <%= dt_col(Support.hn(:user_id), data: { data: 'user_id' }) %>
+        <%= dt_col(Support.hn(:support_type), data: { data: 'support_type' }) %>
+        <%= dt_col(Support.hn(:money), data: { data: 'money' }) %>
+        <%= dt_col(Support.hn(:order_detail_id), data: { data: 'order_detail_id' }) %>
+        <%= dt_col(Support.hn(:created_at), data: { data: 'created_at' }) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :scripts do %>
+  <%= controller_js_include %>
+<% end %>

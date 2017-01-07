@@ -129,6 +129,11 @@
                 <span class="submenu-label">推荐位项目</span>
               <% end %>
             </li>
+            <li class="<%= render_active ({:menu => 'get_supports'}) %>">
+              <%= link_to get_supports_admin_projects_path do %>
+                <span class="submenu-label">项目支持</span>
+              <% end %>
+            </li>
           </ul>
         </li>
 

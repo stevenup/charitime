@@ -94,6 +94,7 @@ Rails.application.routes.draw do
       collection do
         get :all
         get :recommended_projects
+        get :get_supports
       end
     end
 
