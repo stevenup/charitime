@@ -104,7 +104,7 @@ class WepayController < ApplicationController
     res = Wepay::Service.invoke_refund params
     if res['return_code'] == 'SUCCESS'
       if res['result_code'] == 'SUCCESS'
-        note = Time.now.strftime('%Y-%m-%d %T').to_s + ': ' + '已同意退款。\n'
+        note = Time.now.strftime('%Y-%m-%d %T').to_s + ': ' + '已同意退款\n'
         if order_detail.note.nil?
           order_detail.note = note
         else

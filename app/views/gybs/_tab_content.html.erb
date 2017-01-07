@@ -22,8 +22,8 @@
           <% if ele.gyb.gyb_type == 0 %>
             <p class="gyb-plus m-t">
               订单&nbsp;
-              <span><%= ele.order_id %></span>&nbsp;退还
-              <span>&nbsp;<%= OrderDetail.find_by_order_id(ele.order_id).try(:gyb_discount).to_s %>&nbsp;</span>
+              <span><%= ele.remark %></span>&nbsp;退还
+              <span>&nbsp;<%= OrderDetail.find_by_order_id(ele.remark).try(:gyb_discount).to_i %>&nbsp;</span>
               公益币
             </p>
           <% else %>

@@ -53,7 +53,7 @@ class Admin::OrdersController < Admin::AuthenticatedController
         else
           order_detail.note += note
         end
-        redirect_to refund_orders_admin_orders_path if order_detail.save && order_detail.order.update_attribute(:order_status, -5)
+        redirect_to refund_orders_admin_orders_path if order_detail.order.update_attribute(:order_status, -5) and order_detail.save
       end
     else
       order_detail.delivery_company = order_detail_params[:delivery_company]
