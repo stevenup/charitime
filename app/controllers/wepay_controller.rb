@@ -114,12 +114,13 @@ class WepayController < ApplicationController
         # Process Gyb returning.
         if order_detail.gyb_discount > 0
           gyb_income         = GybIncome.new
-          gyb_income.user_id = current_user.id
+          user               = User.find_by(order_detail.order.user_id)
+          gyb_income.user_id = user.id
           gyb_income.gyb_id  = Gyb.first.id
           gyb_income.remark  = order_detail.order_id
           gyb_income.save
-          current_user.gyb += order_detail.gyb_discount.to_i
-          current_user.save
+          user.gyb += order_detail.gyb_discount.to_i
+          user.save
         end
 
         order_detail.save
