@@ -118,6 +118,8 @@ class WepayController < ApplicationController
           gyb_income.gyb_id  = Gyb.first.id
           gyb_income.remark  = order_detail.order_id
           gyb_income.save
+          current_user.gyb += order_detail.gyb_discount.to_i
+          current_user.save
         end
 
         order_detail.save
