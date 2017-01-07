@@ -114,7 +114,7 @@ class WepayController < ApplicationController
         # Process Gyb returning.
         if order_detail.gyb_discount > 0
           gyb_income         = GybIncome.new
-          user               = User.find_by(order_detail.order.user_id)
+          user               = User.find_by(:id => order_detail.order.user_id)
           gyb_income.user_id = user.id
           gyb_income.gyb_id  = Gyb.first.id
           gyb_income.remark  = order_detail.order_id
@@ -123,8 +123,8 @@ class WepayController < ApplicationController
           user.save
         end
 
-        order_detail.save
         order_detail.order.update_attribute(:order_status, -3)
+        order_detail.save
         render json: { result: 'success' }
       else res['result_code'] == 'FAIL'
         render json: { result: 'fail', data: res['err_code_des'] }
