@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'https://res.wx.qq.com/open/js/jweixin-1.0.0.js' %>
   <%= javascript_include_tag 'application' %>
-  <%= favicon_link_tag %>
+  <link href="<%= image_path('favicon.ico') %>" rel="shortcut icon" />
   <%= csrf_meta_tags %>
 </head>
 <body>
