@@ -183,6 +183,35 @@ i.arrow {
   border: #979797;
 }
 
+.alert {
+  color: #ffffff;
+  text-align: center;
+  background: #000;
+}
+
+#alert-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  display: table;
+  height: p2e(64px);
+  width: p2e(480px);
+  padding: p2e(12px);
+  -webkit-border-radius: p2e(10px);
+  -moz-border-radius: p2e(10px);
+  border-radius: p2e(10px);
+
+  p {
+    display: table-cell;
+    vertical-align: middle;
+    padding: p2e(12px);
+    @include font-dpr(12px);
+  }
+}
+
 /**************  homepage style  **************/
 .homepage {
   padding-bottom: p2e(100px);

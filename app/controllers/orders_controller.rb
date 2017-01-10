@@ -1,4 +1,5 @@
 class OrdersController < BaseController
+  before_filter :check_duplicate_order, only: [:create]
   include StatusesHelper
   include UrlHelper
 
@@ -111,5 +112,23 @@ class OrdersController < BaseController
       current_user.save
     end
     render json: { status: 'success' }
+  end
+
+  private
+  def check_duplicate_order
+    count  = params[:count]
+    aid    = params[:aid]
+    siid   = params[:siid]
+    remark = params[:remark]
+
+    addr         = Address.find_by_id(aid)
+    order_detail = OrderDetail.find_by('shelf_item_id = ? and count = ? and remark = ? and province = ? and city = ? and district = ? and detail_address = ?',
+                                          siid, count, remark, addr.province, addr.city, addr.district, addr.detail_address)
+    if order_detail and order_detail.order.order_status == 'UNPAID'
+      flash[:type]    = 'alert'
+      flash[:message] = '您有重复的未支付订单, 请前往 我的 -> 未完成订单 进行支付。'
+      redirect_to shelf_item_path(params[:siid])
+    end
+    # render :nothing => true, :status => 301
   end
 end

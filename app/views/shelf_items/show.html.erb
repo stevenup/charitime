@@ -1,5 +1,7 @@
 <div id="overlay"></div>
-
+<div class="<%= flash[:type] %>" id="alert-box">
+  <p><%= flash[:message] %></p>
+</div>
 <% if @project %>
   <div class="project-overview p-l p-r p-t p-b">
     <div class="p-thumb">
@@ -153,6 +155,12 @@
 
 <script>
   $(document).ready(function () {
+    setTimeout(function () {
+      $('.alert').fadeOut('slow', function () {
+        $('#alert-box').removeClass('alert');
+      })
+    }, 3500);
+    
     $('#add-address-btn').on('click', function () {
       $.ajax({
         method: 'get',
