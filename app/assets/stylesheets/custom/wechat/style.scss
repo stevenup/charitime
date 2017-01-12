@@ -263,8 +263,12 @@ i.arrow {
           -webkit-align-items: center;
           align-items: center;
 
-          img {
+          a {
             width: 100%;
+
+            img {
+              width: 100%;
+            }
           }
         }
       }
