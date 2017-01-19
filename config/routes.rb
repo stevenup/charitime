@@ -52,6 +52,12 @@ Rails.application.routes.draw do
   end
   get '/orders/pay/:id', to: 'orders#pay', as: 'order_pay'
 
+  namespace :api, :defaults => { :format => :json } do
+    namespace :v1 do
+      get '/shelf_items', to: 'shelf_items#index'
+    end
+  end
+
   namespace :admin do
     get 'dashboard' => 'home#index'
 
