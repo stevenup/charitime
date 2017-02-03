@@ -55,6 +55,9 @@ Rails.application.routes.draw do
   namespace :api, :defaults => { :format => :json } do
     namespace :v1 do
       get '/shelf_items', to: 'shelf_items#index'
+      get '/shelf_items/linked_shelf_items', to: 'shelf_items#linked_shelf_items'
+      get '/projects', to: 'projects#index'
+      get '/carousels', to: 'carousels#index'
     end
   end
 
