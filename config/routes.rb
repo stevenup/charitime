@@ -57,7 +57,9 @@ Rails.application.routes.draw do
       get '/shelf_items', to: 'shelf_items#index'
       get '/shelf_items/linked_shelf_items', to: 'shelf_items#linked_shelf_items'
       get '/projects', to: 'projects#index'
+      get '/projects/get_project', to: 'projects#get_project', as: 'get_project'
       get '/carousels', to: 'carousels#index'
+
     end
   end
 
