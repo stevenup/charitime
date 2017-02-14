@@ -20,4 +20,10 @@ class Api::V1::ShelfItemsController < ApplicationController
     end
 
   end
+
+  def get_shelf_item
+    id = params[:id]
+    shelf_item = ShelfItem.find_by(:id => id)
+    render json: shelf_item, status: :ok if shelf_item
+  end
 end
