@@ -62,6 +62,7 @@ Rails.application.routes.draw do
       get '/gybs/get_gyb_income_records', to: 'gybs#get_gyb_income_records'
       get '/gybs/get_gyb_payment_records', to: 'gybs#get_gyb_payment_records'
       get '/addresses/get_addresses', to: 'addresses#get_addresses'
+      post '/addresses/create_address', to: 'addresses#create_address'
     end
   end
 
