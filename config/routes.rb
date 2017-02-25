@@ -62,12 +62,16 @@ Rails.application.routes.draw do
       get '/gybs/get_gyb_income_records', to: 'gybs#get_gyb_income_records'
       get '/gybs/get_gyb_payment_records', to: 'gybs#get_gyb_payment_records'
       get '/addresses/get_addresses', to: 'addresses#get_addresses'
+      get '/addresses/get_address', to: 'addresses#get_address'
       post '/addresses/create_address', to: 'addresses#create_address'
+      delete '/addresses/delete_address', to: 'addresses#delete_address'
+      post '/addresses/set_default', to: 'addresses#set_default'
     end
   end
 
   namespace :admin do
     get 'dashboard' => 'home#index'
+
 
     resources :users
 
