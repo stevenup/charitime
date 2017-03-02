@@ -432,44 +432,6 @@ i.arrow {
     }
   }
 
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: #ffffff;
-    border-top: p2e(1px) solid #afafaf;
-    box-shadow: p2e(-8px) p2e(2px) p2e(4px) p2e(5px) rgba(236, 236, 236, 0.38);
-    text-align: center;
-    @include font-dpr(16px);
-
-    .bottom-nav-fixed {
-      margin-bottom: p2e(4px);
-      padding-top: p2e(12px);
-      display: -webkit-flex; /* Safari */
-      display: flex;
-      justify-content: space-between;
-
-      a {
-        //display: inline-flex;
-        text-decoration: none;
-        color: orangered;
-        text-align: center;
-        padding-left: p2e(80px);
-        padding-right: p2e(80px);
-
-        i {
-          display: block;
-        }
-
-        p {
-          display: block;
-          margin-top: p2e(14px);
-          @include font-dpr(10px);
-          color: #717171;
-        }
-      }
-    }
-  }
 }
 
 /*********** project list style *******/
@@ -575,9 +537,10 @@ i.arrow {
   .foot {
     text-align: center;
     color: #979797;
-    @include font-dpr(14px);
+    @include font-dpr(12px);
     position: relative;
-    margin: p2e(56px) auto;
+    margin-top: p2e(60px);
+    margin-bottom: p2e(140px);
   }
 }
 
@@ -1993,6 +1956,46 @@ i.arrow {
       margin-top: p2e(45px);
       padding-bottom: p2e(45px);
       text-align: center;
+    }
+  }
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  border-top: p2e(1px) solid #afafaf;
+  box-shadow: p2e(-8px) p2e(2px) p2e(4px) p2e(5px) rgba(236, 236, 236, 0.38);
+  text-align: center;
+  @include font-dpr(16px);
+
+  .bottom-nav-fixed {
+    margin-bottom: p2e(4px);
+    padding-top: p2e(12px);
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      //display: inline-flex;
+      text-decoration: none;
+      color: orangered;
+      text-align: center;
+      width: 25%;
+      //padding-left: p2e(80px);
+      //padding-right: p2e(80px);
+
+      i {
+        display: block;
+      }
+
+      p {
+        display: block;
+        margin-top: p2e(14px);
+        @include font-dpr(10px);
+        color: #717171;
+      }
     }
   }
 }
