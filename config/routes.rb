@@ -56,16 +56,22 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/shelf_items', to: 'shelf_items#index'
       get '/shelf_items/linked_shelf_items', to: 'shelf_items#linked_shelf_items'
+
       get '/projects', to: 'projects#index'
       get '/projects/get_project', to: 'projects#get_project', as: 'get_project'
+
       get '/carousels', to: 'carousels#index'
+
       get '/gybs/get_gyb_income_records', to: 'gybs#get_gyb_income_records'
       get '/gybs/get_gyb_payment_records', to: 'gybs#get_gyb_payment_records'
+
       get '/addresses/get_addresses', to: 'addresses#get_addresses'
       get '/addresses/get_address', to: 'addresses#get_address'
       post '/addresses/create_address', to: 'addresses#create_address'
       delete '/addresses/delete_address', to: 'addresses#delete_address'
       post '/addresses/set_default', to: 'addresses#set_default'
+
+      get '/login', to: 'login#index'
     end
   end
 
