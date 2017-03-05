@@ -21,3 +21,4 @@
 /config/wechat.yml
 /.ruby-version
 tags
+dump.rdb

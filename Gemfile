@@ -34,6 +34,11 @@ gem 'axlsx_rails'
 
 gem 'devise'
 
+# Use Redis for caching
+gem 'redis'
+gem 'redis-rails'
+gem 'redis-store'
+
 # rich-text editor
 gem 'ckeditor'
 gem 'carrierwave'
