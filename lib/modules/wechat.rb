@@ -1,15 +1,4 @@
 module Modules::Wechat
-  def get_wxapp_openid_and_session_key code
-    _appid      = Settings.wxapp.appid
-    _secret     = Settings.wxapp.secret
-    _code       = code
-    _url        = "https://api.weixin.qq.com/sns/jscode2session?appid=#{ _appid }&secret=#{ _secret }&js_code=#{ _code }&grant_type=authorization_code"
-    _info       = HTTPClient.get _url
-    openid      = JSON.parse(_info.body)['openid']
-    session_key = JSON.parse(_info.body)['session_key']
-    [openid, session_key]
-  end
-
   def get_access_token
     _path = Settings.wechat.access_token
     return refresh_access_token unless File.exist?(_path)
@@ -87,5 +76,5 @@ module Modules::Wechat
   end
 
   module_function :get_access_token, :refresh_access_token, :get_js_ticket, :refresh_js_ticket, :get_sign, :get_user_openid, :get_user_info_sns_base,
-                  :get_user_info_sns_userinfo, :get_wxapp_openid_and_session_key
+                  :get_user_info_sns_userinfo
 end
