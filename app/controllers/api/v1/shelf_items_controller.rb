@@ -10,20 +10,20 @@ class Api::V1::ShelfItemsController < ApplicationController
     end
   end
 
-  def linked_shelf_items
-    pid = params[:pid]
-    if pid
-      shelf_items = ShelfItem.where('is_on_shelf = ? and project_id = ?', '1', pid)
-      render json: shelf_items, status: :ok
-    else
-      render json: { data: 'no request params.' }
-    end
-
-  end
-
   def get_shelf_item
     id = params[:id]
     shelf_item = ShelfItem.find_by(:id => id)
     render json: shelf_item, status: :ok if shelf_item
+  end
+
+  def get_linked_project
+    siid = params[:siid]
+    shelf_item = ShelfItem.find_by_id(siid)
+    if shelf_item
+      project = shelf_item.project
+      render json: project, status: :ok if project
+    else
+      render json: { result: 'FAIL' }
+    end
   end
 end

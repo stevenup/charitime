@@ -17,4 +17,15 @@ class Api::V1::ProjectsController < ApplicationController
       render json: project, status: :ok if project
     end
   end
+
+  def get_linked_shelf_items
+    pid = params[:pid]
+    if pid
+      shelf_items = ShelfItem.where('is_on_shelf = ? and project_id = ?', '1', pid)
+      render json: shelf_items, status: :ok
+    else
+      render json: { data: 'no request params.' }
+    end
+
+  end
 end

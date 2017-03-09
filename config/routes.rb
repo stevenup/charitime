@@ -54,11 +54,15 @@ Rails.application.routes.draw do
 
   namespace :api, :defaults => { :format => :json } do
     namespace :v1 do
+      get '/login', to: 'login#index'
+
       get '/shelf_items', to: 'shelf_items#index'
-      get '/shelf_items/linked_shelf_items', to: 'shelf_items#linked_shelf_items'
+      get '/shelf_items/get_shelf_item', to: 'shelf_items#get_shelf_item'
+      get '/shelf_items/get_linked_project', to: 'shelf_items#get_linked_project'
 
       get '/projects', to: 'projects#index'
       get '/projects/get_project', to: 'projects#get_project', as: 'get_project'
+      get '/projects/get_linked_shelf_items', to: 'projects#get_linked_shelf_items'
 
       get '/carousels', to: 'carousels#index'
 
@@ -70,14 +74,11 @@ Rails.application.routes.draw do
       post '/addresses/create_address', to: 'addresses#create_address'
       delete '/addresses/delete_address', to: 'addresses#delete_address'
       post '/addresses/set_default', to: 'addresses#set_default'
-
-      get '/login', to: 'login#index'
     end
   end
 
   namespace :admin do
     get 'dashboard' => 'home#index'
-
 
     resources :users
 
