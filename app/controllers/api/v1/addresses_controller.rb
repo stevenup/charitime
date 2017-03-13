@@ -18,6 +18,16 @@ class Api::V1::AddressesController < ApplicationController
     render json: address, status: :ok if address
   end
 
+  def get_default_address
+    id = params[:id]
+    address = Address.find_by(user_id: id, default: '1')
+    if address.blank?
+      render json: { result: 'FAIL' }
+    else
+      render json: { result: 'SUCCESS', address: address }, status: :ok
+    end
+  end
+
   def create_address
     address = Address.new(address_params)
     if address.save

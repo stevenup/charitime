@@ -71,6 +71,7 @@ Rails.application.routes.draw do
 
       get '/addresses/get_addresses', to: 'addresses#get_addresses'
       get '/addresses/get_address', to: 'addresses#get_address'
+      get '/addresses/get_default_address', to: 'addresses#get_default_address'
       post '/addresses/create_address', to: 'addresses#create_address'
       delete '/addresses/delete_address', to: 'addresses#delete_address'
       post '/addresses/set_default', to: 'addresses#set_default'
