@@ -759,6 +759,15 @@ i.arrow {
     .detail-body {
       @include font-dpr(14px);
       line-height: p2e(48px);
+
+      p {
+        line-height: 0;
+
+        img {
+          width: 100% !important;
+          height: 100% !important;
+        }
+      }
     }
 
     .project-supporters {
