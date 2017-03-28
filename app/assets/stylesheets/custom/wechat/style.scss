@@ -141,8 +141,13 @@ i.arrow {
   text-align: center;
 
   p.total {
-    @include font-dpr(14px);
-    color: #d88b1f;
+    @include font-dpr(18px);
+    color: red;
+
+    span {
+      @include font-dpr(12px);
+      color: #000;
+    }
   }
 
   .supporters {

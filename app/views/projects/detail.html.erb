@@ -22,16 +22,20 @@
 
   <div class="support-info m-t m-b">
     <div class="supporters p-r">
-      <p class="total"><%= @num_dedication_support.to_s %></p>
-      <p>无偿奉献爱心</p>
+      <p class="total"><%= @num_dedication_support.to_s %> <span> 人</span></p>
+      <p>无偿支持</p>
     </div>
     <div class="supporters p-r">
-      <p class="total"><%= @num_purchase_support.to_s %></p>
-      <p>购买给予支持</p>
+      <p class="total"><%= @num_purchase_support.to_s %> <span> 人</span></p>
+      <p>购买支持</p>
     </div>
     <div class="money p-r">
-      <p class="total">¥<%= '%.2f' % @total.to_f %></p>
-      <p>累计款项</p>
+      <p class="total">¥ <%= '%.2f' % @total.to_f %></p>
+      <p>累计获得</p>
+    </div>
+    <div class="money p-r">
+      <p class="total">¥ <%= '%.2f' % @project.goal.to_f %></p>
+      <p>项目目标</p>
     </div>
   </div>
 
@@ -42,7 +46,7 @@
         <span class="p-title p-l">项目详情</span>
       </div>
     </div>
-    <div class="detail-body p-t p-b p-l p-r">
+    <div class="detail-body p-t p-b">
       <%= @project.project_detail.html_safe.to_s %>
     </div>
   </div>
