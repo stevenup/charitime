@@ -938,7 +938,15 @@ i.arrow {
   .detail-body {
     @include font-dpr(14px);
     line-height: p2e(48px);
-    padding-bottom: p2e(120px);
+
+    p {
+      line-height: 0;
+
+      img {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
   }
 
   .buttons {
@@ -1793,9 +1801,9 @@ i.arrow {
   border-bottom: 1px solid grey;
 
   .p-thumb {
-    border: 1px solid black;
+    //border: 1px solid black;
     //display: inline-flex;
-    width: 25%;
+    width: 30%;
 
     img {
       width: 100%;
