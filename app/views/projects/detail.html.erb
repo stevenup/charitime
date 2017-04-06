@@ -22,11 +22,11 @@
 
   <div class="support-info m-t m-b">
     <div class="supporters p-r">
-      <p class="total"><%= @num_dedication_support.to_s %> <span> 人</span></p>
+      <p class="total"><%= @num_dedication_support.to_s %> <span> 份</span></p>
       <p>无偿支持</p>
     </div>
     <div class="supporters p-r">
-      <p class="total"><%= @num_purchase_support.to_s %> <span> 人</span></p>
+      <p class="total"><%= @num_purchase_support.to_s %> <span> 份</span></p>
       <p>购买支持</p>
     </div>
     <div class="money p-r">
@@ -183,6 +183,9 @@
   <% end %>
 </div>
 
+<%= hidden_field_tag 'project_title', @project.project_name %>
+<%= hidden_field_tag 'project_thumb', @project.thumb %>
+
 <% content_for :title, '项目详情' %>
 
 <script>
@@ -239,5 +242,37 @@
         return 0 === n % (!isNaN(parseFloat(n)) && 0 < ~~n);
       }
     });
+
+    $.ajax({
+      type: 'GET',
+      url: '/init_js_info',
+      data: { "url": window.location.href.split('#')[0] },
+      success: function (res) {
+        $info = res['data'];
+      }
+    });
+
+    wx.ready(function () {
+      var current_url   = window.location.href.split('detail')[0] + 'detail';
+      var redirect_uri  = encodeURIComponent(current_url);
+      var host_url      = 'http://' + current_url.split('//')[1].split('/')[0];
+      var project_title = document.getElementById('project_title').value;
+      var project_thumb = document.getElementById('project_thumb').value;
+
+      wx.onMenuShareAppMessage({
+        title: project_title, // 分享标题
+        desc: project_title, // 分享描述
+        link: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + $info.appid + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_userinfo&state=12345#wechat_redirect", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        imgUrl: host_url + project_thumb, // 分享图标
+        type: '', // 分享类型,music、video或link，不填默认为link
+        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        success: function () {
+          // 用户确认分享后执行的回调函数
+        },
+        cancel: function () {
+          // 用户取消分享后执行的回调函数
+        }
+      });
+    })
   })
 </script>

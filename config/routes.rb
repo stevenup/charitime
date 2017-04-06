@@ -139,6 +139,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/init_js_info', to: 'init_js_info#init_js_info'
+
   scope 'wepay' do
     get '/jsapi/',          to: 'wepay#recv'
     get '/unified_order',   to: 'wepay#unified_order'

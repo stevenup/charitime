@@ -1,7 +1,16 @@
 $ ->
+#  $.ajax ({
+#    type: 'GET',
+#    url: '/wepay/init_wx_js_info',
+#    data: { "url": window.location.href.split('#')[0] },
+#    success: (res) ->
+#      info = res['data'];
+#      config_wechat(info.appid, info.timestamp, info.noncestr, info.signature);
+#  })
+
   $.ajax ({
     type: 'GET',
-    url: '/wepay/init_wx_js_info',
+    url: '/init_js_info',
     data: { "url": window.location.href.split('#')[0] },
     success: (res) ->
       info = res['data'];
@@ -10,7 +19,7 @@ $ ->
 
 config_wechat = (appid, timestamp, noncestr, signature) ->
   wx.config ({
-    # debug: true,
+#    debug: true,
     appId: appid,
     timestamp: timestamp,
     nonceStr: noncestr,
