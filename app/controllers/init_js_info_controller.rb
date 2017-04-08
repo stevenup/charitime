@@ -6,10 +6,10 @@ class InitJsInfoController < ApplicationController
       timestamp = Time.now.to_i
       noncestr  = SecureRandom.hex(10)
       info      = {
-        :appid      => appid,
-        :timestamp  => timestamp,
-        :noncestr   => noncestr,
-        :signature  => Modules::Wechat.get_sign(timestamp, noncestr, url)
+        :appid     => appid,
+        :timestamp => timestamp,
+        :noncestr  => noncestr,
+        :signature => Modules::Wechat.get_sign(timestamp, noncestr, url)
       }
     end
     render json: { data: info }

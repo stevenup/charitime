@@ -273,7 +273,6 @@
 
       wx.onMenuShareAppMessage({
         title: project_title, // 分享标题
-        desc: project_title, // 分享描述
         link: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + $info.appid + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_userinfo&state=12345#wechat_redirect", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
         imgUrl: host_url + project_thumb, // 分享图标
         type: '', // 分享类型,music、video或link，不填默认为link

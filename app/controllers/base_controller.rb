@@ -9,8 +9,9 @@ class BaseController < ApplicationController
     Rails.logger.info '###############################################'
     code    = params[:code]
     au_type = params[:type]
-    unless logged_in?
-      log_in code, au_type if code
+    if logged_in?
+      log_in(code, au_type) if code
     end
+    update_user(code, au_type) if code
   end
 end
