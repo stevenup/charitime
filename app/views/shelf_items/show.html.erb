@@ -97,6 +97,9 @@
 
 <% if @address.nil? %>
   <div class="confirm-box" id="confirm-box">
+    <div id="btn-close">
+      <span>x</span>
+    </div>
     <%= link_to 'javascript:;' do %>
       <button id="add-address-btn" class="btn btn-default btn-highlight m-l m-r m-t p-t p-b">添加地址</button>
     <% end %>
@@ -116,6 +119,9 @@
   </div>
 <% else %>
   <div class="confirm-box" id="confirm-box">
+    <div id="btn-close">
+      <span>x</span>
+    </div>
     <%= form_tag '/orders', method: :post do %>
       <%#= link_to shelf_items_update_order_address_path, remote: true do %>
         <div id="delivery-addr-wrapper" class="delivery-addr-wrapper">
@@ -245,7 +251,15 @@
         $('#confirm-box').animate({height: 'toggle'}, 'fast')
       })
     });
+
     $('#overlay').on('click', function () {
+      $('#confirm-box').animate({height: 'toggle'}, 'fast', function () {
+        $('#add-address-form').fadeOut().remove();
+        $('#overlay').fadeOut('fast')
+      })
+    });
+
+    $('#btn-close').on('click', function () {
       $('#confirm-box').animate({height: 'toggle'}, 'fast', function () {
         $('#add-address-form').fadeOut().remove();
         $('#overlay').fadeOut('fast')
@@ -294,7 +308,6 @@
       var host_url      = 'http://' + current_url.split('//')[1].split('/')[0];
       var shelf_item_title = document.getElementById('shelf_item_title').value;
       var shelf_item_thumb = document.getElementById('shelf_item_thumb').value;
-
 
       wx.onMenuShareTimeline({
         title: shelf_item_title, // 分享标题

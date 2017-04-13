@@ -107,6 +107,9 @@
 </div>
 
 <div class="purchases tt m-t" id="purchases">
+  <div id="btn-close">
+    <span>x</span>
+  </div>
   <% if @shelf_items != [] %>
     <p class="title">通过购买以下商品，您将直接支持到该项目</p>
     <% @shelf_items.each do |item| %>
@@ -137,6 +140,9 @@
 </div>
 
 <div class="dedications tt m-t p-t" id="dedications">
+  <div id="btn-close">
+    <span>x</span>
+  </div>
   <%= form_tag supports_path, method: :post, id: 'option-form' do %>
     <p class="title">您的点滴付出对我们都是洪流般的帮助</p>
     <%= label_tag 'money_option_5', class: 'option money-option' do %>
@@ -201,6 +207,11 @@
       })
     });
     $('#overlay').on('click', function () {
+      $('.tt').slideUp('fast', function () {
+        $('#overlay').fadeOut('fast')
+      })
+    });
+    $('.tt #btn-close').on('click', function () {
       $('.tt').slideUp('fast', function () {
         $('#overlay').fadeOut('fast')
       })

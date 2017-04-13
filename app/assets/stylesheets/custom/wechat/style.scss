@@ -1096,6 +1096,18 @@ i.arrow {
   padding: p2e(20px);
   padding-top: 0;
 
+  #btn-close {
+    width: p2e(56px);
+    height: p2e(56px);
+    -webkit-border-radius: p2e(28px);
+    -moz-border-radius: p2e(28px);
+    border-radius: p2e(28px);
+    background: #ffffff;
+    margin: p2e(-18px) auto;
+    text-align: center;
+    @include font-dpr(16px);
+  }
+
   .item-number {
     padding: p2e(18px);
     @include font-dpr(14px);
@@ -1668,6 +1680,18 @@ i.arrow {
   background: white;
   text-align: center;
 
+  #btn-close {
+    width: p2e(56px);
+    height: p2e(56px);
+    -webkit-border-radius: p2e(28px);
+    -moz-border-radius: p2e(28px);
+    border-radius: p2e(28px);
+    background: #ffffff;
+    margin: p2e(-28px) auto;
+    text-align: center;
+    @include font-dpr(16px);
+  }
+
   .title {
     @include font-dpr(16px);
     text-align: center;
@@ -1731,6 +1755,18 @@ i.arrow {
   z-index: 999;
   background: white;
   text-align: center;
+
+  #btn-close {
+    width: p2e(56px);
+    height: p2e(56px);
+    -webkit-border-radius: p2e(28px);
+    -moz-border-radius: p2e(28px);
+    border-radius: p2e(28px);
+    background: #ffffff;
+    margin: p2e(-18px) auto;
+    text-align: center;
+    @include font-dpr(16px);
+  }
 
   .title {
     @include font-dpr(16px);
