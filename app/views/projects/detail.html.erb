@@ -249,6 +249,11 @@
         $('#money').val('');
       }
 
+      if(!$('.option').hasClass('selected')) {
+        check.preventDefault();
+        alert('尚未选择捐赠款项哦~');
+      }
+
       function isPositiveInteger(n) {
         return 0 === n % (!isNaN(parseFloat(n)) && 0 < ~~n);
       }
