@@ -14,11 +14,14 @@ class GybsController < BaseController
     exchange_code = params[:exchange_code]
     gyb           = Gyb.find_by_exchange_code(exchange_code)
     if gyb.nil?
-      render json: { status: 'exchange code not existed.' }
+      flash[:type]    = 'alert'
+      flash[:message] = '该兑换码无效！'
+      redirect_to gybs_path
+      # render json: { status: 'exchange code not existed.' }
     else
       # determine whether the current user has exchanged the code.
       if GybIncome.where("user_id = ? and gyb_id = ?", current_user.id.to_s, gyb.id) == []
-        # save the income gybs to the gyb_income table.
+        # Save the income gybs to the gyb_income table.
         gyb_income         = GybIncome.new
         gyb_income.user_id = current_user.id.to_s
         gyb_income.gyb_id  = gyb.id
@@ -29,9 +32,14 @@ class GybsController < BaseController
         # update the total gybs of the user owned.
         current_user.gyb += gyb.price
         current_user.save
+        flash[:type]    = 'alert'
+        flash[:message] = '兑换成功！'
         redirect_to gybs_path
       else
-        render json: { status: 'You have exchanged the code.'}
+        # render json: { status: 'You have exchanged the code.' }
+        flash[:type]    = 'alert'
+        flash[:message] = '该兑换码已被兑换完毕！'
+        redirect_to gybs_path
       end
     end
   end
