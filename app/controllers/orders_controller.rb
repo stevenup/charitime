@@ -114,6 +114,22 @@ class OrdersController < BaseController
     render json: { status: 'success' }
   end
 
+  def get_logistics_info
+    req_data = { "OrderCode": "", "ShipperCode": "SF", "LogisticCode": "118650888018" }
+    e_business_id = Settings.kdniao.EBusinessID
+    req_type = '1002'
+    data_sign = Modules::Kdniao.sign_data(req_data)
+    api_url = Settings.kdniao.APIUrl
+    url = "#{api_url}?RequestData=#{URI.encode_www_form(req_data)}&EBusinessId=#{e_business_id}&RequestType=#{req_type}&DataSign=#{data_sign}&DataType=2-json"
+    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    puts url
+    clnt = HTTPClient.new
+    clnt.head
+    info = HTTPClient.post url
+    puts 'L:>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    puts info.body
+  end
+
   private
   def check_duplicate_order
     count  = params[:count]

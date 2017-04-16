@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     get :apply_refund,           on: :member
     get :confirm_complete,       on: :member
     get :add_gyb_payment_record, on: :collection
+    get :get_logistics_info, on: :collection
   end
   get '/orders/pay/:id', to: 'orders#pay', as: 'order_pay'
 

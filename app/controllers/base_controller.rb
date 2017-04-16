@@ -13,3 +13,4 @@ class BaseController < ApplicationController
     update_user(code, au_type) if code
   end
 end
+
