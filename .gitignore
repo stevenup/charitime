@@ -19,6 +19,6 @@
 /config/database.yml
 /config/application.yml
 /config/wechat.yml
-/dump.rdb
+dump.rdb
 /.ruby-version
 tags
