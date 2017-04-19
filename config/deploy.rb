@@ -3,7 +3,7 @@ lock '3.5.0'
 
 set :application, 'charitime'
 set :scm, :git
-set :branch, 'dev'
+set :branch, 'master'
 set :repo_url, 'git@github.com:stevenup/charitime.git'
 set :user, 'root'
 set :ssh_options, {
