@@ -51,7 +51,7 @@ class WepayController < ApplicationController
         total_fee:    (order_detail.order.total_price * 100).to_int,
         openid:       current_user.openid,
         trade_type:   'JSAPI',
-        notify_url:   'http://charitime.nonprofit.cn/wepay/notify',
+        notify_url:   Settings.wechat.redirect_uri + '/wepay/notify',
         spbill_create_ip: '127.0.0.1'
       }
 
@@ -71,7 +71,7 @@ class WepayController < ApplicationController
         total_fee:    (support.money).to_int,
         openid:       current_user.openid,
         trade_type:   'JSAPI',
-        notify_url:   'http://charitime.nonprofit.cn/wepay/notify',
+        notify_url:   Settings.wechat.redirect_uri + '/wepay/notify',
         spbill_create_ip: '127.0.0.1'
       }
 
