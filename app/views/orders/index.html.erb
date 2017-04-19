@@ -1,0 +1,54 @@
+<div class="orders">
+  <% if @orders == [] %>
+    <div class="no-orders">
+      <p>列表为空哦～</p>
+      <p><a href="/home">返回</a>首页看看吧。</p>
+    </div>
+  <% else %>
+    <ul class="order-list" id="order-list">
+      <% @orders.each do |ele| %>
+        <%= link_to order_path(ele.order_id) do %>
+          <li class="order-item p-l p-r m-b">
+
+            <div class="item-head">
+              <p class="t-left"><%= ele.created_at.strftime("%Y.%m.%d %H:%M:%S") %></p>
+              <div class="delivery-status t-right">
+                <p><%= transform_status(ele.order_status, ele.logistics_status) %></p>
+
+                <i class="arrow fa fa-angle-right fa-lg"></i>
+                <div class="clear"></div>
+              </div>
+              <div class="clear"></div>
+            </div>
+
+            <div class="item-body p-t p-b">
+              <div class="brief-info">
+                <div class="product-thumb p-r">
+                  <%= image_tag ele.order_details.first.shelf_item.thumb %>
+                </div>
+
+                <div class="product-name m-r">
+                  <p><%= ele.order_details.first.product_name.to_s %></p>
+                </div>
+
+                <div class="product-price p-r">
+                  <p class="inline-block">￥<%= '%.2f' % ele.order_details.first.price.to_s %></p>
+                </div>
+
+                <div class="product-count p-r">
+                  <p class="inline-block">x<%= ele.order_details.first.count.to_s %></p>
+                </div>
+
+                <div class="order-price p-r">
+                  <p class="inline-block red">实付:￥<%= '%.2f' % ele.total_price.to_s %></p>
+                </div>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %><!--if end-->
+</div>
+
+<% content_for :title, set_title(@title) %>

@@ -1,0 +1,160 @@
+<div class="personal-center" id="personal-center">
+  <div class="profile">
+    <div class="avatar">
+      <%= image_tag @user.headimgurl.to_s %>
+    </div>
+    <div class="wx_name">
+      <p><%= @user.nickname.to_s %></p>
+    </div>
+    <div class="total-gyb">
+      <%= link_to gybs_path do %>
+        <p style="text-decoration: underline">
+          <%= @user.gyb.to_s %>
+        </p>
+      <% end %>
+      <p class="tt">公益币</p>
+    </div>
+  </div>
+
+  <div class="menu">
+    <%#= link_to do %>
+    <!--<div class="my-cart s-s" id="my-cart">-->
+    <!--<div class="t-left">-->
+    <!--<i class="menu-icon fa fa-shopping-cart fa-lg"></i>-->
+
+    <!--<p class="menu-name">我的购物车</p>-->
+    <!--</div>-->
+    <!--<div class="t-right">-->
+    <!--<i class="arrow fa fa-angle-right fa-2x"></i>-->
+    <!--</div>-->
+    <!--<div class="clear"></div>-->
+    <!--</div>-->
+    <%# end %>
+
+    <%= link_to gybs_path do %>
+      <div class="my-gyb-menu s-s" id="my-gyb-menu">
+        <div class="t-left">
+          <i class="menu-icon fa fa-money fa-lg"></i>
+
+          <p class="menu-name">我的公益币</p>
+        </div>
+
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
+    <%= link_to orders_path(:status => '0') do %>
+      <div class="finished-orders s-s" id="finished-orders">
+        <div class="t-left">
+          <i class="menu-icon fa fa-bars fa-lg"></i>
+
+          <p class="menu-name">未完成订单</p>
+        </div>
+
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
+    <%= link_to orders_path(:status => '1') do %>
+      <div class="unfinished-orders" id="unfinished-orders">
+        <div class="t-left">
+          <i class="menu-icon fa fa-bars fa-lg"></i>
+
+          <p class="menu-name">已完成订单</p>
+        </div>
+
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
+    <%= link_to orders_path(:status => '2') do %>
+      <div class="after-sale-orders" id="after-sale-orders">
+        <div class="t-left">
+          <i class="menu-icon fa fa-bars fa-lg"></i>
+
+          <p class="menu-name">退款/售后订单</p>
+        </div>
+
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
+    <%= link_to orders_path(:title => '所有订单') do %>
+      <div class="all-orders" id="all-orders">
+        <div class="t-left">
+          <i class="menu-icon fa fa-bars fa-lg"></i>
+
+          <p class="menu-name">所有订单</p>
+        </div>
+
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
+    <%= link_to supports_path do %>
+      <div class="supported-projects s-s" id="supported-projects">
+        <div class="t-left">
+          <i class="menu-icon fa fa-heartbeat fa-lg"></i>
+
+          <p class="menu-name">我支持的项目</p>
+        </div>
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
+    <%#= link_to do %>
+      <!--<div class="my-donations s-s" id="my-donations">-->
+        <!--<div class="t-left">-->
+          <!--<i class="menu-icon fa fa-plus-circle fa-lg"></i>-->
+
+          <!--<p class="menu-name">我的捐赠</p>-->
+        <!--</div>-->
+        <!--<div class="t-right">-->
+          <!--<i class="arrow fa fa-angle-right fa-2x"></i>-->
+        <!--</div>-->
+        <!--<div class="clear"></div>-->
+      <!--</div>-->
+    <%# end %>
+
+    <%= link_to addresses_path do %>
+      <div class="my-settings s-s" id="my-settings">
+        <div class="t-left">
+          <i class="menu-icon fa fa-gears fa-lg"></i>
+
+          <p class="menu-name">我的地址</p>
+        </div>
+        <div class="t-right">
+          <i class="arrow fa fa-angle-right fa-2x"></i>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="foot m-t m-b p-t p-b">
+    <p>&copy; 2017 Good Buy</p>
+  </div>
+
+</div>
+
+<%= render template: 'shared/tabs' %>
+
+<% content_for :title, set_title('我的') %>

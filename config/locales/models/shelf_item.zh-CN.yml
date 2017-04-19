@@ -1,0 +1,13 @@
+zh-CN:
+  activerecord:
+    models:
+      shelf_item: '上架商品'
+    attributes:
+      shelf_item:
+        product_id:    '商品编号'
+        product_name:  '商品名称'
+        thumb:         '商品缩略图'
+        category:      '商品类别'
+        created_at:    '创建时间'
+        action:        '操作'
+        more_actions:  '更多操作'

@@ -1,0 +1,16 @@
+# -*- encoding : utf-8 -*-
+wb = xlsx_package.workbook
+style_shout = wb.styles.add_style sz: 14, b: true, alignment: { horizontal: :center }
+wb.add_worksheet(name: "订单列表") do |sheet|
+  sheet.add_row ['订单id', '商品名称', '商品价格', '商品数量', '公益折扣', '订单价格', '订单状态', '收货人',
+  '省份', '城市', '区域', '具体地址', '联系方式', '快递公司', '快递单号', '快递费', '创建时间', '备注']
+  @orders.each do |order|
+    order.order_details.each do |ele|
+      sheet.add_row [ele.order_id, ele.product_name, ele.price, ele.count, ele.gyb_discount, order.total_price,
+      transform_status(order.order_status, order.logistics_status), ele.receiver_name, ChinaCity.get(ele.province),
+      ChinaCity.get(ele.city), ChinaCity.get(ele.district), ele.detail_address, ele.mobile, ele.delivery_company,
+      ele.delivery_id, ele.express_price, order.created_at.strftime("%Y-%m-%d %T"), ele.remark]
+    end
+
+  end
+end

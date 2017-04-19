@@ -1,0 +1,18 @@
+default: &default
+  appid: <%= Settings.wechat.appid %>
+  secret: <%= Settings.wechat.secret %>
+  token: <%= Settings.wechat.token %>
+  access_token: <%= Settings.wechat.access_token %>
+
+production:
+  <<: *default
+  # Or if using public account, only need above two line
+  # corpid:     <%= ENV['WECHAT_CORPID'] %>
+  # corpsecret: <%= ENV['WECHAT_CORPSECRET'] %>
+  # agentid:    <%= ENV['WECHAT_AGENTID'] %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default

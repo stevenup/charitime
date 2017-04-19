@@ -1,0 +1,78 @@
+<% if @gyb_incomes %>
+  <div class="gyb-record" id="gyb-income">
+    <div class="remarks m-t m-b p-t p-b">以下是您获得的公益币</div>
+
+    <% @gyb_incomes.each do |ele| %>
+      <div class="gyb-item s-s">
+        <div class="gyb-item-head">
+          <i class="menu-icon fa fa-tag fa-lg"></i>
+          <p class="menu-name"><%= ele.created_at.strftime('%Y-%m-%d %T').to_s %></p>
+          <!--<i class="arrow fa fa-angle-right fa-2x"></i>-->
+        </div>
+
+        <div class="gyb-item-pic m-t m-b">
+          <%= image_tag 'gyb_income.png' %>
+        </div>
+
+        <div class="gyb-item-detail m-t m-b m-l">
+          <p class="gyb-source">
+            <%= ele.gyb.title.to_s %>
+          </p>
+
+          <% if ele.gyb.gyb_type == 0 %>
+            <p class="gyb-plus m-t">
+              订单&nbsp;
+              <span><%= ele.remark %></span>&nbsp;退还
+              <span>&nbsp;<%= OrderDetail.find_by_order_id(ele.remark).try(:gyb_discount).to_i %>&nbsp;</span>
+              公益币
+            </p>
+          <% else %>
+            <p class="gyb-plus m-t">
+              收入&nbsp;<span><%= ele.gyb.price.to_s %></span>&nbsp;公益币
+            </p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @gyb_payments %>
+  <div class="gyb-record" id="gyb-cost">
+    <div class="remarks m-t m-b p-t p-b">以下是您支出的公益币</div>
+
+    <% @gyb_payments.each do |ele| %>
+      <div class="gyb-item s-s">
+        <div class="gyb-item-head">
+          <i class="menu-icon fa fa-tag fa-lg"></i>
+          <p class="menu-name"><%= ele.created_at.strftime('%Y-%m-%d %T').to_s %></p>
+          <!--<i class="arrow fa fa-angle-right fa-2x"></i>-->
+        </div>
+
+        <div class="gyb-item-pic m-t m-b">
+          <%= image_tag 'gyb_payment.png' %>
+        </div>
+
+        <div class="gyb-item-detail m-t m-b m-l">
+          <p class="gyb-source">
+
+          </p>
+          <p class="gyb-plus m-t">
+            购买&nbsp;
+            <span><%= OrderDetail.find_by_order_id(ele.order_id).try(:product_name) %></span>&nbsp;支出
+            <span>&nbsp;<%= OrderDetail.find_by_order_id(ele.order_id).try(:gyb_discount).to_i %>&nbsp;</span>
+            公益币
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @gyb_incomes.nil? && @gyb_payments == [] %>
+  <div class="no-records">尚无支出记录</div>
+<% end %>
+
+<% if @gyb_incomes == [] && @gyb_payments.nil? %>
+  <div class="no-records">尚无收入记录</div>
+<% end %>

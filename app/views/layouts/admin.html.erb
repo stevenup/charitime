@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8">
+    <title>公益商城后台管理</title>
+    <%= stylesheet_link_tag    'admin', media: 'all' %>
+    <%= javascript_include_tag 'admin' %>
+    <link href="<%= image_path('favicon.ico') %>" rel="shortcut icon" />
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body class="overflow-hidden">
+    <div class="wrapper">
+      <%= render 'shared/admin/header' %>
+      <%= render 'shared/admin/sidebar' %>
+
+      <div class="main-container">
+        <div class="padding-md">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="scroll-to-top hidden-print"><i class="fa fa-chevron-up fa-lg"></i></a>
+
+    <%= yield :outside_container %>
+    <%= yield :scripts %>
+    <%= yield :styles %>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<div class="nav-content-head">
+  <ul class="breadcrumb">
+    <li><span class="primary-font"><i class="icon-home"></i></span><a href="/admin/dashboard"> 首页</a></li>
+    <li>上架管理</li>
+    <li>推荐位商品</li>
+  </ul>
+</div>
+
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="table-responsive">
+      <%= dt id: 'recommended_list_datatable', class: 'table table-striped b-t b-b', :'data-url' => recommended_list_admin_shelf_items_path(:format => :json) do %>
+        <%= dt_col(ShelfItem.hn(:product_id), data: { data: 'product_id' }) %>
+        <%= dt_col(ShelfItem.hn(:product_name), data: { data: 'product_name' }) %>
+        <%= dt_col(ShelfItem.hn(:thumb), data: { data: 'thumb' }) %>
+        <%= dt_col(ShelfItem.hn(:category), data: { data: 'category' }) %>
+        <%= dt_col(ShelfItem.hn(:created_at), data: { data: 'created_at' }) %>
+        <%= dt_col(ShelfItem.hn(:action), data: { data: 'action' }) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :scripts do %>
+  <%= controller_js_include %>
+<% end %>

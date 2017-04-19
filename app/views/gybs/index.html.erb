@@ -1,0 +1,60 @@
+<div class="<%= flash[:type] %>" id="alert-box">
+  <p><%= flash[:message] %></p>
+</div>
+
+<div class="my-gyb" id="my-gyb">
+  <div class="profile">
+    <div class="avatar">
+      <%= image_tag current_user.headimgurl.to_s %>
+    </div>
+    <div class="wx_name">
+      <p><%= current_user.nickname.to_s %></p>
+    </div>
+    <div class="total-gyb">
+      <p><%= current_user.gyb.to_s %></p>
+
+      <p class="tt">公益币</p>
+    </div>
+  </div>
+
+  <div class="switch-tabs p-t p-b" id="switch-tabs">
+    <div class="tabs-wrapper">
+      <%= link_to '收入', gybs_append_path(type: '0'), remote: true, class: 'active tab' %>
+      <%= link_to '支出', gybs_append_path(type: '1'), remote: true, class: 'tab' %>
+    </div>
+  </div>
+
+  <div class="exchange p-t p-b">
+    <div class="remarks m-t m-b p-t p-b">
+      输入兑换码兑换公益币
+    </div>
+
+    <div class="exchange-area">
+      <%= form_tag("/gybs/exchange", method: "get") do %>
+        <%= text_field_tag(:exchange_code, nil, :placeholder => "输入兑换码", :class => 'exchange-box m-r', :required => true) %>
+        <%= submit_tag("兑换", :class => 'exchange-btn m-l') %>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="tab-content">
+    <%= render 'gybs/tab_content' %>
+  </div>
+</div>
+
+<% content_for :title, set_title('我的公益币') %>
+
+<script>
+  $(document).ready(function () {
+    $('.tab').on('click', function () {
+      $('.tab').removeClass('active');
+      $(this).addClass('active');
+    });
+
+    setTimeout(function () {
+      $('.alert').fadeOut('slow', function () {
+        $('#alert-box').removeClass('alert');
+      })
+    }, 3500);
+  })
+</script>

@@ -1,0 +1,204 @@
+<div class="homepage" id="homepage">
+  <div class="carousel-swiper" id="carousel-swiper">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <% if @carousels != [] %>
+          <% @carousels.each do |carousel| %>
+            <% if carousel.is_custom == '1' %>
+              <div class="swiper-slide">
+                <%= link_to carousel.custom_url do %>
+                  <%= image_tag carousel.image.to_s %>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="swiper-slide">
+                <%= link_to detail_carousel_path(carousel.id) do %>
+                  <%= image_tag carousel.image.to_s %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <div class="swiper-slide">
+            啊哦~~无轮播图
+          </div>
+        <% end %>
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+  <div class="rcmds s-s" id="rcmds">
+    <div class="header-section p-l p-r">
+      <p class="title">推荐</p>
+      <a href="/shelf_items" class="all">查看全部 &nbsp;<i class="fa fa-angle-right fa-lg"></i></a>
+    </div>
+
+    <div class="shelf-items-wrapper">
+      <ul class="shelf-items-list">
+        <% @recommended_items.each do |p| %>
+          <%= link_to shelf_item_path p.id do %>
+            <li class="item">
+              <%= image_tag p.thumb.to_s %>
+              <div class="item-property p-b">
+                <div class="item-name">
+                  <%= p.product_name.to_s %>
+                </div>
+                <div class="item-bottom">
+                  <div class="item-price red">
+                    ¥<%= '%.2f' % p.price.to_s %>
+                  </div>
+                  <!--<div class="item-hearts t-right">-->
+                    <!--<i class="fa fa-heart red"></i>&nbsp; 100-->
+                  <!--</div>-->
+                </div>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+
+        <!--<div class="project-item m-t p-b">-->
+        <!--<div class="project-pic">-->
+        <!--<%#= image_tag 'p1.jpg' %>-->
+        <!--</div>-->
+
+        <!--<div class="project-info p-t p-b">-->
+        <!--<p class="title">这里输入标题</p>-->
+
+        <!--<p class="description">这里输入描述这里输入描述这里输入描述这里输入描述这里输入描述</p>-->
+
+        <!--<div class="progress">-->
+        <!--<div class="progress-bar">-->
+        <!--<div class="green-bar"></div>-->
+        <!--</div>-->
+        <!--<div class="progress-percent">-->
+        <!--<p>40%</p>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="support-info">-->
+        <!--<div class="supporters p-r">-->
+        <!--<p class="total">20</p>-->
+
+        <!--<p>支持人数</p>-->
+        <!--</div>-->
+        <!--<div class="money p-r">-->
+        <!--<p class="total">5000</p>-->
+
+        <!--<p>累计款项</p>-->
+        <!--</div>-->
+        <!--<div class="target p-r">-->
+        <!--<p class="total">12500</p>-->
+
+        <!--<p>目标</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+      </ul>
+
+    </div>
+
+  </div>
+
+  <!--<div class="hot s-s" id="hot">-->
+  <!--<div class="header-section p-t p-l p-r">-->
+  <!--<p class="title">热卖商品</p>-->
+  <!--<a href="#" class="all">查看全部 &nbsp;<i class="fa fa-angle-right fa-lg"></i></a>-->
+  <!--</div>-->
+
+  <!--<div class="hot-items m-t">-->
+  <!--<div class="goods-item m-t">-->
+
+  <!--</div>-->
+  <!--<div class="goods-item m-t">-->
+
+  <!--</div>-->
+  <!--<div class="goods-item m-t">-->
+
+  <!--</div>-->
+  <!--<div class="goods-item m-t">-->
+
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <div class="projects s-s p-b" id="projects">
+    <div class="header-section p-l p-r">
+      <p class="title">公益项目</p>
+      <a href="/projects" class="all">查看全部 &nbsp;<i class="fa fa-angle-right fa-lg"></i></a>
+    </div>
+
+    <div class="project-list">
+      <% @projects.each do |ele| %>
+        <%= link_to detail_project_path ele.id do %>
+          <div class="project-item m-b">
+            <div class="project-pic">
+              <%= image_tag ele.banner %>
+            </div>
+          </div>
+        <% end %>
+      <% end  %>
+    </div>
+  </div>
+
+  <%= render template: 'shared/tabs' %>
+
+</div>
+
+<% content_for :title, set_title('GoodBuy 公益商城') %>
+
+<script>
+  $(document).ready(function () {
+    var swiper = new Swiper('.swiper-container', {
+      pagination: '.swiper-pagination',
+      paginationClickable: true,
+      autoplay: 3000,
+      loop: true
+    });
+
+    var $info = '';
+    var current_url  = 'http://' + window.location.href.split('//')[1].split('/')[0];
+    var redirect_uri = encodeURIComponent(current_url);
+
+    $.ajax({
+      type: 'GET',
+      url: '/init_js_info',
+      data: { "url": window.location.href.split('#')[0] },
+      success: function (res) {
+        $info = res['data'];
+      }
+    });
+
+    wx.ready(function () {
+      wx.onMenuShareTimeline({
+        title: 'GoodBuy 公益商城', // 分享标题
+        link: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + $info.appid + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_base&state=12345#wechat_redirect", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+//    imgUrl: host_url + shelf_item_thumb, // 分享图标
+        success: function () {
+          // 用户确认分享后执行的回调函数
+        },
+        cancel: function () {
+          // 用户取消分享后执行的回调函数
+        }
+      });
+
+      wx.onMenuShareAppMessage({
+        title: 'GoodBuy 公益商城', // 分享标题
+        desc: '这里有很多优秀的公益项目和创意新潮的产品,赶快来看看吧~', // 分享描述
+        link: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + $info.appid + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_base&state=12345#wechat_redirect", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+//    imgUrl: host_url + shelf_item_thumb, // 分享图标
+        type: '', // 分享类型,music、video或link，不填默认为link
+        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        success: function () {
+          // 用户确认分享后执行的回调函数
+        },
+        cancel: function () {
+          // 用户取消分享后执行的回调函数
+        }
+      });
+    });
+  })
+</script>

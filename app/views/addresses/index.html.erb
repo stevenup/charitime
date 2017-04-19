@@ -1,0 +1,135 @@
+<div id="overlay"></div>
+
+<div id="my-address" class="my-address">
+  <% if @addresses == [] %>
+    <div class="buttons">
+      <button id="add-address-btn" class="btn btn-default btn-highlight p-t p-b m-t">添加地址</button>
+    </div>
+  <% else %>
+    <% @addresses.each do |addr| %>
+      <div class="address-item p-l p-r p-t p-b" data-id="<%= addr.id %>">
+        <div id="address-info" class="address-info">
+          <p class="name"><%= addr.receiver_name %></p>
+          <p class="tel"><%= addr.mobile %></p>
+          <p class="address"><%= "#{ addr.province.to_s }#{' '}#{ addr.city.to_s }#{' '}#{ addr.district.to_s }#{' '}#{ addr.detail_address.to_s }" %></p>
+        </div>
+        <div class="buttons">
+
+          <% if addr.default == '1' %>
+            <a href="javascript:;" class="t-left set-default-btn">
+              <i class="fa fa-check-square fa-lg default"></i>&nbsp;已设为默认
+            </a>
+          <% else %>
+            <%= link_to set_default_address_path(addr.id), :method => 'get', :'data-confirm' => '确定设置为默认地址吗？', :class => 't-left set-default-btn' do %>
+              <i class="fa fa-check-square fa-lg"></i>&nbsp;设为默认
+            <% end %>
+          <% end %>
+
+          <%= link_to address_path(addr.id), :method => 'delete', :'data-confirm' => '确定删除嘛？', :class => 't-right delete-btn p-l' do %>
+            <i class="fa fa-trash fa-lg"></i>&nbsp;删除
+          <% end %>
+          <a href="javascript:;" data-id="<%= addr.id %>" class="t-right edit-btn"><i class="fa fa-edit fa-lg"></i>&nbsp;编辑</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="buttons">
+      <button id="add-address-btn" class="btn btn-default btn-highlight p-t p-b m-t">添加地址</button>
+    </div>
+  <% end %><!-- if end -->
+</div>
+
+<script>
+  $(document).ready(function () {
+    $('.edit-btn').on('click', function () {
+      id = $(this).data('id');
+      $.ajax({
+        method: 'get',
+        url: '/addresses/modify',
+        data: { id: id },
+        success: function (res) {
+          $('#overlay').fadeIn('fast', function () {
+            $('body').append('<div id="edit-address-form" class="address-form"></div>');
+            $('#edit-address-form').append(res).fadeIn('fast');
+            $('.city-group').china_city();
+          })
+        }
+      })
+    });
+
+    $('#add-address-btn').on('click', function () {
+      $.ajax({
+        method: 'get',
+        url: '/addresses/new',
+        remote: 'true',
+        success: function (res) {
+          $('#overlay').fadeIn('fast', function () {
+            $('#overlay').fadeIn('fast', function () {
+              $('body').append('<div id="add-address-form" class="address-form"></div>');
+              $('#add-address-form').append(res).fadeIn('fast');
+              $('.city-group').china_city();
+            })
+          })
+        }
+      })
+    });
+
+    $('#overlay').on('click', function () {
+      $('.address-form').fadeOut('fast', function () {
+        $('#overlay').fadeOut('fast');
+        $('#edit-address-form').remove();
+        $('#add-address-form').remove();
+      });
+    });
+
+    $('body').on('click', '#cancel-btn', function () {
+      $('.address-form').fadeOut('fast', function () {
+        $('#edit-address-form').remove();
+        $('#add-address-form').remove();
+        $('#overlay').fadeOut('fast');
+      });
+    });
+
+    $('body').on('click', '#save-address', function (check) {
+      var receiver_name  = document.getElementById('receiver_name').value;
+      var mobile         = document.getElementById('mobile').value;
+      var province       = document.getElementById('province').value;
+      var city           = document.getElementById('city').value;
+      var district       = document.getElementById('district').value;
+      var detail_address = document.getElementById('detail_address').value;
+
+      isFilledProperly = true;
+
+      if (receiver_name == '') {
+        alert('请填写收货人姓名！');
+        isFilledProperly = false;
+      }
+
+      if (!checkPhone(mobile)) {
+        alert('手机号码有误，请检查！');
+        isFilledProperly = false;
+      }
+
+      if (province == "--省份--" || city == "--城市--" || district == "--区域--") {
+        alert('请检查省市区是否已选择！');
+        isFilledProperly = false;
+      }
+
+      if (detail_address == '') {
+        alert('请填写详细地址！');
+        isFilledProperly = false;
+      }
+
+      if (!isFilledProperly) {
+        check.preventDefault();
+      }
+    });
+
+    function checkPhone(mobile){
+      return (/^1[34578]\d{9}$/.test(mobile));
+    }
+  })
+</script>
+
+<% content_for :title, set_title('我的地址') %>

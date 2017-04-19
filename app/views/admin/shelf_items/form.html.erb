@@ -1,0 +1,47 @@
+<div id="shelf-item-form">
+  <%= form_for @shelf_item, url: admin_shelf_items_path, html: {class: 'form-horizontal'} do |f| %>
+    <div class="form-group">
+      <%= f.label :商品编号, class: 'col-lg-2 control-label' %>
+      <div class="col-lg-4"><%= f.label @product.product_id, class: 'col-lg-4 form-control' %></div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :商品名称, class: 'col-lg-2 control-label' %>
+      <div class="col-lg-4"><%= f.label @product.product_name, class: 'col-lg-4 form-control' %></div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :商品缩略图, class: 'col-lg-2 control-label' %>
+      <div class="col-lg-4"><%= image_tag @product.thumb, class: 'col-lg-6' %></div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :商品详情, class: 'col-lg-2 control-label' %>
+      <div class="col-lg-4"><%= @product.product_detail.to_s.html_safe %></div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :商品类别, class: 'col-lg-2 control-label' %>
+      <div class="col-lg-4"><%= f.label @product.try(:category), class: 'col-lg-4 form-control' %></div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :商品价格, class: 'col-lg-2 control-label' %>
+      <div class="col-lg-4"><%= f.text_field :price, class: 'col-lg-4 form-control', placeholder: '请输入销售价格', required: true %></div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :公益币折扣, class: 'col-lg-2 control-label' %>
+      <div class="col-lg-4"><%= f.text_field :gyb_discount, class: 'col-lg-4 form-control', placeholder: '请输入公益折扣', required: true %></div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :商品库存, class: 'col-lg-2 control-label' %>
+      <div class="col-lg-4"><%= f.text_field :stock, class: 'col-lg-4 form-control', placeholder: '请输入库存量', required: true %></div>
+    </div>
+
+    <%= hidden_field_tag 'id', @product.id %>
+
+  <% end %>
+
+</div>

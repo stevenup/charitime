@@ -1,0 +1,92 @@
+<%= form_for @project, url: url, html: {class: 'form-horizontal'} do |f| %>
+  <div class="form-group">
+    <%= f.label :project_name, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.text_field :project_name, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :category, class: 'col-lg-1 control-label' %>
+    <% if @project.category.blank? %>
+      <div class="col-lg-4"><%= f.select :category, options_for_select([["类别1", "1"], ["类别2", "2"]]), {prompt: '-- select one --'}, {class: 'col-lg-4 form-control', required: true} %></div>
+    <% else %>
+      <div class="col-lg-4"><%= f.select :category, options_for_select([["类别1", "1"], ["类别2", "2"]], selected: "#{@project.category}"), {prompt: '-- select one --'}, {class: 'col-lg-4 form-control'} %></div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :thumb, class: 'col-lg-1 control-label' %>
+    <% if @project.thumb.blank? %>
+      <div class="col-lg-4"><%= f.file_field :thumb, class: 'col-lg-4 form-control', required: true %></div>
+    <% else %>
+      <div><%= render_img @project.thumb, :width => '200px', :height => '50px', :style => 'margin-left: 14px; margin-bottom: 14px;' %></div>
+      <div class="col-lg-4 col-lg-offset-1"><%= f.file_field :thumb, class: 'form-control' %></div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :banner, class: 'col-lg-1 control-label' %>
+    <% if @project.banner.blank? %>
+      <div class="col-lg-4"><%= f.file_field :banner, class: 'col-lg-4 form-control', required: true %></div>
+    <% else %>
+      <div><%= render_img @project.banner, :width => '200px', :height => '50px', :style => 'margin-left: 14px; margin-bottom: 14px;' %></div>
+      <div class="col-lg-4 col-lg-offset-1"><%= f.file_field :banner, class: 'form-control' %></div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :main_pic, class: 'col-lg-1 control-label' %>
+    <% if @project.main_pic.blank? %>
+      <div class="col-lg-4"><%= f.file_field :main_pic, class: 'col-lg-4 form-control', required: true %></div>
+    <% else %>
+      <div><%= render_img @project.main_pic, :width => '200px', :height => '50px', :style => 'margin-left: 14px; margin-bottom: 14px;' %></div>
+      <div class="col-lg-4 col-lg-offset-1"><%= f.file_field :main_pic, class: 'form-control' %></div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :关联商品, class: 'col-lg-1 control-label' %>
+    <% if @items_of_this_project %>
+      <div class="col-lg-10">
+        <% @items_of_this_project.each do |item| %>
+          <div style="margin-bottom: 14px; display: inline-block"><%= render_img item.thumb, :width => '80px', :height => '80px' %></div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if @not_linked_items  %>
+      <div class="col-lg-9 col-lg-offset-1">
+        <%= f.fields_for :shelf_item_ids do |item| %>
+          <div class="col-lg-3"><%= item.collection_select :shelf_item_id_1, @not_linked_items, :id, :product_name, {prompt: '-- select one --'}, {id: 'item1'} %></div>
+          <div class="col-lg-3"><%= item.collection_select :shelf_item_id_2, @not_linked_items, :id, :product_name, {prompt: '-- select one --'}, {id: 'item2'} %></div>
+          <div class="col-lg-3"><%= item.collection_select :shelf_item_id_3, @not_linked_items, :id, :product_name, {prompt: '-- select one --'}, {id: 'item3'} %></div>
+        <% end %>
+      </div>
+
+    <% else %>
+      <%# binding.pry %>
+      <div class="col-lg-10 col-lg-offset-1">不存在多余的可关联的商品。</div>
+    <% end %>
+
+    <!--<div id="add-shelf-item-btn" class="col-lg-1">-->
+    <!--<i class="fa fa-2x fa-plus"></i>-->
+    <!--</div>-->
+  </div>
+
+  <div class="form-group">
+    <%= f.label :goal, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.text_field :goal, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :project_detail, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-11"><%= f.cktext_area :project_detail, required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-1 col-lg-10">
+      <%= f.submit '保存', class: "btn btn-sm btn-primary" %>
+      &nbsp
+      <%= link_to '返回', '#', class: "btn btn-sm btn-info", onclick: "history.back()" %>
+    </div>
+  </div>
+<% end %>

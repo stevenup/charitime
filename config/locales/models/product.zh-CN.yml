@@ -1,0 +1,14 @@
+zh-CN:
+  activerecord:
+    models:
+      product: '商品'
+    attributes:
+      product:
+        product_id:      '商品编号'
+        product_name:    '商品名称'
+        thumb:           '商品图片'
+        category:        '商品类别'
+        product_detail:  '商品详情'
+        created_at:      '创建时间'
+        action:          '操作'
+        more_actions:    '更多操作'

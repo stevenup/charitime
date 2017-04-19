@@ -1,0 +1,1 @@
+require "extends/active_record/i18n_extends.rb"

@@ -1,0 +1,41 @@
+  <div class="shelf-item-detail">
+    <div class="big-thumb">
+      <%= image_tag @product.thumb %>
+    </div>
+
+    <div class="main">
+      <div class="main-left">
+        <div class="product-name">
+          <%= @product.product_name.to_s %>
+        </div>
+        <div class="price">
+          <span class="big-price">￥100</span>
+          <span class="coin">10公益币</span>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+
+    <div class="detail-body p-r p-l p-t p-b">
+      <%= @product.product_detail.to_s.html_safe %>
+    </div>
+
+    <div class="buttons">
+      <!--<button id="buy-btn" class="btn btn-default btn-highlight buy-btn p-t p-b">立即购买</button>-->
+      <div class="btn-default other-btn p-t p-b">
+        <%= link_to root_path do %>
+            <i class="fa fa-home fa-lg"></i>&nbsp;&nbsp;首页
+        <% end %>
+      </div>
+      <div class="btn-default other-btn p-t p-b">
+        <%= link_to personal_center_home_index_path do %>
+            <i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;我的
+        <% end %>
+      </div>
+      <div id="buy-btn" class="btn-default btn-highlight buy-btn p-t p-b">立即购买</div>
+      <!--<button id="cart-btn" class="btn btn-default p-t p-b">加入购物车</button>-->
+    </div>
+
+  </div>
+
+<% content_for :title, set_title('商品详情')  %>

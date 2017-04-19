@@ -1,0 +1,36 @@
+@import "../../integrations/adjust_config";
+@import "../../integrations/page_settings";
+@import "../../integrations/reset";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #ECECEC !important;
+  font-family: Helvetica, "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", Tahoma, Arial, Heiti, "黑体", sans-serif !important;
+  @include font-dpr(14px);
+  color: #000;
+  overflow: hidden;
+
+  a {
+    color: #000000;
+  }
+}
+
+.preview {
+  margin: 0 auto;
+  width: p2e(750px);
+
+  .shelf-item-detail {
+    .buttons {
+      width: 100%;
+    }
+  }
+
+  .project_detail {
+    padding-bottom: 0;
+
+    .btn-bottom-area {
+      width: 100%;
+    }
+  }
+}

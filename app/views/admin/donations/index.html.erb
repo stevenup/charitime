@@ -1,0 +1,30 @@
+<div class="nav-content-head">
+  <ul class="breadcrumb">
+    <li><span class="primary-font"><i class="icon-home"></i></span><a href="/admin/dashboard"> 首页</a></li>
+    <li>捐赠管理</li>
+    <li>全部捐赠</li>
+  </ul>
+
+</div>
+
+
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="table-responsive">
+      <%= dt id: 'donations_datatable', class: 'table table-striped b-t b-b', :'data-url' => admin_donations_path(:format => :json) do %>
+        <%= dt_col(Donation.hn(:donation_id), data: { data: 'donation_id '}) %>
+        <%= dt_col(Donation.hn(:donation_name), data: { data: 'donation_name '}) %>
+        <%= dt_col(Donation.hn(:donation_category), data: { data: 'donation_category_id '}) %>
+        <%= dt_col(Donation.hn(:donation_description), data: { data: 'donation_description '}) %>
+        <%= dt_col(Donation.hn(:logistics_company), data: { data: 'logistics_company '}) %>
+        <%= dt_col(Donation.hn(:delivery_num), data: { data: 'delivery_num '}) %>
+        <%= dt_col(Donation.hn(:created_at), data: { data: 'created_at '}) %>
+        <%= dt_col(Donation.hn(:action), data: { data: 'actions '}) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :scripts do %>
+  <%= controller_js_include %>
+<% end %>

@@ -1,0 +1,31 @@
+<div class="supports p-t p-b" id="supports">
+  <div class="support-list p-r p-l">
+    <% if @supports != [] %>
+      <% @supports.each do |ele| %>
+        <div class="support-item m-t">
+          <div class="mask">
+            <% if ele[:support_type] == '0' %>
+              <%= image_tag 'corner.png' %>
+            <% elsif ele[:support_type] == '1' %>
+              <%= image_tag 'corner2.png' %>
+            <% end %>
+
+            <div class="description">
+              <p class="title"><%= ele.project.project_name.to_s %></p>
+              <p><%= ele.created_at.strftime("%Y-%m-%d %T") %></p>
+            </div>
+          </div>
+          <div class="support-pic">
+            <%= image_tag ele.project.banner.to_s %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="no-records">
+        尚无记录。
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= content_for :title, set_title('我的支持') %>

@@ -1,0 +1,18 @@
+// for datatables boostrap stylesheets patch
+div.table-responsive > div.dataTables_wrapper > div.row:first-child > div[class^="col-"]:first-child {
+  padding-left: 15px;
+}
+div.table-responsive > div.dataTables_wrapper > div.row:first-child > div[class^="col-"]:last-child {
+  padding-right: 15px;
+}
+
+div.table-responsive > div.dataTables_wrapper > div.row:last-child > div[class^="col-"]:first-child {
+  padding-left: 15px;
+}
+div.table-responsive > div.dataTables_wrapper > div.row:last-child > div[class^="col-"]:last-child {
+  padding-right: 15px;
+}
+
+div.table-responsive select {
+  margin: 0 5px 0 5px;
+}

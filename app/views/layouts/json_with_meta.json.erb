@@ -1,0 +1,8 @@
+{
+  "meta": {
+    "code": <%= @code || 200 %>,
+    "message": "<%= @message %>",
+    "errors": <%= @errors.to_json.html_safe %>
+  },
+  "data": <%= yield %>
+}

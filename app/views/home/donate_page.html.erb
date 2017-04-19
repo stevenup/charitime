@@ -1,0 +1,47 @@
+<div class="donate-page" id="donate-page">
+  <div class="donate-page-head">
+    <%= image_tag 'donation_bgp.png' %>
+  </div>
+
+  <div class="donation-info m-t">
+    <%= form_tag("/submit_donation_info", method: "get") do %>
+      <div class="form-group">
+        <%= label_tag '物品属类' %>
+        <%= select_tag '物品属类', options_for_select([ "类别1", "类别2" ], "类别1"), :class => 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= label_tag '物品名称' %>
+        <%= text_field_tag(:donation_cate, nil, :class => 'form-control') %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag '物品描述' %>
+        <%= text_field_tag(:donation_desc, nil, :class => 'form-control') %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag '物流公司' %>
+        <%= select_tag '物流公司', options_for_select([ "类别1", "类别2" ], "类别1"), :class => 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag '单号' %>
+        <%= text_field_tag(:delivery_num, nil, :class => 'form-control') %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag '上传照片' %>
+        <div class="donation-photos m-t p-l">
+          <div class="camera">
+            <i class="fa fa-plus fa-lg"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= submit_tag("提交", :class => 'form-control' ) %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

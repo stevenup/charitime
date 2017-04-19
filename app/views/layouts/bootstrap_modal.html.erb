@@ -1,0 +1,15 @@
+<div class="popup-inner">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" tabindex="-1">×</button>
+    <h4><%= yield :title %></h4>
+  </div>
+  <div class="modal-body">
+    <div class="popup_content">
+      <%= yield %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-link">关闭</button>
+    <button type="button" class="btn btn-info" id="save-item-btn">保存</button>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<%= form_for @carousel, url: url, html: {class: 'form-horizontal'} do |f| %>
+  <div class="form-group">
+    <%= f.label :title, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-4"><%= f.text_field :title, class: 'col-lg-4 form-control', required: true %></div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image, class: 'col-lg-1 control-label' %>
+    <% if @carousel.image.blank? %>
+      <div class="col-lg-4"><%= f.file_field :image, class: 'col-lg-4 form-control', required: true %></div>
+    <% else %>
+      <div style="margin-bottom: 14px;"><%= render_img @carousel.image, :width => '80px', :height => '80px' %></div>
+      <div class="col-lg-4 col-lg-offset-1"><%= f.file_field :image, class: 'form-control' %></div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :is_custom, class: 'col-lg-1 control-label' %>
+    <div class="col-lg-1"><%= f.radio_button(:is_custom, '1') %>&nbsp;是</div>
+    <div class="col-lg-1"><%= f.radio_button(:is_custom, '0') %>&nbsp;否</div>
+  </div>
+
+  <% if @carousel and @carousel.is_custom == '1' %>
+    <div class="form-group" id="custom-url">
+      <%= f.label :custom_url, class: 'col-lg-1 control-label' %>
+      <div class="col-lg-4"><%= f.text_field :custom_url, class: 'col-lg-4 form-control' %></div>
+    </div>
+
+    <div class="form-group" id="carousel-detail" style="display: none;">
+      <%= f.label :detail, class: 'col-lg-1 control-label' %>
+      <div class="col-lg-11"><%= f.cktext_area :detail %></div>
+    </div>
+
+  <% else %>
+    <div class="form-group" id="custom-url" style="display: none;">
+      <%= f.label :custom_url, class: 'col-lg-1 control-label' %>
+      <div class="col-lg-4"><%= f.text_field :custom_url, class: 'col-lg-4 form-control' %></div>
+    </div>
+
+    <div class="form-group" id="carousel-detail">
+      <%= f.label :detail, class: 'col-lg-1 control-label' %>
+      <div class="col-lg-11"><%= f.cktext_area :detail %></div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <div class="col-lg-offset-1 col-lg-10">
+      <%= f.submit '保存', class: "btn btn-sm btn-primary" %>
+      &nbsp
+      <%= link_to '返回', '#', class: "btn btn-sm btn-info", onclick: "history.back()" %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $('#carousel_is_custom_0').on('click', function () {
+    $('#custom-url').fadeOut('fast', function () {
+      $('#carousel-detail').fadeIn();
+    });
+  });
+
+  $('#carousel_is_custom_1').on('click', function () {
+    $('#carousel-detail').fadeOut('fast', function () {
+      $('#custom-url').fadeIn();
+    });
+  });
+</script>

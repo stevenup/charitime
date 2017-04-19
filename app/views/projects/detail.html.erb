@@ -1,0 +1,305 @@
+<div id="overlay"></div>
+
+<div class="project-detail" id="project-detail">
+  <div class="project-detail-head">
+    <%= image_tag @project.main_pic.to_s %>
+  </div>
+
+  <div class="project-title m-t m-b m-l p-l"><%= @project.project_name.to_s %></div>
+
+  <div class="progress">
+    <div class="progress-bar">
+      <% if @percent <= 100 %>
+        <div class="green-bar" style="width: <%= (@percent * 100).to_i.to_s + '%' %> "></div>
+      <% else %>
+        <div class="green-bar" style="width: 100%;"></div>
+      <% end %>
+    </div>
+    <div class="progress-percent">
+      <p><%= (@percent * 100).to_i.to_s + '%' %></p>
+    </div>
+  </div>
+
+  <div class="support-info m-t m-b">
+    <div class="supporters p-r">
+      <p class="total"><%= @num_dedication_support.to_s %> <span> 份</span></p>
+      <p>无偿支持</p>
+    </div>
+    <div class="supporters p-r">
+      <p class="total"><%= @num_purchase_support.to_s %> <span> 份</span></p>
+      <p>购买支持</p>
+    </div>
+    <div class="money p-r">
+      <p class="total">¥ <%= '%.2f' % @total.to_f %></p>
+      <p>累计获得</p>
+    </div>
+    <div class="money p-r">
+      <p class="total">¥ <%= '%.2f' % @project.goal.to_f %></p>
+      <p>项目目标</p>
+    </div>
+  </div>
+
+  <div class="project-detail-area m-l m-r m-t m-b">
+    <div class="cate-title-wrapper p-t p-b">
+      <div class="cate-title p-l">
+        <div class="p-bar"></div>
+        <span class="p-title p-l">项目详情</span>
+      </div>
+    </div>
+    <div class="detail-body p-t p-b">
+      <%= @project.project_detail.html_safe.to_s %>
+    </div>
+  </div>
+
+  <!--<div class="project-detail-area m-l m-r m-t m-b">-->
+    <!--<div class="cate-title-wrapper p-t p-b">-->
+      <!--<div class="cate-title p-l">-->
+        <!--<div class="p-bar"></div>-->
+        <!--<span class="p-title p-l">发起人</span>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="detail-body p-t p-b p-l p-r">-->
+      <!--test test test-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <% if @supports != [] %>
+    <div class="project-detail-area m-l m-r m-t m-b">
+      <div class="cate-title-wrapper p-t p-b">
+        <div class="cate-title p-l">
+          <div class="p-bar"></div>
+          <span class="p-title p-l">支持者</span>
+        </div>
+      </div>
+
+      <div class="project-supporters p-b">
+        <% @supports.select(:user_id).distinct.each do |ele| %>
+          <div class="supporter-avatar m-t m-l">
+            <%= image_tag User.find_by_id(ele.user_id.to_s).try(:headimgurl) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <!--<div class="project-detail-area m-l m-r m-t m-b">-->
+    <!--<div class="cate-title-wrapper p-t p-b">-->
+      <!--<div class="cate-title p-l">-->
+        <!--<div class="p-bar"></div>-->
+        <!--<span class="p-title p-l">留言区</span>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="detail-body p-t p-b p-l p-r">-->
+      <!--test test test-->
+    <!--</div>-->
+
+    <!--<div class="project-comment">-->
+    <!--</div>-->
+
+  <!--</div>-->
+
+  <div class="btn-bottom-area">
+    <button class="btn-default m-l m-r p-t p-b" id="dedicate-btn">无偿支持</button>
+    <button class="btn-default btn-highlight m-l m-r p-t p-b" id="purchase-btn">购买支持</button>
+  </div>
+
+</div>
+
+<div class="purchases tt m-t" id="purchases">
+  <div id="btn-close">
+    <span>x</span>
+  </div>
+  <% if @shelf_items != [] %>
+    <p class="title">通过购买以下商品，您将直接支持到该项目</p>
+    <% @shelf_items.each do |item| %>
+      <div class="purchase-item p-l p-r p-t p-b">
+        <div class="item-left">
+          <%= image_tag item.thumb %>
+        </div>
+        <div class="item-right">
+          <div class="info-top">
+            <p><%= item.product_name.to_s %></p>
+          </div>
+          <div class="info-bottom m-t">
+            <div class="item-price">
+              ￥<%= '%.2f' % item.price.to_s %>
+            </div>
+            <div class="item-btn">
+              <%= button_to '前往购买', {:controller => 'shelf_items', :action => 'show', :id => item.id}, params: { pid: @project.id }, :method => 'get', :class => 'btn btn-default btn-highlight m-l m-r p-t p-b' %>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="title">该项目尚未关联任何商品。</p>
+  <% end %>
+
+</div>
+
+<div class="dedications tt m-t p-t" id="dedications">
+  <div id="btn-close">
+    <span>x</span>
+  </div>
+  <%= form_tag supports_path, method: :post, id: 'option-form' do %>
+    <p class="title">您的点滴付出对我们都是洪流般的帮助</p>
+    <%= label_tag 'money_option_5', class: 'option money-option' do %>
+      <%= radio_button_tag 'money_option', '5', nil %>
+      <span>5元</span>
+    <% end %>
+
+    <%= label_tag 'money_option_10', class: 'option money-option' do %>
+      <%= radio_button_tag 'money_option', '10', nil %>
+      <span>10元</span>
+    <% end %>
+
+    <%= label_tag 'money_option_30', class: 'option money-option' do %>
+      <%= radio_button_tag 'money_option', '30', nil %>
+      <span>30元</span>
+    <% end %>
+
+    <%= label_tag 'money_option_50', class: 'option money-option' do %>
+      <%= radio_button_tag 'money_option', '50', nil %>
+      <span>50元</span>
+    <% end %>
+
+    <%= label_tag 'money_option_100', class: 'option money-option' do %>
+      <%= radio_button_tag 'money_option', '100', nil %>
+      <span>100元</span>
+    <% end %>
+
+    <%= label_tag 'money_option_self_define', class: 'option', id: 'self-define-btn' do %>
+      <%= radio_button_tag 'money_option', 'self_define', nil %>
+      <span>自定义</span>
+    <% end %>
+
+    <div class="self-define-area" id="self-define-area">
+      <!--<p class="title">请输入任意大于等于1的整数</p>-->
+      <%= number_field_tag :money, min: '1', max: '1000', id: 'money' %>
+      <span>元</span>
+    </div>
+
+    <%= hidden_field_tag 'pid', @project.id %>
+    <%= hidden_field_tag 'type', '0' %>
+    <div class="buttons m-t m-b">
+      <%= submit_tag '确定', id: 'submit', class: 'btn btn-default btn-highlight btn-middle m-l m-r p-t p-b' %>
+    </div>
+  <% end %>
+</div>
+
+<%= hidden_field_tag 'project_title', @project.project_name %>
+<%= hidden_field_tag 'project_thumb', @project.thumb %>
+
+<% content_for :title, '项目详情' %>
+
+<script>
+  $(document).ready(function () {
+    $('#dedicate-btn').on('click', function () {
+      $('#overlay').fadeIn('fast', function () {
+        $('#dedications').animate({height: 'toggle'}, 'fast')
+      })
+    });
+    $('#purchase-btn').on('click', function () {
+      $('#overlay').fadeIn('fast', function () {
+        $('#purchases').animate({height: 'toggle'}, 'fast')
+      })
+    });
+    $('#overlay').on('click', function () {
+      $('.tt').slideUp('fast', function () {
+        $('#overlay').fadeOut('fast')
+      })
+    });
+    $('.tt #btn-close').on('click', function () {
+      $('.tt').slideUp('fast', function () {
+        $('#overlay').fadeOut('fast')
+      })
+    });
+
+    var options          = $('.option');
+    var money_options    = $('.money-option');
+    var self_define_area = $('#self-define-area');
+    money_options.on('click', function () {
+      options.removeClass('selected');
+      $(this).addClass('selected');
+      self_define_area.hide('500');
+    });
+
+    $('#self-define-btn').on('click', function () {
+      options.removeClass('selected');
+      $(this).addClass('selected');
+      self_define_area.show('500');
+    });
+
+    $(":submit[id=submit]").on('click', function (check) {
+      var money_option_self_define = $('#money_option_self_define');
+      var self_define_checked      = money_option_self_define.prop("checked");
+      if(self_define_checked) {
+        var money = $('#money').val();
+        if (money != '' && isPositiveInteger(money)) {
+          money_option_self_define.val(money);
+        }
+        else {
+          check.preventDefault();
+          alert('请输入大于1的整数哦~');
+        }
+      }
+      else {
+        $('#money').val('');
+      }
+
+      if(!$('.option').hasClass('selected')) {
+        check.preventDefault();
+        alert('尚未选择捐赠款项哦~');
+      }
+
+      function isPositiveInteger(n) {
+        return 0 === n % (!isNaN(parseFloat(n)) && 0 < ~~n);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/init_js_info',
+      data: { "url": window.location.href.split('#')[0] },
+      success: function (res) {
+        $info = res['data'];
+      }
+    });
+
+    wx.ready(function () {
+      var current_url   = window.location.href.split('detail')[0] + 'detail';
+      var redirect_uri  = encodeURIComponent(current_url);
+      var host_url      = 'http://' + current_url.split('//')[1].split('/')[0];
+      var project_title = document.getElementById('project_title').value;
+      var project_thumb = document.getElementById('project_thumb').value;
+
+      wx.onMenuShareTimeline({
+        title: project_title, // 分享标题
+        link: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + $info.appid + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_base&state=12345#wechat_redirect", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        imgUrl: host_url + project_thumb, // 分享图标
+        success: function () {
+            // 用户确认分享后执行的回调函数
+        },
+        cancel: function () {
+            // 用户取消分享后执行的回调函数
+        }
+      });
+
+      wx.onMenuShareAppMessage({
+        title: project_title, // 分享标题
+        link: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + $info.appid + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_base&state=12345#wechat_redirect", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        imgUrl: host_url + project_thumb, // 分享图标
+        type: '', // 分享类型,music、video或link，不填默认为link
+        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        success: function () {
+          // 用户确认分享后执行的回调函数
+        },
+        cancel: function () {
+          // 用户取消分享后执行的回调函数
+        }
+      });
+    })
+  })
+</script>

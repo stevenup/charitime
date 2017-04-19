@@ -1,0 +1,21 @@
+defaults: &defaults
+  wechat:
+    appid: ""
+    secret: ""
+    token: ""
+    access_token: ""
+    redirect_uri: ""
+  wepay:
+    appid: ""
+    mch_id: ""
+    key: ""
+    secret: ""
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

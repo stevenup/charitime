@@ -1,0 +1,118 @@
+<div class="order-detail" id="order-detail">
+  <div class="order-detail-head p-l p-r">
+    <p class="t-left">订单号: <%= @order_detail.order.order_id.to_s %></p>
+
+    <div class="order-status t-right">
+      <p><%= transform_status(@order_detail.order.order_status, @order_detail.order.logistics_status) %></p>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+  <div class="delivery-addr m-t m-b p-l p-r p-t p-b">
+    <p class="inline-block"><%= @order_detail.receiver_name.to_s %></p>
+    <p class="inline-block"><%= @order_detail.mobile %></p>
+    <p><%= @order_detail.province.to_s + '  ' + @order_detail.city.to_s + '  ' + @order_detail.district.to_s + '  ' + @order_detail.detail_address.to_s %></p>
+  </div>
+
+  <div class="product-info p-t p-b">
+    <div class="product-thumb p-l p-r">
+      <%= image_tag @order_detail.shelf_item.thumb %>
+    </div>
+
+    <div class="product-name m-r">
+      <p><%= @order_detail.product_name.to_s %></p>
+    </div>
+
+    <div class="product-count m-r">
+      <p class="inline-block">x<%= @order_detail.count.to_s %></p>
+    </div>
+  </div>
+
+  <div class="pay-info m-t p-l p-r">
+    <div class="border-bottom">
+      <p class="inline-block t-left">支付方式</p>
+      <p class="inline-block t-right">微信支付</p>
+      <div class="clear"></div>
+    </div>
+    <div>
+      <p class="inline-block t-left">单价</p>
+      <p class="inline-block t-right red">￥<%= '%.2f' % @order_detail.price.to_s %></p>
+      <div class="clear"></div>
+    </div>
+    <div>
+      <p class="inline-block t-left">公益优惠</p>
+      <p class="inline-block t-right red">￥<%= '%.2f' % (@order_detail.gyb_discount.to_f / 100) %></p>
+      <div class="clear"></div>
+    </div>
+    <div class="border-bottom">
+      <p class="inline-block t-left">运费</p>
+      <p class="inline-block t-right red">￥0</p>
+      <div class="clear"></div>
+    </div>
+    <div class="border-bottom">
+      <p class="inline-block t-left">实付款</p>
+      <p class="inline-block t-right red">￥<%= '%.2f' % @order_detail.order.total_price %></p>
+      <div class="clear"></div>
+    </div>
+    <div>
+      <p class="inline-block t-right"><%= @order_detail.created_at.strftime('%Y.%m.%d %T') %></p>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <% if @order_detail.order.order_status.to_s == 'UNPAID' %>
+    <div class="user-actions">
+      <div class="buttons p-l p-r p-t p-b">
+        <%= button_to '前往支付', order_pay_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small btn-highlight m-l m-r p-t p-b t-right' %>
+        <%= button_to '取消订单', cancel_order_order_path(@order_detail.order.order_id), :method => 'get', :'data-confirm' => '确定取消订单嘛？', :class => 'btn btn-default btn-small m-l m-r p-t p-b t-right', :id => 'cancel-btn' %>
+        <div class="clear"></div>
+      </div>
+    </div>
+
+  <% elsif @order_detail.order.order_status.to_s == 'PAID' and @order_detail.order.logistics_status == 'DELIVERED' %>
+    <div class="delivery-info m-t p-l p-r">
+      <%= link_to generate_url('http://m.kuaidi100.com/index_all.html', {type: @order_detail.delivery_company, postid: @order_detail.delivery_id, callbackurl: order_url(@order_detail.order_id)}) do %>
+        <div class="border-bottom">
+          <p class="inline-block t-left">物流信息</p>
+          <p class="inline-block t-right">查询&nbsp;<i class="fa fa-angle-right fa-lg"></i></p>
+          <div class="clear"></div>
+        </div>
+      <% end %>
+
+      <div class="border-bottom">
+        <p class="inline-block t-left"><%= @order_detail.delivery_company %></p>
+        <p class="inline-block t-right"><%= @order_detail.delivery_id %></p>
+        <div class="clear"></div>
+      </div>
+    </div>
+
+    <div class="user-actions">
+      <div class="buttons p-l p-r p-t p-b">
+        <%= button_to '确认收货', confirm_complete_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-highlight btn-small m-l m-r p-t p-b t-right', :'data-confirm' => '确定完成该笔订单吗?' %>
+        <%= button_to '申请退货', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small m-l m-r p-t p-b t-right', :'data-confirm' => '确定申请退货退款吗?' %>
+        <div class="clear"></div>
+      </div>
+    </div>
+
+  <% elsif (@order_detail.order.order_status.to_s == 'PAID' and @order_detail.order.logistics_status != 'DELIVERED' and @order_detail.order.logistics_status != 'COMPLETED') or (@order_detail.order.order_status.to_s == 'REFUND_REJECTED') %>
+    <div class="user-actions">
+      <div class="buttons p-l p-r p-t p-b">
+        <%= button_to '申请退款', apply_refund_order_path(@order_detail.order.order_id), method: 'get', :class => 'btn btn-default btn-small m-l m-r p-t p-b t-right', :'data-confirm' => '确定申请退货退款吗？' %>
+        <!--<button class="btn btn-default btn-highlight m-l m-r p-t p-b t-right">查看物流</button>-->
+        <div class="clear"></div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<% if @records %>
+  <div class="refund m-t p-t p-b p-l p-r" id="refund">
+    <p class="title p-t">操作记录</p>
+    <% @records.each do |r| %>
+      <%= simple_format(r) %>
+    <% end %>
+  </div>
+<% end %>
+
+<% content_for :title, set_title('订单详情') %>
