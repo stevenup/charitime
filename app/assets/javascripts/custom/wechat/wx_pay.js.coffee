@@ -81,7 +81,7 @@ chooseWXPay = (prepay_id, id) ->
             url: '/orders/add_gyb_payment_record',
             data: { id: id },
             success: (res) ->
-              window.location.href = "http://charitime.nonprofit.cn/orders?status=0" if res.status == 'success'
+              window.location.href = "http://goodbuy.nonprofit.cn/orders?status=0" if res.status == 'success'
         else
           alert(res.errMsg)
       cancel: () ->
@@ -105,7 +105,7 @@ WXPayToDedicte = (prepay_id) ->
       success: (res) ->
         if res.errMsg == "chooseWXPay:ok"
 #          alert('支付成功！')
-          window.location.href = "http://charitime.nonprofit.cn/supports"
+          window.location.href = "http://goodbuy.nonprofit.cn/supports"
         else
           alert(res.errMsg)
       cancel: () ->
