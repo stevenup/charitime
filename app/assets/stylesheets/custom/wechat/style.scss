@@ -730,16 +730,37 @@ i.arrow {
     @include font-dpr(18px);
   }
 
-  .progress {
-    margin: 0 auto;
-    width: 85%;
+  .progress-wrapper {
+    border: p2e(1px) solid lightgray;
+    border-radius: p2e(4px);
+    box-shadow: 2px 3px 8px lightgray;
+    margin-top: p2e(27px);
+
+    .progress-hint {
+      text-align: center;
+      @include font-dpr(14px);
+
+      span {
+        color: red;
+        font-weight: bold;
+        @include font-dpr(16px);
+        padding-right: p2e(14px);
+        padding-left: p2e(14px);
+      }
+    }
+
+    .progress {
+      margin: 0 auto;
+      width: 85%;
+    }
   }
+
 
   .project-detail-area {
     border: p2e(1px) solid lightgray;
     border-radius: p2e(4px);
     box-shadow: 2px 3px 8px lightgray;
-    margin-top: p2e(36px);
+    margin-top: p2e(27px);
 
     .cate-title-wrapper {
       width: 100%;

@@ -7,37 +7,62 @@
 
   <div class="project-title m-t m-b m-l p-l"><%= @project.project_name.to_s %></div>
 
-  <div class="progress">
-    <div class="progress-bar">
-      <% if @percent <= 100 %>
-        <div class="green-bar" style="width: <%= (@percent * 100).to_i.to_s + '%' %> "></div>
-      <% else %>
-        <div class="green-bar" style="width: 100%;"></div>
-      <% end %>
+  <div class="progress-wrapper m-l m-r m-t m-b p-t">
+    <div class="progress-hint m-l m-r m-t m-b">
+      <p>还差<span><%= @price_gap %></span>元又众筹成功一个水壶啦~~</p>
     </div>
-    <div class="progress-percent">
-      <p><%= (@percent * 100).to_i.to_s + '%' %></p>
+    <div class="progress">
+      <div class="progress-bar">
+        <% if @percent <= 100 %>
+          <div class="green-bar" style="width: <%= (@percent * 100).to_i.to_s + '%' %> "></div>
+        <% else %>
+          <div class="green-bar" style="width: 100%;"></div>
+        <% end %>
+      </div>
+      <div class="progress-percent">
+        <p><%= (@percent * 100).to_i.to_s + '%' %></p>
+      </div>
+    </div>
+
+    <div class="support-info m-t m-b">
+      <div class="supporters p-r">
+        <p class="total"><%= @num_dedication_support.to_s %> <span> 个</span></p>
+        <p>众筹支持</p>
+      </div>
+      <div class="supporters p-r">
+        <p class="total"><%= @num_purchase_support.to_s %> <span> 个</span></p>
+        <p>购买支持</p>
+      </div>
+      <!--<div class="money p-r">-->
+      <!--<p class="total">¥ <%#= '%.2f' % @total.to_f %></p>-->
+      <!--<p>累计获得</p>-->
+      <!--</div>-->
+      <div class="money p-r">
+        <!--<p class="total">¥ <%#= '%.2f' %# @project.goal.to_f %></p>-->
+        <p class="total"> 1000 <span>个</span></p>
+        <p>项目目标</p>
+      </div>
     </div>
   </div>
 
-  <div class="support-info m-t m-b">
-    <div class="supporters p-r">
-      <p class="total"><%= @num_dedication_support.to_s %> <span> 份</span></p>
-      <p>无偿支持</p>
+  <% if @supports != [] %>
+    <div class="project-detail-area m-l m-r m-t m-b">
+      <div class="cate-title-wrapper p-t p-b">
+        <div class="cate-title p-l">
+          <div class="p-bar"></div>
+          <span class="p-title p-l">支持者</span>
+        </div>
+      </div>
+
+      <div class="project-supporters p-b">
+        <% @supports.select(:user_id).distinct.each do |ele| %>
+          <div class="supporter-avatar m-t m-l">
+            <%= image_tag User.find_by_id(ele.user_id.to_s).try(:headimgurl) %>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class="supporters p-r">
-      <p class="total"><%= @num_purchase_support.to_s %> <span> 份</span></p>
-      <p>购买支持</p>
-    </div>
-    <div class="money p-r">
-      <p class="total">¥ <%= '%.2f' % @total.to_f %></p>
-      <p>累计获得</p>
-    </div>
-    <div class="money p-r">
-      <p class="total">¥ <%= '%.2f' % @project.goal.to_f %></p>
-      <p>项目目标</p>
-    </div>
-  </div>
+  <% end %>
 
   <div class="project-detail-area m-l m-r m-t m-b">
     <div class="cate-title-wrapper p-t p-b">
@@ -63,25 +88,6 @@
     <!--</div>-->
   <!--</div>-->
 
-  <% if @supports != [] %>
-    <div class="project-detail-area m-l m-r m-t m-b">
-      <div class="cate-title-wrapper p-t p-b">
-        <div class="cate-title p-l">
-          <div class="p-bar"></div>
-          <span class="p-title p-l">支持者</span>
-        </div>
-      </div>
-
-      <div class="project-supporters p-b">
-        <% @supports.select(:user_id).distinct.each do |ele| %>
-          <div class="supporter-avatar m-t m-l">
-            <%= image_tag User.find_by_id(ele.user_id.to_s).try(:headimgurl) %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-
   <!--<div class="project-detail-area m-l m-r m-t m-b">-->
     <!--<div class="cate-title-wrapper p-t p-b">-->
       <!--<div class="cate-title p-l">-->
@@ -100,7 +106,7 @@
   <!--</div>-->
 
   <div class="btn-bottom-area">
-    <button class="btn-default m-l m-r p-t p-b" id="dedicate-btn">无偿支持</button>
+    <button class="btn-default m-l m-r p-t p-b" id="dedicate-btn">众筹支持</button>
     <button class="btn-default btn-highlight m-l m-r p-t p-b" id="purchase-btn">购买支持</button>
   </div>
 

@@ -9,8 +9,8 @@ class ProjectsController < BaseController
     @shelf_items = ShelfItem.where('project_id = ? and is_on_shelf = ?', id, '1')
 
     @total, @num_dedication_support, @num_purchase_support, @percent = 0, 0, 0, 0
-
-    @supports = Support.where('project_id = ? and status = ?', id, '1')
+    @price_gap = '498'
+    @supports  = Support.where('project_id = ? and status = ?', id, '1')
 
     if @supports != []
       @supports.each do |ele|
@@ -22,7 +22,9 @@ class ProjectsController < BaseController
           @num_purchase_support   += 1
         end
       end
-      @percent = @total.to_f / @project.goal.to_f
+      # @percent = @total.to_f / @project.goal.to_f
+      @price_gap = 498 - (@total.to_f % 498.0)
+      @percent   = (@total.to_f % 498.0).to_f / 498.0
     end
 
   end
