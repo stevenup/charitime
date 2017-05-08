@@ -1,6 +1,6 @@
 <% if @support != [] %>
   <div class="support-confirm">
-    <p>您将为该项目捐赠</p>
+    <p>您将支持该项目</p>
     <div class="project-item m-t m-b p-t p-b p-l p-r">
       <div class="project-pic">
         <%= image_tag @project.banner %>
@@ -11,8 +11,10 @@
     </div>
     <button id="dedicate-confirm-btn" class="btn btn-default btn-highlight btn-middle m-l m-r p-t p-b" data-id="<%= @project.project_id %>">立即支付</button>
     <div class="remarks">
-      <p>捐款将由探索公益基金会代为接收</p>
-      <p>后续公示请关注索益公益传播公众号</p>
+      <p>您的支持款项将由</p>
+      <p>上海索益公益文化发展中心代为接收</p>
+      <p>您的支持编号是:<%= '75815230' + @support.id.to_s %></p>
+      <p>后续查询公示请关注探索公益服务号</p>
     </div>
   </div>
 <% else %>
