@@ -8,9 +8,9 @@ class BaseController < ApplicationController
     code    = params[:code]
     au_type = params[:type]
     if logged_in?
+      binding.pry
       log_in(code, au_type) if code
     end
-    update_user(code, au_type) if code
   end
 end
 

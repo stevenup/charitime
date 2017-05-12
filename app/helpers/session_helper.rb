@@ -13,25 +13,7 @@ module SessionHelper
       if user.nil?
         user = User.new info
         user.save
-      end
-      session[:user_id] = user.id if user
-    else
-      Rails.logger.info '******************** Get openid error ********************.'
-    end
-    Rails.logger.info '********** leave log_in method **********'
-  end
-
-  def update_user(code, au_type)
-    openid = Modules::Wechat.get_user_openid code
-    if openid
-      if au_type.nil?
-        info = Modules::Wechat.get_user_info_sns_base openid
       else
-        access_token = Modules::Wechat.get_access_token
-        info = Modules::Wechat.get_user_info_sns_userinfo(openid, access_token)
-      end
-      user = User.find_by(:openid => openid)
-      if user and info
         user.update_attributes(info) if user['nickname'] != info['nickname'] or user['headimgurl'] != info['headimgurl']
       end
     else
