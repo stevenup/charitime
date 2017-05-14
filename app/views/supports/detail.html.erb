@@ -37,6 +37,14 @@
         <p class="inline-block">支持形式:</p>
         <p class="inline-block right-align">购买支持</p>
       </div>
+      <div class="detail-item p-l p-r p-b p-t">
+        <p class="inline-block">关联商品:</p>
+        <p class="inline-block right-align"><%= ShelfItem.find_by(:id => @support.shelf_item_id).try(:product_name) %></p>
+      </div>
+      <div class="detail-item p-l p-r p-b p-t">
+        <p class="inline-block">支持数量:</p>
+        <p class="inline-block right-align"><%= @support.count %></p>
+      </div>
     <% else %>
       <div class="detail-item p-l p-r p-b p-t">
         <p class="inline-block">支持形式:</p>
@@ -47,7 +55,7 @@
 
     <div class="detail-item p-l p-r p-b p-t">
       <p class="inline-block">支持金额:</p>
-      <p class="inline-block right-align">¥ <%= '%.2f' % @support.money.to_s %></p>
+      <p class="inline-block right-align">¥ <%= '%.2f' % (@support.money / 100).to_s %></p>
     </div>
 
     <div class="detail-item p-l p-r p-b p-t">

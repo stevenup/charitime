@@ -26,9 +26,9 @@
     <div class="form-group">
       <%= f.label :purpose, class: 'col-lg-1 control-label' %>
       <% if @product.purpose.blank? %>
-        <div class="col-lg-4"><%= f.select :purpose, options_for_select([["用户购买", "1"], ["用户捐赠", "2"]]), { prompt: '-- select one --' }, { class: 'col-lg-4 form-control', required: true } %></div>
+        <div class="col-lg-4"><%= f.select :purpose, options_for_select([["用户捐赠", "1"], ["用户购买", "2"]]), { prompt: '-- select one --' }, { class: 'col-lg-4 form-control', required: true } %></div>
       <% else %>
-        <div class="col-lg-4"><%= f.select :purpose, options_for_select([["用户购买", "1"], ["用户捐赠", "2"]], selected: "#{@product.category}"), {}, { class: 'col-lg-4 form-control', required: true } %></div>
+        <div class="col-lg-4"><%= f.select :purpose, options_for_select([["用户捐赠", "1"], ["用户购买", "2"]], selected: "#{@product.category}"), {}, { class: 'col-lg-4 form-control', required: true } %></div>
       <% end %>
     </div>
 

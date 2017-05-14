@@ -77,53 +77,55 @@
   <div class="detail-body p-t">
     <%= @shelf_item.product_detail.to_s.html_safe %>
   </div>
-
-  <div class="buttons">
-    <div class="btn-default other-btn p-t p-b">
-      <%= link_to root_path do %>
-        <i class="fa fa-home fa-lg"></i>&nbsp;&nbsp;首页
-      <% end %>
-    </div>
-    <div class="btn-default other-btn p-t p-b">
-      <%= link_to personal_center_home_index_path do %>
-        <i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;我的
-      <% end %>
-    </div>
-    <div id="buy-btn" class="btn-default btn-highlight buy-btn p-t p-b">立即购买</div>
-    <!--<button id="cart-btn" class="btn btn-default p-t p-b">加入购物车</button>-->
-  </div>
-
 </div>
 
-<% if @address.nil? %>
-  <div class="confirm-box" id="confirm-box">
-    <div id="btn-close">
-      <span>x</span>
-    </div>
-    <%= link_to 'javascript:;' do %>
-      <button id="add-address-btn" class="btn btn-default btn-highlight m-l m-r m-t p-t p-b">添加地址</button>
-    <% end %>
-    <div class="item-number" data-trigger="spinner" id="spinner">
-      <p>购买数量：</p>
-      <a href="javascript:;" data-spin="down" class="t-minus">-</a>
-      <%= text_field_tag :count, '1', class: 'count', data: {rule: 'quantity', max: '10'} %>
-      <a href="javascript:;" data-spin="up" class="t-plus">+</a>
-    </div>
-    <div class="remark">
-      <p>备注：</p>
-      <%= text_field_tag :remark, '', class: 'light-border', placeholder: '限20字，可不填。', size: '35', maxlength: '20' %>
-    </div>
+<% if @shelf_item.purpose == '2' %>
+  <div class="shelf-item-bottom">
     <div class="buttons">
-      <%= submit_tag '确定提交', id: 'confirm-btn', disabled: true, class: 'btn btn-default btn-highlight btn-middle btn-disabled m-l m-r p-t p-b' %>
+      <div class="btn-default other-btn p-t p-b">
+        <%= link_to root_path do %>
+          <i class="fa fa-home fa-lg"></i>&nbsp;&nbsp;首页
+        <% end %>
+      </div>
+      <div class="btn-default other-btn p-t p-b">
+        <%= link_to personal_center_home_index_path do %>
+          <i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;我的
+        <% end %>
+      </div>
+      <div id="buy-btn" class="btn-default btn-highlight buy-btn p-t p-b">立即购买</div>
+      <!--<button id="cart-btn" class="btn btn-default p-t p-b">加入购物车</button>-->
     </div>
   </div>
-<% else %>
-  <div class="confirm-box" id="confirm-box">
-    <div id="btn-close">
-      <span>x</span>
+
+  <% if @address.nil? %>
+    <div class="confirm-box" id="confirm-box">
+      <div id="btn-close">
+        <span>x</span>
+      </div>
+      <%= link_to 'javascript:;' do %>
+        <button id="add-address-btn" class="btn btn-default btn-highlight m-l m-r m-t p-t p-b">添加地址</button>
+      <% end %>
+      <div class="item-number" data-trigger="spinner" id="spinner">
+        <p>购买数量：</p>
+        <a href="javascript:;" data-spin="down" class="t-minus">-</a>
+        <%= text_field_tag :count, '1', class: 'count', data: {rule: 'quantity', max: '10'} %>
+        <a href="javascript:;" data-spin="up" class="t-plus">+</a>
+      </div>
+      <div class="remark">
+        <p>备注：</p>
+        <%= text_field_tag :remark, '', class: 'light-border', placeholder: '限20字，可不填。', size: '35', maxlength: '20' %>
+      </div>
+      <div class="buttons">
+        <%= submit_tag '确定提交', id: 'confirm-btn', disabled: true, class: 'btn btn-default btn-highlight btn-middle btn-disabled m-l m-r p-t p-b' %>
+      </div>
     </div>
-    <%= form_tag '/orders', method: :post do %>
-      <%#= link_to shelf_items_update_order_address_path, remote: true do %>
+  <% else %>
+    <div class="confirm-box" id="confirm-box">
+      <div id="btn-close">
+        <span>x</span>
+      </div>
+      <%= form_tag '/orders', method: :post do %>
+        <%#= link_to shelf_items_update_order_address_path, remote: true do %>
         <div id="delivery-addr-wrapper" class="delivery-addr-wrapper">
           <div class="delivery-addr">
             <p class="name inline-block"><%= @address.receiver_name.to_s %></p>
@@ -134,10 +136,58 @@
             <i class="fa fa-angle-right fa-2x"></i>
           </div>
         </div>
-      <%# end %>
+        <%# end %>
 
-      <div class="item-number" data-trigger="spinner" id="spinner">
-        <p>购买数量：</p>
+        <div class="item-number" data-trigger="spinner" id="spinner">
+          <p>购买数量：</p>
+          <a href="javascript:;" data-spin="down" class="t-minus">-</a>
+          <%= number_field_tag :count, '1', class: 'count', data: {rule: 'quantity'} %>
+          <a href="javascript:;" data-spin="up" class="t-plus">+</a>
+        </div>
+        <div class="remark">
+          <p>备注：</p>
+          <%= text_field_tag :remark, '', class: 'light-border', placeholder: '限20字，可不填。', size: '35', maxlength: '20' %>
+        </div>
+        <%= hidden_field_tag 'aid', @address.id %>
+        <%= hidden_field_tag 'siid', @shelf_item.id %>
+        <div class="buttons">
+          <%= submit_tag '确定提交', id: 'confirm-btn', data: { disable_with: '正在下单...' }, class: 'btn btn-default btn-highlight btn-middle m-l m-r p-t p-b' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div id="address-list" class="address-list"></div>
+
+  <%= hidden_field_tag 'shelf_item_title', @shelf_item.product_name %>
+  <%= hidden_field_tag 'shelf_item_thumb', @shelf_item.thumb %>
+  <%= hidden_field_tag 'shelf_item_id', @shelf_item.id %>
+
+<% else %>
+  <div class="shelf-item-bottom">
+    <div class="buttons">
+      <div class="btn-default other-btn p-t p-b">
+        <%= link_to root_path do %>
+          <i class="fa fa-home fa-lg"></i>&nbsp;&nbsp;首页
+        <% end %>
+      </div>
+      <div class="btn-default other-btn p-t p-b">
+        <%= link_to personal_center_home_index_path do %>
+          <i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;我的
+        <% end %>
+      </div>
+      <div id="buy-btn" class="btn-default btn-highlight buy-btn p-t p-b">购买支持</div>
+      <!--<button id="cart-btn" class="btn btn-default p-t p-b">加入购物车</button>-->
+    </div>
+  </div>
+
+  <div class="confirm-box" id="confirm-box">
+    <div id="btn-close">
+      <span>x</span>
+    </div>
+    <%= form_tag '/supports', method: :post do %>
+      <div class="item-number m-t" data-trigger="spinner" id="spinner">
+        <p>支持数量：</p>
         <a href="javascript:;" data-spin="down" class="t-minus">-</a>
         <%= number_field_tag :count, '1', class: 'count', data: {rule: 'quantity'} %>
         <a href="javascript:;" data-spin="up" class="t-plus">+</a>
@@ -146,7 +196,8 @@
         <p>备注：</p>
         <%= text_field_tag :remark, '', class: 'light-border', placeholder: '限20字，可不填。', size: '35', maxlength: '20' %>
       </div>
-      <%= hidden_field_tag 'aid', @address.id %>
+      <%= hidden_field_tag 'pid', @shelf_item.project.project_id %>
+      <%= hidden_field_tag 'type', '1' %>
       <%= hidden_field_tag 'siid', @shelf_item.id %>
       <div class="buttons">
         <%= submit_tag '确定提交', id: 'confirm-btn', data: { disable_with: '正在下单...' }, class: 'btn btn-default btn-highlight btn-middle m-l m-r p-t p-b' %>
@@ -154,12 +205,6 @@
     <% end %>
   </div>
 <% end %>
-
-<div id="address-list" class="address-list"></div>
-
-<%= hidden_field_tag 'shelf_item_title', @shelf_item.product_name %>
-<%= hidden_field_tag 'shelf_item_thumb', @shelf_item.thumb %>
-<%= hidden_field_tag 'shelf_item_id', @shelf_item.id %>
 
 <% content_for :title, set_title('商品详情') %>
 
