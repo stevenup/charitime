@@ -67,7 +67,7 @@ class WepayController < ApplicationController
     elsif support
       params = {
         body:         support.project.project_name,
-        out_trade_no: 1000000 + support.id,
+        out_trade_no: 75147000 + support.id,
         total_fee:    (support.money).to_int,
         openid:       current_user.openid,
         trade_type:   'JSAPI',
@@ -148,7 +148,7 @@ class WepayController < ApplicationController
       user           = User.find_by_openid result['openid']
 
       order_detail   = OrderDetail.find_by(order_id: out_trade_no)
-      support        = Support.find_by(id: out_trade_no.to_i - 1000000)
+      support        = Support.find_by(id: out_trade_no.to_i - 75147000)
 
       if order_detail
         order_detail.order.update_attributes({ order_status: 1, transaction_id: transaction_id })
