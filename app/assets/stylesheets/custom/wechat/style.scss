@@ -1904,17 +1904,9 @@ i.arrow {
   }
 }
 
-.support-confirm {
-  text-align: center;
-
+.support-detail {
   p {
-    margin-top: p2e(28px);
-    @include font-dpr(16px);
-
-    a {
-      text-decoration: underline;
-      color: dodgerblue;
-    }
+    @include font-dpr(14px);
   }
 
   .project-item {
@@ -1933,6 +1925,21 @@ i.arrow {
     }
   }
 
+  .inline-block {
+    display: inline-block;
+    margin-right: p2e(14px);
+  }
+
+  .right-align {
+    float: right;
+  }
+
+  .detail-item {
+    background: #FFFFFF;
+    @include font-dpr(14px);
+    border-bottom: p2e(1px) solid lightgray;
+  }
+
   .sum {
     margin-top: p2e(80px);
     margin-bottom: p2e(28px);
@@ -1948,6 +1955,7 @@ i.arrow {
 
   .remarks {
     margin-top: p2e(100px);
+    text-align: left;
 
     p {
       @include font-dpr(12px);

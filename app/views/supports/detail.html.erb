@@ -1,19 +1,68 @@
 <% if @support != [] %>
-  <div class="support-confirm">
-    <div class="project-item m-t m-b p-t p-b p-l p-r">
+  <div class="support-detail">
+    <div class="project-item m-b">
       <div class="project-pic">
         <%= image_tag @support.project.banner %>
       </div>
     </div>
-    <p>感谢您的支持!</p>
-    <p>前往<a href="/supports">我支持的项目</a>查看</p>
-    <div class="remarks">
-      <p>您的支持款项将由上海索益公益文化发展中心代为接收</p>
-      <p>后续公示请关注索益公益传播公众号</p>
+
+    <div class="detail-item p-l p-r p-b p-t">
+      <p class="inline-block">项目名称:</p>
+      <p class="inline-block right-align"><%= @support.project.project_name %></p>
+    </div>
+
+    <div class="detail-item p-l p-r p-b p-t">
+      <p class="inline-block">项目发起日期:</p>
+      <p class="inline-block right-align"><%= @support.project.created_at.strftime('%Y-%m-%d') %></p>
+    </div>
+
+    <div class="detail-item p-l p-r p-b p-t">
+      <p class="inline-block">项目状态:</p>
+      <p class="inline-block right-align">接受支持ing</p>
+    </div>
+
+    <div class="detail-item p-l p-r p-b p-t m-t">
+      <p class="inline-block">支持ID:</p>
+      <!--75147000-->
+      <p class="inline-block right-align"><%= 75147000 + @support.id %></p>
+    </div>
+
+    <% if @support.support_type == '0' %>
+      <div class="detail-item p-l p-r p-b p-t">
+        <p class="inline-block">支持形式:</p>
+        <p class="inline-block right-align">众筹支持</p>
+      </div>
+    <% elsif @support.support_type == '1' %>
+      <div class="detail-item p-l p-r p-b p-t">
+        <p class="inline-block">支持形式:</p>
+        <p class="inline-block right-align">购买支持</p>
+      </div>
+    <% else %>
+      <div class="detail-item p-l p-r p-b p-t">
+        <p class="inline-block">支持形式:</p>
+        <p class="inline-block right-align">支持-C</p>
+      </div>
+    <% end %>
+
+
+    <div class="detail-item p-l p-r p-b p-t">
+      <p class="inline-block">支持金额:</p>
+      <p class="inline-block right-align">¥ <%= '%.2f' % @support.money.to_s %></p>
+    </div>
+
+    <div class="detail-item p-l p-r p-b p-t">
+      <p class="inline-block">支持时间:</p>
+      <p class="inline-block right-align"><%= @support.created_at.strftime('%Y-%m-%d %T') %></p>
+    </div>
+
+    <div class="remarks p-l m-l">
+      <p>1. 项目实施后, 可以根据支持ID查询您支持的金额的用途和去向。</p>
+      <p>2. 项目后续的实施和公布请关注探索公益服务号。</p>
     </div>
   </div>
+
 <% else %>
-  <div class="support-confirm">
+  <div class="support-detail">
     <p>查无记录。</p>
   </div>
 <% end %>

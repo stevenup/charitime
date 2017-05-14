@@ -67,6 +67,7 @@ class WepayController < ApplicationController
     elsif support
       params = {
         body:         support.project.project_name,
+        # 支持id加上75147000, notify action需减去之
         out_trade_no: 75147000 + support.id,
         total_fee:    (support.money).to_int,
         openid:       current_user.openid,
