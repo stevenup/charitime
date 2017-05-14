@@ -1,6 +1,10 @@
 <% if @support != [] %>
   <div class="support-detail text-center-align m-t">
-    <p>您将为以下项目众筹支持</p>
+    <% if @support.support_type == '0' %>
+      <p>您将为以下项目众筹支持</p>
+    <% else %>
+      <p>您将为以下项目购买支持</p>
+    <% end %>
     <div class="project-item m-t m-b p-t p-b p-l p-r">
       <div class="project-pic">
         <%= image_tag @project.banner %>
