@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   get 'gybs/append'
   get 'gybs/exchange'
 
-  resources :supports
+  resources :supports do
+    get :detail, on: :collection
+  end
   get '/supports/pay/:id', to: 'supports#pay', as: 'support_pay'
 
   resources :shelf_items

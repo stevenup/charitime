@@ -21,7 +21,7 @@ dedicateConfirmBtnMonitor = () ->
     .fail ->
       alert('出错啦！！')
     .done ->
-      WXPayToDedicte(prepay_id)
+      WXPayToDedicte(prepay_id, id)
 
 refundApplyBtnMonitor = () ->
   $('#refund-apply-btn').on 'click', (e) ->
@@ -88,7 +88,7 @@ chooseWXPay = (prepay_id, id) ->
 #        alert('支付取消')
     })
 
-WXPayToDedicte = (prepay_id) ->
+WXPayToDedicte = (prepay_id, id) ->
   $.ajax
     url: '/wepay/init_jspay_info',
     type: 'GET',
@@ -105,7 +105,7 @@ WXPayToDedicte = (prepay_id) ->
       success: (res) ->
         if res.errMsg == "chooseWXPay:ok"
 #          alert('支付成功！')
-          window.location.href = "http://goodbuy.nonprofit.cn/supports"
+          window.location.href = "http://goodbuy.nonprofit.cn/supports/detail?id=" + id
         else
           alert(res.errMsg)
       cancel: () ->

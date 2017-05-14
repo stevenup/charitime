@@ -40,8 +40,8 @@ class WepayController < ApplicationController
     Rails.logger.info '****************** in unified order *******************'
     id           = params[:id]
     order_detail = OrderDetail.find_by(:order_id => id)
-    project      = Project.find_by(:project_id => id)
-    support      = Support.where("user_id = ? and project_id = ?", current_user.id.to_s, id).last
+    # project      = Project.find_by(:project_id => id)
+    support      = Support.find_by(:id => id)
 
     # if - else 判断是支付订单还是使用微信支付为项目无偿捐赠
     if order_detail
@@ -64,9 +64,9 @@ class WepayController < ApplicationController
       end
       Rails.logger.info '**************** leave unified order *****************'
 
-    elsif project and support
+    elsif support
       params = {
-        body:         project.project_name,
+        body:         support.project.project_name,
         out_trade_no: 1000000 + support.id,
         total_fee:    (support.money).to_int,
         openid:       current_user.openid,

@@ -4,9 +4,9 @@ class SupportsController < BaseController
   end
 
   def pay
-    pid = params[:id]
-    @project = Project.find_by(:project_id => pid)
-    @support = Support.where("user_id = ? and project_id = ?", current_user.id.to_s, pid).last
+    id       = params[:id]
+    @support = Support.find_by(:id => id)
+    @project = Project.find_by(:project_id => @support.project_id) if @support
   end
 
   def create
@@ -19,12 +19,12 @@ class SupportsController < BaseController
     support.user_id    = current_user.id.to_s
     support.project_id = pid
     support.save if support
-    redirect_to support_pay_path(pid)
+    redirect_to support_pay_path(id: support.id)
   end
 
-  def show
-    pid = params[:pid]
-    @support = Support.where("user_id = ? and project_id = ?", current_user.id.to_s, pid).last
+  def detail
+    id = params[:id]
+    @support = Support.find_by(:id => id)
   end
 
   private

@@ -1,6 +1,6 @@
 <% if @support != [] %>
   <div class="support-confirm">
-    <p>您将支持该项目</p>
+    <p>您将为以下项目众筹支持</p>
     <div class="project-item m-t m-b p-t p-b p-l p-r">
       <div class="project-pic">
         <%= image_tag @project.banner %>
@@ -9,16 +9,18 @@
     <div class="sum">
       ￥<%= '%.2f' % (@support.money / 100) %><span class="m-l">元</span>
     </div>
-    <button id="dedicate-confirm-btn" class="btn btn-default btn-highlight btn-middle m-l m-r p-t p-b" data-id="<%= @project.project_id %>">立即支付</button>
-    <div class="remarks">
-      <p>您的支持款项将由</p>
-      <p>上海索益公益文化发展中心代为接收</p>
-      <p>您的支持编号是:<%= '75815230' + @support.id.to_s %></p>
-      <p>后续查询公示请关注探索公益服务号</p>
-    </div>
+    <button id="dedicate-confirm-btn" class="btn btn-default btn-highlight btn-middle m-l m-r p-t p-b" data-id="<%= @support.id %>">立即支付</button>
+    <!--<div class="remarks">-->
+      <!--<p>您的支持款项将由</p>-->
+      <!--<p>上海索益公益文化发展中心代为接收</p>-->
+      <!--<p>您的支持编号是:<%#= '75815230' + @support.id.to_s %></p>-->
+      <!--<p>后续查询公示请关注探索公益服务号</p>-->
+    <!--</div>-->
   </div>
 <% else %>
   <div class="support-confirm">
     <p>查无记录。</p>
   </div>
 <% end %>
+
+<!--TODO 刷新页面, 检查@support的status字段是否是1, 1表示支付完成。若是1, 则显示用户支持的结果。-->
