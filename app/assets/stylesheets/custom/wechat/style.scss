@@ -103,6 +103,10 @@ i.arrow {
   margin: p2e(10px) auto;
 }
 
+.text-center-align {
+  text-align: center;
+}
+
 .red {
   color: red;
 }
@@ -1955,6 +1959,7 @@ i.arrow {
 
   .remarks {
     margin-top: p2e(100px);
+    margin-bottom: p2e(100px);
     text-align: left;
 
     p {
