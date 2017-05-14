@@ -26,6 +26,11 @@
     </div>
 
     <div class="form-group">
+      <%= f.label :商品目的, class: 'col-lg-2 control-label' %>
+      <div class="col-lg-4"><%= f.label @product.try(:purpose), class: 'col-lg-4 form-control' %></div>
+    </div>
+
+    <div class="form-group">
       <%= f.label :商品价格, class: 'col-lg-2 control-label' %>
       <div class="col-lg-4"><%= f.text_field :price, class: 'col-lg-4 form-control', placeholder: '请输入销售价格', required: true %></div>
     </div>

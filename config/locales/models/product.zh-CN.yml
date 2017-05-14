@@ -8,6 +8,7 @@ zh-CN:
         product_name:    '商品名称'
         thumb:           '商品图片'
         category:        '商品类别'
+        purpose:         '商品目的'
         product_detail:  '商品详情'
         created_at:      '创建时间'
         action:          '操作'

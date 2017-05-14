@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170107103748) do
+ActiveRecord::Schema.define(version: 20170514160007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 20170107103748) do
     t.string   "recommended",    limit: 1
     t.string   "thumb"
     t.string   "is_on_shelf",              default: "0"
+    t.string   "purpose"
   end
 
   create_table "products_projects", id: false, force: :cascade do |t|
@@ -263,6 +264,7 @@ ActiveRecord::Schema.define(version: 20170107103748) do
     t.string   "is_on_shelf",    limit: 1
     t.string   "recommended",    limit: 1
     t.string   "thumb"
+    t.string   "purpose"
   end
 
   create_table "supports", force: :cascade do |t|
