@@ -22,3 +22,4 @@
 dump.rdb
 /.ruby-version
 tags
+/db/schema.rb

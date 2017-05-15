@@ -26,17 +26,17 @@
 
     <div class="support-info m-t m-b">
       <div class="supporters p-r">
-        <p class="total"><%= @num_dedication_support.to_s %> <span> 个</span></p>
+        <p class="total"><%= @num_dedication_support.to_s %> <span> 份</span></p>
         <p>众筹支持</p>
       </div>
       <div class="supporters p-r">
-        <p class="total"><%= @num_purchase_support.to_s %> <span> 个</span></p>
+        <p class="total"><%= @num_purchase_support.to_s %> <span> 份</span></p>
         <p>购买支持</p>
       </div>
-      <!--<div class="money p-r">-->
-      <!--<p class="total">¥ <%#= '%.2f' % @total.to_f %></p>-->
-      <!--<p>累计获得</p>-->
-      <!--</div>-->
+      <div class="money p-r">
+        <p class="total"><%= @support_count %> <span> 个</span></p>
+        <p>已成功</p>
+      </div>
       <div class="money p-r">
         <!--<p class="total">¥ <%#= '%.2f' %# @project.goal.to_f %></p>-->
         <p class="total"> 1000 <span>个</span></p>
@@ -58,6 +58,7 @@
         <% @supports.select(:user_id).distinct.each do |ele| %>
           <div class="supporter-avatar m-t m-l">
             <%= image_tag User.find_by_id(ele.user_id.to_s).try(:headimgurl) %>
+            <!--TODO BUG: 如果找不到user，则图片位置被空白占位。-->
           </div>
         <% end %>
       </div>
