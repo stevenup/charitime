@@ -16,6 +16,7 @@ module SessionHelper
       else
         user.update_attributes(info) if user['nickname'] != info['nickname'] or user['headimgurl'] != info['headimgurl']
       end
+      session[:user_id] = user.id
     else
       Rails.logger.info '******************** Get openid error ********************.'
     end

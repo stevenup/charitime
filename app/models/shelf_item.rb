@@ -5,4 +5,5 @@ class ShelfItem < ActiveRecord::Base
   has_many :order_details
 
   mount_uploader :thumb, ShelfItemThumbUploader
+  mount_uploader :main_pic, ShelfItemMainPicUploader
 end

@@ -18,7 +18,7 @@
 
 <div class="shelf-item-detail">
   <div class="big-thumb">
-    <%= image_tag @shelf_item.thumb %>
+    <%= image_tag @shelf_item.main_pic %>
   </div>
 
   <div class="main">
@@ -28,7 +28,7 @@
       </div>
       <div class="price">
         <span class="big-price">￥<%= '%.2f' % @shelf_item.price %></span>
-        <span class="coin"><%= @shelf_item.gyb_discount.to_i %>&nbsp;公益币</span>
+        <!--<span class="coin"><%#= @shelf_item.gyb_discount.to_i %>&nbsp;公益币</span>-->
       </div>
 
       <!--<div class="info">-->

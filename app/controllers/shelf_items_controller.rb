@@ -8,9 +8,9 @@ class ShelfItemsController < BaseController
     pid         = params[:pid]
 
     if pid.nil?
-      @project = Project.find_by_project_id(@shelf_item.project_id)
+      @project = Project.find_by(:project_id => @shelf_item.project_id, :is_published => '1')
     else
-      @project = Project.find_by_project_id(pid)
+      @project = Project.find_by(:project_id => pid, :is_published => '1')
     end
 
     addresses = Address.where(user_id: current_user.id.to_s)

@@ -834,12 +834,12 @@ i.arrow {
 
   .big-thumb {
     width: 100%;
-    height: p2e(400px);
+    //height: p2e(400px);
     border-bottom: p2e(1px) solid #979797;
 
     img {
       display: block;
-      width: 50%;
+      width: 100%;
       margin: 0 auto;
     }
   }

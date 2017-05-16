@@ -16,6 +16,11 @@
     </div>
 
     <div class="form-group">
+      <%= f.label :商品主图, class: 'col-lg-2 control-label' %>
+      <div class="col-lg-4"><%= image_tag @product.main_pic, class: 'col-lg-6' %></div>
+    </div>
+
+    <div class="form-group">
       <%= f.label :商品详情, class: 'col-lg-2 control-label' %>
       <div class="col-lg-4"><%= @product.product_detail.to_s.html_safe %></div>
     </div>

@@ -7,6 +7,7 @@ zh-CN:
         product_id:    '商品编号'
         product_name:  '商品名称'
         thumb:         '商品缩略图'
+        main_pic:      '商品主图'
         category:      '商品类别'
         purpose:       '商品目的'
         created_at:    '创建时间'
