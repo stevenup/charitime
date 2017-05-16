@@ -2093,3 +2093,63 @@ i.arrow {
     }
   }
 }
+
+.register-form-wrapper {
+  background-color: #ffffff;
+  @include font-dpr(14px);
+  padding: p2e(14px) p2e(28px);
+
+  .register-form {
+    line-height: p2e(56px);
+
+    .title {
+      @include font-dpr(16px);
+      text-align: center;
+    }
+
+    .telephone-wrapper {
+      border-bottom: p2e(1px) solid lightgray;
+      span {
+        margin-right: p2e(8px);
+      }
+    }
+
+    .code-wrapper {
+      border-bottom: p2e(1px) solid lightgray;
+      position: relative;
+
+      input[type=text] {
+        width: 70%;
+      }
+
+      .send-code-btn {
+        display: inline-block;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: lightgray;
+        padding: p2e(8px) p2e(48px);
+      }
+    }
+
+    .buttons {
+      text-align: center;
+      margin-top: p2e(36px);
+
+      .btn-default {
+        width: 100%;
+        @include font-dpr(16px);
+      }
+    }
+  }
+}
+
+.background-color-fill {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: #ffffff;
+  z-index: -100;
+}

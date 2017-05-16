@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/register', to: 'registrations#new'
+
   resources :donations
   resources :addresses do
     get :modify,      on: :collection
