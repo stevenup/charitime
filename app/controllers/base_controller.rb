@@ -1,15 +1,45 @@
 class BaseController < ApplicationController
-  include SessionHelper
   before_action :auth_user
 
-  # 如果是分享出去的连接，拼url时加上au_type参数，用于判断oauth为sns_userinfo
   def auth_user
-    Rails.logger.info '***************************** Starting to auth user ***************************'
-    code    = params[:code]
-    au_type = params[:type]
-    if logged_in?
-      log_in(code, au_type) if code
+    if current_user
+      openid = current_user.openid
+
+      fetch_info(openid) do |info|
+        if current_user['nickname'] != info['nickname'] || current_user['headimgurl'] != info['headimgurl']
+          current_user.update_attributes(info)
+        end
+      end
+    else
+      code = params['code']
+      if code
+        openid = Modules::Wechat.get_user_openid code
+
+        fetch_info(openid) do |info|
+          user = User.new(info)
+          session[:openid] = user.openid if user.save
+        end
+      else
+        redirect_to(redirect_url) && return
+      end
     end
   end
-end
 
+  def fetch_info openid
+    info = Modules::Wechat.get_user_info_sns_base openid
+    return if info['errcode'].present?
+    yield info if block_given?
+  end
+
+  def redirect_url
+    url = request.url
+    appid = Settings.wechat.appid
+    'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appid + '&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&state=12345#wechat_redirect'
+  end
+
+  private
+
+  def current_user
+    @current_user ||= User.find_by(openid: session[:openid])
+  end
+end

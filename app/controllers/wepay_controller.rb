@@ -1,6 +1,5 @@
-class WepayController < ApplicationController
+class WepayController < BaseController
   skip_before_filter :verify_authenticity_token
-  include SessionHelper
 
   def init_wx_js_info
     url = params['url']
