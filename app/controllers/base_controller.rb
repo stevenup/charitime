@@ -14,10 +14,15 @@ class BaseController < ApplicationController
       code = params['code']
       if code
         openid = Modules::Wechat.get_user_openid code
+        user = User.find_by_openid(openid) if openid
 
         fetch_info(openid) do |info|
-          user = User.new(info)
-          session[:openid] = user.openid if user.save
+          if user
+            session[:openid] = user.openid if user.update_attributes(info)
+          else
+            new_user = User.new(info)
+            session[:openid] = new_user.openid if new_user.save
+          end
         end
       else
         redirect_to(redirect_url) && return
