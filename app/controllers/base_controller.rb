@@ -4,6 +4,7 @@ class BaseController < ApplicationController
   def auth_user
     if current_user
       openid = current_user.openid
+      return if current_user.updated_at > (Time.now - 1.hour)
 
       fetch_info(openid) do |info|
         if current_user['nickname'] != info['nickname'] || current_user['headimgurl'] != info['headimgurl']
@@ -14,17 +15,18 @@ class BaseController < ApplicationController
       code = params['code']
       if code
         openid = Modules::Wechat.get_user_openid code
-        user = User.find_by_openid(openid) if openid
+        return unless openid
 
         fetch_info(openid) do |info|
-          if user
-            session[:openid] = user.openid if user.update_attributes(info)
-          else
-            new_user = User.new(info)
-            session[:openid] = new_user.openid if new_user.save
+          User.find_or_create_by(openid: openid) do |user|
+            user.update_attributes(info) if user.new_record? || user.updated_at > (Time.now - 1.hour)
+            session[:openid] = user.openid
           end
         end
       else
+        # NOTE:
+        #   1. For user who goes into charitime the first time.
+        #   2. Then redirect to auth url
         redirect_to(redirect_url) && return
       end
     end
