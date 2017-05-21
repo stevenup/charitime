@@ -5,13 +5,13 @@
 <div class="my-gyb" id="my-gyb">
   <div class="profile">
     <div class="avatar">
-      <%= image_tag current_user.headimgurl.to_s %>
+      <%= image_tag @user.headimgurl.to_s %>
     </div>
     <div class="wx_name">
-      <p><%= current_user.nickname.to_s %></p>
+      <p><%= @user.nickname.to_s %></p>
     </div>
     <div class="total-gyb">
-      <p><%= current_user.gyb.to_s %></p>
+      <p><%= @user.gyb.to_s %></p>
 
       <p class="tt">公益币</p>
     </div>

@@ -1,6 +1,7 @@
 class GybsController < BaseController
   def index
     @gyb_incomes = GybIncome.where("user_id = ?", current_user.id.to_s).order(created_at: :desc)
+    @user        = current_user
   end
 
   def append
