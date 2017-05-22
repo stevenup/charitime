@@ -16,7 +16,7 @@ set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rben
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :keep_releases, 5
 
-set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml config/wechat.yml public/MP_verify_yWzDYELKMxRoJCU4.txt}
+set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml config/wechat.yml public/MP_verify_yWzDYELKMxRoJCU4.txt public/logo.png}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 
 # Default branch is :master

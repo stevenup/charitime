@@ -48,5 +48,6 @@ class BaseController < ApplicationController
 
   def current_user
     @current_user ||= User.find_by(openid: session[:openid])
+    # @current_user = User.last
   end
 end

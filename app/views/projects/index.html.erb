@@ -16,28 +16,18 @@
 
 <%= render template: 'shared/tabs' %>
 
-<%= content_for :title, set_title('GoodBuy 公益商城 | 优活') %>
+<%= content_for :title, set_title('GOODBUY公益商城 | 优活') %>
 
 <script>
   $(document).ready(function () {
-    var $info = '';
-    var current_url = 'http://' + window.location.href.split('//')[1].split('/')[0] + '/projects';
-    var redirect_uri = encodeURIComponent(current_url);
-
-    $.ajax({
-      type: 'GET',
-      url: '/init_js_info',
-      data: { "url": window.location.href.split('#')[0] },
-      success: function (res) {
-        $info = res['data'];
-      }
-    });
+    var host_url     =  'http://' + window.location.href.split('//')[1].split('/')[0] + '/';
+    var current_url  = host_url + 'projects';
 
     wx.ready(function () {
       wx.onMenuShareTimeline({
-        title: 'GoodBuy 公益商城', // 分享标题
-        link: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + $info.appid + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_base&state=12345#wechat_redirect", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-//    imgUrl: host_url + shelf_item_thumb, // 分享图标
+        title: 'GOODBUY公益商城', // 分享标题
+        link: current_url,
+        imgUrl: host_url + 'logo.png', // 分享图标
         success: function () {
           // 用户确认分享后执行的回调函数
         },
@@ -47,10 +37,10 @@
       });
 
       wx.onMenuShareAppMessage({
-        title: 'GoodBuy 公益商城', // 分享标题
-        desc: '这里有很多优秀的公益项目和创意新潮的产品,赶快来看看吧~', // 分享描述
-        link: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + $info.appid + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_base&state=12345#wechat_redirect", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-//    imgUrl: host_url + shelf_item_thumb, // 分享图标
+        title: 'GOODBUY公益商城', // 分享标题
+        desc: '快来看看优秀的公益项目和创意新潮的产品吧', // 分享描述
+        link: current_url,
+        imgUrl: host_url + 'logo.png', // 分享图标
         type: '', // 分享类型,music、video或link，不填默认为link
         dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
         success: function () {
