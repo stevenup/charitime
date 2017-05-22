@@ -14,13 +14,14 @@ class BaseController < ApplicationController
     else
       code = params['code']
       if code
-        openid = Modules::Wechat.get_user_openid code
+        openid, access_token = Modules::Wechat.get_openid_and_access_token code
         return unless openid
 
-        fetch_info(openid) do |info|
+        fetch_info(openid, access_token) do |info|
           User.find_or_create_by(openid: openid) do |user|
             user.update_attributes(info) if user.new_record? || user.updated_at > (Time.now - 1.hour)
             session[:openid] = user.openid
+            # binding.pry
           end
         end
       else
@@ -32,8 +33,8 @@ class BaseController < ApplicationController
     end
   end
 
-  def fetch_info openid
-    info = Modules::Wechat.get_user_info_sns_base openid
+  def fetch_info(openid, access_token)
+    info = Modules::Wechat.get_user_info_sns_userinfo(openid, access_token)
     return if info['errcode'].present?
     yield info if block_given?
   end
@@ -41,7 +42,7 @@ class BaseController < ApplicationController
   def redirect_url
     url = request.url
     appid = Settings.wechat.appid
-    'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appid + '&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&state=12345#wechat_redirect'
+    'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appid + '&redirect_uri=' + url + '&response_type=code&scope=snsapi_userinfo&state=12345#wechat_redirect'
   end
 
   private

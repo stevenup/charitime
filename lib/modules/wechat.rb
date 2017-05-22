@@ -24,13 +24,13 @@ module Modules::Wechat
     _access_token
   end
 
-  def get_user_openid code
-    Rails.logger.info '********** in get_user_openid method **********'
+  def get_openid_and_access_token code
+    Rails.logger.info '********** in get_openid_and_access_token method **********'
     _url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=#{ Settings.wechat.appid }&secret=#{ Settings.wechat.secret }&code=#{ code }&grant_type=authorization_code"
     _info = HTTPClient.get _url
     Rails.logger.info _info.body
-    Rails.logger.info '*********** finish get_user_openid ************'
-    JSON.parse(_info.body)['openid']
+    Rails.logger.info '*********** finish get_openid_and_access_token ************'
+    [JSON.parse(_info.body)['openid'], JSON.parse(_info.body)['access_token']]
   end
 
   def get_user_info_sns_base openid
@@ -75,6 +75,6 @@ module Modules::Wechat
     _sign = Digest::SHA1.hexdigest("jsapi_ticket=#{ get_js_ticket }&noncestr=#{ noncestr }&timestamp=#{ timestamp }&url=#{ url }")
   end
 
-  module_function :get_access_token, :refresh_access_token, :get_js_ticket, :refresh_js_ticket, :get_sign, :get_user_openid, :get_user_info_sns_base,
+  module_function :get_access_token, :refresh_access_token, :get_js_ticket, :refresh_js_ticket, :get_sign, :get_openid_and_access_token, :get_user_info_sns_base,
                   :get_user_info_sns_userinfo
 end
