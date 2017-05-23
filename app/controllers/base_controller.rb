@@ -21,7 +21,6 @@ class BaseController < ApplicationController
           User.find_or_create_by(openid: openid) do |user|
             user.update_attributes(info) if user.new_record? || user.updated_at > (Time.now - 1.hour)
             session[:openid] = user.openid
-            # binding.pry
           end
         end
       else
@@ -33,8 +32,12 @@ class BaseController < ApplicationController
     end
   end
 
-  def fetch_info(openid, access_token)
-    info = Modules::Wechat.get_user_info_sns_userinfo(openid, access_token)
+  def fetch_info(openid, *access_token)
+    if access_token.blank?
+      info = Modules::Wechat.get_user_info_sns_base(openid)
+    else
+      info = Modules::Wechat.get_user_info_sns_userinfo(openid, *access_token)
+    end
     return if info['errcode'].present?
     yield info if block_given?
   end

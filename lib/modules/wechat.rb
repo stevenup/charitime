@@ -42,7 +42,7 @@ module Modules::Wechat
     JSON.parse(_info.body)
   end
 
-  def get_user_info_sns_userinfo openid, access_token
+  def get_user_info_sns_userinfo(openid, access_token)
     Rails.logger.info '********** in get_user_info_sns_user_info method **********'
     _url = "https://api.weixin.qq.com/sns/userinfo?access_token=#{ access_token }&openid=#{ openid }&lang=zh_CN"
     _info = HTTPClient.get _url
