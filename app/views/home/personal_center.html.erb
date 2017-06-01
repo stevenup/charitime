@@ -1,15 +1,15 @@
 <div class="personal-center" id="personal-center">
   <div class="profile">
     <div class="avatar">
-      <%= image_tag current_user.headimgurl.to_s %>
+      <%= image_tag @user.headimgurl.to_s %>
     </div>
     <div class="wx_name">
-      <p><%= current_user.nickname.to_s %></p>
+      <p><%= @user.nickname.to_s %></p>
     </div>
     <div class="total-gyb">
       <%= link_to gybs_path do %>
         <p style="text-decoration: underline">
-          <%= current_user.gyb.to_s %>
+          <%= @user.gyb.to_s %>
         </p>
       <% end %>
       <p class="tt">公益币</p>

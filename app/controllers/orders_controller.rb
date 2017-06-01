@@ -21,6 +21,7 @@ class OrdersController < BaseController
   end
 
   def pay
+    @user         = current_user
     order_id      = params[:id]
     @order_detail = OrderDetail.find_by_order_id order_id
     Address.convert_addr(@order_detail)
@@ -66,7 +67,7 @@ class OrdersController < BaseController
     order_detail_params = shelf_item.attributes.merge(address.attributes)
                               .except('id','project_id', 'product_id', 'product_category_id', 'product_label_id',
                                       'product_detail', 'stock', 'sales', 'is_on_shelf', 'recommended',
-                                      'created_at', 'updated_at', 'user_id', 'default', 'category', 'label')
+                                      'created_at', 'updated_at', 'user_id', 'default', 'category', 'label', 'purpose', 'main_pic')
 
     # Generate a unique order_id to relate Order with OrderDetail model
     order_id                             = 10000000000 + SecureRandom.random_number(9999999999)

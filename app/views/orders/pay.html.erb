@@ -29,17 +29,17 @@
     <p class="inline-block right-align">快递包邮</p>
   </div>
 
-  <% if current_user.gyb < @order_detail.gyb_discount %>
+  <% if @user.gyb < @order_detail.gyb_discount %>
     <div class="gyb-discount p-l p-r p-b p-t">
       <p class="inline-block">公益优惠</p>
       <p class="inline-block right-align red">&nbsp;￥0</p>
-      <div class="tip">共&nbsp;<%= current_user.gyb %>&nbsp;公益币, 不足抵扣</div>
+      <div class="tip">共&nbsp;<%= @user.gyb %>&nbsp;公益币, 不足抵扣</div>
     </div>
   <% else %>
     <div class="gyb-discount p-l p-r p-b p-t">
       <p class="inline-block">公益优惠</p>
       <p class="inline-block right-align red">&nbsp;￥<%= '%.2f' % (@order_detail.gyb_discount/100) %></p>
-      <div class="tip">共&nbsp;<%= current_user.gyb %>&nbsp;个公益币, 本次使用&nbsp;<%= @order_detail.gyb_discount.to_i %>&nbsp;个</div>
+      <div class="tip">共&nbsp;<%= @user.gyb %>&nbsp;个公益币, 本次使用&nbsp;<%= @order_detail.gyb_discount.to_i %>&nbsp;个</div>
     </div>
   <% end %>
 
