@@ -21,6 +21,7 @@ class BaseController < ApplicationController
           User.find_or_create_by(openid: openid) do |user|
             user.update_attributes(info) if user.new_record? || user.updated_at > (Time.now - 1.hour)
             session[:openid] = user.openid
+            cookies[:openid] = user.openid
           end
         end
       else
@@ -51,7 +52,9 @@ class BaseController < ApplicationController
   private
 
   def current_user
-    @current_user ||= User.find_by(openid: session[:openid])
+    @current_user ||= User.find_by(openid: session[:openid] || cookies[:openid])
     # @current_user = User.last
   end
+
+  helper_method :current_user
 end

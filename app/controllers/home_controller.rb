@@ -6,7 +6,6 @@ class HomeController < BaseController
   end
 
   def personal_center
-    @user = current_user
   end
 
   def donations_center
