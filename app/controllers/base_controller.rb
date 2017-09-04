@@ -17,13 +17,12 @@ class BaseController < ApplicationController
         openid, access_token = Modules::Wechat.get_openid_and_access_token code
         return unless openid
 
-        fetch_info(openid, access_token) do |info|
-          User.find_or_create_by(openid: openid) do |user|
-            user.update_attributes(info) if user.new_record? || user.updated_at > (Time.now - 1.hour)
-            session[:openid] = user.openid
-            cookies[:openid] = user.openid
-          end
+        info = fetch_info(openid, access_token)
+        user = User.find_by(openid: openid)
+        if user.nil? || user.updated_at > (Time.now - 1.hour)
+          user.update_attributes(info)
         end
+        session[:openid] = user.openid
       else
         # NOTE:
         #   1. For user who goes into charitime the first time.
@@ -39,8 +38,9 @@ class BaseController < ApplicationController
     else
       info = Modules::Wechat.get_user_info_sns_userinfo(openid, *access_token)
     end
-    return if info['errcode'].present?
-    yield info if block_given?
+    info
+    # return if info['errcode'].present?
+    # yield info if block_given?
   end
 
   def redirect_url
@@ -52,7 +52,12 @@ class BaseController < ApplicationController
   private
 
   def current_user
-    @current_user ||= User.find_by(openid: session[:openid] || cookies[:openid])
+    logger.info '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'
+    logger.info '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'
+    logger.info session[:openid]
+    logger.info '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'
+    logger.info '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'
+    @current_user ||= User.find_by(openid: session[:openid])
     # @current_user = User.last
   end
 
